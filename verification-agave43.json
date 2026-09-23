@@ -1,0 +1,30 @@
+{
+  "testedAt": "2026-09-22T10:51:40.005Z",
+  "backend": "compose",
+  "version": {
+    "feature-set": 3383571666,
+    "solana-core": "4.3.0"
+  },
+  "binaryVersion": "solana-test-validator 4.3.0 (src:825efd18; feat:c9ad34d2, client:Agave)",
+  "imageId": "sha256:efbc4005ea2a3890d51e148f6862ff897c715e3fdb6b1785be6812b03e971b22",
+  "privileged": false,
+  "architecture": "arm64",
+  "sourceCommit": "825efd18292aff6ffcf9daa0f7612f21b3531a72",
+  "genesisHash": "4otx2xtrPXLYrw1PUcmiaVxs7YUvs5qYfEgVRy1uwquo",
+  "rpcUrl": "http://127.0.0.1:32769",
+  "wsUrl": "ws://127.0.0.1:32770",
+  "apiUrl": "http://127.0.0.1:32768",
+  "explorerUrl": "http://127.0.0.1:32771/?cluster=custom&customUrl=http%3A%2F%2F127.0.0.1%3A32769",
+  "finalizedSlots": [
+    223,
+    320
+  ],
+  "wsSlot": 256,
+  "signature": "cAemRupMU1nNNQcZpCi262BhZsdcbzMeCiRu4EE25NVWhs1JR426eJfxrCcmv7CuqVLXphhpzbzALDrDE9jpux4",
+  "recipient": "CfcMmJRyUvKTDKv83M4k5RZMjvaVrcWrpivNC3fZ7RJe",
+  "recipientLamports": 1000000000,
+  "confirmationStatus": "finalized",
+  "sbfMemoProgram": "Memo4c2pN8afCj432Lb7RMVKi9PbQnnW7ewFFaV3oAH",
+  "apiFundRecipient": "FK3rJPpeNJKRG3H3vcsWkDdhS7TE2SZUMUaDiTqfYEhu",
+  "apiFundLamports": 1000000000
+}

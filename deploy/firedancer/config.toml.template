@@ -1,0 +1,33 @@
+# Render the @...@ placeholders before use. This is a minimal override of the
+# defaults embedded in Firedancer v26.09.4, not a complete configuration.
+name = "@INSTANCE_NAME@"
+user = "@RUNTIME_USER@"
+telemetry = false
+
+[paths]
+    base = "@DATA_DIRECTORY@"
+    identity_key = "@IDENTITY_KEYPAIR@"
+    vote_account = "@VOTE_ACCOUNT@"
+    genesis = "@GENESIS_BIN@"
+
+[gossip]
+    entrypoints = ["@ENTRYPOINT_HOST@:@ENTRYPOINT_GOSSIP_PORT@"]
+    port = @GOSSIP_PORT@
+    host = "@ADVERTISE_HOST@"
+
+[snapshots]
+    genesis_download = false
+
+[consensus]
+    expected_genesis_hash = "@EXPECTED_GENESIS_HASH@"
+    expected_shred_version = @EXPECTED_SHRED_VERSION@
+    wait_for_vote_to_start_leader = false
+
+[net]
+    interface = "@NETWORK_INTERFACE@"
+
+[development.gossip]
+    allow_private_address = true
+
+[development.genesis]
+    validate_genesis_hash = false

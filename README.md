@@ -2,6 +2,14 @@
 
 A Kurtosis package for running a local Solana environment with test validator and block explorer.
 
+> [!IMPORTANT]
+> The original package below still launches one `solana-test-validator`. The
+> pinned five-client investigation and the honest acceptance boundary are in
+> [`clients.lock.json`](clients.lock.json) and [`MULTICLIENT.md`](MULTICLIENT.md).
+> A five-node latest-stable network cannot currently be claimed because Sig's
+> stable release has no validator and Solana Labs 1.18 is incompatible with the
+> current 4.3 genesis/vote-account format.
+
 ## Usage
 
 To run the package with default settings:

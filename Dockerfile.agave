@@ -1,0 +1,77 @@
+# syntax=docker/dockerfile:1
+ARG DEBIAN_IMAGE=debian:bookworm-slim@sha256:3783cc01769c7b2b1b83a5c5ad96c815348e28ed7da68e2e3687004faa906251
+ARG NODE_IMAGE=node:24-bookworm-slim@sha256:0e0ff40c39bc087845bfb27465a0df4ea419520094bc35842ff83dd8cbe6f9b6
+
+FROM ${DEBIAN_IMAGE} AS builder
+SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates curl git build-essential clang libclang-dev lld cmake \
+    pkg-config libssl-dev libudev-dev zlib1g-dev protobuf-compiler jq \
+    && rm -rf /var/lib/apt/lists/*
+ENV RUSTUP_HOME=/opt/rustup CARGO_HOME=/opt/cargo PATH=/opt/cargo/bin:$PATH
+RUN curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs | \
+    sh -s -- -y --profile minimal --default-toolchain 1.97.1 --no-modify-path
+
+COPY --from=agave / /src/agave/
+WORKDIR /src/agave
+ARG AGAVE_COMMIT=825efd18292aff6ffcf9daa0f7612f21b3531a72
+ARG BUILD_JOBS=2
+# Resource-constrained feasibility build, not a production-performance build.
+ENV CARGO_BUILD_JOBS=${BUILD_JOBS} CARGO_INCREMENTAL=0 \
+    CARGO_PROFILE_RELEASE_DEBUG=0 CARGO_PROFILE_RELEASE_STRIP=symbols \
+    CARGO_PROFILE_RELEASE_LTO=false RUSTFLAGS="-C link-arg=-fuse-ld=lld" \
+    CXXFLAGS=-g0 CARGO_NET_GIT_FETCH_WITH_CLI=true
+RUN --mount=type=cache,id=solana-agave430-registry,target=/opt/cargo/registry \
+    --mount=type=cache,id=solana-agave430-git,target=/opt/cargo/git \
+    --mount=type=cache,id=solana-agave430-test-target,target=/src/agave/target \
+    --mount=type=secret,id=build_ca \
+    if [ -f /run/secrets/build_ca ]; then \
+      cat /etc/ssl/certs/ca-certificates.crt /run/secrets/build_ca > /tmp/build-ca.pem; \
+      export CARGO_HTTP_CAINFO=/tmp/build-ca.pem GIT_SSL_CAINFO=/tmp/build-ca.pem; \
+    fi; \
+    test "$(git rev-parse HEAD)" = "$AGAVE_COMMIT" && \
+    test -z "$(git status --porcelain --untracked-files=no)" && \
+    sha256sum Cargo.lock > /tmp/cargo-lock.sha256 && \
+    scripts/cargo-install-all.sh \
+      --no-build-dcou-bins --no-build-deprecated-bins \
+      --no-build-validator-bins --no-build-platform-tools --no-spl-token \
+      /opt/agave && \
+    sha256sum -c /tmp/cargo-lock.sha256 && \
+    /opt/agave/bin/solana-test-validator --version && \
+    printf 'commit=%s\nrust=1.97.1\nprofile=release,lto=false,debug=0,strip=symbols\n' \
+      "$AGAVE_COMMIT" > /opt/agave/BUILD-INFO && \
+    rm -f /tmp/build-ca.pem
+
+FROM ${NODE_IMAGE} AS api-builder
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+ENV NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
+WORKDIR /app
+COPY api/package.json api/package-lock.json ./
+RUN --mount=type=secret,id=build_ca \
+    if [ -f /run/secrets/build_ca ]; then \
+      export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; \
+    fi; \
+    node -e 'require("https").get("https://registry.npmjs.org/yn", r => { if (r.statusCode !== 200) process.exitCode = 1; r.resume(); }).on("error", e => { console.error(e); process.exitCode = 1; })' && \
+    npm ci --no-audit --no-fund
+COPY api/tsconfig.json ./
+COPY api/src ./src
+RUN npm run build && npm prune --omit=dev --no-audit --no-fund
+
+FROM ${NODE_IMAGE} AS runtime
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates libssl3 libudev1 libatomic1 tini \
+    && rm -rf /var/lib/apt/lists/*
+COPY --from=builder /opt/agave /opt/agave
+COPY --from=api-builder /app/package.json /app/package-lock.json /app/
+COPY --from=api-builder /app/node_modules /app/node_modules
+COPY --from=api-builder /app/dist /app/dist
+COPY --chmod=755 agave-entrypoint.sh /usr/local/bin/agave-entrypoint
+ENV PATH=/opt/agave/bin:$PATH PORT=3000 RPC_URL=http://127.0.0.1:8899
+WORKDIR /app
+LABEL org.opencontainers.image.source="https://github.com/anza-xyz/agave" \
+      org.opencontainers.image.version="4.3.0" \
+      org.opencontainers.image.revision="825efd18292aff6ffcf9daa0f7612f21b3531a72"
+EXPOSE 3000 8899 8900
+ENTRYPOINT ["/usr/bin/tini", "-g", "--", "/usr/local/bin/agave-entrypoint"]
+CMD ["solana-test-validator", "--log", "--ledger", "/tmp/solana-ledger"]

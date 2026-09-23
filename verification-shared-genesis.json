@@ -1,0 +1,107 @@
+{
+  "verifiedAt": "2026-09-23T02:26:44Z",
+  "topology": "shared-genesis-two-validator",
+  "genesisHash": "BLqoAQiyFqZt4wNyf2YWdUvgFbiHyB6dfWMz9eeHc8ag",
+  "nodes": [
+    {
+      "role": "bootstrap",
+      "identity": "63H9zu4eZ4ogPqH8vEUdeEFNmhbs5kRw1kP6yR2MZApX",
+      "vote": "3GojwyfvwBWa2jBaBrejjKXYbSQtQBfnFVL5MBNRoBmQ",
+      "binaryVersion": "agave-validator 4.3.0 (src:07270be4; feat:c9ad34d2, client:JitoLabs)",
+      "image": "solana-diff/jito-solana:4.3.0-jito-arm64",
+      "imageId": "sha256:b1cd8e2b2427bb9e80d32cde1b2537ad16bd5be858803b7f2a4ed3b92fa4e2c7"
+    },
+    {
+      "role": "joiner",
+      "identity": "Edi5b3bxYiTT3t7qnRSkWwpfv6hLLuSbEa28Sm2RizwL",
+      "vote": "58q78JnXXMjqXLWtKKQckzxBJ6rsorPgwdufc7AGnKP8",
+      "binaryVersion": "agave-validator 4.3.0 (src:07270be4; feat:c9ad34d2, client:JitoLabs)",
+      "image": "solana-diff/jito-solana:4.3.0-jito-arm64",
+      "imageId": "sha256:b1cd8e2b2427bb9e80d32cde1b2537ad16bd5be858803b7f2a4ed3b92fa4e2c7"
+    }
+  ],
+  "validators": {
+    "averageSkipRate": 40.97222222222222,
+    "averageStakeWeightedSkipRate": 40.97222222222222,
+    "stakeByClientId": {
+      "JitoLabs": {
+        "currentActiveStake": 199995434240,
+        "currentValidators": 2,
+        "delinquentActiveStake": 0,
+        "delinquentValidators": 0
+      }
+    },
+    "stakeByVersion": {
+      "4.3.0": {
+        "currentActiveStake": 199995434240,
+        "currentValidators": 2,
+        "delinquentActiveStake": 0,
+        "delinquentValidators": 0
+      }
+    },
+    "totalActiveStake": 199995434240,
+    "totalCurrentStake": 199995434240,
+    "totalDelinquentStake": 0,
+    "validators": [
+      {
+        "activatedStake": 99997717120,
+        "clientId": "JitoLabs",
+        "commissionBps": 10000,
+        "credits": 0,
+        "delinquent": false,
+        "epochCredits": 0,
+        "identityPubkey": "Edi5b3bxYiTT3t7qnRSkWwpfv6hLLuSbEa28Sm2RizwL",
+        "lastVote": 58,
+        "rootSlot": 0,
+        "skipRate": 2.7777777777777777,
+        "version": "4.3.0",
+        "voteAccountPubkey": "58q78JnXXMjqXLWtKKQckzxBJ6rsorPgwdufc7AGnKP8"
+      },
+      {
+        "activatedStake": 99997717120,
+        "clientId": "JitoLabs",
+        "commissionBps": 10000,
+        "credits": 0,
+        "delinquent": false,
+        "epochCredits": 0,
+        "identityPubkey": "63H9zu4eZ4ogPqH8vEUdeEFNmhbs5kRw1kP6yR2MZApX",
+        "lastVote": 58,
+        "rootSlot": 0,
+        "skipRate": 79.16666666666667,
+        "version": "4.3.0",
+        "voteAccountPubkey": "3GojwyfvwBWa2jBaBrejjKXYbSQtQBfnFVL5MBNRoBmQ"
+      }
+    ]
+  },
+  "gossipNodes": [
+    {
+      "featureSet": 3383571666,
+      "gossipPort": 8001,
+      "identityPubkey": "63H9zu4eZ4ogPqH8vEUdeEFNmhbs5kRw1kP6yR2MZApX",
+      "ipAddress": "172.29.80.2",
+      "pubsubHost": "172.29.80.2:8900",
+      "rpcHost": "172.29.80.2:8899",
+      "tpuQuicPort": 8003,
+      "version": "4.3.0"
+    },
+    {
+      "featureSet": 3383571666,
+      "gossipPort": 8001,
+      "identityPubkey": "Edi5b3bxYiTT3t7qnRSkWwpfv6hLLuSbEa28Sm2RizwL",
+      "ipAddress": "172.29.80.3",
+      "pubsubHost": "172.29.80.3:8900",
+      "rpcHost": "172.29.80.3:8899",
+      "tpuQuicPort": 8003,
+      "version": "4.3.0"
+    }
+  ],
+  "slots": {
+    "start": 92,
+    "end": 133
+  },
+  "transfer": {
+    "signature": "4DTEgJxMej9unyFSLgCc46Bym6frfWFNGW3woBtH6yiFR3mwCZXPeF7QUspfryTPeCWSN3HRGhT9NNR3yEzVDCzN",
+    "recipient": "BSsX4UpYWv2yBXEmGD3uTrf7wpYcTAAkQrT7Ld6uyV1H",
+    "recipientLamports": 1000000000
+  }
+}

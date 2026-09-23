@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "resolvedAt": "2026-09-23",
+  "selectionPolicy": "Latest non-draft, non-prerelease GitHub release published by each upstream project as of resolvedAt",
+  "clients": [
+    {
+      "id": "solana-labs",
+      "name": "Solana Labs",
+      "repository": "https://github.com/solana-labs/solana",
+      "release": {
+        "version": "1.18.26",
+        "tag": "v1.18.26",
+        "commit": "d9f20e951a06b61e4505da0955228020b96a8915",
+        "publishedAt": "2024-10-12T16:56:55Z",
+        "url": "https://github.com/solana-labs/solana/releases/tag/v1.18.26"
+      },
+      "implementation": "validator",
+      "stableReleaseCanVote": true,
+      "targetNetwork": "legacy-1.18",
+      "localStatus": "incompatible-with-4.3-genesis",
+      "evidence": [
+        "Local probe: Solana Labs v1.18.26 genesis with Jito v4.3.0-jito failed with `No valid vote accounts found` and `failed to replay bank 0`.",
+        "Local probe: Jito v4.3.0-jito genesis with Solana Labs v1.18.26 failed with `genesis processing failed because no staked nodes exist`."
+      ]
+    },
+    {
+      "id": "agave",
+      "name": "Agave",
+      "repository": "https://github.com/anza-xyz/agave",
+      "release": {
+        "version": "4.3.0",
+        "tag": "v4.3.0",
+        "commit": "825efd18292aff6ffcf9daa0f7612f21b3531a72",
+        "publishedAt": "2026-09-18T12:15:17Z",
+        "url": "https://github.com/anza-xyz/agave/releases/tag/v4.3.0"
+      },
+      "implementation": "validator",
+      "stableReleaseCanVote": true,
+      "targetNetwork": "generation-4.3",
+      "localStatus": "test-validator-verified-full-validator-build-pending",
+      "evidence": [
+        "verification-agave43.json",
+        "Dockerfile.agave-validator",
+        "solana-diff/agave-tools:4.3.0-amd64 (sha256:b3d5abc16018f2f4b669555299a95998d33c507ff5139b2285d78ef92a4870b5) contains release CLI/ledger tools only and is not validator evidence."
+      ]
+    },
+    {
+      "id": "jito-solana",
+      "name": "Jito-Solana",
+      "repository": "https://github.com/jito-foundation/jito-solana",
+      "release": {
+        "version": "4.3.0-jito",
+        "tag": "v4.3.0-jito",
+        "commit": "07270be44c712356d8fb94dff8e7a1edd425dbff",
+        "publishedAt": "2026-09-21T03:00:26Z",
+        "url": "https://github.com/jito-foundation/jito-solana/releases/tag/v4.3.0-jito"
+      },
+      "implementation": "validator",
+      "stableReleaseCanVote": true,
+      "targetNetwork": "generation-4.3",
+      "localStatus": "validator-verified-single-node-and-shared-genesis-orchestration",
+      "evidence": [
+        "verification-jito430.json",
+        "smoke-jito-validator.sh",
+        "verification-shared-genesis.json (two independent Jito voting nodes; proves shared-genesis orchestration, not client diversity)",
+        "smoke-shared-genesis.sh"
+      ]
+    },
+    {
+      "id": "firedancer",
+      "name": "Firedancer",
+      "repository": "https://github.com/firedancer-io/firedancer",
+      "release": {
+        "version": "26.09.4",
+        "tag": "v26.09.4",
+        "commit": "d70ace98ec2ddf407bfc816cc4f327ddcf6897bb",
+        "publishedAt": "2026-09-22T21:10:19Z",
+        "url": "https://github.com/firedancer-io/firedancer/releases/tag/v26.09.4"
+      },
+      "implementation": "validator",
+      "stableReleaseCanVote": true,
+      "targetNetwork": "generation-4.3-candidate",
+      "localStatus": "requires-capable-linux-host",
+      "evidence": [
+        "The v26.09.4 release is named `Firedancer Mainnet Release v26.09.4`, has no binary assets, and states support for Solana 4.3 features.",
+        "The same release reports an approximately 109 GiB testnet memory footprint.",
+        "https://docs.firedancer.io/guide/getting-started.html"
+      ]
+    },
+    {
+      "id": "sig",
+      "name": "Sig",
+      "repository": "https://github.com/Syndica/sig",
+      "release": {
+        "version": "0.1.0",
+        "tag": "v0.1.0",
+        "commit": "e9645c0ce4823fd49db02053bad673e77cf148b5",
+        "publishedAt": "2023-05-20T19:58:37Z",
+        "url": "https://github.com/Syndica/sig/releases/tag/v0.1.0"
+      },
+      "implementation": "rpc-library",
+      "stableReleaseCanVote": false,
+      "targetNetwork": null,
+      "localStatus": "no-validator-artifact",
+      "evidence": [
+        "The v0.1.0 README describes a Solana Zig RPC client and the build installs only a static library.",
+        "https://github.com/Syndica/sig/blob/e9645c0ce4823fd49db02053bad673e77cf148b5/readme.md",
+        "Current main says Sig v2 is not yet a complete validator and needs an externally generated leader schedule and a complete shred stream because repair is missing."
+      ]
+    }
+  ],
+  "acceptance": {
+    "requestedVotingClients": 5,
+    "currentlyFeasibleLatestStableVotingClients": 3,
+    "compatibleCandidateSet": [
+      "agave",
+      "jito-solana",
+      "firedancer"
+    ],
+    "constraintConflicts": [
+      "Solana Labs v1.18.26 vote-account/genesis state is incompatible with the 4.3 generation.",
+      "Sig v0.1.0 does not contain a validator executable."
+    ],
+    "result": "not-achievable-with-all-five-latest-stable-releases"
+  }
+}

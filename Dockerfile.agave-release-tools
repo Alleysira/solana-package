@@ -1,0 +1,33 @@
+# syntax=docker/dockerfile:1
+ARG DEBIAN_IMAGE=debian:bookworm-slim@sha256:3783cc01769c7b2b1b83a5c5ad96c815348e28ed7da68e2e3687004faa906251
+
+FROM ${DEBIAN_IMAGE} AS fetcher
+SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates bzip2 \
+    && rm -rf /var/lib/apt/lists/*
+ARG AGAVE_VERSION=v4.3.0
+ARG AGAVE_ARCHIVE_SHA256=c97289a8abb1d0efb497d8b5cb285baabd9b7f8ea6647f5d145c5dc8ff3611e8
+COPY --from=agave_archive /agave.tar.bz2 /tmp/agave.tar.bz2
+RUN archive=/tmp/agave.tar.bz2; \
+    printf '%s  %s\n' "$AGAVE_ARCHIVE_SHA256" "$archive" | sha256sum --check --strict; \
+    mkdir /opt/agave; \
+    tar --extract --bzip2 --file "$archive" --directory /opt/agave --strip-components=1; \
+    test "$(sed -n 's/^channel: //p' /opt/agave/version.yml)" = "$AGAVE_VERSION"; \
+    test -x /opt/agave/bin/agave-ledger-tool; \
+    test ! -e /opt/agave/bin/agave-validator; \
+    rm -f "$archive"
+
+FROM ${DEBIAN_IMAGE} AS runtime
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates libssl3 libudev1 libatomic1 zlib1g \
+    && rm -rf /var/lib/apt/lists/*
+COPY --from=fetcher /opt/agave /opt/agave
+ENV PATH=/opt/agave/bin:$PATH
+LABEL org.opencontainers.image.source="https://github.com/anza-xyz/agave" \
+      org.opencontainers.image.version="v4.3.0" \
+      org.opencontainers.image.revision="825efd18292aff6ffcf9daa0f7612f21b3531a72" \
+      org.opencontainers.image.capability="cli-tools-only-no-validator" \
+      org.opencontainers.image.archive-sha256="c97289a8abb1d0efb497d8b5cb285baabd9b7f8ea6647f5d145c5dc8ff3611e8"
+ENTRYPOINT ["agave-ledger-tool"]
+CMD ["--version"]

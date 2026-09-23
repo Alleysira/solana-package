@@ -1,0 +1,40 @@
+# syntax=docker/dockerfile:1
+ARG DEBIAN_IMAGE=debian:bookworm-slim@sha256:3783cc01769c7b2b1b83a5c5ad96c815348e28ed7da68e2e3687004faa906251
+
+FROM ${DEBIAN_IMAGE} AS fetcher
+SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates curl bzip2 \
+    && rm -rf /var/lib/apt/lists/*
+ARG JITO_VERSION=v4.3.0-jito
+ARG JITO_ARCHIVE_SHA256=4efa3f8ea3727e7f86c27274b28b3b4400541338acf4b7410f261be218fbff36
+RUN --mount=type=secret,id=build_ca \
+    if [ -f /run/secrets/build_ca ]; then \
+      cat /etc/ssl/certs/ca-certificates.crt /run/secrets/build_ca > /tmp/build-ca.pem; \
+      export CURL_CA_BUNDLE=/tmp/build-ca.pem; \
+    fi; \
+    archive=/tmp/jito-solana.tar.bz2; \
+    curl --proto '=https' --tlsv1.2 --fail --show-error --location \
+      --output "$archive" \
+      "https://github.com/jito-foundation/jito-solana/releases/download/${JITO_VERSION}/jito-solana-release-${JITO_VERSION}_x86_64-unknown-linux-gnu.tar.bz2"; \
+    printf '%s  %s\n' "$JITO_ARCHIVE_SHA256" "$archive" | sha256sum --check --strict; \
+    mkdir /opt/jito; \
+    tar --extract --bzip2 --file "$archive" --directory /opt/jito --strip-components=1; \
+    test "$(sed -n 's/^channel: //p' /opt/jito/version.yml)" = "$JITO_VERSION"; \
+    rm -f "$archive" /tmp/build-ca.pem
+
+FROM ${DEBIAN_IMAGE} AS runtime
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates libssl3 libudev1 libatomic1 zlib1g tini \
+    && rm -rf /var/lib/apt/lists/* \
+    && useradd --create-home --uid 1000 --shell /usr/sbin/nologin validator
+COPY --from=fetcher /opt/jito /opt/jito
+ENV PATH=/opt/jito/bin:$PATH
+USER validator:validator
+WORKDIR /home/validator
+LABEL org.opencontainers.image.source="https://github.com/jito-foundation/jito-solana" \
+      org.opencontainers.image.version="v4.3.0-jito" \
+      org.opencontainers.image.revision="07270be44c712356d8fb94dff8e7a1edd425dbff" \
+      org.opencontainers.image.archive-sha256="4efa3f8ea3727e7f86c27274b28b3b4400541338acf4b7410f261be218fbff36"
+ENTRYPOINT ["/usr/bin/tini", "-g", "--"]
+CMD ["agave-validator", "--version"]

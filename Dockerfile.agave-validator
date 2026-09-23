@@ -1,0 +1,57 @@
+# syntax=docker/dockerfile:1
+ARG DEBIAN_IMAGE=debian:bookworm-slim@sha256:3783cc01769c7b2b1b83a5c5ad96c815348e28ed7da68e2e3687004faa906251
+
+FROM ${DEBIAN_IMAGE} AS builder
+SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates curl git build-essential clang libclang-dev lld cmake \
+    pkg-config libssl-dev libudev-dev zlib1g-dev protobuf-compiler jq \
+    && rm -rf /var/lib/apt/lists/*
+ENV RUSTUP_HOME=/opt/rustup CARGO_HOME=/opt/cargo PATH=/opt/cargo/bin:$PATH
+RUN curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs | \
+    sh -s -- -y --profile minimal --default-toolchain 1.97.1 --no-modify-path
+
+COPY --from=agave_source / /src/agave/
+WORKDIR /src/agave
+ARG AGAVE_COMMIT=825efd18292aff6ffcf9daa0f7612f21b3531a72
+ARG AGAVE_CARGO_LOCK_SHA256=8a3a8fb8d59642e53b633be3f3b9b5f6bbf347c5337fea82d00f37ba595bb8fb
+ARG BUILD_JOBS=2
+ENV CI_COMMIT=${AGAVE_COMMIT} \
+    CARGO_BUILD_JOBS=${BUILD_JOBS} CARGO_INCREMENTAL=0 \
+    CARGO_PROFILE_RELEASE_DEBUG=0 CARGO_PROFILE_RELEASE_STRIP=symbols \
+    CARGO_PROFILE_RELEASE_LTO=false RUSTFLAGS="-C link-arg=-fuse-ld=lld" \
+    CXXFLAGS=-g0 CARGO_NET_GIT_FETCH_WITH_CLI=true
+RUN --mount=type=cache,id=solana-agave430-validator-registry,target=/opt/cargo/registry \
+    --mount=type=cache,id=solana-agave430-validator-git,target=/opt/cargo/git \
+    --mount=type=cache,id=solana-agave430-validator-target,target=/src/agave/target \
+    --mount=type=secret,id=build_ca \
+    if [ -f /run/secrets/build_ca ]; then \
+      cat /etc/ssl/certs/ca-certificates.crt /run/secrets/build_ca > /tmp/build-ca.pem; \
+      export CARGO_HTTP_CAINFO=/tmp/build-ca.pem GIT_SSL_CAINFO=/tmp/build-ca.pem; \
+    fi; \
+    printf '%s  Cargo.lock\n' "$AGAVE_CARGO_LOCK_SHA256" | sha256sum --check --strict; \
+    sha256sum Cargo.lock > /tmp/cargo-lock.sha256; \
+    scripts/cargo-install-all.sh \
+      --no-build-dcou-bins --no-build-deprecated-bins --no-build-dev-bins \
+      --no-build-platform-tools --no-spl-token /opt/agave; \
+    sha256sum -c /tmp/cargo-lock.sha256; \
+    /opt/agave/bin/agave-validator --version; \
+    printf 'commit=%s\nrust=1.97.1\nprofile=release,lto=false,debug=0,strip=symbols\n' \
+      "$AGAVE_COMMIT" > /opt/agave/BUILD-INFO; \
+    rm -f /tmp/build-ca.pem
+
+FROM ${DEBIAN_IMAGE} AS runtime
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates libssl3 libudev1 libatomic1 zlib1g tini \
+    && rm -rf /var/lib/apt/lists/* \
+    && useradd --create-home --uid 1000 --shell /usr/sbin/nologin validator
+COPY --from=builder /opt/agave /opt/agave
+ENV PATH=/opt/agave/bin:$PATH
+USER validator:validator
+WORKDIR /home/validator
+LABEL org.opencontainers.image.source="https://github.com/anza-xyz/agave" \
+      org.opencontainers.image.version="v4.3.0" \
+      org.opencontainers.image.revision="825efd18292aff6ffcf9daa0f7612f21b3531a72" \
+      org.opencontainers.image.build="native-linux-arm64-source-validator"
+ENTRYPOINT ["/usr/bin/tini", "-g", "--"]
+CMD ["agave-validator", "--version"]

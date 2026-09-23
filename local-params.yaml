@@ -1,0 +1,23 @@
+validator_params:
+  image: "solana-diff/agave:4.3.0-arm64"
+  url: "http://127.0.0.1:8899"
+  clone_tokens: false
+  selected_protocols: []
+  clone_layer_zero: false
+  additional_accounts: []
+  additional_upgradeable_accounts: []
+  rpc_port: 8899
+  ws_port: 8900
+  faucet_sol: 1000000
+  ledger_compaction_interval: ""
+  log_level: true
+  extra_args: ["--limit-blockstore-size", "10000"]
+  env_vars:
+    RUST_LOG: "warn"
+  prefunded_accounts: {}
+
+explorer_params:
+  enabled: true
+  image: "tiljordan/solana-explorer:1.0.6@sha256:91ab7d1a7a24101f3950e027c97bbec9c093e4059a68cba49a923d8876e996b8"
+
+persistent: false

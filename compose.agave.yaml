@@ -1,0 +1,71 @@
+name: solana-agave43
+
+services:
+  solana-validator:
+    image: solana-diff/agave:4.3.0-arm64
+    platform: linux/arm64
+    pull_policy: never
+    user: "1000:1000"
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+      - seccomp=./seccomp/agave.json
+    environment:
+      RUST_LOG: warn
+      RPC_URL: http://127.0.0.1:8899
+    command:
+      - solana-test-validator
+      - --url
+      - http://127.0.0.1:8899
+      - --ledger
+      - /tmp/solana-ledger
+      - --rpc-port
+      - "8899"
+      - --faucet-sol
+      - "1000000"
+      - --limit-blockstore-size
+      - "10000"
+      - --log
+    ports:
+      - "127.0.0.1::8899"
+      - "127.0.0.1::8900"
+      - "127.0.0.1::3000"
+    mem_limit: 4g
+    cpus: 4
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:8899', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'getHealth'})}).then(r=>r.json()).then(r=>process.exit(r.result==='ok'?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    logging:
+      options:
+        max-size: 10m
+        max-file: "2"
+
+  solana-explorer:
+    image: tiljordan/solana-explorer:1.0.6@sha256:91ab7d1a7a24101f3950e027c97bbec9c093e4059a68cba49a923d8876e996b8
+    platform: linux/arm64
+    pull_policy: never
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    environment:
+      NEXT_PUBLIC_MAINNET_RPC_URL: http://solana-validator:8899
+      REACT_APP_EXPLORER_TITLE: Solana Local Explorer
+    ports:
+      - "127.0.0.1::3000"
+    depends_on:
+      solana-validator:
+        condition: service_healthy
+    mem_limit: 768m
+    cpus: 1
+    healthcheck:
+      test: [CMD, node, -e, "require('http').get('http://127.0.0.1:3000',r=>{r.resume();process.exit(r.statusCode===200?0:1)}).on('error',()=>process.exit(1))"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+    logging:
+      options:
+        max-size: 10m
+        max-file: "2"

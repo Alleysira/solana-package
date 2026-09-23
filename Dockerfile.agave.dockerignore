@@ -1,0 +1,8 @@
+**
+!api
+!api/package.json
+!api/package-lock.json
+!api/tsconfig.json
+!api/src
+!api/src/**
+!agave-entrypoint.sh

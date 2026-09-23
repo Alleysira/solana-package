@@ -87,7 +87,7 @@ def launch_validator(plan, validator_params, persistent, global_node_selectors):
 
     # Increase faucet amount
     command.append("--faucet-sol")
-    command.append(str(2000000000000))
+    command.append(str(validator_params.get("faucet_sol", 2000000000000)))
     
     # Add log flag if specified
     if validator_params["log_level"]:
@@ -155,6 +155,7 @@ def launch_validator(plan, validator_params, persistent, global_node_selectors):
         "image": validator_params["image"],
         "ports": shared_utils.get_port_specs(port_assignments),
         "cmd": command,  # Pass the customized validator command
+        "env_vars": validator_params.get("env_vars", {}),
         "node_selectors": global_node_selectors,
     }
     

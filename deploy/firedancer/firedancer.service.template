@@ -1,0 +1,18 @@
+[Unit]
+Description=Firedancer v26.09.4 private-testnet validator
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+ExecStartPre=@FIREDANCER_BINARY@ configure check all --config @CONFIG_FILE@
+ExecStart=@FIREDANCER_BINARY@ run --config @CONFIG_FILE@
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=1000000
+LimitMEMLOCK=infinity
+TimeoutStopSec=120
+
+[Install]
+WantedBy=multi-user.target
