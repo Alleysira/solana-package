@@ -80,11 +80,17 @@
       "implementation": "validator",
       "stableReleaseCanVote": true,
       "targetNetwork": "generation-4.3-candidate",
-      "localStatus": "requires-capable-linux-host",
+      "localStatus": "wsl-component-pass-with-synthetic-numa-deviation-validator-unverified",
       "evidence": [
         "The v26.09.4 release is named `Firedancer Mainnet Release v26.09.4`, has no binary assets, and states support for Solana 4.3 features.",
         "The same release reports an approximately 109 GiB testnet memory footprint.",
-        "https://docs.firedancer.io/guide/getting-started.html"
+        "https://docs.firedancer.io/guide/getting-started.html",
+        "verification-firedancer-26094-wsl.json attempt 20260928T014429Z: pinned dependencies installed, but GCC 11 build exited 2 on -Werror conversion/sign-conversion diagnostics in replay/repair sources; no validator artifact produced.",
+        "verification-firedancer-26094-wsl.json attempt 20260928T024315Z: supplied GCC 11.5 local-value repro exited without a diagnostic; upstream-style make -j4 check exited 2 at src/util/archive/test_tar.c via fd_tar.h:123; no required artifact produced.",
+        "solana-package/evidence/firedancer-26094-wsl/20260928T034036Z/summary.json: intended Linux artifacts built with GCC/G++ 12.5 after tracked explicit conversions in fd_forest.h, fd_tar.h, fd_rserve_tile.c, fd_zstd_frame.c, and fd_ssmanifest_parser.c; this is not a clean upstream build.",
+        "The pinned test_sol_compat and test_sol_compat_so commands both stopped before execution because WSL2 lacks /sys/devices/system/node and Firedancer reports fd_shmem: unexpected numa_cnt 0; no validator startup evidence.",
+        "solana-package/evidence/firedancer-26094-wsl/20260928T045955Z/summary.json: an explicit fd_numa_linux.c fallback fabricated one NUMA node and mapped every CPU to node 0; both component commands exited 0, but this is component-only evidence and must not be used for runtime sizing or validator claims."
+        ,"solana-package/evidence/firedancer-26094-wsl/20260928T050940Z/summary.json: runtime continuation was blocked during configure init/check because synthetic node-0 mapping caused fd_topob auto layout to report all CPUs already assigned; no genesis, memory estimate, or validator process was produced."
       ]
     },
     {

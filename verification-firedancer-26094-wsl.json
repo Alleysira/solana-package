@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "target": {
+    "repository": "https://github.com/firedancer-io/firedancer.git",
+    "tag": "v26.09.4",
+    "commit": "d70ace98ec2ddf407bfc816cc4f327ddcf6897bb"
+  },
+  "attempts": [
+    {
+      "runId": "20260928T012333Z",
+      "completedAt": "2026-09-28T01:27:24Z",
+      "status": "BLOCKED",
+      "highestEvidenceLevel": "prepared",
+      "summaryPath": "solana-package/evidence/firedancer-26094-wsl/20260928T012333Z/summary.json",
+      "summarySha256": "eb8290e6c069efc2e0ffe74bd08d8ff3039d88c0f145a71e96e9894eac08a5cb",
+      "limitations": [
+        "sudo password unavailable; package gate blocked before build"
+      ]
+    },
+    {
+      "runId": "20260928T014429Z",
+      "completedAt": "2026-09-28T01:53:03Z",
+      "status": "BLOCKED",
+      "highestEvidenceLevel": "prepared",
+      "summaryPath": "solana-package/evidence/firedancer-26094-wsl/20260928T014429Z/summary.json",
+      "summarySha256": "fb5dfd71b7c2a9f407870a389c8c11f1c3485fc28761f1ccd886cd222fd9b070",
+      "limitations": [
+        "Pinned dependencies installed, but GCC 11 build stopped on -Werror conversion/sign-conversion diagnostics"
+      ]
+    },
+    {
+      "runId": "20260928T024315Z",
+      "completedAt": "2026-09-28T02:44:32Z",
+      "status": "BLOCKED",
+      "highestEvidenceLevel": "prepared",
+      "summaryPath": "solana-package/evidence/firedancer-26094-wsl/20260928T024315Z/summary.json",
+      "summarySha256": "10e4d0ec01652d703675bfd056cb7f3e713418e1d0cc887f5f0beada3295eaf5",
+      "limitations": [
+        "make check failed at fd_tar.h:123 before required artifacts were produced"
+      ]
+    },
+    {
+      "runId": "20260928T034036Z",
+      "completedAt": "2026-09-28T12:02:00+08:00",
+      "status": "PARTIAL",
+      "highestEvidenceLevel": "built",
+      "summaryPath": "solana-package/evidence/firedancer-26094-wsl/20260928T034036Z/summary.json",
+      "summarySha256": "53ea6f356d8a23b43136584abf109666c5517802667dbc481472bf35fdeb5bb9",
+      "limitations": [
+        "Required Linux artifacts built with GCC 12.5 and five tracked explicit source conversions",
+        "Component and shared-library validation aborted before execution because WSL2 lacks /sys/devices/system/node and Firedancer reports unexpected numa_cnt 0",
+        "No validator startup, network joining, voting, or end-to-end evidence"
+      ]
+    },
+    {
+      "runId": "20260928T045955Z",
+      "completedAt": "2026-09-28T13:02:00+08:00",
+      "status": "PARTIAL",
+      "highestEvidenceLevel": "built",
+      "summaryPath": "solana-package/evidence/firedancer-26094-wsl/20260928T045955Z/summary.json",
+      "summarySha256": "8881b585d18a2954944b2836b3969eccd386f590f18ecab57e0293c46b5fa9b0",
+      "limitations": [
+        "fd_numa_linux.c fabricated a single NUMA node and mapped all CPUs to node 0 because WSL2 lacks NUMA sysfs",
+        "test_sol_compat and test_sol_compat_so exited 0 under this explicit synthetic-topology deviation",
+        "This is component-only evidence; no runtime sizing or validator/network claim is valid"
+      ]
+    },
+    {
+      "runId": "20260928T050940Z",
+      "completedAt": "2026-09-28T13:12:00+08:00",
+      "status": "BLOCKED",
+      "highestEvidenceLevel": "built",
+      "summaryPath": "solana-package/evidence/firedancer-26094-wsl/20260928T050940Z/summary.json",
+      "summarySha256": "9cdf55f74131b629c977549b29a0d24f2c9c9a7c5cf49cfe2b6ba80154981920",
+      "limitations": [
+        "Synthetic node-0 NUMA mapping caused auto-layout to report all CPUs already assigned",
+        "No genesis, memory estimate, validator startup, joining, or voting evidence"
+      ]
+    }
+  ]
+}

@@ -12,7 +12,7 @@ from what the pinned release can actually run.
 | --- | --- | ---: | ---: | --- |
 | Agave | `v4.3.0` | yes | expected | test-validator verified; full validator build pending |
 | Jito-Solana | `v4.3.0-jito` | yes | verified | real validator and two-node shared-genesis topology verified |
-| Firedancer | `v26.09.4` | yes | candidate | upstream says 4.3 support; capable host required |
+| Firedancer | `v26.09.4` | yes | candidate | Linux artifacts built with GCC 12.5 plus tracked conversion and synthetic-NUMA fixes; component checks pass only under fabricated node-0 topology, so no runtime/validator evidence |
 | Solana Labs | `v1.18.26` | yes | no | both genesis directions rejected in local probes |
 | Sig | `v0.1.0` | no | n/a | stable release is an RPC static library |
 
@@ -51,10 +51,11 @@ documents external Agave leader-schedule and shred-stream requirements.
 2. Re-run the verified shared-genesis harness with the full Agave image as
    `JOINER_IMAGE`; the current evidence uses two Jito nodes and therefore does
    not yet prove Agave/Jito client diversity.
-3. Build and add Firedancer 26.09.4 on a dedicated Linux x86_64 host with at
-   least 128 GiB physical RAM (the release reports a ~109 GiB testnet
-   footprint). Use `deploy/firedancer/` for the preflight
-   and host deployment boundary.
+3. Repeat Firedancer 26.09.4 component and runtime validation on a dedicated
+   Linux x86_64 host with NUMA nodes exposed and at least 128 GiB physical RAM
+   (the release reports a ~109 GiB testnet footprint). Review the five tracked
+   conversion fixes with upstream before calling the build clean. Use
+   `deploy/firedancer/` for the preflight and host deployment boundary.
 4. Choose one relaxation for each upstream conflict: use a protocol-compatible
    Solana Labs revision instead of latest stable, and use Sig `main` as a
    non-voting observer—or wait for an upstream complete stable Sig validator.
