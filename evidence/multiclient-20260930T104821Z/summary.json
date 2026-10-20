@@ -1,0 +1,116 @@
+{
+  "experiment": "multiclient-jito-agave-sig-20slots",
+  "date": "2026-09-30T10:48:21Z",
+  "host": "Apple Silicon Mac (arm64); OrbStack (jiema) via DOCKER_HOST=unix:///Users/jiema/.orbstack/run/docker.sock; Kurtosis CLI/engine 1.20.0",
+  "enclave": "solana-multiclient (UUID 360852d325cf)",
+  "goal": "Run Jito + Agave + SIG in ONE Kurtosis testnet enclave; wait for >=20 slots of blocks; then remove the enclave. Do not disturb other users' data/containers.",
+  "method": "kurtosis run --privileged --enclave solana-multiclient . '{\"slots_target\":20}' (package dir mode, mc15 run). jq-free slot verifier (column-agnostic awk over `solana validators`/`gossip` human tables).",
+  "result": "PASS — 20-slot goal ACHIEVED with proven client diversity.",
+  "evidenceLevel_overall": "end-to-end (two voting validators) — NOT a five-client or three-voting-validator claim",
+  "topology": {
+    "description": "two voting validators (Jito bootstrap + Agave joiner) plus one SIG non-voting observer",
+    "votingValidators": [
+      {
+        "role": "bootstrap",
+        "service": "val-bootstrap",
+        "image": "solana-diff/jito-solana:4.3.0-jito-arm64",
+        "clientProject": "Jito-Solana",
+        "commit": "07270be44c712356d8fb94dff8e7a1edd425dbff",
+        "tag": "v4.3.0-jito",
+        "binaryVersion": "agave-validator 4.3.0 (src:07270be4; feat:c9ad34d2, client:JitoLabs)",
+        "clientId": "JitoLabs",
+        "identity": "CK47DnL1bVLNr9nm5XZr7mH962aVQpPy81KaQ8doq79j",
+        "voteAccount": "HymitNM5jnBYiQqNWmNippJS5PaWQbu7LFGSh2HFXXXP",
+        "evidenceLevel": "voting"
+      },
+      {
+        "role": "joiner",
+        "service": "val-joiner",
+        "image": "solana-diff/agave-validator:4.3.0-arm64",
+        "clientProject": "Agave",
+        "commit": "825efd18292aff6ffcf9daa0f7612f21b3531a72",
+        "tag": "v4.3.0",
+        "binaryVersion": "agave-validator 4.3.0 (src:825efd18; feat:c9ad34d2, client:Agave)",
+        "clientId": "Agave",
+        "identity": "Ap1pGC8E6Gg4zpi3uALCLYgQdMZFpaHpMFxNjxwE82z8",
+        "voteAccount": "FYxwKeXb6P2jZnpZG6NJNM37kkXCY9W3Fu9WoxVvGfTm",
+        "evidenceLevel": "voting"
+      }
+    ],
+    "sigObserver": {
+      "service": "sig-observer",
+      "image": "solana-diff/sig:v0.2.0-arm64-dev",
+      "clientProject": "SIG (v2, development observer)",
+      "forkCommit": "5815597b7cd702b7812272c95a79a212f89d0d8b",
+      "parentUpstreamCommit": "b5026c60fe56b51edd79131115b7e741449d6b2e",
+      "voting": false,
+      "evidenceLevel": "not_started",
+      "blocker": "accounts_db service dies at snapshot.zig:554 MissingVersionFile on cold start (no snapshot to download). Patched cold-start bypass reached 'Gossip started' + 'shredReceiver Waiting for shreds' but accounts_db then exited. NOT a gate for the 20-slot goal.",
+      "note": "SIG is structurally a NON-VOTING observer (no vote/stake accounts). Never counted as a voting validator."
+    }
+  },
+  "genesis": {
+    "genesisHash": "6Vum9NjdWBsc65vt5dcoNFcxKHP2yrmT6UcZt5UTvtY3",
+    "shredVersion": "45836",
+    "bankHashSlot0": "8GnKd1fpK4kge8GuopvdSyH5Ttt7GEBoL2jLXKpHA3WA",
+    "shared": true,
+    "hashMatchedBothNodes": true,
+    "slotsPerEpoch": 128,
+    "ticksPerSlot": 8,
+    "hashesPerTick": "sleep",
+    "clusterType": "development"
+  },
+  "slotProgress": {
+    "target": 20,
+    "start": 294,
+    "end": 329,
+    "slotsProduced": 35,
+    "exceededTarget": true
+  },
+  "validatorHealth": {
+    "currentValidators": 2,
+    "delinquentValidators": 0,
+    "bothLastVote": 336,
+    "bothRootSlot": 305,
+    "bothCredits": 1312,
+    "skipRate": "0.00%",
+    "activeStakeSOL": "199.99543424",
+    "stakeSplit": "50/50 (JitoLabs 50.00%, Agave 50.00%)",
+    "stakeByVersion": "4.3.0 - 2 current validators (100.00%)",
+    "stakeByClientId": "Agave - 1 (50.00%); JitoLabs - 1 (50.00%)"
+  },
+  "gossip": {
+    "nodesDiscovered": 2,
+    "bothIdentitiesPresent": true,
+    "gossipCount": 2
+  },
+  "crossNodeTransfer": {
+    "submittedVia": "bootstrap RPC (val-bootstrap:8899) with bootstrap identity keypair",
+    "confirmedVia": "joiner RPC (val-joiner:8899) at finalized commitment",
+    "signature": "PVZgW5hTpEkYZPNLDxVEa3GGTndntsrUJ7ucgfbtb727WCMhArfgbajJXLRQRxKSfz5Je8eyHtLHP5W4VCP59eg",
+    "recipient": "Hi3Tag1HhhW3upBE9fyMQSPK7tHfxpnnuUHXY8ke71wS",
+    "recipientLamports": "1000000000",
+    "recipientSOL": "1.0",
+    "commitment": "finalized"
+  },
+  "clientDiversityProven": true,
+  "clientDiversityProof": "Both validators identify as distinct client IDs in `solana validators` output: bootstrap=JitoLabs, joiner=Agave. The 'Stake By Client ID' table enumerates them as separate clients (Agave 50%, JitoLabs 50%). Agave and Jito-Solana share substantial code, so this is a two-implementation agreement, not an independent majority oracle.",
+  "artifacts": {
+    "evidenceJson": "evidence.json (cleaned: stray trailing newline removed from joiner binaryVersion; VALID JSON, python-validated)",
+    "evidenceJsonRaw": "evidence.raw.json (as-captured from container, has cosmetic newline defect)",
+    "validatorsTable": "validators.txt",
+    "gossipTable": "gossip.txt",
+    "metaEnv": "meta.env (genesis pubkeys + shred version)",
+    "runLog": "/tmp/mc15.log"
+  },
+  "limits": [
+    "This is a TWO voting-validator run (Jito + Agave), NOT a five-client testnet.",
+    "SIG is a NON-VOTING observer and is recorded as not_started; it did not gate the 20-slot goal.",
+    "Agave and Jito-Solana share substantial code; agreement between them is not an independent majority oracle.",
+    "Run on OrbStack (arm64 Mac host); the Jito image is arm64-native, the Agave image is arm64-native. No cross-arch emulation for the voting validators.",
+    "20 slots at commitment finalized via a cross-node transfer proves end-to-end finality for the two voting validators.",
+    "This run was reproduced from a clean state (fresh enclave, fresh genesis)."
+  ],
+  "supersedes": "solana-package/verification-shared-genesis.json (two-Jito shared-genesis run; that evidence is orchestration-only, not client-diversity — this run adds the first mixed-client Jito+Agave voting pair).",
+  "untouchedEnclaves": ["sig-observer (e0cc8169fb1f)", "forgotten-swamp (bf164656ae25) — NOT touched by this experiment"]
+}

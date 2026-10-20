@@ -1,0 +1,29 @@
+{
+  "experiment": "multiclient-jito-agave-sig-joined",
+  "verifiedAt": "2026-10-20T06:14:09Z",
+  "host": "Apple Silicon Mac (arm64); OrbStack (jiema) via DOCKER_HOST=unix:///Users/jiema/.orbstack/run/docker.sock; Kurtosis CLI/engine 1.20.0; native arm64",
+  "enclave": "solana-multiclient",
+  "goal": "Fix the SIG v2 observer's replay OutOfSpace bug and run Jito + Agave + SIG in ONE local Kurtosis testnet; prove the three clients interconnect (shared genesis + gossip) and the two voting validators execute consensus normally.",
+  "result": "PASS — three clients interconnected; SIG JOINED the shared-genesis gossip view (a peer sees 3 nodes); both voting validators non-delinquent and advancing; slots exceeded the 20 target.",
+  "topology": {
+    "description": "two voting validators (Jito bootstrap + Agave joiner) plus one SIG non-voting observer",
+    "bootstrap": {"image": "solana-diff/jito-solana:4.3.0-jito-arm64", "pin": "07270be44c712356d8fb94dff8e7a1edd425dbff", "clientId": "JitoLabs", "identity": "6NcwUAG2eTXfSZvF5Rexxu4rTeCeJhQTRsV8ZjJCpZ7E", "vote": "4z5kSqgo2o64tXw3tkKvArT5TtpecM86QR2JsCu7tvz1", "stake": "50.00%"},
+    "joiner": {"image": "solana-diff/agave-validator:4.3.0-arm64", "pin": "825efd18292aff6ffcf9daa0f7612f21b3531a72", "clientId": "Agave", "identity": "4Trs56ywfrNxBVpKMXStELiMVm4q5bNYTdvLoE4JZAZo", "vote": "64X7MnsnKLVE3LHGUe91djercPtM7U75vysR8BTTD7Ev", "stake": "50.00%"},
+    "sigObserver": {"image": "solana-diff/sig:v0.2.0-arm64-functional", "imageId": "sha256:ada6de25ee075eaff1b3eaaefb0570043482e0a22b480c6511ac927f218cc7c1", "fork": "Alleysira/sig@f4ccc97c12535a37bd508252a4040a546ea0b329", "forkBranch": "dev/local-observer", "upstreamParent": "b5026c60fe56b51edd79131115b7e741449d6b2e", "deviationFiles": 5, "voting": false, "identity": "xhXMUacmJEyetuAgFF3NJwwTAoK1U27RZ2rbWy7Xa1d", "gossipIp": "172.16.0.10"}
+  },
+  "genesis": {"genesisHash": "5cTNxfRAC9C4MYBZb93Y5RR8pnVHJ8QDVtzrRe3Yacm9", "shredVersion": "678", "bankHashSlot0": "6AbmrhsFZa82jtzjwuFgmV6ku8K1ogFDGb7i5bVKfHid", "shared": true},
+  "slotProgress": {"target": 20, "start": 949, "end": 987, "slotsProduced": 38, "exceededTarget": true},
+  "validatorHealth": {"currentValidators": 2, "delinquentValidators": 0, "stakeByClientId": "Agave 1 (50.00%); JitoLabs 1 (50.00%)", "stakeByVersion": "4.3.0 - 2 current validators (100.00%)"},
+  "interconnectivity": {"gossipNodesSeenByBootstrap": 3, "sigInGossipView": true, "note": "The bootstrap validator's gossip view lists 3 nodes: the two voting validators (172.16.0.7 JitoLabs, 172.16.0.8 Agave) AND the SIG observer (172.16.0.10, identity xhXMUacm...). This is the authoritative 'joined' signal per AGENTS.md (a peer sees SIG in the shared-genesis gossip view)."},
+  "crossNodeTransfer": {"submittedVia": "bootstrap RPC", "confirmedVia": "joiner RPC at finalized commitment", "signature": "2G9wLFpv7R2QpsKjxwFjPBeaLLSxjDMgeCHA2P77Vu4LDFme4aLLLkGQF1UdPRkdoxF4LJHY4VTLtix7eNzAVxm5", "recipient": "BcwBHW2Jr6YX6rvHbBX7FRtAWsTNCEeEnLru98fm9WQ7", "recipientLamports": 1000000000, "recipientSOL": 1.0, "commitment": "finalized"},
+  "sigObserver": {
+    "evidenceLevel": "joined",
+    "voting": false,
+    "bugFixed": "replay error.OutOfSpace",
+    "rootCause": "SIG's shred_receiver read the snapshot slot then DISCARDED it (_ = slot; // TODO), and Receiver.updateSlotRange was never called, so root_slot stayed 0 and max_slot stayed maxInt(Slot) — every shred was accepted. In a cluster racing ahead of the snapshot, live-tip turbine shreds form merkle trees that never connect to the snapshot root (orphans); replay's merkle forest is a FIXED 4096-node pool with NO eviction (services/replay.zig:78 documents this), so orphans filled it and replay exited error.OutOfSpace.",
+    "fix": "v2/services/shred_receiver.zig (deviation 5, commit f4ccc97c): call the existing updateSlotRange(snapshot_slot, snapshot_slot + 96) so only the contiguous window the snapshot base can root is accepted; shreds outside it are rejected via the existing ShredOlderThanRoot/ShredTooNew filters instead of accumulating as orphans.",
+    "verified": "SIG stayed ALIVE with 0 OutOfSpace; replay completed real slots (e.g. 186, 211); it appears in a peer's gossip view (gossipNodes=3).",
+    "honestAssessment": "joined — SIG appeared in the shared-genesis gossip view (read from a PEER, the bootstrap). SIG is a NON-VOTING observer (no vote/stake accounts — structurally impossible); it never votes. The 20-slot target is met by the two voting validators. This is a TWO-voting-validator-plus-one-SIG-observer run, NOT a three-voting-validator or five-client testnet."
+  },
+  "artifacts": {"runLog": "run.log", "sigLog": "sig-observer.log", "sigConfig": "config.zon", "shredStreamLog": "shred-stream.log", "validatorsTable": "validators.txt", "gossipTable": "gossip.txt"}
+}

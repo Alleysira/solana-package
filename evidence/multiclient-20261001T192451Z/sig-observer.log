@@ -1,0 +1,96 @@
+time=2026-10-01T19:06:40.258Z level=info scope=main service=replay message="received last fec set of slot 277 (idx=32)"
+
+10-01T19:06:39.613Z level=info scope=main service=replay message="received last fec set of slot 3001 (idx=0)"
+
+="received last fec set of slot 2455 (idx=32)"
+0-01T19:02:39.696Z level=info scope=main service=accounts_db message="Feature(active) .block_revenue_sharing"
+time=2026-10-01T19:02:39.696Z level=info scope=main service=accounts_db message="Feature(active) .vote_account_initialize_v2"
+syscall"
+time=2026-10-01T19:02:39.696Z level=info scope=main service=accounts_db message="Feature(active) .set_lamports_per_byte_to_6333"
+time=2026-10-01T19:02:39.696Z level=info scope=main service=accounts_db message="Feature(active) .set_lamports_per_byte_to_5080"
+ .deprecate_rent_exemption_threshold"
+oded"
+ion_hardcoded"
+
+l_case_hardcoded"
+hardcoded"
+coded"
+dcoded"
+Z level=info scope=main service=accounts_db message="Feature(active) .disable_deploy_of_alloc_free_syscall_hardcoded"
+e=2026-10-01T19:02:39.696Z level=info scope=main service=accounts_db message="Feature(active) .spl_token_v3_4_0_hardcoded"
+"Feature(active) .bank_transaction_count_fix_hardcoded"
+time=2026-10-01T19:02:39.696Z level=info scope=main service=accounts_db message="Feature(active) .disable_bpf_deprecated_load_instructions_hardcoded"
+b message="Feature(active) .require_rent_exempt_accounts_hardcoded"
+Z level=info scope=main service=accounts_db message="Feature(active) .requestable_heap_size_hardcoded"
+time=2026-10-01T19:02:39.696Z level=info scope=main service=accounts_db message="Feature(active) .disable_fee_calculator_hardcoded"
+time=2026-10-01T19:02:39.696Z level=info scope=main service=accounts_db message="Feature(active) .add_compute_budget_program_hardcoded"
+vance_activating_credits_observed_hardcoded"
+time=2026-10-01T19:02:39.696Z level=info scope=main service=accounts_db message="Feature(active) .(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.InvalidSignature
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+(shred_receiver) warning: packet failed with error.BadSlotOrParentOffset
+error: Service `replay` (pid: 0) exited with error: OutOfSpace
+error: Error trace:
+/src/sig/v2/lib/collections/pool.zig:280:54: 0x17e9203 in create (replay-service)
+/src/sig/v2/services/replay.zig:830:22: 0x17d99bb in insertFecSet (replay-service)
+/src/sig/v2/services/replay.zig:227:31: 0x17d4c27 in serviceMain (replay-service)

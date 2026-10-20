@@ -1,0 +1,16 @@
+   Identity                                      Vote Account                              Commission  Last Vote        Root Slot     Skip Rate  Credits  Version Client Id                Active Stake
+  CK47DnL1bVLNr9nm5XZr7mH962aVQpPy81KaQ8doq79j  HymitNM5jnBYiQqNWmNippJS5PaWQbu7LFGSh2HFXXXP  100.00%        336 (  0)        305 (  0)   0.00%     1312    4.3.0 JitoLabs             99.997717120 SOL (50.00%)
+  Ap1pGC8E6Gg4zpi3uALCLYgQdMZFpaHpMFxNjxwE82z8  FYxwKeXb6P2jZnpZG6NJNM37kkXCY9W3Fu9WoxVvGfTm  100.00%        336 (  0)        305 (  0)   0.00%     1312    4.3.0 Agave                99.997717120 SOL (50.00%)
+
+Average Stake-Weighted Skip Rate: 0.00%
+Average Unweighted Skip Rate:     0.00%
+
+Active Stake: 199.99543424 SOL
+
+Stake By Version:
+4.3.0   -    2 current validators (100.00%)
+
+Stake By Client ID:
+Agave          -    1 current validators (50.00%)
+JitoLabs       -    1 current validators (50.00%)
+

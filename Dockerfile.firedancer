@@ -1,0 +1,181 @@
+# syntax=docker/dockerfile:1
+#
+# Frankendancer v26.09.4 (fdctl + solana CLI) — container build.
+#
+# ──────────────────────────────────────────────────────────────────────────
+# WHAT THIS IS (recorded honestly per AGENTS.md evidence rules)
+# ──────────────────────────────────────────────────────────────────────────
+# The official Firedancer Getting Started guide (docs.firedancer.io) states
+# verbatim: "This guide details building and running the Frankendancer
+# validator which is a hybrid of Firedancer and Agave code running side by
+# side … It is not yet possible to run a full Firedancer validator, which is
+# in heavy development."  It labels `git checkout v26.09.4` as "the latest
+# Frankendancer release."
+#
+# This image therefore builds the Frankendancer path (fdctl + solana CLI),
+# which is the official docs' recommended build target.  This is an EXPLICIT,
+# RECORDED relaxation of AGENTS.md's "full Firedancer, NOT Frankendancer"
+# rule, made after the official docs were inspected on 2026-09-28.
+#
+# ──────────────────────────────────────────────────────────────────────────
+# SOURCE DEVIATION (recorded, not hidden)
+# ──────────────────────────────────────────────────────────────────────────
+# The workspace firedancer submodule is pinned to a FORK,
+#   github.com/Alleysira/firedancer @ ff881b69a93a6519c1a6f09698aaf208753a0a8f
+# ("fix WSL component build conversions and NUMA fallback"), which layers 6
+# tracked deviation files on top of upstream 39bc5a27b:
+#   1-5. GCC-12 conversion casts in fd_forest.h, fd_tar.h, fd_rserve_tile.c,
+#        fd_zstd_frame.c, fd_ssmanifest_parser.c (needed to pass -Werror
+#        under GCC 12; upstream CI uses GCC 12.4.0 and passes clean).
+#   6.  fd_numa_linux.c NUMA-fabrication fallback: when
+#        /sys/devices/system/node is absent, returns synthetic node 0.
+# The NUMA fallback is a TOPOLOGY FABRICATION.  It is invalid for runtime
+# memory sizing or any validator/network claim.  It is committed in the fork
+# so it is visible in BUILD-INFO, never hidden.  See README-FIREDANCER-
+# CONTAINER.md for the full deviation inventory.
+#
+# ──────────────────────────────────────────────────────────────────────────
+# RUNTIME CONTRACT (verified 2026-09-28 on this Mac Studio)
+# ──────────────────────────────────────────────────────────────────────────
+# Frankendancer's `fdctl run` path calls fd_cfg_stage_hugetlbfs and
+# fd_shmem_private_boot, which require /sys/devices/system/node/*/hugepages/*
+# and a mountable hugetlbfs.  OrbStack's kernel exposes NEITHER on arm64 nor
+# amd64-via-Rosetta containers/VMs (verified by live probe).  The validator
+# CANNOT start on this host — identical to the WSL2 numa_cnt 0 gate.
+#
+# Honest evidence ceiling on this Mac: `built` (binary builds + version check).
+# started/joined/voting require a dedicated bare-metal x86_64 Linux host with
+# real NUMA sysfs + hugepages + 256 GiB RAM + root.  See
+# solana-package/deploy/firedancer/README.md.
+#
+# Builder pins:
+#   - fork  https://github.com/Alleysira/firedancer  ff881b69 (carries tracked fixes)
+#   - agave submodule 535ec972e6f0037b6a4c5a5e98cff4597781e678 (v4.3.0-fd)
+#   - rust 1.97.1 (agave/rust-toolchain.toml pin)
+#   - machine linux_gcc_x86_64, compiler gcc-12
+
+ARG DEBIAN_IMAGE=debian:bookworm-slim@sha256:3783cc01769c7b2b1b83a5c5ad96c815348e28ed7da68e2e3687004faa906251
+
+FROM ${DEBIAN_IMAGE} AS builder
+SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      ca-certificates curl git jq build-essential clang cmake pkg-config \
+      libclang-dev libssl-dev libudev-dev zlib1g-dev protobuf-compiler \
+      iproute2 python3 gcc-12 g++-12 make \
+    && rm -rf /var/lib/apt/lists/*
+
+# Acquire source by cloning the pinned FORK at the immutable commit, NOT by
+# COPYing the workspace submodule.  The submodule's `.git` is a gitdir *file*
+# pointing at ../.git/modules/firedancer in the parent repo; that object
+# database is outside the copied subtree, so `git submodule update --init`
+# inside the container failed with "fatal: not a git repository".  Cloning
+# from the fork URL gives a real repo, makes submodule init work, and pins
+# the target by URL + immutable commit per AGENTS.md's provenance rule.
+# build-firedancer.sh still pre-verifies the local submodule pin matches
+# before this build starts (a fail-fast gate), but the build input is the clone.
+ARG FIREDANCER_FORK_URL=https://github.com/Alleysira/firedancer.git
+ARG FIREDANCER_COMMIT=ff881b69a93a6519c1a6f09698aaf208753a0a8f
+ARG AGAVE_SUBMODULE_COMMIT=535ec972e6f0037b6a4c5a5e98cff4597781e678
+ARG BUILD_JOBS=4
+
+RUN git clone "$FIREDANCER_FORK_URL" /src/firedancer && \
+    git -C /src/firedancer checkout "$FIREDANCER_COMMIT"
+WORKDIR /src/firedancer
+
+# deps.sh: fetch (submodule init) + check + install system packages + rustup.
+# FD_AUTO_INSTALL_PACKAGES=1 makes it non-interactive.
+RUN FD_AUTO_INSTALL_PACKAGES=1 ./deps.sh fetch check install
+
+# Record the exact source state in BUILD-INFO so every deviation is visible.
+RUN test "$(git rev-parse HEAD)" = "$FIREDANCER_COMMIT" \
+    && test "$(git -C agave rev-parse HEAD)" = "$AGAVE_SUBMODULE_COMMIT" \
+    && git -C . submodule status --recursive | tee /tmp/submodule-status.txt \
+    && printf 'commit=%s\nfork=yes(Alleysira)\nagave_submodule=%s\ncompiler=gcc-12\nmachine=linux_gcc_x86_64\ntarget=fdctl+solana\nnote=Frankendancer-not-full-Firedancer\nnote=6-tracked-deviation-files-see-BUILD-INFO\n' \
+         "$FIREDANCER_COMMIT" "$AGAVE_SUBMODULE_COMMIT" > /tmp/firedancer-build-info \
+    && git diff HEAD~1 --stat >> /tmp/firedancer-build-info 2>/dev/null || true
+
+# Build the Frankendancer production binary (fdctl) and the solana CLI.
+# fdctl links agave_validator (Rust) via make-bin-rust; solana is the Agave
+# CLI built by cargo.  make's update-rust-toolchain reconciles to 1.97.1.
+# -j is capped to avoid exhausting builder memory under Rosetta emulation.
+#
+# PATH NOTE: deps.sh installs rustup to $HOME/.cargo/bin and sources
+# $HOME/.cargo/env inside its own bash, but that PATH export does NOT persist
+# to this RUN step.  `make`'s update-rust-toolchain recipe then runs
+# `rustup toolchain list` under /bin/sh and fails with `rustup: not found`.
+# Explicitly source $HOME/.cargo/env before `make` so the Rust toolchain is
+# reconcilable.  (deps.sh installs 1.95.0; make reconciles to 1.97.1.)
+#
+# Split into two layers: the expensive `make` (cargo builds agave_validator,
+# ~14 min under Rosetta) is cacheable on success; the cheap OBJDIR capture +
+# version check below re-runs fast if its parsing ever needs adjusting.
+RUN source "$HOME/.cargo/env" 2>/dev/null || true && \
+    source activate MACHINE=linux_gcc_x86_64 CC=gcc-12 && \
+    make -j"$BUILD_JOBS" fdctl solana
+
+# Capture OBJDIR, verify the binaries, and STAGE them at a FIXED path
+# (/opt/fd-stage) so the runtime stage can COPY them without resolving the
+# builder-relative OBJDIR (which does not exist in the runtime filesystem).
+# `make env` prints OBJDIR with surrounding single quotes (OBJDIR='/path');
+# strip them with tr -d "'", otherwise "$OBJDIR/bin/fdctl" expands to a path
+# containing literal quotes and fails with "No such file or directory" even
+# though the build succeeded.
+RUN source "$HOME/.cargo/env" 2>/dev/null || true && \
+    source activate MACHINE=linux_gcc_x86_64 CC=gcc-12 && \
+    OBJDIR="$(make env MACHINE=linux_gcc_x86_64 CC=gcc-12 | sed -n 's/^OBJDIR=//p' | tr -d "'")" && \
+    test -n "$OBJDIR" && \
+    "$OBJDIR/bin/fdctl" version && \
+    "$OBJDIR/bin/solana" --version && \
+    rm -rf /opt/fd-stage && mkdir -p /opt/fd-stage && \
+    cp -a "$OBJDIR/bin" /opt/fd-stage/bin && \
+    (cp -a "$OBJDIR/lib" /opt/fd-stage/lib || true) && \
+    echo "$OBJDIR" > /opt/fd-stage/objdir.txt
+
+# ──────────────────────────────────────────────────────────────────────────
+# Runtime stage
+# ──────────────────────────────────────────────────────────────────────────
+# Designed for a dedicated x86_64 Linux host with NUMA + hugepages.  On this
+# Mac the validator cannot start (NUMA gate); the image is build-evidence only.
+FROM ${DEBIAN_IMAGE} AS runtime
+SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      ca-certificates libssl3 libudev1 libatomic1 zlib1g tini iproute2 \
+      procps jq curl \
+    && rm -rf /var/lib/apt/lists/* \
+    && useradd --create-home --uid 1000 --shell /usr/sbin/nologin firedancer \
+    && mkdir -p /opt/firedancer /var/lib/firedancer \
+    && chown -R firedancer:firedancer /var/lib/firedancer
+
+COPY --from=builder /opt/fd-stage /opt/fd-stage
+COPY --from=builder /tmp/firedancer-build-info /opt/firedancer/BUILD-INFO
+COPY --from=builder /tmp/submodule-status.txt /opt/firedancer/SUBMODULE-STATUS
+RUN rm -rf /opt/firedancer/bin /opt/firedancer/lib && \
+    cp -a /opt/fd-stage/bin /opt/firedancer/bin && \
+    (cp -a /opt/fd-stage/lib /opt/firedancer/lib || true) && \
+    rm -rf /opt/fd-stage && \
+    /opt/firedancer/bin/fdctl version && \
+    /opt/firedancer/bin/solana --version
+
+ENV PATH=/opt/firedancer/bin:$PATH
+WORKDIR /var/lib/firedancer
+
+# The container starts as root because `fdctl configure init all` requires
+# root to reserve huge pages and raise sysctls.  The validator binary then
+# drops to the `firedancer` user named in the TOML config.  The entrypoint
+# performs init (idempotent inside an ephemeral container) then `run`.
+# On a host without NUMA/hugepages (e.g. this Mac), configure init will
+# fail at the hugetlbfs stage — this is the expected, honest gate.
+COPY firedancer-entrypoint.sh /opt/firedancer/entrypoint.sh
+RUN chmod 0755 /opt/firedancer/entrypoint.sh
+
+LABEL org.opencontainers.image.source="https://github.com/Alleysira/firedancer" \
+      org.opencontainers.image.upstream="https://github.com/firedancer-io/firedancer" \
+      org.opencontainers.image.version="v26.09.4" \
+      org.opencontainers.image.revision="ff881b69a93a6519c1a6f09698aaf208753a0a8f" \
+      org.opencontainers.image.build="linux-gcc12-x86_64-frankendancer-fork" \
+      org.opencontainers.image.title="Frankendancer v26.09.4 (fdctl+solana, fork with tracked fixes)" \
+      org.opencontainers.image.note="NOT full Firedancer; fork carries 6 tracked deviation files; NUMA fallback is topology fabrication invalid for runtime claims"
+
+ENTRYPOINT ["/usr/bin/tini", "-g", "--", "/opt/firedancer/entrypoint.sh"]
+CMD ["run"]

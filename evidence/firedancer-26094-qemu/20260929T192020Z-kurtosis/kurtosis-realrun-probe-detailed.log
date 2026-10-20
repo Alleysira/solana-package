@@ -1,0 +1,434 @@
+[36mINFO[0m[2026-09-29T03:20:12+08:00] Creating a new enclave for Starlark to run inside... 
+[36mINFO[0m[2026-09-29T03:20:15+08:00] Enclave 'fd-firedancer' created successfully 
+[36mINFO[0m[2026-09-29T03:20:15+08:00] Kurtosis CLI is running in a non interactive terminal. Everything will work but progress information and the progress bar will not be displayed. 
+
+Container images used in this run:
+> solana-diff/firedancer:v26.09.4-frankendancer-amd64 - locally cached
+
+WARNING: Container images with different architecture than expected(arm64):
+> solana-diff/firedancer:v26.09.4-frankendancer-amd64 - amd64
+
+> add_service
+> 	name="firedancer"
+> 	config=ServiceConfig(image="solana-diff/firedancer:v26.09.4-frankendancer-amd64", entrypoint=["sleep"], cmd=["infinity"])
+Service 'firedancer' added with service UUID '465b0586b33d481b8cb8162abde7cc86' (execution duration: 426.577083ms)
+
+> print
+> 	msg="Firedancer container started (probe mode, sleep infinity)."
+Firedancer container started (probe mode, sleep infinity). (execution duration: 3.209µs)
+
+> exec
+> 	service_name="firedancer"
+> 	recipe=ExecRecipe(command=["bash", "-c", "echo '--- /sys/kernel/mm/hugepages ---'; ls /sys/kernel/mm/hugepages 2>&1; echo '--- /proc/sys/vm/nr_hugepages ---'; cat /proc/sys/vm/nr_hugepages 2>&1; echo '--- /sys/devices/system/node ---'; ls /sys/devices/system/node 2>&1; echo '--- CONFIG probes ---'; zcat /proc/config.gz 2>/dev/null | grep -E 'CONFIG_HUGETLBFS|CONFIG_NUMA' 2>&1 || echo '(no /proc/config.gz)'"])
+> 	acceptable_codes=[0]
+Command returned with exit code '0' and the following output:
+--------------------
+--- /sys/kernel/mm/hugepages ---
+ls: cannot access '/sys/kernel/mm/hugepages': No such file or directory
+--- /proc/sys/vm/nr_hugepages ---
+cat: /proc/sys/vm/nr_hugepages: No such file or directory
+--- /sys/devices/system/node ---
+ls: cannot access '/sys/devices/system/node': No such file or directory
+--- CONFIG probes ---
+(no /proc/config.gz)
+
+-------------------- (execution duration: 157.328995ms)
+
+> print
+> 	msg="=== kernel-gate-hugepages (exit={{kurtosis:ae8011b76a244678bb8bd642992a8d45:code.runtime_value}}) ==="
+=== kernel-gate-hugepages (exit=0) === (execution duration: 98.458µs)
+
+> print
+> 	msg="STDOUT: {{kurtosis:ae8011b76a244678bb8bd642992a8d45:output.runtime_value}}"
+STDOUT: --- /sys/kernel/mm/hugepages ---
+ls: cannot access '/sys/kernel/mm/hugepages': No such file or directory
+--- /proc/sys/vm/nr_hugepages ---
+cat: /proc/sys/vm/nr_hugepages: No such file or directory
+--- /sys/devices/system/node ---
+ls: cannot access '/sys/devices/system/node': No such file or directory
+--- CONFIG probes ---
+(no /proc/config.gz)
+ (execution duration: 30.541µs)
+
+> exec
+> 	service_name="firedancer"
+> 	recipe=ExecRecipe(command=["bash", "-c", "fdctl version 2>&1; echo '---'; solana --version 2>&1"])
+> 	acceptable_codes=[0]
+Command returned with exit code '0' and the following output:
+--------------------
+0.101.40300 (ff881b69a93a6519c1a6f09698aaf208753a0a8f)
+---
+solana-cli 0.101.40300 (src:ff881b69; feat:c9ad34d2, client:Frankendancer)
+
+-------------------- (execution duration: 359.393268ms)
+
+> print
+> 	msg="=== fdctl-version (exit={{kurtosis:d62a51e3bd304f6991d8d43e663c9d98:code.runtime_value}}) ==="
+=== fdctl-version (exit=0) === (execution duration: 229.291µs)
+
+> print
+> 	msg="STDOUT: {{kurtosis:d62a51e3bd304f6991d8d43e663c9d98:output.runtime_value}}"
+STDOUT: 0.101.40300 (ff881b69a93a6519c1a6f09698aaf208753a0a8f)
+---
+solana-cli 0.101.40300 (src:ff881b69; feat:c9ad34d2, client:Frankendancer)
+ (execution duration: 103.624µs)
+
+> exec
+> 	service_name="firedancer"
+> 	recipe=ExecRecipe(command=["bash", "-c", "mkdir -p /var/lib/firedancer && cat > /var/lib/firedancer/config.toml <<'FDCONF'\nname = \"fdvm\"\nuser = \"firedancer\"\nscratch_directory = \"/var/lib/firedancer/fdvm\"\n\n[layout]\naffinity = \"auto\"\nagave_affinity = \"auto\"\nnet_tile_count = 1\nquic_tile_count = 1\nresolh_tile_count = 1\nverify_tile_count = 1\nbank_tile_count = 1\nshred_tile_count = 1\n\n[tiles.gui]\nenabled = false\n\n[net]\nprovider = \"socket\"\ninterface = \"eth0\"\n\n[hugetlbfs]\nmount_path = \"/mnt/.fd\"\n\n[consensus]\nsnapshot_fetch = false\ngenesis_fetch = false\npoh_speed_test = false\n\n[rpc]\nonly_known = false\n\n[development]\nbootstrap = true\nsandbox = false\n\n[development.gossip]\nallow_private_address = true\n\n[development.genesis]\nhashes_per_tick = 1\nFDCONF\n"])
+> 	acceptable_codes=[0]
+Command returned with exit code '0' with no output (execution duration: 140.486646ms)
+
+> print
+> 	msg="=== write-config (exit={{kurtosis:ccecbd19a687434baa2eca302953d48d:code.runtime_value}}) ==="
+=== write-config (exit=0) === (execution duration: 154.249µs)
+
+> print
+> 	msg="STDOUT: {{kurtosis:ccecbd19a687434baa2eca302953d48d:output.runtime_value}}"
+STDOUT:  (execution duration: 27.25µs)
+
+> exec
+> 	service_name="firedancer"
+> 	recipe=ExecRecipe(command=["bash", "-c", "fdctl configure init all --config /var/lib/firedancer/config.toml 2>&1"])
+> 	acceptable_codes=[0, 1]
+Command returned with exit code '1' and the following output:
+--------------------
+Log at "/tmp/fd-0.101.40300_68_firedancer_6eec3b3bd654_2026_09_28_19_20_19_373325663_GMT+00"
+WARNING 09-28 19:20:19.381093 main      fd_numa_linux.c(50): opendir( "/sys/devices/system/node" ) failed (2-ENOENT-no such file or directory)
+WARNING 09-28 19:20:19.381423 main      fd_numa_linux.c(55): NUMA sysfs unavailable; using explicit single-node fallback
+WARNING 09-28 19:20:19.382358 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu31"
+WARNING 09-28 19:20:19.382452 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382496 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu30"
+WARNING 09-28 19:20:19.382511 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382542 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu29"
+WARNING 09-28 19:20:19.382557 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382585 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu28"
+WARNING 09-28 19:20:19.382599 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382628 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu27"
+WARNING 09-28 19:20:19.382642 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382674 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu26"
+WARNING 09-28 19:20:19.382688 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382720 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu25"
+WARNING 09-28 19:20:19.382740 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382784 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu24"
+WARNING 09-28 19:20:19.382798 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382833 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu23"
+WARNING 09-28 19:20:19.382850 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382881 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu22"
+WARNING 09-28 19:20:19.382903 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382942 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu21"
+WARNING 09-28 19:20:19.382955 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382983 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu20"
+WARNING 09-28 19:20:19.382995 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383025 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu19"
+WARNING 09-28 19:20:19.383038 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383064 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu18"
+WARNING 09-28 19:20:19.383076 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383103 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu17"
+WARNING 09-28 19:20:19.383115 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383144 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu16"
+WARNING 09-28 19:20:19.383156 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383203 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu15"
+WARNING 09-28 19:20:19.383232 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383289 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu14"
+WARNING 09-28 19:20:19.383306 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383333 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu13"
+WARNING 09-28 19:20:19.383348 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383375 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu12"
+WARNING 09-28 19:20:19.383388 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383416 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu11"
+WARNING 09-28 19:20:19.383430 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383460 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu10"
+WARNING 09-28 19:20:19.383485 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383512 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu9"
+WARNING 09-28 19:20:19.383526 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383555 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu8"
+WARNING 09-28 19:20:19.383570 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383606 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu7"
+WARNING 09-28 19:20:19.383621 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383667 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu6"
+WARNING 09-28 19:20:19.383703 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383731 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu5"
+WARNING 09-28 19:20:19.383744 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383769 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu4"
+WARNING 09-28 19:20:19.383783 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383816 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu3"
+WARNING 09-28 19:20:19.383843 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383869 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu2"
+WARNING 09-28 19:20:19.383883 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383909 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu1"
+WARNING 09-28 19:20:19.383924 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383956 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu0"
+WARNING 09-28 19:20:19.383970 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.408390 main      fd_numa_linux.c(50): opendir( "/sys/devices/system/node" ) failed (2-ENOENT-no such file or directory)
+WARNING 09-28 19:20:19.408620 main      fd_numa_linux.c(55): NUMA sysfs unavailable; using explicit single-node fallback
+WARNING 09-28 19:20:19.408874 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu0"
+WARNING 09-28 19:20:19.408881 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+ERR     09-28 19:20:19.409220 main      fd_cpu_topo.c(17): error reading cpu online status fopen failed `/sys/devices/system/cpu/cpu1/online` (2-ENOENT-no such file or directory)
+
+-------------------- (execution duration: 908.234819ms)
+
+> print
+> 	msg="=== configure-init-all (exit={{kurtosis:bd966a525bba40d5a40e50749c1c5b67:code.runtime_value}}) ==="
+=== configure-init-all (exit=1) === (execution duration: 1.27887ms)
+
+> print
+> 	msg="STDOUT: {{kurtosis:bd966a525bba40d5a40e50749c1c5b67:output.runtime_value}}"
+STDOUT: Log at "/tmp/fd-0.101.40300_68_firedancer_6eec3b3bd654_2026_09_28_19_20_19_373325663_GMT+00"
+WARNING 09-28 19:20:19.381093 main      fd_numa_linux.c(50): opendir( "/sys/devices/system/node" ) failed (2-ENOENT-no such file or directory)
+WARNING 09-28 19:20:19.381423 main      fd_numa_linux.c(55): NUMA sysfs unavailable; using explicit single-node fallback
+WARNING 09-28 19:20:19.382358 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu31"
+WARNING 09-28 19:20:19.382452 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382496 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu30"
+WARNING 09-28 19:20:19.382511 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382542 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu29"
+WARNING 09-28 19:20:19.382557 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382585 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu28"
+WARNING 09-28 19:20:19.382599 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382628 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu27"
+WARNING 09-28 19:20:19.382642 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382674 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu26"
+WARNING 09-28 19:20:19.382688 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382720 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu25"
+WARNING 09-28 19:20:19.382740 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382784 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu24"
+WARNING 09-28 19:20:19.382798 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382833 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu23"
+WARNING 09-28 19:20:19.382850 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382881 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu22"
+WARNING 09-28 19:20:19.382903 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382942 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu21"
+WARNING 09-28 19:20:19.382955 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.382983 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu20"
+WARNING 09-28 19:20:19.382995 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383025 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu19"
+WARNING 09-28 19:20:19.383038 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383064 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu18"
+WARNING 09-28 19:20:19.383076 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383103 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu17"
+WARNING 09-28 19:20:19.383115 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383144 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu16"
+WARNING 09-28 19:20:19.383156 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383203 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu15"
+WARNING 09-28 19:20:19.383232 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383289 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu14"
+WARNING 09-28 19:20:19.383306 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383333 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu13"
+WARNING 09-28 19:20:19.383348 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383375 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu12"
+WARNING 09-28 19:20:19.383388 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383416 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu11"
+WARNING 09-28 19:20:19.383430 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383460 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu10"
+WARNING 09-28 19:20:19.383485 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383512 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu9"
+WARNING 09-28 19:20:19.383526 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383555 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu8"
+WARNING 09-28 19:20:19.383570 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383606 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu7"
+WARNING 09-28 19:20:19.383621 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383667 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu6"
+WARNING 09-28 19:20:19.383703 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383731 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu5"
+WARNING 09-28 19:20:19.383744 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383769 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu4"
+WARNING 09-28 19:20:19.383783 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383816 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu3"
+WARNING 09-28 19:20:19.383843 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383869 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu2"
+WARNING 09-28 19:20:19.383883 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383909 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu1"
+WARNING 09-28 19:20:19.383924 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.383956 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu0"
+WARNING 09-28 19:20:19.383970 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:19.408390 main      fd_numa_linux.c(50): opendir( "/sys/devices/system/node" ) failed (2-ENOENT-no such file or directory)
+WARNING 09-28 19:20:19.408620 main      fd_numa_linux.c(55): NUMA sysfs unavailable; using explicit single-node fallback
+WARNING 09-28 19:20:19.408874 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu0"
+WARNING 09-28 19:20:19.408881 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+ERR     09-28 19:20:19.409220 main      fd_cpu_topo.c(17): error reading cpu online status fopen failed `/sys/devices/system/cpu/cpu1/online` (2-ENOENT-no such file or directory)
+ (execution duration: 323.082µs)
+
+> exec
+> 	service_name="firedancer"
+> 	recipe=ExecRecipe(command=["bash", "-c", "timeout 120 fdctl run --config /var/lib/firedancer/config.toml 2>&1"])
+> 	acceptable_codes=[0, 1, 124]
+Command returned with exit code '1' and the following output:
+--------------------
+Log at "/tmp/fd-0.101.40300_76_firedancer_6eec3b3bd654_2026_09_28_19_20_20_239832774_GMT+00"
+WARNING 09-28 19:20:20.247377 main      fd_numa_linux.c(50): opendir( "/sys/devices/system/node" ) failed (2-ENOENT-no such file or directory)
+WARNING 09-28 19:20:20.247528 main      fd_numa_linux.c(55): NUMA sysfs unavailable; using explicit single-node fallback
+WARNING 09-28 19:20:20.248837 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu31"
+WARNING 09-28 19:20:20.249053 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249135 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu30"
+WARNING 09-28 19:20:20.249156 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249187 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu29"
+WARNING 09-28 19:20:20.249211 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249241 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu28"
+WARNING 09-28 19:20:20.249255 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249298 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu27"
+WARNING 09-28 19:20:20.249314 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249342 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu26"
+WARNING 09-28 19:20:20.249386 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249414 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu25"
+WARNING 09-28 19:20:20.249438 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249482 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu24"
+WARNING 09-28 19:20:20.249520 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249548 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu23"
+WARNING 09-28 19:20:20.249566 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249593 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu22"
+WARNING 09-28 19:20:20.249608 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249635 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu21"
+WARNING 09-28 19:20:20.249662 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249688 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu20"
+WARNING 09-28 19:20:20.249703 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249727 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu19"
+WARNING 09-28 19:20:20.249742 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249768 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu18"
+WARNING 09-28 19:20:20.249782 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249809 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu17"
+WARNING 09-28 19:20:20.249832 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249858 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu16"
+WARNING 09-28 19:20:20.249870 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249908 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu15"
+WARNING 09-28 19:20:20.249936 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249962 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu14"
+WARNING 09-28 19:20:20.249984 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250011 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu13"
+WARNING 09-28 19:20:20.250035 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250061 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu12"
+WARNING 09-28 19:20:20.250076 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250103 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu11"
+WARNING 09-28 19:20:20.250115 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250138 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu10"
+WARNING 09-28 19:20:20.250151 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250175 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu9"
+WARNING 09-28 19:20:20.250190 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250215 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu8"
+WARNING 09-28 19:20:20.250348 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250372 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu7"
+WARNING 09-28 19:20:20.250377 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250421 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu6"
+WARNING 09-28 19:20:20.250431 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250449 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu5"
+WARNING 09-28 19:20:20.250454 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250468 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu4"
+WARNING 09-28 19:20:20.250472 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250489 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu3"
+WARNING 09-28 19:20:20.250493 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250510 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu2"
+WARNING 09-28 19:20:20.250514 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250531 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu1"
+WARNING 09-28 19:20:20.250536 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250552 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu0"
+WARNING 09-28 19:20:20.250556 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.275190 main      fd_numa_linux.c(50): opendir( "/sys/devices/system/node" ) failed (2-ENOENT-no such file or directory)
+WARNING 09-28 19:20:20.275566 main      fd_numa_linux.c(55): NUMA sysfs unavailable; using explicit single-node fallback
+WARNING 09-28 19:20:20.276057 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu0"
+WARNING 09-28 19:20:20.276213 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+ERR     09-28 19:20:20.276608 main      fd_cpu_topo.c(17): error reading cpu online status fopen failed `/sys/devices/system/cpu/cpu1/online` (2-ENOENT-no such file or directory)
+
+-------------------- (execution duration: 918.137654ms)
+
+> print
+> 	msg="=== fdctl-run (exit={{kurtosis:ff97031980b44aaab58db676fab1fe73:code.runtime_value}}) ==="
+=== fdctl-run (exit=1) === (execution duration: 365.456µs)
+
+> print
+> 	msg="STDOUT: {{kurtosis:ff97031980b44aaab58db676fab1fe73:output.runtime_value}}"
+STDOUT: Log at "/tmp/fd-0.101.40300_76_firedancer_6eec3b3bd654_2026_09_28_19_20_20_239832774_GMT+00"
+WARNING 09-28 19:20:20.247377 main      fd_numa_linux.c(50): opendir( "/sys/devices/system/node" ) failed (2-ENOENT-no such file or directory)
+WARNING 09-28 19:20:20.247528 main      fd_numa_linux.c(55): NUMA sysfs unavailable; using explicit single-node fallback
+WARNING 09-28 19:20:20.248837 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu31"
+WARNING 09-28 19:20:20.249053 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249135 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu30"
+WARNING 09-28 19:20:20.249156 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249187 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu29"
+WARNING 09-28 19:20:20.249211 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249241 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu28"
+WARNING 09-28 19:20:20.249255 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249298 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu27"
+WARNING 09-28 19:20:20.249314 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249342 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu26"
+WARNING 09-28 19:20:20.249386 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249414 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu25"
+WARNING 09-28 19:20:20.249438 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249482 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu24"
+WARNING 09-28 19:20:20.249520 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249548 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu23"
+WARNING 09-28 19:20:20.249566 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249593 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu22"
+WARNING 09-28 19:20:20.249608 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249635 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu21"
+WARNING 09-28 19:20:20.249662 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249688 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu20"
+WARNING 09-28 19:20:20.249703 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249727 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu19"
+WARNING 09-28 19:20:20.249742 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249768 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu18"
+WARNING 09-28 19:20:20.249782 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249809 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu17"
+WARNING 09-28 19:20:20.249832 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249858 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu16"
+WARNING 09-28 19:20:20.249870 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249908 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu15"
+WARNING 09-28 19:20:20.249936 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.249962 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu14"
+WARNING 09-28 19:20:20.249984 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250011 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu13"
+WARNING 09-28 19:20:20.250035 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250061 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu12"
+WARNING 09-28 19:20:20.250076 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250103 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu11"
+WARNING 09-28 19:20:20.250115 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250138 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu10"
+WARNING 09-28 19:20:20.250151 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250175 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu9"
+WARNING 09-28 19:20:20.250190 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250215 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu8"
+WARNING 09-28 19:20:20.250348 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250372 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu7"
+WARNING 09-28 19:20:20.250377 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250421 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu6"
+WARNING 09-28 19:20:20.250431 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250449 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu5"
+WARNING 09-28 19:20:20.250454 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250468 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu4"
+WARNING 09-28 19:20:20.250472 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250489 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu3"
+WARNING 09-28 19:20:20.250493 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250510 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu2"
+WARNING 09-28 19:20:20.250514 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250531 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu1"
+WARNING 09-28 19:20:20.250536 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.250552 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu0"
+WARNING 09-28 19:20:20.250556 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+WARNING 09-28 19:20:20.275190 main      fd_numa_linux.c(50): opendir( "/sys/devices/system/node" ) failed (2-ENOENT-no such file or directory)
+WARNING 09-28 19:20:20.275566 main      fd_numa_linux.c(55): NUMA sysfs unavailable; using explicit single-node fallback
+WARNING 09-28 19:20:20.276057 main      fd_numa_linux.c(130): No numa node found in "/sys/devices/system/cpu/cpu0"
+WARNING 09-28 19:20:20.276213 main      fd_numa_linux.c(131): CPU NUMA sysfs has no node link; using explicit node-0 fallback
+ERR     09-28 19:20:20.276608 main      fd_cpu_topo.c(17): error reading cpu online status fopen failed `/sys/devices/system/cpu/cpu1/online` (2-ENOENT-no such file or directory)
+ (execution duration: 658.622µs)
+
+> print
+> 	msg="Probe complete. If configure-init-all failed at hugetlbfs (no /sys/kernel/mm/hugepages), this is the OrbStack kernel gate — a kernel-config limitation (CONFIG_HUGETLBFS/CONFIG_NUMA not built), NOT a privilege issue. The validator cannot start on this host."
+Probe complete. If configure-init-all failed at hugetlbfs (no /sys/kernel/mm/hugepages), this is the OrbStack kernel gate — a kernel-config limitation (CONFIG_HUGETLBFS/CONFIG_NUMA not built), NOT a privilege issue. The validator cannot start on this host. (execution duration: 1.542µs)
+
+Starlark code successfully run. Total instruction execution time: 2.913432659s. No output was returned.
+
+⭐ us on GitHub - https://github.com/kurtosis-tech/kurtosis
+[36mINFO[0m[2026-09-29T03:20:20+08:00] ====================================================== 
+[36mINFO[0m[2026-09-29T03:20:20+08:00] ||          Created enclave: fd-firedancer          || 
+[36mINFO[0m[2026-09-29T03:20:20+08:00] ====================================================== 
+Name:            fd-firedancer
+UUID:            21bec4606432
+Status:          RUNNING
+Creation Time:   Tue, 29 Sep 2026 03:20:12 HKT
+Flags:           
+
+========================================= Files Artifacts =========================================
+UUID   Name
+
+========================================== User Services ==========================================
+UUID           Name         Ports    Status
+465b0586b33d   firedancer   <none>   RUNNING
+

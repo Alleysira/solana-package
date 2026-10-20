@@ -1,0 +1,68 @@
+{
+  "experiment": "sig-v02-kurtosis-privileged-realrun",
+  "date": "2026-09-29",
+  "host": "Apple Silicon Mac (arm64); OrbStack v29.4.0 (jiema socket only, DOCKER_HOST=unix:///Users/jiema/.orbstack/run/docker.sock — isolated from is-web3's /var/run/docker.sock); kernel 7.0.14-orbstack-00380-ga7e0a2dc9535 (ClangBuiltLinux clang 22.1.3); Kurtosis CLI/engine 1.20.0",
+  "target": {
+    "project": "SIG (Syndica/sig) v2 — Zig Solana validator, NON-VOTING OBSERVER",
+    "fork": "https://github.com/Alleysira/sig.git",
+    "commit": "b5026c60fe56b51edd79131115b7e741449d6b2e",
+    "fork_vs_upstream": "byte-identical (empty diff vs Syndica/sig main; clean upstream build, ZERO deviation files)",
+    "zig_version": "0.15.2",
+    "build_target": "aarch64-linux-gnu.2.36",
+    "runtime_platform": "linux/arm64 (NATIVE — no Rosetta)",
+    "build_flags": "-Dallow-no-sha -Dallow-no-avx512"
+  },
+  "image": {
+    "name": "solana-diff/sig:v0.2.0-arm64",
+    "architecture": "arm64",
+    "os": "linux",
+    "size": "186MB"
+  },
+  "kurtosis": {
+    "enclave": "sig-observer",
+    "uuid": "e0cc8169fb1f",
+    "service": "sig",
+    "service_uuid": "6ef727e55783",
+    "container_name": "sig--6ef727e557834a76ae0bf1a7bd0141a8",
+    "cli": "kurtosis run --privileged --enclave sig-observer ./kurtosis/sig-realrun-probe.star",
+    "service_config_privileged": true,
+    "host_config_privileged": true,
+    "seccomp": "0 (disabled — Privileged=true clears the default seccomp profile)",
+    "security_opt": "[label=disable]",
+    "isolated_from_other_user": true,
+    "note": "DOCKER_HOST points at jiema's OrbStack socket; the default /var/run/docker.sock (symlink to is-web3's OrbStack) returns permission denied — verified not touched."
+  },
+  "goal": "Deploy a SIG v2 observer node as a real Kurtosis container on this host and capture honest machine-readable evidence of where it lands (the user's actual ask: 'deploy a zig testnet node using container in a kurtosis based testnet').",
+  "method": "Built the SIG v2 binary natively for aarch64-linux-gnu.2.36 (native arm64 builder avoids the Zig 0.15.2 build_runner PRNG mis-emulation under Rosetta; -Dtarget selects aarch64, the builder's own arch, so the output is a native aarch64 ELF). Runtime stage is linux/arm64 (native, no Rosetta). Ran the Kurtosis real-run probe (sig-realrun-probe.star) with `kurtosis run --privileged` so that ServiceConfig(privileged=True) takes effect. The probe writes a config.zon (.sandboxing_mode=.threaded, .cluster=.testnet) + a synthetic 432000-slot leader schedule in-container, then runs `sig config.zon` via plan.exec with a timeout. A standalone io_uring probe (aarch64 static C binary calling syscall 425 io_uring_setup) was copied into the running container to capture decisive machine-readable proof of the io_uring gate resolution.",
+  "result": "PARTIAL — `started` (services boot past config parse AND past the io_uring gate, inside a real Kurtosis container).",
+  "evidence_level": "started",
+  "iouring_gate_resolution": {
+    "symptom_on_x86_64_rosetta": "io_uring_setup (syscall 425) returns ENOSYS (38) under default, seccomp=unconfined, AND --privileged — OrbStack's Rosetta amd64 syscall-translation layer does NOT translate io_uring syscalls, even though __arm64_sys_io_uring_* ARE in /proc/kallsyms (149 symbols). Zig's IoUring.zig:62 maps .NOSYS => error.SystemOutdated, so accounts_db crashes at init. NOT solvable by privilege — the Rosetta translation layer is the gate. This caps the x86_64 image at `built`.",
+    "symptom_on_native_arm64_default": "io_uring_setup returns EPERM under the default container seccomp profile.",
+    "resolution_on_native_arm64_privileged": "io_uring_setup returns OK (fd=3, sq_entries=8, cq_entries=16, features=0x3ffff) under --privileged. OrbStack's kernel fully supports io_uring; only the default seccomp profile blocks it (EPERM), and --privileged clears that. ALL services then boot past io_uring.",
+    "decisive_probe_in_kurtosis_container": "iouring-probe.txt: 'io_uring_setup: OK fd=3 sq_entries=8 cq_entries=16 features=0x3ffff' (run inside the privileged Kurtosis container)."
+  },
+  "service_boot_evidence": {
+    "config_parse": "OK — config printed (sandboxing_mode=threaded, cluster=testnet, leader_schedule_file=/var/lib/sig/schedule.txt)",
+    "shared_memory_regions": "19 regions initialized, including api.RootedConfig (8.6 GiB), account_pool.AccountPool (8.6 GiB), [3221225472]u8 (3 GiB), telemetry.Region (629 MB)",
+    "net_bind": "binding 0.0.0.0:8001 + binding 0.0.0.0:8002",
+    "gossip_started": "Gossip started — real identity, shred_version=4457, entrypoints={ 35.203.170.30:8001, 109.94.99.177:8001 } (testnet). Identities differ per run (run1: 6icJihyiq9d1xBrwM939LFianidvwr9s8M8mQapj5RPu; run2: 5WH2zaNpWvkXpJzoCcynwdTBTf4nng98nnZJsSgejJYe; run3: fresh) — confirming real keygen.",
+    "shred_receiver": "Waiting for shreds on port 8002",
+    "snapshot": "snapshot path /var/lib/sig/validator",
+    "accounts_db_started": "accounts_db started into file: /var/lib/sig/validator/accounts.db — THIS IS THE IO_URING GATE PASSED (accounts_db uses io_uring via v2/lib/fio/writer.zig; on the x86_64/Rosetta image it crashed here with SystemOutdated)",
+    "rooted_journal": "loading from existing rooted db / writing journal (magic=valid, state=empty) / no existing rooted db. reading from snapshot",
+    "process_liveness": "sig-run exited 124 = the `timeout 60` SIGTERM — the process stayed alive the full window, NOT a crash. Reproduced across 3 runs (exit 124 each)."
+  },
+  "limits": "This is `started` (process boots services past config parse AND past io_uring, inside a real Kurtosis container), NOT `joined`/`voting`/end-to-end. SIG v2 is a NON-VOTING OBSERVER (never votes; no vote/stake accounts in config — structurally impossible). `joined` requires a reachable cluster gossip view + a real snapshot + a complete external shred stream (SIG has no repair), none of which exist on this host without a running multi-validator testnet. The remaining blocker is net-service sendto => WouldBlock (gossip to the unreachable testnet entrypoints 35.203.170.30 / 109.94.99.177) — the EXPECTED CLUSTER GATE, not a host gate. The synthetic 432000-slot leader schedule uses a dummy pubkey (11111111111111111111111111111112) — it gets past schedule parse but is NOT a real schedule. This is a recorded target-architecture deviation (native arm64 vs SIG's CI x86_64-only), NOT a source deviation — the fork is byte-identical to upstream (zero deviation files).",
+  "cleanup_state": "Enclave sig-observer LEFT RUNNING (the node is alive as an observer). Image solana-diff/sig:v0.2.0-arm64 (186 MB) loaded into OrbStack (jiema), retained. No other user's containers/data touched (verified: only jiema's OrbStack socket used).",
+  "next": "`joined` needs a real running cluster (Agave/Jito validators) whose gossip is reachable by the SIG observer, a real snapshot from one of them, and a complete shred stream (or SIG's repair gap filled). On THIS Mac alone, `started` is the ceiling: OrbStack's kernel is fine for SIG (no NUMA/hugepage gate, unlike Firedancer), but no cluster exists here for SIG to join.",
+  "evidence_files": [
+    "iouring-probe.txt (decisive: io_uring_setup OK inside the Kurtosis container)",
+    "container-privileged-proof.txt (Privileged=true, Seccomp=0)",
+    "BUILD-INFO.txt (commit/target/zig pin)",
+    "config.zon (the config used)",
+    "schedule-summary.txt (432000-slot synthetic schedule)",
+    "sig-boot.log (full boot log: config -> regions -> net bind -> gossip -> shred_receiver -> snapshot -> accounts_db started -> journal)",
+    "kurtosis-enclave-inspect.txt (enclave + service RUNNING)"
+  ]
+}

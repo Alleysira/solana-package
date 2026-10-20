@@ -1,0 +1,590 @@
+[36mINFO[0m[2026-10-20T14:12:25+08:00] Creating a new enclave for Starlark to run inside... 
+[36mINFO[0m[2026-10-20T14:12:28+08:00] Enclave 'solana-multiclient' created successfully 
+[36mINFO[0m[2026-10-20T14:12:28+08:00] Executing Starlark package at '/Users/jiema/sol-diff-testing/solana-package' as the passed argument '.' looks like a directory 
+[36mINFO[0m[2026-10-20T14:12:28+08:00] Compressing package 'github.com/0xBloctopus/solana-package' at '.' for upload 
+[36mINFO[0m[2026-10-20T14:12:28+08:00] Kurtosis CLI is running in a non interactive terminal. Everything will work but progress information and the progress bar will not be displayed. 
+
+Container images used in this run:
+> solana-diff/jito-solana:4.3.0-jito-arm64 - locally cached
+> solana-diff/sig:v0.2.0-arm64-functional - locally cached
+> solana-diff/agave-validator:4.3.0-arm64 - locally cached
+
+Printing a message
+Parsing multi-client input parameters
+
+Printing a message
+Launching multi-client shared-genesis participant network
+
+Printing a message
+Building shred-stream files-artifact from SIG image 'solana-diff/sig:v0.2.0-arm64-functional' (for mounting on bootstrap)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+total 127136
+drwxr-xr-x 1 root root        24 Oct 20 06:12 .
+drwxrwxrwt 1 root root        70 Oct 20 06:12 ..
+-rwxr-xr-x 1 root root 130184176 Oct 20 05:49 shred-stream
+[shred-stream-artifact] staged shred-stream binary
+
+--------------------
+
+Printing a message
+Built shred-stream files-artifact: shred-stream-bin
+
+Printing a message
+Generating shared genesis (single run_sh)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+[genesis] keygen identities/votes/stakes/faucet/tip/merkle/recipient
+[genesis] running solana-genesis (two bootstrap validators)
+lamports_per_byte_year is deprecated and will be removed in a future release
+rent_exemption_threshold is deprecated and will be removed in a future release
+rent_burn_percentage is deprecated and will be removed in a future release
+[genesis] genesis_hash=5cTNxfRAC9C4MYBZb93Y5RR8pnVHJ8QDVtzrRe3Yacm9 shred_version=678
+[genesis] meta.env written. Contents:
+GENESIS_HASH=5cTNxfRAC9C4MYBZb93Y5RR8pnVHJ8QDVtzrRe3Yacm9
+SHRED_VERSION=678
+BOOTSTRAP_IDENTITY=6NcwUAG2eTXfSZvF5Rexxu4rTeCeJhQTRsV8ZjJCpZ7E
+BOOTSTRAP_VOTE=4z5kSqgo2o64tXw3tkKvArT5TtpecM86QR2JsCu7tvz1
+BOOTSTRAP_STAKE=4AjB32cMAmArB4vx3FVxRwRwSbpwoaRnHi7KcVfgSNBv
+JOINER_IDENTITY=4Trs56ywfrNxBVpKMXStELiMVm4q5bNYTdvLoE4JZAZo
+JOINER_VOTE=64X7MnsnKLVE3LHGUe91djercPtM7U75vysR8BTTD7Ev
+JOINER_STAKE=EHgYpa68KcGf64vUr49Eczogu9w9uTkv6W8CLB2Z9Axa
+RECIPIENT=BcwBHW2Jr6YX6rvHbBX7FRtAWsTNCEeEnLru98fm9WQ7
+TIP_PAYMENT=G1iFqdUZkdvoNPf8MVYYuBVKqsmnw4j4fCK9ia3yVcuk
+TIP_DISTRIBUTION=BiAsyFBsAzqmnVdzMRVFyzRcUh5yTkt4Ke7XFc8yPeq8
+MERKLE_AUTHORITY=D4CfyPQscAMq1PH3cJTHxbJLTL7cpcvejHXx76CwiDws
+BOOTSTRAP_BLS=5kkdue6VvJQc6ydotzgxzEXT9gJimUvz79xZByE8RqUr88Fa4bVg4YMY4objZxBr9X
+JOINER_BLS=7GAkAwVmhfN3aLErAfsEn6D7kbmyXN2U84ByowAh3rvKeouJJsoNdR6EVCpF8BzMCj
+[genesis] DONE
+
+--------------------
+
+Printing a message
+Genesis artifact 'solana-genesis-data' produced
+
+Printing a message
+Launching bank-hash probe 'bank-hash-probe' (privileged; captures slot-0 bank hash)
+
+Adding service with name 'bank-hash-probe' and image 'solana-diff/agave-validator:4.3.0-arm64'
+Service 'bank-hash-probe' added with service UUID 'd0085bd204d6448abe3fce25582475c0'
+
+Printing a message
+Bank-hash probe container started (sleep infinity, privileged).
+
+Executing command on service 'bank-hash-probe'
+Command returned with exit code '0' and the following output:
+--------------------
+[probe] my_ip=172.16.0.6
+[probe] validator pid=15
+BANK_HASH=6AbmrhsFZa82jtzjwuFgmV6ku8K1ogFDGb7i5bVKfHid
+[probe] captured bank-0 hash=6AbmrhsFZa82jtzjwuFgmV6ku8K1ogFDGb7i5bVKfHid
+
+--------------------
+
+Executing command on service 'bank-hash-probe'
+Command returned with exit code '0' and the following output: 6AbmrhsFZa82jtzjwuFgmV6ku8K1ogFDGb7i5bVKfHid
+
+Printing a message
+Bank-hash probe captured slot-0 bank hash: 6AbmrhsFZa82jtzjwuFgmV6ku8K1ogFDGb7i5bVKfHid
+
+Stopping service 'bank-hash-probe'
+Service 'bank-hash-probe' stopped
+
+Printing a message
+Launching validator 'val-bootstrap' (role=voting-bootstrap, image=solana-diff/jito-solana:4.3.0-jito-arm64)
+
+Adding service with name 'val-bootstrap' and image 'solana-diff/jito-solana:4.3.0-jito-arm64'
+Service 'val-bootstrap' added with service UUID '7987f40a466446e7a6737ef3968b278d'
+
+Printing a message
+Validator 'val-bootstrap' launched; rpc=http://val-bootstrap:8899
+
+Printing a message
+Launching validator 'val-joiner' (role=voting-joiner, image=solana-diff/agave-validator:4.3.0-arm64)
+
+Adding service with name 'val-joiner' and image 'solana-diff/agave-validator:4.3.0-arm64'
+Service 'val-joiner' added with service UUID '89704f3ada3d46ba98193668c1848111'
+
+Printing a message
+Validator 'val-joiner' launched; rpc=http://val-joiner:8899
+
+Printing a message
+Extracting real leader schedule from bootstrap RPC via run_sh
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+[schedule] rpc ready=1 after 10 s
+[schedule] lines=432000 (expected 432000)
+[schedule] OK: 0.. + 431999 + , 432000 lines
+0 6NcwUAG2eTXfSZvF5Rexxu4rTeCeJhQTRsV8ZjJCpZ7E
+1 6NcwUAG2eTXfSZvF5Rexxu4rTeCeJhQTRsV8ZjJCpZ7E
+431999 4Trs56ywfrNxBVpKMXStELiMVm4q5bNYTdvLoE4JZAZo
+
+--------------------
+
+Printing a message
+Built leader-schedule files-artifact: leader-schedule
+
+Printing a message
+Launching SIG observer 'sig-observer' (image=solana-diff/sig:v0.2.0-arm64-functional, NON-VOTING observer; cluster=development, functional path skip_on_cold_start=False)
+
+Adding service with name 'sig-observer' and image 'solana-diff/sig:v0.2.0-arm64-functional'
+Service 'sig-observer' added with service UUID 'e463ccb819e544cea74c638d86032a61'
+
+Printing a message
+SIG observer container started (sleep infinity, privileged, schedule mounted).
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output:
+--------------------
+--- binary ---
+-rwxr-xr-x 1 root root 26523552 Oct 20 05:49 /opt/sig/bin/sig
+--- BUILD-INFO ---
+commit=f4ccc97c12535a37bd508252a4040a546ea0b329
+fork=yes(Alleysira)
+upstream=Syndica/sig
+fork_diff=dev/local-observer branch; 5 tracked deviation files + DEVIATIONS.md (development observer path)
+upstream_base=b5026c60fe56b51edd79131115b7e741449d6b2e(byte-identical-to-upstream-main)
+zig=0.15.2
+target=aarch64-linux-gnu.2.36
+runtime_platform=linux/arm64
+build_flags=-Dallow-no-sha -Dallow-no-avx512
+client=SIG-v2-observer-non-voting
+note=tracked-deviation-build-see-DEVIATIONS-md
+f4ccc97c sig v2: bound shred_receiver slot range to the snapshot slot (deviation 5)
+--- schedule ---
+432000 /var/lib/sig/schedule/schedule.txt
+0 6NcwUAG2eTXfSZvF5Rexxu4rTeCeJhQTRsV8ZjJCpZ7E
+1 6NcwUAG2eTXfSZvF5Rexxu4rTeCeJhQTRsV8ZjJCpZ7E
+
+--------------------
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output:
+--------------------
+[sig-observer] wrote /var/lib/sig/config.zon (skip_on_cold_start=false)
+[sig-observer] advertise_ip=172.16.0.10 shred_version=678 entrypoint=val-bootstrap:8001
+.{
+    .sandboxing_mode = .threaded,
+
+    .cluster = .development,
+    .leader_schedule_file = "/var/lib/sig/schedule/schedule.txt",
+    .gossip = .{
+        .port = 8001,
+        .advertise_tvu_port = true,
+        .advertise_ip = "172.16.0.10",
+        .development_entrypoints = .{"val-bootstrap:8001"},
+    },
+    .shred_network = .{
+        .recv_port = 8002,
+        .shred_version = 678,
+    },
+    .telemetry = .{
+        .port = 9110,
+        .log_level = .info,
+    },
+    .snapshot = .{
+        .folder = "/var/lib/sig/validator",
+        .known_validators = .{"*"},
+        .skip_on_cold_start = false,
+    },
+    .accounts_db = .{
+        .file = "/var/lib/sig/validator/accounts.db",
+        .rooted = .{ .gb = 1 },
+        .unrooted = .{ .gb = 1 },
+    },
+}
+
+--------------------
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output:
+--------------------
+[sig-observer] launched sig pid=31
+[sig-observer] sig is alive after 45s (started)
+=== sig.log (first 120 lines) ===
+time=2026-10-20T06:13:06.783Z level=info scope=main service=replay message="received last fec set of slot 239 (idx=0)"
+
+10-20T06:13:06.544Z level=info scope=main service=replay message="received last fec set of slot 236 (idx=0)"
+ader_v3_minimum_extend_program_size"
+time=2026-10-20T06:13:02.197Z level=info scope=main service=accounts_db message="Feature(active) .commission_rate_in_basis_points"
+time=2026-10-20T06:13:02.197Z level=info scope=main service=accounts_db message="Feature(active) .block_revenue_sharing"
+time=2026-10-20T06:13:02.197Z level=info scope=main service=accounts_db message="Feature(active) .vote_account_initialize_v2"
+time=2026-10-20T06:13:02.197Z level=info scope=main service=accounts_db message="accounts_db loaded - servicing replay requests"
+xpected_data_complete_shreds"
+time=2026-10-20T06:13:02.197Z level=info scope=main service=accounts_db message="Feature(active) .create_account_allow_prefund"
+time=2026-10-20T06:13:02.197Z level=info scope=main service=accounts_db message="Feature(active) .replace_spl_token_with_p_token"
+time=2026-10-20T06:13:02.197Z level=info scope=main service=accounts_db message="Feature(active) .delay_commission_updates"
+time=2026-10-20T06:13:02.197Z level=info scope=main service=accounts_db message="Feature(active) .validate_chained_block_id_hardcoded"
+time=2026-10-20T06:13:02.197Z level=info scope=main service=accounts_db message="Feature(active) .validate_chained_block_id_2_hardcoded"
+time=2026-10-20T06:13:02.197Z level=info scope=main service=accounts_db message="Feature(active) .upgrade_bpf_stake_program_to_v5"
+time=2026-10-20T06:13:02.197Z level=info scope=main service=accounts_db message="Feature(active) .enable_sha512_syscall"
+time=2026-10-20T06:13:02.197Z level=info scope=main service=accounts_db message="Feature(active) .set_lamports_per_byte_to_6333"
+o scope=main service=accounts_db message="Feature(active) .direct_account_p(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+=== sig.log (last 40 lines) ===
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+
+--------------------
+
+Printing a message
+SIG observer 'sig-observer' launched (NON-VOTING; evidence classified after shred-stream)
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output: 147
+
+Printing a message
+Running shred-stream on bootstrap → sig over window (snapshot slot)..(snapshot slot + 64)
+
+Executing command on service 'val-bootstrap'
+Command returned with exit code '0' and the following output:
+--------------------
+[shred-stream] window 147..211 (snapshot start=147)
+[shred-stream] sig-observer resolved to 172.16.0.10
+-rwxr-xr-x 1 root root 130184176 Oct 20 05:49 /opt/shred-stream/shred-stream
+/data/bootstrap-ledger/rocksdb
+[shred-stream] launched pid=1301 target=172.16.0.10:8002 window=147..211
+=== shred-stream.log (first 30 lines) ===
+shred-stream config:
+  ledger: /data/bootstrap-ledger
+  rocksdb: /data/bootstrap-ledger/rocksdb
+  target: 172.16.0.10:8002
+  start_slot: 147
+  end_slot: 211
+  rate_hz: 100
+  test_mode: linear
+  seed: null
+  dry_run: false
+  column_families:
+    meta: present
+    data_shred: present
+    code_shred: present
+slot=211 slots=65 produced=6336 sent=64 produce_pps=6336 send_pps=64 queue=6272/8192 producer_backpressured=false net_idle=true rate_hz=100
+slot=211 slots=65 produced=6336 sent=160 produce_pps=0 send_pps=96 queue=6176/8192 producer_backpressured=false net_idle=false rate_hz=100
+
+--------------------
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' with no output
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output:
+--------------------
+SIG_EVIDENCE_LEVEL=joined
+SIG_PID=31
+SIG_LOG_BYTES=3856694
+=== sig.log tail (60) ===
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+
+--------------------
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output: joined
+
+Printing a message
+SIG observer 'sig-observer' classified evidence_level=joined (NON-VOTING; observer only)
+
+Printing a message
+Participant network launched: bootstrap=val-bootstrap (Jito, voting), joiner=val-joiner (Agave, voting), sig=sig-observer (NON-VOTING observer, evidence=joined), shred-stream ran inside bootstrap → sig over a bounded window from SIG's snapshot slot
+
+Printing a message
+Multi-client shared-genesis network launched.
+
+Printing a message
+  Bootstrap (voting): http://val-bootstrap:8899
+
+Printing a message
+  Joiner  (voting): http://val-joiner:8899
+
+Printing a message
+  SIG     (NON-VOTING observer, evidence=joined)
+
+Printing a message
+Slot verifier: waiting for BOTH validators non-delinquent, then slot >= 20
+
+Waiting for at most '4m0s' for service 'val-bootstrap' to reach a certain state
+Wait took 1 tries (103.819193ms in total). Assertion passed with following:
+Command returned with exit code '0' with no output
+
+Printing a message
+Both voting validators are non-delinquent with lastVote>0.
+
+Waiting for at most '5m0s' for service 'val-bootstrap' to reach a certain state
+Wait took 1 tries (93.02709ms in total). Assertion passed with following:
+Command returned with exit code '0' and the following output:
+--------------------
+slot=946
+
+--------------------
+
+Printing a message
+Slot >= 20 reached.
+
+Executing command on service 'val-joiner'
+Command returned with exit code '0' and the following output:
+--------------------
+agave-validator 4.3.0 (src:825efd18; feat:c9ad34d2, client:Agave)
+
+--------------------
+
+Executing command on service 'val-bootstrap'
+Command returned with exit code '0' and the following output:
+--------------------
+[verifier] gossip_nodes=3 sig_in_gossip=true
+{"verifiedAt":"2026-10-20T06:14:09Z","topology":"shared-genesis-multi-client","genesisHash":"5cTNxfRAC9C4MYBZb93Y5RR8pnVHJ8QDVtzrRe3Yacm9","shredVersion":"678","bankHash":"6AbmrhsFZa82jtzjwuFgmV6ku8K1ogFDGb7i5bVKfHid","slotsTarget":20,"votingValidators":[{"role":"bootstrap","identity":"6NcwUAG2eTXfSZvF5Rexxu4rTeCeJhQTRsV8ZjJCpZ7E","vote":"4z5kSqgo2o64tXw3tkKvArT5TtpecM86QR2JsCu7tvz1","binaryVersion":"agave-validator 4.3.0 (src:07270be4; feat:c9ad34d2, client:JitoLabs)"},{"role":"joiner","identity":"4Trs56ywfrNxBVpKMXStELiMVm4q5bNYTdvLoE4JZAZo","vote":"64X7MnsnKLVE3LHGUe91djercPtM7U75vysR8BTTD7Ev","binaryVersion":"agave-validator 4.3.0 (src:825efd18; feat:c9ad34d2, client:Agave)"}],"sigObserver":{"evidenceLevel":"joined","voting":false,"inGossipView":true},"validatorsFile":"/data/validators.txt","gossipFile":"/data/gossip.txt","gossipCount":2,"gossipNodes":3,"slots":{"start":949,"end":987},"transfer":{"signature":"2G9wLFpv7R2QpsKjxwFjPBeaLLSxjDMgeCHA2P77Vu4LDFme4aLLLkGQF1UdPRkdoxF4LJHY4VTLtix7eNzAVxm5","recipient":"BcwBHW2Jr6YX6rvHbBX7FRtAWsTNCEeEnLru98fm9WQ7","recipientLamports":"1000000000"}}
+=== EVIDENCE_JSON_START ===
+{"verifiedAt":"2026-10-20T06:14:09Z","topology":"shared-genesis-multi-client","genesisHash":"5cTNxfRAC9C4MYBZb93Y5RR8pnVHJ8QDVtzrRe3Yacm9","shredVersion":"678","bankHash":"6AbmrhsFZa82jtzjwuFgmV6ku8K1ogFDGb7i5bVKfHid","slotsTarget":20,"votingValidators":[{"role":"bootstrap","identity":"6NcwUAG2eTXfSZvF5Rexxu4rTeCeJhQTRsV8ZjJCpZ7E","vote":"4z5kSqgo2o64tXw3tkKvArT5TtpecM86QR2JsCu7tvz1","binaryVersion":"agave-validator 4.3.0 (src:07270be4; feat:c9ad34d2, client:JitoLabs)"},{"role":"joiner","identity":"4Trs56ywfrNxBVpKMXStELiMVm4q5bNYTdvLoE4JZAZo","vote":"64X7MnsnKLVE3LHGUe91djercPtM7U75vysR8BTTD7Ev","binaryVersion":"agave-validator 4.3.0 (src:825efd18; feat:c9ad34d2, client:Agave)"}],"sigObserver":{"evidenceLevel":"joined","voting":false,"inGossipView":true},"validatorsFile":"/data/validators.txt","gossipFile":"/data/gossip.txt","gossipCount":2,"gossipNodes":3,"slots":{"start":949,"end":987},"transfer":{"signature":"2G9wLFpv7R2QpsKjxwFjPBeaLLSxjDMgeCHA2P77Vu4LDFme4aLLLkGQF1UdPRkdoxF4LJHY4VTLtix7eNzAVxm5","recipient":"BcwBHW2Jr6YX6rvHbBX7FRtAWsTNCEeEnLru98fm9WQ7","recipientLamports":"1000000000"}}
+=== EVIDENCE_JSON_END ===
+[verifier] OK slot_start=949 slot_end=987 gossip_count=2 bs_version=agave-validator 4.3.0 (src:07270be4; feat:c9ad34d2, client:JitoLabs) join_version=agave-validator 4.3.0 (src:825efd18; feat:c9ad34d2, client:Agave)
+
+--------------------
+
+Printing a message
+Verification complete. SIG observer evidence_level=joined (NON-VOTING; recorded, not required). Voting validators: bootstrap=val-bootstrap (image-version captured), joiner=val-joiner (agave-validator 4.3.0 (src:825efd18; feat:c9ad34d2, client:Agave)
+).
+
+Printing a message
+Slot target 20 reached; evidence captured.
+
+Starlark code successfully run. Output was:
+{
+	"bootstrap_rpc_url": "http://val-bootstrap:8899",
+	"evidence_json": "[verifier] gossip_nodes=3 sig_in_gossip=true
+{"verifiedAt":"2026-10-20T06:14:09Z","topology":"shared-genesis-multi-client","genesisHash":"5cTNxfRAC9C4MYBZb93Y5RR8pnVHJ8QDVtzrRe3Yacm9","shredVersion":"678","bankHash":"6AbmrhsFZa82jtzjwuFgmV6ku8K1ogFDGb7i5bVKfHid","slotsTarget":20,"votingValidators":[{"role":"bootstrap","identity":"6NcwUAG2eTXfSZvF5Rexxu4rTeCeJhQTRsV8ZjJCpZ7E","vote":"4z5kSqgo2o64tXw3tkKvArT5TtpecM86QR2JsCu7tvz1","binaryVersion":"agave-validator 4.3.0 (src:07270be4; feat:c9ad34d2, client:JitoLabs)"},{"role":"joiner","identity":"4Trs56ywfrNxBVpKMXStELiMVm4q5bNYTdvLoE4JZAZo","vote":"64X7MnsnKLVE3LHGUe91djercPtM7U75vysR8BTTD7Ev","binaryVersion":"agave-validator 4.3.0 (src:825efd18; feat:c9ad34d2, client:Agave)"}],"sigObserver":{"evidenceLevel":"joined","voting":false,"inGossipView":true},"validatorsFile":"/data/validators.txt","gossipFile":"/data/gossip.txt","gossipCount":2,"gossipNodes":3,"slots":{"start":949,"end":987},"transfer":{"signature":"2G9wLFpv7R2QpsKjxwFjPBeaLLSxjDMgeCHA2P77Vu4LDFme4aLLLkGQF1UdPRkdoxF4LJHY4VTLtix7eNzAVxm5","recipient":"BcwBHW2Jr6YX6rvHbBX7FRtAWsTNCEeEnLru98fm9WQ7","recipientLamports":"1000000000"}}
+=== EVIDENCE_JSON_START ===
+{"verifiedAt":"2026-10-20T06:14:09Z","topology":"shared-genesis-multi-client","genesisHash":"5cTNxfRAC9C4MYBZb93Y5RR8pnVHJ8QDVtzrRe3Yacm9","shredVersion":"678","bankHash":"6AbmrhsFZa82jtzjwuFgmV6ku8K1ogFDGb7i5bVKfHid","slotsTarget":20,"votingValidators":[{"role":"bootstrap","identity":"6NcwUAG2eTXfSZvF5Rexxu4rTeCeJhQTRsV8ZjJCpZ7E","vote":"4z5kSqgo2o64tXw3tkKvArT5TtpecM86QR2JsCu7tvz1","binaryVersion":"agave-validator 4.3.0 (src:07270be4; feat:c9ad34d2, client:JitoLabs)"},{"role":"joiner","identity":"4Trs56ywfrNxBVpKMXStELiMVm4q5bNYTdvLoE4JZAZo","vote":"64X7MnsnKLVE3LHGUe91djercPtM7U75vysR8BTTD7Ev","binaryVersion":"agave-validator 4.3.0 (src:825efd18; feat:c9ad34d2, client:Agave)"}],"sigObserver":{"evidenceLevel":"joined","voting":false,"inGossipView":true},"validatorsFile":"/data/validators.txt","gossipFile":"/data/gossip.txt","gossipCount":2,"gossipNodes":3,"slots":{"start":949,"end":987},"transfer":{"signature":"2G9wLFpv7R2QpsKjxwFjPBeaLLSxjDMgeCHA2P77Vu4LDFme4aLLLkGQF1UdPRkdoxF4LJHY4VTLtix7eNzAVxm5","recipient":"BcwBHW2Jr6YX6rvHbBX7FRtAWsTNCEeEnLru98fm9WQ7","recipientLamports":"1000000000"}}
+=== EVIDENCE_JSON_END ===
+[verifier] OK slot_start=949 slot_end=987 gossip_count=2 bs_version=agave-validator 4.3.0 (src:07270be4; feat:c9ad34d2, client:JitoLabs) join_version=agave-validator 4.3.0 (src:825efd18; feat:c9ad34d2, client:Agave)
+",
+	"joiner_rpc_url": "http://val-joiner:8899",
+	"sig_evidence_level": "joined",
+	"slot_reached": true
+}
+
+⭐ us on GitHub - https://github.com/kurtosis-tech/kurtosis
+[36mINFO[0m[2026-10-20T14:14:09+08:00] =========================================================== 
+[36mINFO[0m[2026-10-20T14:14:09+08:00] ||          Created enclave: solana-multiclient          || 
+[36mINFO[0m[2026-10-20T14:14:09+08:00] =========================================================== 
+Name:            solana-multiclient
+UUID:            132d5896175c
+Status:          RUNNING
+Creation Time:   Tue, 20 Oct 2026 14:12:25 HKT
+Flags:           
+
+========================================= Files Artifacts =========================================
+UUID           Name
+618c1562af4e   leader-schedule
+973b900dc6c6   shred-stream-bin
+f6511ef7f824   solana-genesis-data
+
+========================================== User Services ==========================================
+UUID           Name              Ports                              Status
+d0085bd204d6   bank-hash-probe   <none>                             STOPPED
+e463ccb819e5   sig-observer      <none>                             RUNNING
+7987f40a4664   val-bootstrap     rpc: 8899/tcp -> 127.0.0.1:32939   RUNNING
+89704f3ada3d   val-joiner        rpc: 8899/tcp -> 127.0.0.1:32940   RUNNING
+

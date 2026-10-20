@@ -1,0 +1,128 @@
+{
+  "verifiedAt": "2026-10-02T03:24:06Z",
+  "topology": "shared-genesis-multi-client-functional-sig",
+  "goal": "Run a full SIG validator (functional path per official doc: real leader schedule + real snapshot + real shred stream) alongside 2 voting validators (Jito + Agave) in a local Kurtosis testnet; observe >=20 slots",
+  "host": {
+    "machine": "Apple Silicon Mac (arm64)",
+    "containerRuntime": "OrbStack (jiema) via DOCKER_HOST=unix:///Users/jiema/.orbstack/run/docker.sock",
+    "kurtosis": "1.20.0",
+    "enclave": "solana-multiclient",
+    "enclaveUuid": "a1dfc03f9b65"
+  },
+  "genesisHash": "CH1ACyLKwnfUkmY9yUCUNUR1SbXit9nsH7vMbr1jDrLK",
+  "shredVersion": "24319",
+  "slotsTarget": 20,
+  "slots": {
+    "start": 14926,
+    "end": 14964,
+    "count": 39,
+    "goalMet": true
+  },
+  "gossipCount": 2,
+  "votingValidators": [
+    {
+      "role": "bootstrap",
+      "identity": "E7hVq7JxHZRf31rfe5Txd3owTKKrNEBTgsD6vxK9KBny",
+      "vote": "C2pTh6cp954K9itRrwgRtK8p3GVzw7Ke6dZkqyfNCTvi",
+      "binaryVersion": "agave-validator 4.3.0 (src:07270be4; feat:c9ad34d2, client:JitoLabs)",
+      "client": "JitoLabs",
+      "image": "solana-diff/jito-solana:4.3.0-jito-arm64",
+      "stake": "50.00%"
+    },
+    {
+      "role": "joiner",
+      "identity": "BQYBGMdgyb8qvAMm53zQU5K9ihzKBHxZknwnyCYv83q",
+      "vote": "HVPeuFyMoQDoxERyqMqaTAJXzH5cdWNCLYhC6eMGcnTn",
+      "binaryVersion": "solana-validator 4.3.0 (client:Agave)",
+      "client": "Agave",
+      "image": "solana-diff/agave-validator:4.3.0-arm64",
+      "stake": "50.00%"
+    }
+  ],
+  "transfer": {
+    "signature": "4EdnjD2QbX6WiiCX21Ln67V3ggMF2pYLd1gNLtiKUhhyoLzunLwsC2NN7qrjg5jgGnKRC7N6FzF4R4cmFmfyLmCc",
+    "recipient": "GLcNjrcdDJca3ci9udgxqEnucGu7a6ih2uurs3hiwfr4",
+    "recipientLamports": 8000000000,
+    "recipientSol": 8,
+    "submittedAtNode": "bootstrap",
+    "confirmedAtNode": "joiner",
+    "commitment": "finalized",
+    "confirmed": true
+  },
+  "sigObserver": {
+    "evidenceLevel": "started",
+    "voting": false,
+    "image": "solana-diff/sig:v0.2.0-arm64-functional",
+    "imageSizeBytes": 75637121,
+    "fork": "Alleysira/sig@fce80594bf8b703b7e62cc81ba74161022047298",
+    "forkBranch": "dev/local-observer",
+    "upstreamParent": "b5026c60fe56b51edd79131115b7e741449d6b2e",
+    "deviationFiles": 4,
+    "functionalPath": {
+      "leaderSchedule": "real (extracted from bootstrap RPC via `solana leader-schedule`)",
+      "snapshot": {
+        "downloaded": true,
+        "slot": 290,
+        "file": "snapshot-290-aTc3awNNhiSZb91hKVQjXuUsivRXChvtvw9SM9VYVQ7.tar.zst",
+        "bytes": 52924
+      },
+      "accountsDb": {
+        "started": true,
+        "path": "/var/lib/sig/validator/accounts.db",
+        "bytes": 2097152
+      },
+      "shredStream": {
+        "ran": true,
+        "ranIn": "bootstrap container (live blockstore)",
+        "target": "172.16.4.10:8002",
+        "rateHz": 100,
+        "shredsReceived": true,
+        "warnings": {
+          "InvalidSignature": 32,
+          "BadSlotOrParentOffset": 32
+        }
+      },
+      "replay": {
+        "reached": true,
+        "fecSetsReceived": [277, 3001, 2455],
+        "crashed": true,
+        "crash": "OutOfSpace",
+        "crashLocation": "pool.zig:280 / replay.zig:830 (insertFecSet) / replay.zig:227 (serviceMain)",
+        "rootCause": "shred-stream fed shreds from slot 0, but SIG's snapshot base is slot 290; the shred_receiver InvalidSignature/BadSlotOrParentOffset warnings are from shreds whose slot/parent do not match SIG's expected chain starting at 290. Official doc: feed 'all slots starting at the snapshot slot being used by sig.' This is a refinement, NOT a gate for the 20-slot goal."
+      }
+    },
+    "honestAssessment": "started (received real shreds + replay processed real FEC sets before OutOfSpace). Strictly STRONGER than the prior cold-start `not_started` (which died at MissingVersionFile before receiving shreds). NOT `joined` (replay crashed). NOT a gate for the 20-slot goal — the two voting validators produce the slots. SIG v2 is NON-VOTING (structurally impossible: no vote/stake accounts in Config; official doc says 'Sig v2 is not yet a complete validator')."
+  },
+  "containers": {
+    "bootstrap": "val-bootstrap--2dece03bb4f14c00a32c491b330ce409",
+    "joiner": "val-joiner--8744313b43be4408ac3b891b4c3c74aa",
+    "sig": "sig-observer--a29e621209244640b80f472d03ca75c2"
+  },
+  "ports": {
+    "bootstrapRpc": 32903,
+    "joinerRpc": 32904
+  },
+  "clientDiversityProven": true,
+  "clientDiversityNote": "`solana validators` 'Stake By Client ID' lists JitoLabs and Agave as separate clients. Agreement between Jito and Agave is NOT an independent majority oracle (shared code).",
+  "evidenceFiles": [
+    "summary.json",
+    "validators.txt",
+    "gossip.txt",
+    "sig-observer.log"
+  ],
+  "packageArtifacts": {
+    "slot_verifier": "src/verification/slot_verifier.star (untracked, new file — contains the set -e abort-bug fix: `|| transfer=\"\"` at the transfer assignment, see lines 207-224)",
+    "participant_network": "src/participant_network.star",
+    "solana_validator_launcher": "src/solana_validator/solana_validator_launcher.star",
+    "sig_observer_launcher": "src/sig_observer/sig_observer_launcher.star",
+    "genesis_launcher": "src/genesis/genesis_launcher.star"
+  },
+  "limits": "TWO voting-validator run (Jito+Agave), NOT a five-client testnet. SIG is a NON-VOTING observer (started on the functional path; not joined). Agave and Jito share substantial code; agreement is NOT an independent majority oracle. SIG's replay crashed with OutOfSpace because shred-stream fed shreds from slot 0 while SIG's snapshot base is slot 290 — a refinement opportunity (feed only slots >= snapshot slot), NOT a gate for the 20-slot goal.",
+  "reproducible": "Reproduced from a clean state (fresh enclave, fresh genesis). Evidence artifacts retained.",
+  "nextSteps": [
+    "Refine shred-stream to feed only slots >= SIG's snapshot slot (290) to avoid the replay OutOfSpace",
+    "A SIG snapshot-feed path to fully resolve accounts_db and reach `joined`",
+    "A bare-metal x86_64 NUMA+hugepages+KVM host for Firedancer `voting`",
+    "A compatible Solana Labs revision"
+  ]
+}

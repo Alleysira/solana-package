@@ -1,0 +1,96 @@
+{
+  "experiment": "firedancer-26094-qemu-genesis-load-resolution",
+  "timestamp": "2026-09-29T04:10:00Z",
+  "host": {
+    "machine": "Apple Silicon Mac (arm64)",
+    "vm": "QEMU TCG x86_64-on-arm64 (no KVM)",
+    "vm_cpus": 16,
+    "vm_ram_mib": 65536,
+    "vm_kernel": "Ubuntu 24.04 noble, 6.8.0-142-generic",
+    "note": "Standard-kernel QEMU VM exposes /sys/devices/system/node/node0 + hugepages sysfs (unlike OrbStack VMs) AND exposes AVX/AVX2 via -cpu max (unlike Rosetta), so the x86_64 solana-test-validator binary can run here. x86_64 is TCG-emulated under arm64 — no KVM, too slow for slot cadence."
+  },
+  "target": {
+    "project": "Firedancer (Frankendancer, NOT full Firedancer)",
+    "version": "v26.09.4",
+    "commit": "ff881b69a93a6519c1a6f09698aaf208753a0a8f",
+    "fork": "Alleysira/firedancer (deviation fork)",
+    "agave_submodule": "535ec972e6f0037b6a4c5a5e98cff4597781e678 (v4.3.0-fd)",
+    "compiler": "gcc-12 (GCC 12.5.0)",
+    "machine_target": "linux_gcc_x86_64",
+    "client_version": "0.101.40300 (client:Frankendancer)",
+    "image": "solana-diff/firedancer:v26.09.4-frankendancer-amd64",
+    "deviation_files": 6,
+    "deviation_note": "5 GCC-12 cast conversions + 1 NUMA-fabrication fallback in fd_numa_linux.c. Source-deviation build, NOT clean upstream.",
+    "genesis_source": {
+      "tool": "solana-test-validator (from solana-diff/agave-tools:4.3.0-amd64 image)",
+      "agave_release": "v4.3.0",
+      "agave_commit": "825efd18292aff6ffcf9daa0f7612f21b3531a72",
+      "release_tarball_sha256": "c97289a8abb1d0efb497d8b5cb285baabd9b7f8ea6647f5d145c5dc8ff3611e8",
+      "note": "Agave 4.3.0 has NO solana-genesis binary (removed in the 4.3 era). solana-test-validator uses the same create_genesis_config code path as a bootstrap validator, so it is used ONLY as a genesis.bin generator (NOT the validator under test). The generated genesis.bin is standard Agave 4.3.0 genesis format, compatible with the Firedancer-embedded Agave (submodule 535ec972, v4.3.0-fd)."
+    }
+  },
+  "goal": "Resolve the genesis-load blocker that capped the prior 'started' evidence (20260928T185111Z) at open.rs(25) 'Failed to load genesis_config ... genesis.bin ... NotFound', by obtaining a genesis.bin and testing whether the embedded Agave gets PAST genesis load (bank creation / bank-frozen / leader schedule / gossip).",
+  "method": [
+    "Built solana-diff/agave-tools:4.3.0-amd64 from the prebuilt official Agave v4.3.0 release tarball (download + extract only, NO Rust compile) to obtain solana-test-validator + agave-ledger-tool x86_64 binaries.",
+    "Pushed the agave-tools binaries into the qcow2 VM disk at /opt/agave/ via the nbd offline-mount mechanism (privileged debian:bookworm container, qemu-nbd, mount ext4, tar extract).",
+    "Pushed fd-start-genesis-probe.sh to the EXACT systemd unit ExecStart path /usr/local/bin/fd-start-probe.sh (the prior run pushed to a path the unit does not invoke).",
+    "Booted the VM under QEMU TCG (q35,accel=tcg,-cpu max,-smp 16,-m 65536); -cpu max exposes AVX/AVX2 so the x86_64 solana-test-validator binary runs (Rosetta does NOT expose AVX — verified by an abort in-container earlier).",
+    "Probe stages: [0] network up, [1] verify agave-tools, [2] fdctl version, [3] sysfs before, [4] configure init hugetlbfs, [5] configure init sysctl, [6] configure check all, [7] ensure identity key, [8] generate genesis.bin via solana-test-validator --reset --ledger /tmp/gen-ledger (poll up to 75s), place at /var/lib/firedancer/fdvm/ledger/genesis.bin, [9] fdctl run (240s timeout, RUST_BACKTRACE=full).",
+    "Captured full serial console to console-genesis.txt."
+  ],
+  "result": "PARTIAL — started (genesis-load blocker RESOLVED; stronger started than prior evidence)",
+  "evidence_level_reached": "started",
+  "evidence_level_rationale": "The genesis-load blocker is RESOLVED: a genesis.bin (1,462,232 bytes) was generated via solana-test-validator under QEMU -cpu max (AVX available) and placed at /var/lib/firedancer/fdvm/ledger/genesis.bin. The embedded Agave loaded it and progressed PAST open.rs(25) genesis-config load into blockstore/bank-fork initialization — new log lines (blockstore_db.rs(211), bank_forks_utils.rs(124)) that did NOT appear in the prior started evidence. The validator booted 14 tiles with 39 GiB memory, the metric tile served Prometheus on 127.0.0.1:7999, the embedded Agave subprocess spawned, and the process stayed alive the full 240s window (SIGTERM timeout, not a crash). The ledger dir after run shows accounts/ and rocksdb/ created — proof the Agave initialized account/bank processing. This is process liveness WITH machine-readable init-progress evidence past genesis load, not liveness alone.",
+  "key_observations": [
+    "genesis_rc=0 — solana-test-validator generated genesis.bin (1,462,232 bytes) in 3s under QEMU -cpu max (AVX available, unlike Rosetta).",
+    "genesis.bin placed at /var/lib/firedancer/fdvm/ledger/genesis.bin: -rw-r--r-- 1 fdtest fdtest 1462232 Sep 29 04:05.",
+    "configure init hugetlbfs exit=0 (19969 hugepages reserved, hugetlbfs mounted at /mnt/.fd).",
+    "configure init sysctl exit=0 (rmem_max/wmem_max raised to 134217728).",
+    "configure check all exit=0.",
+    "fd_bootinfo.c(161): booting validator fdvm version 0.101.40300 pid 1095 with 14 tiles and 39 GiB memory at /mnt/.fd — tiles booted.",
+    "fd_metric_tile.c(148): prometheus server listening at http://127.0.0.1:7999/metrics — metric tile alive, expected service exposed.",
+    "run_agave.c(239): booting agave pid:1099 — embedded Agave subprocess spawned.",
+    "cli.rs(277): --limit-ledger-size is deprecated — clap ACCEPTED argv.",
+    "execute.rs(1002): --vote-account not specified, validator will not vote.",
+    "validator.rs(958): voting disabled.",
+    "server.rs(166): Removed existing file '/var/lib/firedancer/fdvm/ledger/admin.rpc' — Agave ledger init progressed past genesis load.",
+    "blockstore_db.rs(211): Unable to detect Rocks columns: ... rocksdb/CURRENT: No such file or directory — blockstore/RocksDB init on a fresh ledger (expected; NEW vs prior evidence which stopped at open.rs(25)).",
+    "bank_forks_utils.rs(124): No snapshot package found in directory: .../ledger — bank-fork init searching for snapshots on a fresh ledger (expected; NEW vs prior evidence).",
+    "Ledger dir after run: accounts/ (created Sep 29 04:08), rocksdb/ (created Sep 29 04:08), admin.rpc, genesis.bin, snapshots/ — proves the embedded Agave initialized account/bank and RocksDB processing.",
+    "run_rc=124 — fdctl run was killed by the 240s SIGTERM timeout, NOT a crash; the process stayed alive the full window.",
+    "dmesg during run: AppArmor DENIED capability=sys_admin for fdctl userns_create (sandbox=false already skips seccomp; this is the unprivileged_userns apparmor profile, benign under the research-grade config)."
+  ],
+  "blockers_resolved": [
+    {
+      "blocker": "Genesis-load blocker (prior started evidence, 20260928T185111Z: open.rs(25) 'Failed to load genesis_config ... genesis.bin ... NotFound')",
+      "root_cause": "The image's fdctl has no genesis subcommand (only fddev does, and fddev is not in this image); Agave 4.3.0 has no solana-genesis binary; the prior Jito/Agave genesis-capable images were cleaned up to reclaim disk.",
+      "fix": "Generated a genesis.bin via solana-test-validator (same create_genesis_config code path as a bootstrap validator) from the solana-diff/agave-tools:4.3.0-amd64 image, under QEMU -cpu max (AVX available, unlike Rosetta). Placed the result at /var/lib/firedancer/fdvm/ledger/genesis.bin. The embedded Agave then loaded it and progressed into blockstore/bank-fork init. This is a config/procedure fix, NOT a source deviation.",
+      "evidence": "console-genesis.txt: GENESIS_BIN_READY after 3s; genesis.bin 1462232 bytes; run_agave.c(239) booting agave; blockstore_db.rs(211) + bank_forks_utils.rs(124) NEW log lines; ledger dir shows accounts/ + rocksdb/ created."
+    }
+  ],
+  "remaining_gaps": {
+    "to_joined": "Under TCG (x86_64-on-arm64, no KVM) the VM is too slow to reach bank-frozen / leader schedule / gossip / RPC binding / slot advance within the 240s window. The last new log line is bank_forks_utils.rs(124) at 04:07:57; fdctl was killed by timeout at 04:09:56 (~2 min later) with no further progress logged. joined/voting remain unreachable under TCG.",
+    "no_bank_frozen": "No 'bank frozen' / 'bank-frozen' / 'fork' event appeared in the log.",
+    "no_leader_schedule": "No leader-schedule / leader / gossip / cluster-type event appeared.",
+    "no_rpc_binding": "No RPC binding (the [rpc] tile was not observed binding a port)."
+  },
+  "limits_of_this_result": [
+    "TCG (x86_64-on-arm64, no KVM) is too slow for slot cadence; voting was never expected and was not reached.",
+    "sandbox=false is a research-grade relaxation, NOT a production or voting-validator config.",
+    "This is Frankendancer (fdctl+embedded Agave), NOT full Firedancer. Per AGENTS.md, Frankendancer reuses Agave execution/consensus and is not an independent SVM oracle.",
+    "6 tracked source-deviation files remain (5 GCC-12 casts + 1 NUMA fallback); this is a source-deviation build, not a clean upstream build.",
+    "solana-test-validator was used ONLY as a genesis.bin generator (same create_genesis_config code path), NOT as the validator under test.",
+    "The process staying alive until timeout is started-evidence, not joined/voting/end-to-end evidence.",
+    "The genesis.bin is a default solana-test-validator genesis (no vote/stake accounts), so voting was structurally impossible even ignoring TCG speed."
+  ],
+  "evidence_files": [
+    "console-genesis.txt — full serial console capture including the fdctl-run-genesis.log block and dmesg.",
+    "fd-start-genesis-probe.sh — the in-VM probe script (stages 0-9).",
+    "fd-vm.toml — the working config (bootstrap=true, sandbox=false, only_known=false, genesis/snapshot/poh disabled, hashes_per_tick=1).",
+    "boot-and-capture-genesis.py — the QEMU boot/harness script.",
+    "nbd-push-agave-tools.sh — offline push of agave-tools binaries into the qcow2.",
+    "nbd-push-genesis-probe2.sh — offline push of the probe to the systemd unit ExecStart path."
+  ],
+  "cleanup_state": "No QEMU process or container left running (QEMU terminated by the harness). qcow2, built images, and agave-tools retained. identity.json preserved in qcow2. genesis.bin and ledger artifacts retained inside the qcow2 for inspection.",
+  "next": "joined/voting remain unreachable under TCG (slot cadence too slow). To reach joined/voting would require a real x86_64 host with KVM (or native x86_64 hardware) so the validator can keep up with slot cadence, plus a genesis with vote/stake accounts and a vote-account config. Under the current arm64+TCG host, 'started' (genesis-load resolved) is the research-grade ceiling."
+}

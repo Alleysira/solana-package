@@ -1,0 +1,55 @@
+# compose.firedancer.yaml
+#
+# Frankendancer (fdctl) single-node compose profile.
+#
+# HONESTY NOTE: On this Mac Studio (OrbStack, no NUMA sysfs / no hugepages),
+# the validator CANNOT start.  `fdctl configure init all` will fail at the
+# hugetlbfs stage.  Use `command: version` (the default override below) to get
+# build-evidence only.  To attempt a real run, you need a dedicated x86_64
+# Linux host with real NUMA sysfs + hugepages + root; set FD_REAL_RUN=1 and
+# provide a config + keys volume.
+#
+# This compose file deliberately mirrors the arm64 Agave/Jito profiles
+# (cap_drop, seccomp) where applicable, but Firedancer needs root for
+# `configure init all`, so it runs as root and drops only dangerous caps
+# rather than ALL — see README-FIREDANCER-CONTAINER.md.
+services:
+  firedancer:
+    image: solana-diff/firedancer:v26.09.4-frankendancer-amd64
+    platform: linux/amd64
+    # Default to the build-evidence command on hosts that cannot run.
+    # Override with FD_REAL_RUN=1 (env) to attempt `run`.
+    command: ${FD_COMMAND:-version}
+    init: true
+    # Firedancer requires root for `configure init all` (hugepages/sysctls).
+    # It then drops to the `firedancer` user named in the TOML config.
+    cap_drop:
+      - DAC_OVERRIDE
+      - SETPCAP
+      - SETGID
+      - SETUID
+    # NOT cap_drop:ALL — needs CAP_SYS_ADMIN (hugetlbfs mount, XDP/unshare),
+    # CAP_NET_RAW (XDP), CAP_SETUID/SETGID (sandbox user switch) when running.
+    # On a real host these are granted; here `version` needs none of them.
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: ${FD_MEM_LIMIT:-8g}
+    cpus: ${FD_CPUS:-4}
+    ports:
+      # RPC (only meaningful when actually running)
+      - "${FD_RPC_PORT:-8899}:8899"
+    volumes:
+      # Runtime config + ledger + keys.  On a real run, mount a firedancer
+      # config.toml and the identity/vote keypairs here.
+      - firedancer-data:/var/lib/firedancer
+    healthcheck:
+      test: ["CMD", "bash", "-c", "command -v fdctl >/dev/null && fdctl version >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    labels:
+      org.opencontainers.image.note: "Frankendancer build-evidence image; cannot run on this host (NUMA gate)"
+
+volumes:
+  firedancer-data: {}

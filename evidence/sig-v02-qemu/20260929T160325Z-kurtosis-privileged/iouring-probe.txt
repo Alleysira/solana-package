@@ -1,0 +1,1 @@
+io_uring_setup: OK fd=3 sq_entries=8 cq_entries=16 features=0x3ffff

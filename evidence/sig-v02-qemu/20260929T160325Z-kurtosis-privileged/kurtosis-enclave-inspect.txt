@@ -1,0 +1,13 @@
+Name:            sig-observer
+UUID:            e0cc8169fb1f
+Status:          RUNNING
+Creation Time:   Tue, 29 Sep 2026 16:03:25 HKT
+Flags:           
+
+========================================= Files Artifacts =========================================
+UUID   Name
+
+========================================== User Services ==========================================
+UUID           Name   Ports    Status
+6ef727e55783   sig    <none>   RUNNING
+

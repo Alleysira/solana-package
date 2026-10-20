@@ -1,0 +1,151 @@
+=== kurtosis run start: 2026-09-30T07:25:44Z ===
+[36mINFO[0m[2026-09-30T15:25:44+08:00] Creating a new enclave for Starlark to run inside... 
+[36mINFO[0m[2026-09-30T15:25:48+08:00] Enclave 'solana-multiclient' created successfully 
+[36mINFO[0m[2026-09-30T15:25:48+08:00] Executing Starlark package at '/Users/jiema/sol-diff-testing/solana-package' as the passed argument '.' looks like a directory 
+[36mINFO[0m[2026-09-30T15:25:48+08:00] Compressing package 'github.com/0xBloctopus/solana-package' at '.' for upload 
+[36mINFO[0m[2026-09-30T15:25:48+08:00] Kurtosis CLI is running in a non interactive terminal. Everything will work but progress information and the progress bar will not be displayed. 
+
+Container images used in this run:
+> solana-diff/agave-validator:4.3.0-arm64 - locally cached
+> solana-diff/sig:v0.2.0-arm64-dev - locally cached
+> solana-diff/jito-solana:4.3.0-jito-arm64 - locally cached
+
+Printing a message
+Parsing multi-client input parameters
+
+Printing a message
+Launching multi-client shared-genesis participant network
+
+Printing a message
+Generating shared genesis (single run_sh)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+[genesis] keygen identities/votes/stakes/faucet/tip/merkle/recipient
+[genesis] running solana-genesis (two bootstrap validators)
+lamports_per_byte_year is deprecated and will be removed in a future release
+rent_exemption_threshold is deprecated and will be removed in a future release
+rent_burn_percentage is deprecated and will be removed in a future release
+[genesis] genesis_hash=Cf52zWxGSv7hWMLZsufGPqe2sozafCz8SGDBNt2CCH8q shred_version=1003
+[genesis] meta.env written. Contents:
+GENESIS_HASH=Cf52zWxGSv7hWMLZsufGPqe2sozafCz8SGDBNt2CCH8q
+SHRED_VERSION=1003
+BOOTSTRAP_IDENTITY=HuBwY1L49xTBkLzs2Vii5KUHS69zhB746nfGCFnypBTH
+BOOTSTRAP_VOTE=4vWPXmbbJKxDoUtRH7TujWaHGJkHMw2TQakee9ejDe4c
+BOOTSTRAP_STAKE=7s3bN14HzH7R1fzUv2VE2QS9BvzvfTx97UAT3WscE3RY
+JOINER_IDENTITY=56LHs2mF8Lpqe8rYMC2nT3kDeLBWwWAtveyjA1jjWTep
+JOINER_VOTE=DXmTmszzYDLjbUBLmhA5ZwWrsz6yexKD9kc8LSWQrEBC
+JOINER_STAKE=GpXgHH8bqHEiEf6D61vG8RtR6kRqjpAjEx5TCthQQkpd
+RECIPIENT=5dFGWSVjTczqY8UyV9JgjVBNzZRsh9vkLALfyudixF2v
+TIP_PAYMENT=F5ZupjpW9keMiQNLFomsS6HTmngbwDrokqsPDeRCALT8
+TIP_DISTRIBUTION=HZtZpgTcM8xwomGonZHHSyNPG6pzzfg7Un2CLBopKbtP
+MERKLE_AUTHORITY=yWbmLFzjUYeAiV58c7JU4ctkEHbbKTHYoFZe1xxXQHB
+BOOTSTRAP_BLS=6zNFcf1Ng4S5hoYUKf41bjaC6421WEdw8sa5QXjpJZv8UGPtAsWJ18Mb3Q6tZ5mmgd
+JOINER_BLS=6DMamQurjUnHPuMnGQtP5vCKwtcdsND66wUkSKd6TNU4HFWx5doZ8ieqzD1zmYdkgL
+[genesis] DONE
+
+--------------------
+
+Printing a message
+Genesis artifact 'solana-genesis-data' produced
+
+Printing a message
+Launching validator 'val-bootstrap' (role=voting-bootstrap, image=solana-diff/jito-solana:4.3.0-jito-arm64)
+
+Adding service with name 'val-bootstrap' and image 'solana-diff/jito-solana:4.3.0-jito-arm64'
+There was an error executing Starlark code 
+An error occurred executing instruction (number 7) at github.com/0xBloctopus/solana-package/src/solana_validator/solana_validator_launcher.star[194:31]:
+  add_service(name="val-bootstrap", config=ServiceConfig(image="solana-diff/jito-solana:4.3.0-jito-arm64", ports={"rpc": PortSpec(number=8899, transport_protocol="TCP", application_protocol="")}, files={"/data": "solana-genesis-data"}, entrypoint=["/usr/bin/tini", "-g", "--"], cmd=["bash", "-c", "\nset -euo pipefail\n# Both the Jito (/opt/jito/bin) and Agave (/opt/agave/bin) runtime images keep\n# their binaries off the default PATH. Add whichever exists; agave-validator is\n# the same binary name in both images (v4.3.0 renamed solana-validator).\nexport PATH=\"/opt/jito/bin:/opt/agave/bin:$PATH\"\nsource /data/meta.env\n\ncd /data\n\n# Resolve this container's in-enclave IP (Starlark can't see the future IP).\nMY_IP=\"$(hostname -I | awk '{print $1}')\"\nif [[ -z \"$MY_IP\" ]]; then\n  echo \"[validator] FATAL: hostname -I returned no IP\" >&2\n  exit 1\nfi\necho \"[validator] role=voting-bootstrap my_ip=$MY_IP identity=$BOOTSTRAP_IDENTITY\"\n\nENTRYPOINT_ARG=''\n\nexec agave-validator \\\n  --ledger /data/bootstrap-ledger \\\n  --identity /data/bootstrap-identity.json \\\n  --vote-account \"$BOOTSTRAP_VOTE\" \\\n  --bind-address \"$MY_IP\" \\\n  --public-tpu-address \"${MY_IP}:8003\" \\\n  --public-tpu-forwards-address \"${MY_IP}:8004\" \\\n  --public-tvu-address \"${MY_IP}:8002\" \\\n  --rpc-bind-address 0.0.0.0 \\\n  --rpc-port 8899 \\\n  --gossip-port 8001 \\\n  --dynamic-port-range 8002-8035 \\\n  --full-rpc-api \\\n  --enable-rpc-transaction-history \\\n  --no-snapshots \\\n  --no-genesis-fetch \\\n  --no-snapshot-fetch \\\n  --no-xdp \\\n  --no-os-network-limits-test \\\n  --no-poh-speed-test \\\n  --no-port-check \\\n  --allow-private-addr \\\n  --no-wait-for-vote-to-start-leader \\\n  --limit-blockstore-size 100000000 \\\n  --expected-genesis-hash \"$GENESIS_HASH\" \\\n  --expected-shred-version \"$SHRED_VERSION\" \\\n  --log - \\\n  $ENTRYPOINT_ARG\n"], node_selectors={}, privileged=True))
+  Caused by: Unexpected error occurred starting service 'val-bootstrap'
+  Caused by: An error occurred waiting for all TCP and UDP ports to be open for service 'val-bootstrap' with private IP '172.16.4.5'; this is usually due to a misconfiguration in the service itself, so here are the logs:
+  == SERVICE 'val-bootstrap' LOGS ===================================
+  [WARN  tini (6)] Tini is not running as PID 1 and isn't registered as a child subreaper.
+  Zombie processes will not be re-parented to Tini, so zombie reaping won't work.
+  To fix the problem, use the -s option or set the environment variable TINI_SUBREAPER to register Tini as a child subreaper, or run Tini as PID 1.
+  [validator] role=voting-bootstrap my_ip=172.16.4.5 identity=HuBwY1L49xTBkLzs2Vii5KUHS69zhB746nfGCFnypBTH
+  [2026-09-30T07:25:53.150771112Z INFO  agave_validator::commands::run::execute] agave-validator 4.3.0 (src:07270be4; feat:c9ad34d2, client:JitoLabs)
+  [2026-09-30T07:25:53.150807987Z INFO  agave_validator::commands::run::execute] Starting validator with: ArgsOs {
+          inner: [
+              "agave-validator",
+              "--ledger",
+              "/data/bootstrap-ledger",
+              "--identity",
+              "/data/bootstrap-identity.json",
+              "--vote-account",
+              "4vWPXmbbJKxDoUtRH7TujWaHGJkHMw2TQakee9ejDe4c",
+              "--bind-address",
+              "172.16.4.5",
+              "--public-tpu-address",
+              "172.16.4.5:8003",
+              "--public-tpu-forwards-address",
+              "172.16.4.5:8004",
+              "--public-tvu-address",
+              "172.16.4.5:8002",
+              "--rpc-bind-address",
+              "0.0.0.0",
+              "--rpc-port",
+              "8899",
+              "--gossip-port",
+              "8001",
+              "--dynamic-port-range",
+              "8002-8035",
+              "--full-rpc-api",
+              "--enable-rpc-transaction-history",
+              "--no-snapshots",
+              "--no-genesis-fetch",
+              "--no-snapshot-fetch",
+              "--no-xdp",
+              "--no-os-network-limits-test",
+              "--no-poh-speed-test",
+              "--no-port-check",
+              "--allow-private-addr",
+              "--no-wait-for-vote-to-start-leader",
+              "--limit-blockstore-size",
+              "100000000",
+              "--expected-genesis-hash",
+              "Cf52zWxGSv7hWMLZsufGPqe2sozafCz8SGDBNt2CCH8q",
+              "--expected-shred-version",
+              "1003",
+              "--log",
+              "-",
+          ],
+      }
+  [2026-09-30T07:25:53.150892528Z INFO  solana_metrics::metrics] host id: HuBwY1L49xTBkLzs2Vii5KUHS69zhB746nfGCFnypBTH
+  [2026-09-30T07:25:53.152807760Z INFO  solana_gossip::node] Bound all network sockets as follows: Sockets { gossip: [UdpSocket { addr: 172.16.4.5:8001, fd: 3 }], ip_echo: Some(TcpListener { addr: 172.16.4.5:8001, fd: 4 }), tvu: [UdpSocket { addr: 172.16.4.5:8002, fd: 5 }], tpu_vote: [UdpSocket { addr: 172.16.4.5:8005, fd: 8 }], broadcast: [UdpSocket { addr: 172.16.4.5:8010, fd: 24 }, UdpSocket { addr: 172.16.4.5:8010, fd: 25 }, UdpSocket { addr: 172.16.4.5:8010, fd: 26 }, UdpSocket { addr: 172.16.4.5:8010, fd: 27 }], repair: UdpSocket { addr: 172.16.4.5:8008, fd: 22 }, retransmit_sockets: [UdpSocket { addr: 172.16.4.5:8007, fd: 10 }, UdpSocket { addr: 172.16.4.5:8007, fd: 11 }, UdpSocket { addr: 172.16.4.5:8007, fd: 12 }, UdpSocket { addr: 172.16.4.5:8007, fd: 13 }, UdpSocket { addr: 172.16.4.5:8007, fd: 14 }, UdpSocket { addr: 172.16.4.5:8007, fd: 15 }, UdpSocket { addr: 172.16.4.5:8007, fd: 16 }, UdpSocket { addr: 172.16.4.5:8007, fd: 17 }, UdpSocket { addr: 172.16.4.5:8007, fd: 18 }, UdpSocket { addr: 172.16.4.5:8007, fd: 19 }, UdpSocket { addr: 172.16.4.5:8007, fd: 20 }, UdpSocket { addr: 172.16.4.5:8007, fd: 21 }], serve_repair: UdpSocket { addr: 172.16.4.5:8009, fd: 23 }, ancestor_hashes_requests: UdpSocket { addr: 172.16.4.5:8011, fd: 28 }, tpu_quic: [UdpSocket { addr: 172.16.4.5:8003, fd: 6 }], tpu_forwards_quic: [UdpSocket { addr: 172.16.4.5:8004, fd: 7 }], tpu_vote_quic: [UdpSocket { addr: 172.16.4.5:8006, fd: 9 }], block_id_repair: UdpSocket { addr: 172.16.4.5:8013, fd: 30 }, tpu_vote_forwarding_client: UdpSocket { addr: 172.16.4.5:8014, fd: 31 }, tpu_transaction_forwarding_clients: [UdpSocket { addr: 172.16.4.5:8015, fd: 32 }], votor_server: [UdpSocket { addr: 172.16.4.5:8012, fd: 29 }], quic_vote_client: UdpSocket { addr: 172.16.4.5:8016, fd: 33 }, quic_votor_client: UdpSocket { addr: 172.16.4.5:8017, fd: 34 }, rpc_sts_client: UdpSocket { addr: 172.16.4.5:8018, fd: 35 } }
+  [2026-09-30T07:25:53.153412713Z INFO  agave_validator::commands::run::execute] Snapshot configuration: full snapshot interval: disabled, incremental snapshot interval: disabled
+  
+  thread 'main' (7) panicked at validator/src/commands/run/execute.rs:1679:14:
+  --tip-payment-program-pubkey argument required when validator is voting
+  stack backtrace:
+  note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+  [2026-09-30T07:25:53.156935514Z INFO  solana_metrics::metrics] metrics disabled: environment variable not found
+  [2026-09-30T07:25:53.169188319Z ERROR solana_metrics::metrics] datapoint: panic program="validator" thread="main" one=1i message="panicked at validator/src/commands/run/execute.rs:1679:14:
+      --tip-payment-program-pubkey argument required when validator is voting" location="validator/src/commands/run/execute.rs:1679:14" version="4.3.0 (src:07270be4; feat:c9ad34d2, client:JitoLabs)"
+  
+  == FINISHED SERVICE 'val-bootstrap' LOGS ===================================
+  Caused by: An error occurred while waiting for all TCP and UDP ports to be open
+  Caused by: Unsuccessful ports check for IP '172.16.4.5' and port spec '{privatePortSpec:0x4d7d809a4d50}', even after '240' retries with '500' milliseconds in between retries. Timeout '2m0s' has been reached
+  Caused by: An error occurred while calling network address '172.16.4.5:8899' with port protocol 'TCP' and using time out '200ms'
+  Caused by: dial tcp 172.16.4.5:8899: i/o timeout
+
+Error encountered running Starlark code.
+
+⭐ us on GitHub - https://github.com/kurtosis-tech/kurtosis
+[36mINFO[0m[2026-09-30T15:27:53+08:00] =========================================================== 
+[36mINFO[0m[2026-09-30T15:27:53+08:00] ||          Created enclave: solana-multiclient          || 
+[36mINFO[0m[2026-09-30T15:27:53+08:00] =========================================================== 
+Name:            solana-multiclient
+UUID:            286e03a2e684
+Status:          RUNNING
+Creation Time:   Wed, 30 Sep 2026 15:25:45 HKT
+Flags:           
+
+========================================= Files Artifacts =========================================
+UUID           Name
+97f2ac56e54a   solana-genesis-data
+
+========================================== User Services ==========================================
+UUID   Name   Ports   Status
+
+=== kurtosis run exit=1 at 2026-09-30T07:27:53Z ===

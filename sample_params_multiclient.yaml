@@ -1,0 +1,39 @@
+# Multi-client Solana Kurtosis package — sample parameters.
+#
+# Runs a shared-genesis testnet with:
+#   - 1 Jito voting validator (bootstrap)
+#   - 1 Agave voting validator (joiner)
+#   - 1 SIG non-voting observer (development cluster)
+# and waits for the network to produce 20 slots, then removes the enclave.
+#
+# SIG is a NON-VOTING observer. The 20 slots are produced by the two voting
+# validators. This is NEVER a three-voting-validator claim.
+#
+# Run with:
+#   export DOCKER_HOST=unix:///Users/jiema/.orbstack/run/docker.sock   # jiema's OrbStack socket ONLY
+#   export PATH="/Users/jiema/.local/bin:$PATH"                        # kurtosis 1.20.0
+#   kurtosis run --privileged --enclave solana-multiclient ./main.star "$(cat sample_params_multiclient.yaml | yq -o=json)"
+
+slots_target: 20
+
+participants:
+  bootstrap_image: "solana-diff/jito-solana:4.3.0-jito-amd64"
+  joiner_image: "solana-diff/agave-validator:4.3.0-arm64"
+
+genesis:
+  cluster_type: "development"
+  hashes_per_tick: "sleep"
+  ticks_per_slot: 8
+  slots_per_epoch: 128
+  faucet_lamports: 500000000000000        # 500M SOL
+  bootstrap_validator_lamports: 500000000000  # 500 SOL
+  bootstrap_validator_stake_lamports: 100000000000  # 100 SOL stake
+
+sig:
+  enabled: true
+  image: "solana-diff/sig:v0.2.0-arm64-dev"
+  skip_on_cold_start: true
+  run_timeout_seconds: 60
+
+explorer:
+  enabled: false

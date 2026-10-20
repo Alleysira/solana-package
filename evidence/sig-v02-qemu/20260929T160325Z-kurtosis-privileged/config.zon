@@ -1,0 +1,26 @@
+.{
+    .sandboxing_mode = .threaded,
+
+    .cluster = .testnet,
+    .leader_schedule_file = "/var/lib/sig/schedule.txt",
+    .gossip = .{
+        .port = 8001,
+        .advertise_tvu_port = true,
+    },
+    .shred_network = .{
+        .recv_port = 8002,
+    },
+    .telemetry = .{
+        .port = 9110,
+        .log_level = .info,
+    },
+    .snapshot = .{
+        .folder = "/var/lib/sig/validator",
+        .known_validators = .{"*"},
+    },
+    .accounts_db = .{
+        .file = "/var/lib/sig/validator/accounts.db",
+        .rooted = .{ .gb = 8 },
+        .unrooted = .{ .gb = 8 },
+    },
+}

@@ -1,0 +1,41 @@
+{
+  "_superseded_by": "evidence/sig-v02-qemu/20260929T160325Z-kurtosis-privileged/summary.json (stronger evidence: `started` inside a real Kurtosis container via native arm64 + --privileged; this file's `built` ceiling for the x86_64 image remains valid for THAT target — the x86_64 image is capped at `built` because OrbStack's Rosetta syscall-translation layer returns ENOSYS for io_uring_setup even under --privileged, so accounts_db crashes at init)",
+  "experiment": "sig-v02-container-build",
+  "date": "2026-09-29",
+  "host": "Apple Silicon Mac (arm64); OrbStack v29.4.0 (jiema socket); native arm64 builder, linux/amd64 runtime via Rosetta",
+  "target": {
+    "project": "SIG (Syndica/sig) v2 — Zig Solana validator",
+    "fork": "https://github.com/Alleysira/sig.git",
+    "commit": "b5026c60fe56b51edd79131115b7e741449d6b2e",
+    "fork_vs_upstream": "byte-identical (empty diff vs Syndica/sig main; clean upstream build, zero deviation files)",
+    "zig_version": "0.15.2",
+    "build_target": "x86_64-linux-gnu.2.36",
+    "build_flags": "-Dallow-no-sha -Dallow-no-avx512"
+  },
+  "image": {
+    "name": "solana-diff/sig:v0.2.0-amd64",
+    "architecture": "amd64",
+    "os": "linux",
+    "size_bytes": 40792864
+  },
+  "goal": "Build the SIG v2 (Zig) observer container image and prove the binary executes on linux/amd64 (honest `built` evidence).",
+  "method": "Two-stage Dockerfile: builder stage runs NATIVELY on linux/arm64 (--platform=$BUILDPLATFORM) to avoid the Zig 0.15.2 build_runner PRNG mis-emulation under Rosetta (which crashes shuffleWithIndex deterministically with 'index out of bounds: index 31, len 31'; reproduced with seeds 0x6d3244c9 and 0xe098cf9d); builder cross-compiles to x86_64-linux-gnu.2.36 via -Dtarget (zig + zig cc). Runtime stage is linux/amd64 (the binary is an x86-64 ELF). Build via OrbStack buildx --platform linux/amd64 --load.",
+  "result": "PASS — built",
+  "evidence_level": "built",
+  "build_evidence": {
+    "binary_path": "/opt/sig/bin/sig",
+    "binary_size_bytes": 28054408,
+    "binary_format": "ELF 64-bit LSB executable, x86-64, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.0.0",
+    "no_config_execute": "error: ConfigPathMissing @ v2/main.zig:185 (deterministic; SIG has no --version flag — build evidence = binary executes)",
+    "build_info": "commit=b5026c60fe56b51edd79131115b7e741449d6b2e, fork=yes(Alleysira), fork_diff=empty(byte-identical-to-upstream-main), zig=0.15.2, target=x86_64-linux-gnu.2.36, client=SIG-v2-observer-non-voting, note=clean-upstream-build-zero-deviation-files"
+  },
+  "crash_resolution": {
+    "symptom": "zig build sig crashed in build_runner: constructGraphAndCheckForDependencyLoop -> shuffleWithIndex panic 'index out of bounds: index 31, len 31' (Random.zig:375); DETERMINISTIC across seeds (0x6d3244c9, 0xe098cf9d)",
+    "root_cause": "Rosetta mis-emulates the PRNG used by Zig 0.15.2's build_runner rejection sampling in uintLessThan; SIG's native x86_64 CI passes, so the bug is host-emulation-induced, not SIG source",
+    "fix": "Builder stage uses --platform=$BUILDPLATFORM so the build_runner runs as NATIVE arm64 code (no Rosetta); -Dtarget still cross-compiles the output to x86_64-linux-gnu.2.36 via zig cc",
+    "verification": "native arm64 Zig 0.15.2 cross-compile (aarch64-macos) produced an identical working x86-64 ELF before the Dockerfile change"
+  },
+  "limits": "This is `built` only. SIG v2 is a NON-VOTING OBSERVER (never votes; no vote/stake accounts in config). `started` requires a reachable gossip entrypoint + a 432000-slot leader schedule + a snapshot + a complete shred stream — none exist without a running cluster. `joined` needs another node's gossip view. `voting` is structurally impossible. Unlike Firedancer, SIG has NO NUMA/hugepage kernel gate — it is a normal Zig process.",
+  "cleanup_state": "Image solana-diff/sig:v0.2.0-amd64 (166 MB) loaded into OrbStack (jiema), retained. No SIG process running.",
+  "next": "Kurtosis build-evidence deployment (sig-single-node.star) -> capture the Kurtosis container `built` evidence, matching the Firedancer pattern."
+}

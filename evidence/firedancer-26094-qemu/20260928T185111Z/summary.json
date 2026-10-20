@@ -1,0 +1,81 @@
+{
+  "experiment": "firedancer-26094-qemu-started",
+  "timestamp": "2026-09-28T18:51:11Z",
+  "host": {
+    "machine": "Apple Silicon Mac (arm64)",
+    "vm": "QEMU TCG x86_64-on-arm64 (no KVM)",
+    "vm_cpus": 16,
+    "vm_ram_mib": 65536,
+    "vm_kernel": "Ubuntu 24.04 noble, 6.8.0-142-generic",
+    "note": "Standard-kernel QEMU VM exposes /sys/devices/system/node/node0 + hugepages sysfs (unlike OrbStack VMs). x86_64 is TCG-emulated under arm64 — no KVM, too slow for slot cadence."
+  },
+  "target": {
+    "project": "Firedancer (Frankendancer, NOT full Firedancer)",
+    "version": "v26.09.4",
+    "commit": "ff881b69a93a6519c1a6f09698aaf208753a0a8f",
+    "fork": "Alleysira/firedancer (deviation fork)",
+    "agave_submodule": "535ec972e6f0037b6a4c5a5e98cff4597781e678 (v4.3.0-fd)",
+    "compiler": "gcc-12 (GCC 12.5.0)",
+    "machine_target": "linux_gcc_x86_64",
+    "client_version": "0.101.40300 (client:Frankendancer)",
+    "image": "solana-diff/firedancer:v26.09.4-frankendancer-amd64",
+    "deviation_files": 6,
+    "deviation_note": "5 GCC-12 cast conversions + 1 NUMA-fabrication fallback in fd_numa_linux.c. Source-deviation build, NOT clean upstream."
+  },
+  "goal": "Determine the highest honest evidence level reachable for Frankendancer on a standard-kernel QEMU x86_64 VM (NUMA + hugepages available, but TCG/no-KVM).",
+  "method": [
+    "Boot Ubuntu 24.04 x86_64 VM under QEMU TCG (q35,accel=tcg,-cpu max,-smp 16,-m 65536).",
+    "fdctl configure init hugetlbfs  -> reserves 19969 hugepages, mounts hugetlbfs at /mnt/.fd.",
+    "fdctl configure init sysctl + configure check all  -> exit 0.",
+    "fdctl keys new  -> creates identity.json (pre-existing, preserved).",
+    "fdctl run  with bootstrap=true, sandbox=false, only_known=false, snapshot/genesis/poh disabled, hashes_per_tick=1.",
+    "180s timeout; full untruncated output + dmesg captured."
+  ],
+  "result": "PARTIAL — started (exceeds user-accepted 'built' ceiling)",
+  "evidence_level_reached": "started",
+  "evidence_level_rationale": "The embedded Agave validator (fd_ext_validator_main) booted, parsed all argv via clap (clap accepted argv), initialized its ledger subsystem (created ledger dir: accounts/, admin.rpc, ledger.lock, snapshots/), reached genesis-config load, and stayed alive until killed by the 180s timeout (SIGTERM). The metric tile initialized and served Prometheus on 127.0.0.1:7999. This is process liveness WITH machine-readable init-progress evidence, not liveness alone.",
+  "key_observations": [
+    "configure init hugetlbfs exit=0 (19969 hugepages reserved, hugetlbfs mounted) — the NUMA/hugepage gate PASSES on the standard-kernel VM.",
+    "configure check all exit=0.",
+    "fd_bootinfo.c(161): booting validator fdvm version 0.101.40300 pid 1029 with 14 tiles and 39 GiB memory.",
+    "fd_metric_tile.c(148): prometheus server listening at http://127.0.0.1:7999/metrics — metric tile alive.",
+    "run_agave.c(239): booting agave pid:1033 — embedded Agave subprocess spawned.",
+    "cli.rs(277): --limit-ledger-size is deprecated — clap ACCEPTED argv (the fd-start24 clap blocker is FIXED).",
+    "execute.rs(1002): --vote-account not specified, validator will not vote.",
+    "validator.rs(958): voting disabled.",
+    "open.rs(25): Failed to load genesis_config ... genesis.bin ... NotFound. Will attempt to unpack genesis archive and then retry loading. — Agave reached genesis-load with no genesis.bin.",
+    "run.c(91): Received signal SIGTERM — killed by the 180s timeout, NOT a crash.",
+    "Ledger dir created during run: accounts/, admin.rpc, ledger.lock, snapshots/ — proves Agave initialized its ledger subsystem."
+  ],
+  "blockers_resolved": [
+    {
+      "blocker": "fd-start22/23 exit=31 (SIGSYS/seccomp-kill)",
+      "root_cause": "waker:0 and metric:0 tiles killed by SECCOMP_RET_KILL_PROCESS for clock_nanosleep (syscall 228); the waker tile seccomp policy allows only write/fsync/epoll_pwait. AppArmor also DENIED CAP_SYS_ADMIN for the sandbox's userns_create.",
+      "evidence": "dmesg audit type=1326 (AUDIT_SECCOMP) sig=31 syscall=228 code=0x80000000 on comm=waker:0 and comm=metric:0 (console-start23.txt).",
+      "fix": "development.sandbox=false in fd-vm.toml — config-only toggle (fd_config_parse.c:319), skips fd_sandbox_enter (seccomp + CLONE_NEWUSER) and CLONE_NEWPID (run.c:721, run_agave.c:256). NOT a source deviation."
+    },
+    {
+      "blocker": "fd-start24 exit=1 (clap rejected argv)",
+      "root_cause": "default.toml sets rpc.only_known=true, so agave_boot (run_agave.c:144) emits --only-known-rpc. That clap arg has .requires(\"known_validators\") (rpc_bootstrap_config.rs:87); with an empty known_validators list (bootstrap dev node, no trusted peers), clap demands --known-validator and prints usage.",
+      "evidence": "console-start24.txt: 'error: The following required arguments were not provided: --known-validator' before the usage line.",
+      "fix": "[rpc] only_known=false in fd-vm.toml — config-only toggle (run_agave.c:144), NOT a source deviation."
+    }
+  ],
+  "remaining_gap_to_joined": "The image's fdctl has no genesis subcommand (only fddev does, and fddev is not in this image). There is no solana-genesis binary. The prior Jito/Agave genesis-creating images (solana-diff/jito-solana:4.3.0-jito-arm64) were cleaned up to reclaim disk and are no longer available locally. Without a genesis.bin, the embedded Agave cannot complete genesis load, so it cannot join/gossip/vote. Building solana-genesis from the agave submodule would require a multi-hour Rust cross-compile under emulation with host disk already at 87%.",
+  "limits_of_this_result": [
+    "TCG (x86_64-on-arm64, no KVM) is too slow for slot cadence; voting was never expected and was not reached.",
+    "sandbox=false is a research-grade relaxation, NOT a production or voting-validator config.",
+    "This is Frankendancer (fdctl+embedded Agave), NOT full Firedancer. Per AGENTS.md, Frankendancer reuses Agave execution/consensus and is not an independent SVM oracle.",
+    "6 tracked source-deviation files remain (5 GCC-12 casts + 1 NUMA fallback); this is a source-deviation build, not a clean upstream build.",
+    "The metric tile + Agave child staying alive until timeout is started-evidence, not joined/voting/end-to-end evidence.",
+    "No genesis.bin was produced or loaded; genesis load was not completed."
+  ],
+  "evidence_files": [
+    "console-start25.txt — full serial console capture including the fdctl-run.log block and dmesg.",
+    "fd-vm.toml — the working config (bootstrap=true, sandbox=false, only_known=false).",
+    "fd-start-probe.sh — the in-VM probe script.",
+    "boot-and-capture25.py — the QEMU boot/harness script."
+  ],
+  "cleanup_state": "No QEMU process or container left running. qcow2 and built image retained. identity.json preserved in qcow2.",
+  "next": "To reach joined: obtain/build solana-genesis (from agave/genesis crate, or restore a genesis-capable image), generate a single-validator genesis.bin compatible with v4.3.0-fd, push it into the qcow2 ledger dir, and re-boot. Alternatively, accept 'started' as the research-grade ceiling under TCG."
+}

@@ -1,0 +1,25 @@
+{
+  "verifiedAt": "2026-09-28T12:30:00Z",
+  "target": "Frankendancer v26.09.4 (fdctl+solana)",
+  "evidenceLevel": "built",
+  "image": "solana-diff/firedancer:v26.09.4-frankendancer-amd64",
+  "imageId": "sha256:4ddbdfb27857399b1b4f2b1d4fbc52aa70abc9f1f84ce17cfd560b1476dfdcd8",
+  "source": {
+    "commit": "ff881b69a93a6519c1a6f09698aaf208753a0a8f",
+    "fork": "Alleysira/firedancer",
+    "note": "6 tracked deviation files (5 GCC-12 casts + NUMA fallback); NUMA fallback is topology fabrication"
+  },
+  "binaries": {
+    "fdctl": "0.101.40300",
+    "solana": "0.101.40300(src:ff881b69;feat:c9ad34d2,client:Frankendancer)"
+  },
+  "runtimeGate": "blocked-at-configure (exit 1) — expected on NUMA-less host | gate_line=ERR     09-28 12:29:59.742981 0         fd_config.c(300): could not automatically determine a user to run Firedancer as. You must specify a [user] in your configuration TOML file.",
+  "hostKernel": "Darwin 24.6.0 arm64",
+  "limitations": [
+    "Build evidence only: binaries exist and report versions.",
+    "Validator did NOT start: NUMA sysfs/hugepages absent on this host (OrbStack kernel).",
+    "started/joined/voting require a dedicated bare-metal x86_64 Linux host with real NUMA + hugepages.",
+    "This is Frankendancer (Agave hybrid), NOT full Firedancer — explicit relaxation of AGENTS.md full-Firedancer rule.",
+    "The fork commit carries a NUMA-fabrication fallback; invalid for runtime sizing or network claims."
+  ]
+}

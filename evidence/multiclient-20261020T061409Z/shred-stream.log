@@ -1,0 +1,100 @@
+shred-stream config:
+  ledger: /data/bootstrap-ledger
+  rocksdb: /data/bootstrap-ledger/rocksdb
+  target: 172.16.0.10:8002
+  start_slot: 147
+  end_slot: 211
+  rate_hz: 100
+  test_mode: linear
+  seed: null
+  dry_run: false
+  column_families:
+    meta: present
+    data_shred: present
+    code_shred: present
+slot=211 slots=65 produced=6336 sent=64 produce_pps=6336 send_pps=64 queue=6272/8192 producer_backpressured=false net_idle=true rate_hz=100
+slot=211 slots=65 produced=6336 sent=160 produce_pps=0 send_pps=96 queue=6176/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=256 produce_pps=0 send_pps=96 queue=6080/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=320 produce_pps=0 send_pps=64 queue=6016/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=416 produce_pps=0 send_pps=96 queue=5920/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=512 produce_pps=0 send_pps=96 queue=5824/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=608 produce_pps=0 send_pps=96 queue=5728/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=672 produce_pps=0 send_pps=64 queue=5664/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=768 produce_pps=0 send_pps=96 queue=5568/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=864 produce_pps=0 send_pps=96 queue=5472/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=928 produce_pps=0 send_pps=64 queue=5408/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=1024 produce_pps=0 send_pps=96 queue=5312/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=1120 produce_pps=0 send_pps=96 queue=5216/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=1216 produce_pps=0 send_pps=96 queue=5120/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=1280 produce_pps=0 send_pps=64 queue=5056/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=1376 produce_pps=0 send_pps=96 queue=4960/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=1472 produce_pps=0 send_pps=96 queue=4864/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=1536 produce_pps=0 send_pps=64 queue=4800/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=1632 produce_pps=0 send_pps=96 queue=4704/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=1728 produce_pps=0 send_pps=96 queue=4608/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=1824 produce_pps=0 send_pps=96 queue=4512/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=1888 produce_pps=0 send_pps=64 queue=4448/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=1984 produce_pps=0 send_pps=96 queue=4352/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=2080 produce_pps=0 send_pps=96 queue=4256/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=2144 produce_pps=0 send_pps=64 queue=4192/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=2240 produce_pps=0 send_pps=96 queue=4096/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=2336 produce_pps=0 send_pps=96 queue=4000/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=2432 produce_pps=0 send_pps=96 queue=3904/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=2496 produce_pps=0 send_pps=64 queue=3840/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=2592 produce_pps=0 send_pps=96 queue=3744/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=2688 produce_pps=0 send_pps=96 queue=3648/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=2784 produce_pps=0 send_pps=96 queue=3552/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=2848 produce_pps=0 send_pps=64 queue=3488/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=2944 produce_pps=0 send_pps=96 queue=3392/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=3040 produce_pps=0 send_pps=96 queue=3296/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=3136 produce_pps=0 send_pps=96 queue=3200/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=3200 produce_pps=0 send_pps=64 queue=3136/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=3296 produce_pps=0 send_pps=96 queue=3040/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=3360 produce_pps=0 send_pps=64 queue=2976/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=3456 produce_pps=0 send_pps=96 queue=2880/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=3552 produce_pps=0 send_pps=96 queue=2784/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=3648 produce_pps=0 send_pps=96 queue=2688/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=3744 produce_pps=0 send_pps=96 queue=2592/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=3808 produce_pps=0 send_pps=64 queue=2528/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=3904 produce_pps=0 send_pps=96 queue=2432/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=4000 produce_pps=0 send_pps=96 queue=2336/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=4096 produce_pps=0 send_pps=96 queue=2240/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=4160 produce_pps=0 send_pps=64 queue=2176/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=4256 produce_pps=0 send_pps=96 queue=2080/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=4352 produce_pps=0 send_pps=96 queue=1984/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=4448 produce_pps=0 send_pps=96 queue=1888/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=4512 produce_pps=0 send_pps=64 queue=1824/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=4608 produce_pps=0 send_pps=96 queue=1728/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=4704 produce_pps=0 send_pps=96 queue=1632/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=4800 produce_pps=0 send_pps=96 queue=1536/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=4864 produce_pps=0 send_pps=64 queue=1472/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=4960 produce_pps=0 send_pps=96 queue=1376/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=5056 produce_pps=0 send_pps=96 queue=1280/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=5120 produce_pps=0 send_pps=64 queue=1216/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=5216 produce_pps=0 send_pps=96 queue=1120/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=5312 produce_pps=0 send_pps=96 queue=1024/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=5376 produce_pps=0 send_pps=64 queue=960/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=5472 produce_pps=0 send_pps=96 queue=864/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=5568 produce_pps=0 send_pps=96 queue=768/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=5632 produce_pps=0 send_pps=64 queue=704/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=5728 produce_pps=0 send_pps=96 queue=608/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=5824 produce_pps=0 send_pps=96 queue=512/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=5920 produce_pps=0 send_pps=96 queue=416/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=5984 produce_pps=0 send_pps=64 queue=352/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=6080 produce_pps=0 send_pps=96 queue=256/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=6176 produce_pps=0 send_pps=96 queue=160/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=6240 produce_pps=0 send_pps=64 queue=96/8192 producer_backpressured=false net_idle=false rate_hz=100
+slot=211 slots=65 produced=6336 sent=6336 produce_pps=0 send_pps=96 queue=0/8192 producer_backpressured=false net_idle=false rate_hz=100
+producer_walk:
+  slots: 65
+  data_packets: 3168
+  code_packets: 3168
+  total_packets: 6336
+  payload_bytes: 7701408
+net_thread:
+  data_packets: 3168
+  code_packets: 3168
+  total_packets: 6336
+  payload_bytes: 7701408
+  empty_polls: 10509
+  send_errors: 0

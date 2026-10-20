@@ -1,0 +1,52 @@
+info: config: .{
+    .sandboxing_mode = .threaded,
+    .cluster = .testnet,
+    .leader_schedule_file = "/var/lib/sig/schedule.txt",
+    .gossip = .{
+        .port = 8001,
+        .advertise_tvu_port = true,
+    },
+    .shred_network = .{
+        .recv_port = 8002,
+    },
+    .telemetry = .{
+        .port = 9110,
+        .log_level = .info,
+    },
+    .snapshot = .{
+        .folder = "/var/lib/sig/validator",
+        .known_validators = .{"*"},
+    },
+    .accounts_db = .{
+        .file = "/var/lib/sig/validator/accounts.db",
+        .rooted = .{ .gb = 8 },
+        .unrooted = .{ .gb = 8 },
+    },
+}
+info: Initializing region 'api.Config' (444 bytes)
+info: Initializing region 'api.RecvConfig' (13824016 bytes)
+info: Initializing region 'api.SnapshotConfig' (6160 bytes)
+info: Initializing region 'api.RootedConfig' (8589938704 bytes)
+info: Initializing region 'net.Pair' (44171904 bytes)
+info: Initializing region 'net.Pair' (44171904 bytes)
+info: Initializing region 'ipc.ring.Ring(256,api.SnapshotSource)' (24832 bytes)
+info: Initializing region 'api.SnapshotData' (16777600 bytes)
+info: Initializing region 'api.RuntimeMetadata' (8704 bytes)
+info: Initializing region 'account_pool.AccountPool' (8589934752 bytes)
+info: Initializing region '[3221225472]u8' (3221225472 bytes)
+info: Initializing region 'ipc.ring.Ring(1024,api.DeshreddedFecSet)' (39346432 bytes)
+info: Initializing region 'api.AccountLookups' (17920 bytes)
+info: Initializing region 'collections.pool.SharedPool([1232]u8,10000)' (12320002 bytes)
+info: Initializing region 'collections.pool.SharedPool(api.Node,1024)' (16392 bytes)
+info: Initializing region 'api.ExecReqResponse' (274944 bytes)
+info: Initializing region 'telemetry.Region' (629376624 bytes)
+time=2026-09-29T08:05:58.741Z level=info scope=main service=net message="binding 0.0.0.0:8001"
+time=2026-09-29T08:05:58.741Z level=info scope=main service=net message="binding 0.0.0.0:8002"
+time=2026-09-29T08:05:58.755Z level=info scope=main port=8001 identity=7yTKw8UL3DCCeixwiYM7ESLJcai3VgF9Ud2oSm5niLLD shred_version=4457 entrypoints="{ 35.203.170.30:8001, 109.94.99.177:8001 }" service=gossip message="Gossip started"
+time=2026-09-29T08:05:58.787Z level=info scope=main service=shred_receiver message="Waiting for shreds on port 8002"
+time=2026-09-29T08:06:02.017Z level=info scope=main service=snapshot message="snapshot path /var/lib/sig/validator"
+time=2026-09-29T08:06:13.258Z level=info scope=main service=accounts_db message="accounts_db started into file: /var/lib/sig/validator/accounts.db"
+time=2026-09-29T08:06:13.258Z level=info scope=Rooted.init service=accounts_db message="loading from existing rooted db"
+time=2026-09-29T08:06:13.266Z level=info scope=Rooted.writeJournal service=accounts_db message="writing journal: .{ .magic = .valid, .state = .empty, .writing_slot = 0, .committed_slot = 0, .committed_offset = 0, .blockhash_max_age = 300 }"
+time=2026-09-29T08:06:13.283Z level=info scope=main service=accounts_db message="no existing rooted db. reading from snapshot"
+SIG_EXIT=124

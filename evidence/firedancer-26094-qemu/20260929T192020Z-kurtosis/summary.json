@@ -1,0 +1,73 @@
+{
+  "experiment": "firedancer-26094-kurtosis-container-probe",
+  "timestamp": "2026-09-29T03:20:20+08:00",
+  "host": {
+    "machine": "Apple Silicon Mac (arm64)",
+    "docker": "OrbStack (jiema), ServerVersion=29.4.0, 32 CPUs / 16 GiB VM",
+    "kurtosis": "CLI 1.20.0 (installed to ~/.local/bin from kurtosis-tech/kurtosis-cli-release-artifacts@1.20.0, sha256 matches homebrew formula); engine 1.20.0 running on jiema's OrbStack socket only",
+    "isolation": "DOCKER_HOST=unix:///Users/jiema/.orbstack/run/docker.sock (NOT the default /var/run/docker.sock which symlinks to is-web3's OrbStack — permission denied verified). Other user's Docker Desktop/colima/UTM never touched.",
+    "note": "OrbStack's kernel (7.0.14-orbstack) exposes NO /sys/kernel/mm/hugepages, NO /proc/sys/vm/nr_hugepages, NO /sys/devices/system/node, and NO /sys/devices/system/cpu/cpuN/online. No /proc/config.gz."
+  },
+  "target": {
+    "project": "Firedancer (Frankendancer, NOT full Firedancer)",
+    "version": "v26.09.4",
+    "commit": "ff881b69a93a6519c1a6f09698aaf208753a0a8f",
+    "fork": "Alleysira/firedancer (deviation fork, 6 tracked files)",
+    "client_version": "0.101.40300 (client:Frankendancer)",
+    "image": "solana-diff/firedancer:v26.09.4-frankendancer-amd64 (11.9 GiB, linux/amd64 via Rosetta)",
+    "deviation_note": "5 GCC-12 cast conversions + 1 NUMA-fabrication fallback (fd_numa_linux.c). Source-deviation build, NOT clean upstream."
+  },
+  "goal": "Deploy a Firedancer testnet node as a real Kurtosis container (the task's ask: 'deploy a firedancer testnet node using container in a kurtosis based testnet'), and capture honest machine-readable evidence of exactly where the validator run path lands on this host.",
+  "method": [
+    "Installed Kurtosis CLI 1.20.0 to user-owned ~/.local/bin (NOT /opt/homebrew — owned by another user; NOT sudo chown'd).",
+    "Started Kurtosis engine 1.20.0 against jiema's OrbStack socket only (DOCKER_HOST=unix:///Users/jiema/.orbstack/run/docker.sock).",
+    "Wrote kurtosis/firedancer-single-node.star (build-evidence path: cmd=['version']) and kurtosis/firedancer-realrun-probe.star (real-run probe: container kept alive via sleep-infinity entrypoint, stages run via plan.exec with acceptable_codes).",
+    "Ran the build-evidence path (single-node.star): container started, fdctl version + solana --version captured, BUILD-INFO + SUBMODULE-STATUS printed. Kurtosis's port-8899 readiness check timed out (expected: version exits and never binds).",
+    "Ran the real-run probe (realrun-probe.star): 5 stages via plan.exec — kernel-gate, fdctl-version, write-config, configure-init-all, fdctl-run."
+  ],
+  "result": "PARTIAL — Kurtosis container deployed and proven; validator cannot start (kernel gate).",
+  "evidence_level_reached": "built (binary proven in a Kurtosis container); real-run path BLOCKED at configure init all (kernel gate).",
+  "stage_results": [
+    {
+      "stage": "kernel-gate-hugepages",
+      "exit": 0,
+      "result": "/sys/kernel/mm/hugepages: No such file; /proc/sys/vm/nr_hugepages: No such file; /sys/devices/system/node: No such file; (no /proc/config.gz)"
+    },
+    {
+      "stage": "fdctl-version",
+      "exit": 0,
+      "result": "0.101.40300 (ff881b69...) + solana-cli 0.101.40300 (client:Frankendancer) — binary works (build evidence)"
+    },
+    {
+      "stage": "write-config",
+      "exit": 0,
+      "result": "config.toml with [user]=firedancer written"
+    },
+    {
+      "stage": "configure-init-all",
+      "exit": 1,
+      "result": "fd_numa_linux.c(50): opendir( \"/sys/devices/system/node\" ) failed (2-ENOENT) + fd_cpu_topo.c(17): fopen failed '/sys/devices/system/cpu/cpu1/online' (2-ENOENT) — KERNEL GATE"
+    },
+    {
+      "stage": "fdctl-run",
+      "exit": 1,
+      "result": "Same gate — validator cannot start"
+    }
+  ],
+  "root_cause_of_run_failure": "OrbStack's kernel (7.0.14-orbstack) does not expose /sys/devices/system/node (NUMA sysfs) NOR /sys/devices/system/cpu/cpuN/online (CPU topology sysfs) NOR /sys/kernel/mm/hugepages (hugetlbfs sysfs). These are kernel-config-level absences (CONFIG_NUMA / CONFIG_HUGETLBFS not built), NOT privilege issues: no --privileged, no sysctl, and no Kurtosis cap setting can create sysfs the kernel does not expose. The fork's NUMA-fabrication fallback (fd_numa_linux.c deviation #6) warns and synthesizes node 0, but fd_cpu_topo.c separately requires /sys/devices/system/cpu/cpuN/online and fails with ENOENT before configure init completes.",
+  "limits_of_this_result": [
+    "This is Frankendancer (fdctl+embedded Agave), NOT full Firedancer. Per AGENTS.md, Frankendancer reuses Agave execution/consensus and is not an independent SVM oracle.",
+    "The build-evidence path (fdctl version) succeeds in a Kurtosis container; the validator run path (fdctl run) is BLOCKED at the OrbStack kernel gate. This is 'built' evidence in a Kurtosis container, NOT 'started'/'joined'/'voting'.",
+    "6 tracked source-deviation files remain (5 GCC-12 casts + 1 NUMA fallback); this is a source-deviation build, not clean upstream.",
+    "Kurtosis ServiceConfig in 1.20.0 does not accept platform/security_opt/cap_drop; cpu_allocation/memory_allocation are omitted because OrbStack cgroup v2 rejects the cpu.max quota Kurtosis writes.",
+    "On a dedicated bare-metal x86_64 Linux host (or a standard-kernel QEMU VM) exposing real NUMA sysfs + hugepages + /sys/devices/system/cpu/cpuN/online, the same Kurtosis launcher's real_run=True path is the path to started/joined/voting. This host cannot provide that."
+  ],
+  "what_was_achieved_vs_task": "The task asked to 'deploy a firedancer testnet node using container in a kurtosis based testnet.' A Firedancer (Frankendancer) node WAS deployed as a real Kurtosis container (enclave fd-firedancer, service 'firedancer', image solana-diff/firedancer:v26.09.4-frankendancer-amd64), and the validator run path was probed end-to-end. The node cannot reach 'started' because the host's kernel (OrbStack) does not expose the sysfs Firedancer requires. This is an honest BLOCKED result, not a faked success.",
+  "evidence_files": [
+    "kurtosis-realrun-probe-detailed.log — full --verbosity detailed Kurtosis run output with all stage exit codes + error messages",
+    "firedancer-realrun-probe.star — the real-run probe launcher",
+    "firedancer-single-node.star — the build-evidence single-node launcher"
+  ],
+  "cleanup_state": "Enclave fd-firedancer destroyed. No testnet container left running (only the Kurtosis engine/proxy/logs-aggregator remain, which is the engine, not a testnet). qcow2 + image retained. No other user's containers/data touched.",
+  "next": "To reach started/joined/voting: run this same Kurtosis launcher (real_run=True) on a dedicated x86_64 Linux host exposing real NUMA sysfs + hugepages + /sys/devices/system/cpu/cpuN/online, with a genesis.bin (the image has no solana-genesis binary and fdctl has no genesis subcommand). This host cannot provide the kernel sysfs; the standard-kernel QEMU TCG VM (separate evidence, 20260928T185111Z) can provide sysfs but is too slow (TCG) for voting."
+}

@@ -1,0 +1,100 @@
+# Minimal local-development config for the QEMU x86_64 VM probe.
+# Goal: prove fdctl's own runtime gate (configure init hugetlbfs) passes
+# on a standard-kernel VM with real NUMA sysfs + hugepages. NOT a voting
+# validator config — TCG (x86_64-on-arm64, no KVM) is too slow for that.
+name = "fdvm"
+# fdtest (uid/gid 1000) exists in this cloud image. fdctl hard-refuses root at
+# fd_config.c(306) ("firedancer cannot run as root"), so the config user MUST be
+# a real non-root user. The systemd probe unit runs as root (configure needs root
+# to write /proc/sys/vm/nr_hugepages + mount hugetlbfs); root may launch a
+# non-root firedancer because fd_config.c(307)'s uid-match check only fires when
+# the invoker is already non-root. fdctl then drops to fdtest for the tile
+# subprocesses and for key/genesis file creation.
+user = "fdtest"
+scratch_directory = "/var/lib/firedancer/fdvm"
+dynamic_port_range = "8900-9000"
+
+[layout]
+# auto: let fdctl pick the layout. With gui disabled, there are 13 tiles,
+# of which metric + diag are auto-floated, leaving 11 pinned tiles.
+# On a 12-vCPU VM, auto-layout assigns 11 pinned tiles (1 CPU each) and
+# gives the Agave subprocess the 12th CPU.
+affinity = "auto"
+agave_affinity = "auto"
+net_tile_count = 1
+quic_tile_count = 1
+resolh_tile_count = 1
+verify_tile_count = 1
+bank_tile_count = 1
+shred_tile_count = 1
+
+[tiles.gui]
+# The GUI tile pulls in `plugin` + `guih` (2 extra pinned tiles). On a
+# headless testnet node the GUI is unnecessary, and disabling it reduces
+# the pinned-tile count so the 12-vCPU VM can satisfy auto-layout.
+enabled = false
+
+[net]
+# socket provider — XDP requires a real NIC with driver support; virtio-net
+# in QEMU TCG does not support XDP zero-copy. socket is the documented fallback.
+provider = "socket"
+# virtio-net-pci on q35 appears as enp0s2. Verify inside VM if this fails.
+interface = "enp0s2"
+
+[hugetlbfs]
+mount_path = "/mnt/.fd"
+max_page_size = "huge"
+
+[consensus]
+# Under TCG (x86_64-on-arm64, no KVM) there is no cluster to fetch from and
+# the CPU is too slow to pass Agave's POH speed test. Disable all three
+# network/perf gates so the embedded Agave proceeds as far as it can on a
+# bootstrap node with no genesis.bin. This is a research-grade probe, not a
+# voting-validator config. (The C struct is config->frankendancer.consensus.*
+# but the TOML section is plain [consensus].)
+snapshot_fetch = false
+genesis_fetch  = false
+poh_speed_test = false
+# Known validators are trusted snapshot publishers. A bootstrap dev node with
+# no peers has none. default.toml sets known_validators = [] (correct here),
+# BUT it also sets rpc.only_known = true, which makes agave_boot emit
+# --only-known-rpc. That clap arg has .requires("known_validators")
+# (rpc_bootstrap_config.rs:87), so with an empty known_validators list clap
+# rejects the argv and prints usage ("required arguments were not provided:
+# --known-validator"). This was the fd-start24 exit=1 blocker. We do NOT want
+# --only-known-rpc on a research bootstrap node, so override only_known=false.
+# This is a config-only toggle (run_agave.c:144), NOT a source deviation.
+
+[rpc]
+# default.toml sets only_known = true → agave_boot emits --only-known-rpc →
+# clap .requires("known_validators") → demands --known-validator → rejected
+# with empty known_validators (fd-start24 exit=1). A research bootstrap node
+# with no trusted peers must override only_known=false. This is the config-only
+# toggle consumed at run_agave.c:144; NOT a source deviation.
+only_known = false
+
+[development]
+# bootstrap=true: start a new dev cluster from genesis (the cluster has no
+# existing entrypoints to rendezvous with). fdctl run with an empty
+# gossip.entrypoints list needs this to know it is the genesis node.
+bootstrap = true
+
+# The seccomp sandbox (development.sandbox) kills tiles under this QEMU host.
+# fd-start23 dmesg proved it: audit type=1326 (AUDIT_SECCOMP) sig=31 (SIGSYS)
+# syscall=228 (clock_nanosleep) code=0x80000000 (SECCOMP_RET_KILL_PROCESS)
+# on comm="waker:0" and comm="metric:0". The waker tile's policy allows only
+# write/fsync/epoll_pwait — clock_nanosleep is not permitted, so the tile is
+# killed during boot and the parent propagates exit 31 (run.c:643/1457).
+# Ubuntu's AppArmor also DENIED CAP_SYS_ADMIN for the sandbox's userns_create.
+# sandbox=false is a config-only toggle (fd_config_parse.c:319): it skips
+# fd_sandbox_enter (seccomp + CLONE_NEWUSER) and CLONE_NEWPID (run.c:721,
+# run_agave.c:256), falling back to fd_sandbox_switch_uid_gid only. This is a
+# research-grade TCG probe, NOT a production or voting-validator config.
+sandbox = false
+
+[development.gossip]
+# QEMU user-mode networking is RFC1918 (10.0.2.x). Allow private gossip.
+allow_private_address = true
+
+[development.genesis]
+hashes_per_tick = 1

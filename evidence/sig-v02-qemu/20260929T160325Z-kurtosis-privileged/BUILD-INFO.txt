@@ -1,0 +1,11 @@
+commit=b5026c60fe56b51edd79131115b7e741449d6b2e
+fork=yes(Alleysira)
+upstream=Syndica/sig
+fork_diff=empty(byte-identical-to-upstream-main)
+zig=0.15.2
+target=aarch64-linux-gnu.2.36
+runtime_platform=linux/arm64
+build_flags=-Dallow-no-sha -Dallow-no-avx512
+client=SIG-v2-observer-non-voting
+note=clean-upstream-build-zero-deviation-files
+b5026c60 lint: conformed runtime to v2 lints (#1772)

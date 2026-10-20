@@ -1,24 +1,40 @@
 name: github.com/0xBloctopus/solana-package
 description: |
-  Solana
-  ======
-  This Kurtosis package instantiates a local Solana environment with a test validator and optional block explorer.
+  Multi-client Solana testnet (Kurtosis package)
+  ==============================================
+  This Kurtosis package instantiates a local Solana testnet with multiple
+  validator client implementations sharing one genesis: a Jito-Solana bootstrap
+  validator, an Agave joiner validator, and a SIG v2 non-voting observer.
+
+  The voting validators (Jito + Agave) advance slots; SIG is a non-voting
+  observer (structurally cannot vote — no vote/stake accounts). The package
+  waits for the network to produce `slots_target` slots (default 20), then
+  returns. Run with `--privileged` (required by the SIG observer's io_uring
+  gate).
 
   Prerequisites
   -------------
-  None. This package is self-contained and does not require any external resources.
+  - Kurtosis CLI/engine 1.20.0+ on jiema's OrbStack socket only
+    (DOCKER_HOST=unix:///Users/jiema/.orbstack/run/docker.sock).
+  - Pre-built images: solana-diff/jito-solana:4.3.0-jito-arm64,
+    solana-diff/agave-validator:4.3.0-arm64, solana-diff/sig:v0.2.0-arm64-dev.
+  - `kurtosis run --privileged` (the SIG observer requires a privileged
+    container for io_uring; the CLI flag is mandatory).
 
   Configuration
   -------------
-  To configure this package, you can provide the following information:
-  - `image`: Docker image for the Solana test validator
-  - `clone_tokens`: Whether to clone token program accounts
-  - `clone_defi`: Whether to clone DeFi protocol accounts
-  - `clone_layer_zero`: Whether to clone LayerZero contracts
-  - `rpc_port`: Port for RPC endpoint
-  - `ws_port`: Port for WebSocket endpoint
-  - `log_level`: Log level (info, warn, error, debug, trace)
-  - `explorer`: Configuration for the block explorer, including:
-    - `enabled`: Whether to enable the block explorer
-    - `image`: Docker image for the explorer
-    - `explorer_port`: Port for the explorer UI
+  Pass args as a JSON string:
+  - `slots_target`: int — wait until slot >= this, then return (default 20)
+  - `participants`: dict with `bootstrap_image` / `joiner_image` overrides
+  - `genesis`: dict — genesis knobs (faucet/stake lamports, slots/epoch)
+  - `sig`: dict — SIG observer config (image, skip_on_cold_start, enabled)
+  - `explorer`: dict — {enabled: bool} (default False)
+
+  Example:
+    kurtosis run --privileged --enclave solana-multiclient ./main.star '{"slots_target":20}'
+
+  Honest evidence
+  ---------------
+  This package never claims SIG as a voting validator. The 20-slot goal is met
+  by the two voting validators (Jito + Agave). SIG is recorded at
+  `started`/`joined` (observer), never `voting`. See AGENTS.md evidence rules.

@@ -1,0 +1,100 @@
+=== kurtosis run start: 2026-09-30T07:12:57Z ===
+[36mINFO[0m[2026-09-30T15:12:57+08:00] Creating a new enclave for Starlark to run inside... 
+[36mINFO[0m[2026-09-30T15:13:00+08:00] Enclave 'solana-multiclient' created successfully 
+[36mINFO[0m[2026-09-30T15:13:00+08:00] Executing Starlark package at '/Users/jiema/sol-diff-testing/solana-package' as the passed argument '.' looks like a directory 
+[36mINFO[0m[2026-09-30T15:13:00+08:00] Compressing package 'github.com/0xBloctopus/solana-package' at '.' for upload 
+[36mINFO[0m[2026-09-30T15:13:00+08:00] Kurtosis CLI is running in a non interactive terminal. Everything will work but progress information and the progress bar will not be displayed. 
+
+Container images used in this run:
+> solana-diff/agave-validator:4.3.0-arm64 - locally cached
+> solana-diff/jito-solana:4.3.0-jito-arm64 - locally cached
+> solana-diff/sig:v0.2.0-arm64-dev - locally cached
+
+Printing a message
+Parsing multi-client input parameters
+
+Printing a message
+Launching multi-client shared-genesis participant network
+
+Printing a message
+Generating shared genesis + bank-hash probe (single run_sh)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+[genesis] keygen identities/votes/stakes/faucet/tip/merkle/recipient
+[genesis] running solana-genesis (two bootstrap validators)
+lamports_per_byte_year is deprecated and will be removed in a future release
+rent_exemption_threshold is deprecated and will be removed in a future release
+rent_burn_percentage is deprecated and will be removed in a future release
+[genesis] genesis_hash=7tWN6JyXVeccqVezHk27e65cs9bGmDqiaok6m2pbiXp4 shred_version=663
+[genesis] meta.env written. Contents:
+GENESIS_HASH=7tWN6JyXVeccqVezHk27e65cs9bGmDqiaok6m2pbiXp4
+SHRED_VERSION=663
+BOOTSTRAP_IDENTITY=EyqHb88Jb1fWXv638Gxs3VAa5VY4Mc9r4PeC7tm6hFyY
+BOOTSTRAP_VOTE=AP3HEyd5JirwCpzDzhLNgYj6HaVfcKaxwFhnNSvMLgig
+BOOTSTRAP_STAKE=FPPjJnA6EbCTUNT9w3NLDeW69qyNkPZf7st22Ru1SbSS
+JOINER_IDENTITY=8JV9YhsnPF2VvDXbYYg81cDyKNPwz5SG1BzG5Zb7XNwu
+JOINER_VOTE=5T4L929VFMTdGJJD6M8f5tK5Nc18S6A7FBjdU99t72o
+JOINER_STAKE=2rv5T5cn54j2141U4EzLjqnkV2on4BLErN86cERnrUba
+RECIPIENT=BRp37an5fJsucKXHUtMVbHBhpJQ4Qq13EkmcMnCPYsPx
+TIP_PAYMENT=Bn9hqmC3mnb7oC979kXQQEirBCp14ZXXZsj8SkJTx9k8
+TIP_DISTRIBUTION=2G3X4QUYfNi6G6wkMMAPrYJYAmcgKdi4aiymt4Rney8U
+MERKLE_AUTHORITY=5yUALsGXsm5Nkr594dYwbBGHjUNuW46qWhTDtTF1upC9
+BOOTSTRAP_BLS=64SZzXSf776jGJY9SQp94ySkdDrNvz4K1bFAHBwHS5gN8d4KwW2TzSnab9YYpKx9p9
+JOINER_BLS=6GYTBx1Euc6rMcjvnkvdagR4C9CCNqUdR2cBRFC1GuneD952qgZo7KmKDyCFoUTPEm
+[genesis] DONE
+
+--------------------
+
+Printing a message
+Genesis artifact 'solana-genesis-data' produced
+
+Printing a message
+Launching validator 'val-bootstrap' (role=voting-bootstrap, image=solana-diff/jito-solana:4.3.0-jito-arm64)
+
+Adding service with name 'val-bootstrap' and image 'solana-diff/jito-solana:4.3.0-jito-arm64'
+There was an error executing Starlark code 
+An error occurred executing instruction (number 7) at github.com/0xBloctopus/solana-package/src/solana_validator/solana_validator_launcher.star[184:31]:
+  add_service(name="val-bootstrap", config=ServiceConfig(image="solana-diff/jito-solana:4.3.0-jito-arm64", ports={"rpc": PortSpec(number=8899, transport_protocol="TCP", application_protocol="")}, files={"/data": "solana-genesis-data"}, entrypoint=["/usr/bin/tini", "-g", "--"], cmd=["bash", "-c", "\nset -euo pipefail\n# Both the Jito (/opt/jito/bin) and Agave (/opt/agave/bin) runtime images keep\n# their binaries off the default PATH. Add whichever exists; agave-validator is\n# the same binary name in both images (v4.3.0 renamed solana-validator).\nexport PATH=\"/opt/jito/bin:/opt/agave/bin:$PATH\"\nsource /data/meta.env\n\ncd /data\n\n# Resolve this container's in-enclave IP (Starlark can't see the future IP).\nMY_IP=\"$(hostname -I | awk '{print $1}')\"\nif [[ -z \"$MY_IP\" ]]; then\n  echo \"[validator] FATAL: hostname -I returned no IP\" >&2\n  exit 1\nfi\necho \"[validator] role=voting-bootstrap my_ip=$MY_IP identity=$BOOTSTRAP_IDENTITY\"\n\nENTRYPOINT_ARG=''\n\nexec agave-validator \\\n  --ledger /data/bootstrap-ledger \\\n  --identity /data/bootstrap-identity.json \\\n  --vote-account \"$BOOTSTRAP_VOTE\" \\\n  --bind-address \"$MY_IP\" \\\n  --public-tpu-address \"${MY_IP}:8003\" \\\n  --public-tpu-forwards-address \"${MY_IP}:8004\" \\\n  --public-tvu-address \"${MY_IP}:8002\" \\\n  --rpc-bind-address 0.0.0.0 \\\n  --rpc-port 8899 \\\n  --gossip-port 8001 \\\n  --dynamic-port-range 8002-8035 \\\n  --full-rpc-api \\\n  --enable-rpc-transaction-history \\\n  --no-snapshots \\\n  --no-genesis-fetch \\\n  --no-snapshot-fetch \\\n  --no-xdp \\\n  --no-os-network-limits-test \\\n  --no-poh-speed-test \\\n  --no-port-check \\\n  --allow-private-addr \\\n  --no-wait-for-vote-to-start-leader \\\n  --limit-blockstore-size 100000000 \\\n  --expected-genesis-hash \"$GENESIS_HASH\" \\\n  --expected-shred-version \"$SHRED_VERSION\" \\\n  --wait-for-supermajority 0 \\\n  --log - \\\n  $ENTRYPOINT_ARG\n"], node_selectors={}, privileged=True))
+  Caused by: Unexpected error occurred starting service 'val-bootstrap'
+  Caused by: An error occurred waiting for all TCP and UDP ports to be open for service 'val-bootstrap' with private IP '172.16.4.5'; this is usually due to a misconfiguration in the service itself, so here are the logs:
+  == SERVICE 'val-bootstrap' LOGS ===================================
+  [WARN  tini (6)] Tini is not running as PID 1 and isn't registered as a child subreaper.
+  Zombie processes will not be re-parented to Tini, so zombie reaping won't work.
+  To fix the problem, use the -s option or set the environment variable TINI_SUBREAPER to register Tini as a child subreaper, or run Tini as PID 1.
+  [validator] role=voting-bootstrap my_ip=172.16.4.5 identity=EyqHb88Jb1fWXv638Gxs3VAa5VY4Mc9r4PeC7tm6hFyY
+  error: The following required arguments were not provided:
+      --expected-bank-hash <HASH>
+  
+  USAGE:
+      agave-validator --accounts-index-limit <VALUE> --accounts-shrink-optimize-total-space <BOOLEAN> --accounts-shrink-ratio <RATIO> --allow-private-addr --enable-banking-trace <BYTES> --bind-address <HOST>... --block-production-method <METHOD> --block-production-pacing-fill-time-millis <MILLIS> --block-verification-method <METHOD> --contact-debug-interval <CONTACT_DEBUG_INTERVAL> --dynamic-port-range <MIN_PORT-MAX_PORT> --enable-rpc-transaction-history --expected-bank-hash <HASH> --expected-genesis-hash <HASH> --expected-shred-version <VERSION> --full-rpc-api --full-snapshot-interval-slots <NUMBER> --gossip-port <PORT> --health-check-slot-distance <SLOT_DISTANCE> --identity <KEYPAIR> --ledger <DIR> --limit-blockstore-size <SHRED_COUNT> --log <FILE> --max-genesis-archive-unpacked-size <NUMBER> --maximum-full-snapshots-to-retain <NUMBER> --maximum-incremental-snapshots-to-retain <NUMBER> --maximum-local-snapshot-age <NUMBER_OF_SLOTS> --maximum-snapshot-download-abort <MAXIMUM_SNAPSHOT_DOWNLOAD_ABORT> --minimal-snapshot-download-speed <MINIMAL_SNAPSHOT_DOWNLOAD_SPEED> --no-genesis-fetch --no-os-network-limits-test --no-poh-speed-test --no-port-check --no-snapshot-fetch --no-snapshots --no-wait-for-vote-to-start-leader --no-xdp --public-tpu-address <HOST:PORT> --public-tpu-forwards-address <HOST:PORT> --public-tvu-address <HOST:PORT> --relayer-expected-heartbeat-interval-ms <relayer_expected_heartbeat_interval_ms> --relayer-max-failed-heartbeats <relayer_max_failed_heartbeats> --rocksdb-shred-compaction <ROCKSDB_COMPACTION_STYLE> --rpc-bigtable-app-profile-id <APP_PROFILE_ID> --rpc-bigtable-instance-name <INSTANCE_NAME> --rpc-bigtable-max-message-size <BYTES> --rpc-bigtable-timeout <SECONDS> --rpc-bind-address <HOST> --rpc-blocking-threads <NUMBER> --rpc-max-multiple-accounts <MAX ACCOUNTS> --rpc-max-request-body-size <BYTES> --rpc-niceness-adjustment <ADJUSTMENT> --rpc-port <PORT> --rpc-pubsub-max-active-subscriptions <NUMBER> --rpc-pubsub-notification-threads <NUM_THREADS> --rpc-pubsub-queue-capacity-bytes <BYTES> --rpc-pubsub-queue-capacity-items <NUMBER> --rpc-pubsub-worker-threads <NUMBER> --rpc-send-leader-count <NUMBER> --rpc-send-retry-ms <MILLISECS> --rpc-send-transaction-retry-pool-max-size <NUMBER> --rpc-send-service-max-retries <NUMBER> --rpc-threads <NUMBER> --snapshot-archive-format <ARCHIVE_TYPE> --snapshot-interval-slots <NUMBER> --snapshot-packager-niceness-adjustment <ADJUSTMENT> --snapshot-version <SNAPSHOT_VERSION> --snapshot-zstd-compression-level <LEVEL> --use-snapshot-archives-at-startup <use_snapshot_archives_at_startup> --vote-account <ADDRESS> --wait-for-supermajority <SLOT>
+  
+  For more information try --help
+  
+  == FINISHED SERVICE 'val-bootstrap' LOGS ===================================
+  Caused by: An error occurred while waiting for all TCP and UDP ports to be open
+  Caused by: Unsuccessful ports check for IP '172.16.4.5' and port spec '{privatePortSpec:0x5718885dd560}', even after '240' retries with '500' milliseconds in between retries. Timeout '2m0s' has been reached
+  Caused by: An error occurred while calling network address '172.16.4.5:8899' with port protocol 'TCP' and using time out '200ms'
+  Caused by: dial tcp 172.16.4.5:8899: i/o timeout
+
+Error encountered running Starlark code.
+
+⭐ us on GitHub - https://github.com/kurtosis-tech/kurtosis
+[36mINFO[0m[2026-09-30T15:15:06+08:00] =========================================================== 
+[36mINFO[0m[2026-09-30T15:15:06+08:00] ||          Created enclave: solana-multiclient          || 
+[36mINFO[0m[2026-09-30T15:15:06+08:00] =========================================================== 
+Name:            solana-multiclient
+UUID:            2d9974f9cfa7
+Status:          RUNNING
+Creation Time:   Wed, 30 Sep 2026 15:12:57 HKT
+Flags:           
+
+========================================= Files Artifacts =========================================
+UUID           Name
+8d6f732d4836   solana-genesis-data
+
+========================================== User Services ==========================================
+UUID   Name   Ports   Status
+
+=== kurtosis run exit=1 at 2026-09-30T07:15:06Z ===

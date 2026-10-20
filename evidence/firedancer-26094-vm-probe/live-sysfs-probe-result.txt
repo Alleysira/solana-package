@@ -1,0 +1,41 @@
+===FD-PROBE-START===
+kernel: 6.8.0-142-generic
+--- node ---
+has_cpu
+has_generic_initiator
+has_memory
+has_normal_memory
+node0
+online
+possible
+power
+uevent
+--- hugepages sysfs ---
+hugepages-1048576kB
+hugepages-2048kB
+--- nr_hugepages ---
+0
+--- meminfo huge ---
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+FileHugePages:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+--- mount hugetlbfs ---
+MOUNT_OK
+--- config flags ---
+CONFIG_NUMA=y
+CONFIG_HUGETLBFS=y
+CONFIG_HUGETLB_PAGE=y
+--- nproc/memtotal ---
+4
+MemTotal:       16376028 kB
+===FD-PROBE-END===
+         Starting [0;1;39msysstat.service[0m - Resets System Activity Logs...
+         Starting [0;1;39msystemd-logind.service[0m - User Login Management...
+         Starting [0;1;39mudisks2.service[0m - Disk Manager...
+[[0;32m  OK  [0m] Started [0;1;39mdbus.service[0m - D-Bus System Message Bus.

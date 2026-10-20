@@ -1,6 +1,12 @@
 {
   "verifiedAt": "2026-09-23T02:26:44Z",
   "topology": "shared-genesis-two-validator",
+  "superseded": true,
+  "supersededFor": "client-diversity question (this run used two Jito nodes with the same client ID)",
+  "supersededBy": "solana-package/evidence/multiclient-20260930T104821Z/summary.json",
+  "supersededAt": "2026-09-30",
+  "retained": true,
+  "note": "Still valid for the multi-node shared-genesis orchestration claim; superseded only for the Agave/Jito client-diversity question by the 2026-09-30 mixed-client run (Jito bootstrap + Agave joiner, both voting).",
   "genesisHash": "BLqoAQiyFqZt4wNyf2YWdUvgFbiHyB6dfWMz9eeHc8ag",
   "nodes": [
     {
