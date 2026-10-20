@@ -2,8 +2,8 @@
 # build-sig.sh — build the SIG v2 (Zig) observer container image.
 #
 # Records the source pin honestly before building:
-#   - the sig submodule must be at the pinned fork commit f4ccc97c
-#     (dev/local-observer branch; upstream base b5026c60 byte-identical to
+#   - the sig submodule must be at the pinned fork commit 0c1e96c1
+#     (main branch; upstream base b5026c60 byte-identical to
 #     upstream Syndica/sig main)
 #   - the branch INTENTIONALLY carries 5 tracked deviation files + DEVIATIONS.md
 #     (the development observer path) on top of that base; a clean-tree check
@@ -55,7 +55,7 @@ case "$sig_target" in
     ;;
 esac
 
-expected_commit="f4ccc97c12535a37bd508252a4040a546ea0b329"
+expected_commit="0c1e96c1ef335ecf9f62e337477faf5bdab0d83a"
 
 for value in "$floor_gib" "$jobs"; do
   if [[ ! "$value" =~ ^[1-9][0-9]{0,3}$ ]]; then
@@ -71,7 +71,7 @@ if (( $(free_kib) < (floor_gib + 2) * 1024 * 1024 )); then
 fi
 
 # Honest source pin verification.  The Alleysira/sig fork is on the
-# `dev/local-observer` branch.  Its upstream base b5026c60 is byte-identical to
+# `main` branch.  Its upstream base b5026c60 is byte-identical to
 # upstream Syndica/sig main; the branch carries 5 tracked deviation files +
 # DEVIATIONS.md (the development observer path) on top of that base.  A clean-tree
 # check would be wrong here — instead we verify the diff vs the fixed upstream
@@ -126,7 +126,7 @@ if [[ -n "$(git -C "$source_dir" status --porcelain --untracked-files=no)" ]]; t
   exit 1
 fi
 
-echo "[build-sig] source OK: sig=$actual_commit (dev/local-observer; 4 deviations + DEVIATIONS.md; base $upstream_base byte-identical to upstream)"
+echo "[build-sig] source OK: sig=$actual_commit (main; 4 deviations + DEVIATIONS.md; base $upstream_base byte-identical to upstream)"
 echo "[build-sig] target: $zig_target  runtime: $runtime_platform  image: $image"
 
 docker_context="${DOCKER_CONTEXT:-orbstack}"

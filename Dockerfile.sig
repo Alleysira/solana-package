@@ -25,11 +25,11 @@
 # SOURCE PIN (provenance, per AGENTS.md)
 # ──────────────────────────────────────────────────────────────────────────
 # The workspace `sig` submodule is pinned to the user's fork, on the
-# `dev/local-observer` branch:
-#   github.com/Alleysira/sig @ f4ccc97c12535a37bd508252a4040a546ea0b329
+# `main` branch:
+#   github.com/Alleysira/sig @ 0c1e96c1ef335ecf9f62e337477faf5bdab0d83a
 # Upstream base: b5026c60fe56b51edd79131115b7e741449d6b2e (byte-identical to
 # upstream Syndica/sig main; verified an ancestor of HEAD).  This branch
-# (dev/local-observer) CARRIES TRACKED DEVIATION FILES (5 source files +
+# (main) CARRIES TRACKED DEVIATION FILES (5 source files +
 # DEVIATIONS.md, across one or more deviation commits on top of the base) so
 # SIG v2 can join an isolated local cluster as a non-voting observer (see
 # DEVIATIONS.md in the fork).  Mirrors the provenance discipline of the
@@ -176,7 +176,7 @@ ENV PATH=/opt/zig:$PATH
 # clone from the fork URL and checkout the pinned commit.  build-sig.sh still
 # pre-verifies the local submodule pin matches before this build starts.
 ARG SIG_FORK_URL=https://github.com/Alleysira/sig.git
-ARG SIG_COMMIT=f4ccc97c12535a37bd508252a4040a546ea0b329
+ARG SIG_COMMIT=0c1e96c1ef335ecf9f62e337477faf5bdab0d83a
 
 RUN git clone "$SIG_FORK_URL" /src/sig && \
     git -C /src/sig checkout "$SIG_COMMIT"
@@ -184,7 +184,7 @@ WORKDIR /src/sig
 
 # Record the exact source state in BUILD-INFO.
 RUN test "$(git rev-parse HEAD)" = "$SIG_COMMIT" \
-    && printf 'commit=%s\nfork=yes(Alleysira)\nupstream=Syndica/sig\nfork_diff=dev/local-observer branch; 5 tracked deviation files + DEVIATIONS.md (development observer path)\nupstream_base=b5026c60fe56b51edd79131115b7e741449d6b2e(byte-identical-to-upstream-main)\nzig=%s\ntarget=%s\nruntime_platform=%s\nbuild_flags=-Dallow-no-sha -Dallow-no-avx512\nclient=SIG-v2-observer-non-voting\nnote=tracked-deviation-build-see-DEVIATIONS-md\n' \
+    && printf 'commit=%s\nfork=yes(Alleysira)\nupstream=Syndica/sig\nfork_diff=main branch; 5 tracked deviation files + DEVIATIONS.md (development observer path)\nupstream_base=b5026c60fe56b51edd79131115b7e741449d6b2e(byte-identical-to-upstream-main)\nzig=%s\ntarget=%s\nruntime_platform=%s\nbuild_flags=-Dallow-no-sha -Dallow-no-avx512\nclient=SIG-v2-observer-non-voting\nnote=tracked-deviation-build-see-DEVIATIONS-md\n' \
          "$SIG_COMMIT" "$ZIG_VERSION" "$SIG_TARGET" "$SIG_RUNTIME_PLATFORM" > /tmp/sig-build-info \
     && git -C . log --oneline -1 >> /tmp/sig-build-info
 
@@ -271,10 +271,10 @@ WORKDIR /var/lib/sig
 LABEL org.opencontainers.image.source="https://github.com/Alleysira/sig" \
       org.opencontainers.image.upstream="https://github.com/Syndica/sig" \
       org.opencontainers.image.version="v0.2.0-dev" \
-      org.opencontainers.image.revision="f4ccc97c12535a37bd508252a4040a546ea0b329" \
+      org.opencontainers.image.revision="0c1e96c1ef335ecf9f62e337477faf5bdab0d83a" \
       org.opencontainers.image.build="zig-0.15.2-${SIG_TARGET}-allow-no-sha-allow-no-avx512" \
       org.opencontainers.image.runtime_platform="${SIG_RUNTIME_PLATFORM}" \
-      org.opencontainers.image.title="SIG v2 (Zig Solana validator, observer/non-voting, dev/local-observer fork)" \
-      org.opencontainers.image.note="SIG v2 non-voting observer; fork carries 5 tracked deviation files (dev/local-observer branch) for local-cluster join; parent b5026c60 is byte-identical to upstream; see DEVIATIONS.md"
+      org.opencontainers.image.title="SIG v2 (Zig Solana validator, observer/non-voting, main fork)" \
+      org.opencontainers.image.note="SIG v2 non-voting observer; fork carries 5 tracked deviation files (main branch) for local-cluster join; parent b5026c60 is byte-identical to upstream; see DEVIATIONS.md"
 
 ENTRYPOINT ["/usr/bin/tini", "-g", "--", "/opt/sig/bin/sig"]
