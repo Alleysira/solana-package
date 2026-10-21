@@ -202,6 +202,8 @@ exec agave-validator \
   --gossip-port 8001 \
   --dynamic-port-range 8002-8035 \
   --full-rpc-api \
+  --rpc-pubsub-enable-block-subscription \
+  --rpc-pubsub-enable-vote-subscription \
   --enable-rpc-transaction-history \
 {SNAPSHOT_ARGS}  --no-genesis-fetch \
   --no-snapshot-fetch \
@@ -269,6 +271,9 @@ def launch_validator(plan, role, image, genesis_artifact, bank_hash, global_node
 
     port_assignments = {
         constants.RPC_PORT_ID: constants.RPC_PORT_NUM,
+        # WebSocket (pubsub) is a real TCP listener at rpc_port+1; declare it so
+        # the host can reach ws://<node>:8900. TCP readiness works normally.
+        constants.RPC_PUBSUB_PORT_ID: constants.RPC_PUBSUB_PORT_NUM,
         # UDP ports are NOT declared as Kurtosis ports: port-readiness would
         # time out on UDP (no listener handshake). They are still bound by the
         # validator; we just don't ask Kurtosis to probe them.
@@ -300,12 +305,14 @@ def launch_validator(plan, role, image, genesis_artifact, bank_hash, global_node
     service = plan.add_service(name=name, config=ServiceConfig(**config_args))
 
     rpc_url = "http://{0}:{1}".format(name, constants.RPC_PORT_NUM)
-    plan.print("Validator '{0}' launched; rpc={1}".format(name, rpc_url))
+    ws_url = "ws://{0}:{1}".format(name, constants.RPC_PUBSUB_PORT_NUM)
+    plan.print("Validator '{0}' launched; rpc={1} ws={2}".format(name, rpc_url, ws_url))
 
     return struct(
         service=service,
         name=name,
         rpc_url=rpc_url,
+        ws_url=ws_url,
         identity_pubkey_var=_IDENTITY_KEY[role],
         vote_pubkey_var=_VOTE_KEY[role],
     )

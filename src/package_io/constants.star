@@ -9,12 +9,17 @@
 # UDP ports are documented but not declared (Kurtosis port-readiness would
 # time out on UDP).
 RPC_PORT_ID = "rpc"
+# Agave's WebSocket (pubsub) port is ALWAYS rpc_port + 1 (there is no
+# --rpc-pubsub-port flag in Agave 4.3.0); it starts automatically with
+# --full-rpc-api. We declare it so the host can reach ws://<node>:8900.
+RPC_PUBSUB_PORT_ID = "rpc-ws"
 GOSSIP_PORT_ID = "gossip"
 TVU_PORT_ID = "tvu"
 TPU_PORT_ID = "tpu"
 TPU_FW_PORT_ID = "tpu-forwards"
 
 RPC_PORT_NUM = 8899
+RPC_PUBSUB_PORT_NUM = 8900  # must equal RPC_PORT_NUM + 1
 GOSSIP_PORT_NUM = 8001
 TVU_PORT_NUM = 8002
 TPU_PORT_NUM = 8003
