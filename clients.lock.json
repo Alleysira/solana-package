@@ -193,12 +193,13 @@
           "voteSubscribe": "implemented",
           "voteUnsubscribe": "implemented"
         },
-        "evidence": "../differ/evidence/firedancer-rpc-20261028/run2/",
+        "evidence": "../differ/evidence/firedancer-rpc-20261028/summary.json",
         "limitations": [
           "Local full Firedancer fork, not Frankendancer.",
           "Unsupported handlers remain capability gaps; no proxy substitution.",
           "SIG is unchanged and has no RPC target."
-        ]
+        ],
+        "evidenceLevel": "differential"
       }
     },
     {

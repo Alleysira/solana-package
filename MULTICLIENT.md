@@ -243,3 +243,11 @@ unsupported handlers remain explicit capability gaps. This does not change
 the demonstrated four-client deployment or add any SIG features.
 Use the canonical ../differ/docs/THREECLIENT-CAMPAIGN.md commands and consult
 ../differ/docs/findings-firedancer-20261028.md for behavioral differences.
+
+Coverage completed on the existing enclave: HTTP run2 exercised 53 methods /
+501 cases plus 11 envelope probes; ws-run3 exercised 9 subscribe and 9
+unsubscribe methods. All 19 implemented Firedancer HTTP handlers returned
+positive results, and matching slot/vote notifications agreed with both
+peers. The first combined attempt's WS interruption is preserved; these are
+separate complete HTTP and WS phases. Aggregate:
+../differ/evidence/firedancer-rpc-20261028/summary.json.
