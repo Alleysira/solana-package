@@ -132,6 +132,18 @@ class Network:
         require(bool(result.get("signature")), "transfer returned no signature")
         return result["signature"]
 
+    def wait_for_fd_window(self, stop, timeout=180):
+        deadline = time.monotonic() + timeout
+        while not stop.is_set() and time.monotonic() < deadline:
+            slot = self.rpc("jito", "getSlot", [{"commitment": "processed"}])
+            leaders = self.rpc("jito", "getSlotLeaders", [slot, 2])
+            if leaders == [self.identities["firedancer"]] * 2:
+                self.record("leader-triggers.jsonl", {"processedSlot": slot, "leader": leaders[0]})
+                return True
+            stop.wait(0.4)
+        require(stop.is_set(), "no Firedancer leader window within 180 seconds")
+        return False
+
     def confirmed_transfer(self, signature, recipient):
         records = {}
         for role in ["jito", "agave"]:
@@ -258,6 +270,12 @@ class Network:
         def transfers():
             while not stop.is_set():
                 try:
+                    # Target the initial transfer at a real Firedancer leader window.
+                    # Confirm the actual inclusion leader afterward; submission timing
+                    # alone is never evidence that Firedancer executed it.
+                    if not any(t["leader"] == self.identities["firedancer"] for t in transactions):
+                        if not self.wait_for_fd_window(stop):
+                            break
                     signature = self.send_transfer(self.env["RECIPIENT"])
                     tx = self.wait(lambda: self.confirmed_transfer(signature, self.env["RECIPIENT"]),
                                    90, "cross-node finalized transfer")
@@ -287,10 +305,15 @@ class Network:
         last_slot = max(t["slot"] for t in transactions)
         self.wait(lambda: all(self.rpc(r, "getSlot", [{"commitment": "finalized"}]) >= last_slot
                               for r in RPCS), 120, "all clients root the final transfer")
-        accounts = {r: self.rpc(r, "getAccountInfo", [self.env["RECIPIENT"],
-                    {"commitment": "finalized", "encoding": "base64"}]) for r in RPCS}
-        require(all(a.get("value") is not None and a["context"]["slot"] >= last_slot
-                    for a in accounts.values()), "account observation predates transfer")
+        def rooted_accounts():
+            observed = {r: self.rpc(r, "getAccountInfo", [self.env["RECIPIENT"],
+                        {"commitment": "finalized", "encoding": "base64"}]) for r in RPCS}
+            require(all(a.get("value") is not None and a["context"]["slot"] >= last_slot
+                        for a in observed.values()), "account observation predates transfer")
+            return observed
+        accounts = self.wait(rooted_accounts, 120, "account contexts root final transfer")
+        require(all(a["value"] == accounts["jito"]["value"] for a in accounts.values()),
+                "recipient account values differ across clients")
         balances = {r: a["value"]["lamports"] for r, a in accounts.items()}
         require(len(set(balances.values())) == 1, f"recipient account effects differ: {balances}")
         final = self.sample(started, sig_ip, samples[0]["sigIdentity"])

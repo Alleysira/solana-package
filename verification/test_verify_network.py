@@ -51,6 +51,26 @@ class AcceptanceTests(unittest.TestCase):
         with self.assertRaises(CheckFailed):
             validate_transfer(tx, "recipient", 1000000000)
 
+    def test_leader_targeting_requires_remaining_firedancer_window(self):
+        network = Network.__new__(Network)
+        network.identities = self.expected
+        network.record = mock.Mock()
+        network.rpc = mock.Mock(side_effect=[100, ["a", "f"], 102, ["f", "f"]])
+        stop = mock.Mock()
+        stop.is_set.return_value = False
+        self.assertTrue(network.wait_for_fd_window(stop))
+        stop.wait.assert_called_once_with(0.4)
+        network.record.assert_called_once_with(
+            "leader-triggers.jsonl", {"processedSlot": 102, "leader": "f"})
+
+    def test_stopping_does_not_submit_another_targeted_transfer(self):
+        network = Network.__new__(Network)
+        network.rpc = mock.Mock()
+        stop = mock.Mock()
+        stop.is_set.return_value = True
+        self.assertFalse(network.wait_for_fd_window(stop))
+        network.rpc.assert_not_called()
+
     def test_unfinalized_signature_is_rejected(self):
         network = Network.__new__(Network)
         for status in [None, {"err": None, "confirmationStatus": "confirmed"},
