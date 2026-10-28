@@ -1,0 +1,27 @@
+[WARN  tini (7)] Tini is not running as PID 1 and isn't registered as a child subreaper.
+Zombie processes will not be re-parented to Tini, so zombie reaping won't work.
+To fix the problem, use the -s option or set the environment variable TINI_SUBREAPER to register Tini as a child subreaper, or run Tini as PID 1.
+Log at "/tmp/fd-0.1.1_19_firedancer_5277b5fbd977_2026_10_28_10_07_02_147483747_GMT+00"
+NOTICE  10-28 10:07:02.161958 main      configure.c(86): hugetlbfs ... unconfigured ... mounts `/mnt/.fd/.huge` and `/mnt/.fd/.gigantic` do not exist
+NOTICE  10-28 10:07:02.162010 main      configure.c(103): hugetlbfs ... configuring
+NOTICE  10-28 10:07:02.162081 main      hugetlbfs.c(162): RUN: `mkdir -p /mnt/.fd/.huge`
+NOTICE  10-28 10:07:02.162348 main      hugetlbfs.c(173): RUN: `mount -t hugetlbfs none /mnt/.fd/.huge -o pagesize=2097152,min_size=58722353152`
+NOTICE  10-28 10:07:02.162429 main      hugetlbfs.c(162): RUN: `mkdir -p /mnt/.fd/.gigantic`
+NOTICE  10-28 10:07:02.162496 main      hugetlbfs.c(173): RUN: `mount -t hugetlbfs none /mnt/.fd/.gigantic -o pagesize=1073741824,min_size=0`
+Log at "/tmp/fd-0.1.1_21_firedancer_5277b5fbd977_2026_10_28_10_07_02_726044647_GMT+00"
+Log at "/tmp/fd-0.1.1_8_firedancer_5277b5fbd977_2026_10_28_10_07_03_301397306_GMT+00"
+WARNING 10-28 10:07:03.319430 main      hyperthreads.c(113): pack cpu 4 has hyperthread pair cpu 20 which should be offline or in the isolated cpuset partition (`configure init cpuset`). Proceeding but performance may be reduced.
+WARNING 10-28 10:07:03.319459 main      hyperthreads.c(116): poh cpu 11 has hyperthread pair cpu 27 which is used by another tile. Proceeding but performance may be reduced.
+WARNING 10-28 10:07:03.319496 main      run.c(1015): Kernel workqueues may steal CPU time from Firedancer tiles: kernel workqueue cpumask includes Firedancer tile CPUs 1-12,17-19,21-27. For lower jitter, run `firedancer configure init kworkers`.
+WARNING 10-28 10:07:03.320953 main      run.c(1040): Firedancer tile CPUs are not isolated from other processes: `/sys/fs/cgroup/fd-local` does not exist. For lower jitter, run `firedancer configure init cpuset`.
+NOTICE  10-28 10:07:13.150262 main      fd_bootinfo.c(161): booting validator fd-local version 0.1.1 (aaee882950a) pid 8 with 31 tiles and 55 GiB memory at /mnt/.fd
+NOTICE  10-28 10:07:13.209820 metric:0  fd_metric_tile.c(148): prometheus server listening at http://127.0.0.1:7999/metrics
+WARNING 10-28 10:07:13.231587 snapct:0  fd_snapct_tile.c(2235): incremental snapshots disabled via [snapshots.incremental_snapshots].
+WARNING 10-28 10:07:13.233659 snapct:0  fd_ssresolve.c(421): unexpected response code 404 accessing http://172.16.0.7:8899/snapshot.tar.bz2
+NOTICE  10-28 10:07:13.246190 genesi:0  fd_genesi_tile.c(261): loaded local genesis.bin from file /data/firedancer-ledger/genesis.bin
+NOTICE  10-28 10:07:13.371995 rpc:0     fd_rpc_tile.c(3067): rpc server listening at http://127.0.0.1:8899
+WARNING 10-28 10:07:18.234653 snapct:0  fd_ssresolve.c(421): unexpected response code 404 accessing http://172.16.0.7:8899/snapshot.tar.bz2
+NOTICE  10-28 10:07:23.377934 snapct:0  fd_snapct_tile.c(668): downloading full snapshot from http://172.16.0.7:8899
+NOTICE  10-28 10:07:23.395834 snapin:0  fd_snapin_tile.c(353): loaded 317 accounts (0 dups) from snapshot in 10.147 seconds
+CRIT    10-28 10:07:24.589920 poh:0     fd_poh.c(781): a tick will be skipped due to hashcnt 0 hashcnt_per_tick 1
+ERR     10-28 10:07:24.822441 pidns     run.c(691): tile poh:0 exited with signal 6 (SIGABRT-Aborted)

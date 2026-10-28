@@ -1,0 +1,147 @@
+{
+  "capturedAt": "2026-10-28T10:37:17.346443+00:00",
+  "result": "PARTIAL",
+  "reason": "Voting works but Firedancer leader blocks rejected with TooFewTicks; SIG required only to join",
+  "services": {
+    "val-bootstrap": {
+      "name": "val-bootstrap--d3030fe470cd429b8ebb48c2473f9755",
+      "imageId": "sha256:366042326b1586e60b8ace1c687a34f82f15c4704ba01bae68e97435268dbd6e",
+      "startedAt": "2026-10-28T10:10:44.795992958Z",
+      "networks": {
+        "kt-solana-four-client": {
+          "IPAMConfig": {
+            "IPv4Address": "172.16.0.7",
+            "IPv6Address": ""
+          },
+          "Links": null,
+          "Aliases": [
+            "val-bootstrap"
+          ],
+          "DriverOpts": null,
+          "GwPriority": 0,
+          "NetworkID": "ce149ebf14e0b14989e1bf481f6b406cf87aefeede862990581d94787941c06a",
+          "EndpointID": "730d827bdaf28ec3c5594c64ff83bd133d9c04e71ee55cf5c2dd7be02a0a2d0a",
+          "Gateway": "172.16.0.11",
+          "IPAddress": "172.16.0.7",
+          "MacAddress": "1a:bc:a3:0d:db:f0",
+          "IPPrefixLen": 22,
+          "IPv6Gateway": "",
+          "GlobalIPv6Address": "",
+          "GlobalIPv6PrefixLen": 0,
+          "DNSNames": [
+            "val-bootstrap--d3030fe470cd429b8ebb48c2473f9755",
+            "val-bootstrap",
+            "89d1bde52f2e"
+          ]
+        }
+      }
+    },
+    "val-joiner": {
+      "name": "val-joiner--3a630785cd4a40fba3ae4ad63c96161a",
+      "imageId": "sha256:9366fd7569ed523d803f784f44e0a2fc4bafc565d415b303bc7802aa4254587d",
+      "startedAt": "2026-10-28T10:10:46.912877523Z",
+      "networks": {
+        "kt-solana-four-client": {
+          "IPAMConfig": {
+            "IPv4Address": "172.16.0.8",
+            "IPv6Address": ""
+          },
+          "Links": null,
+          "Aliases": [
+            "val-joiner"
+          ],
+          "DriverOpts": null,
+          "GwPriority": 0,
+          "NetworkID": "ce149ebf14e0b14989e1bf481f6b406cf87aefeede862990581d94787941c06a",
+          "EndpointID": "33ee479cfd09c0322befe8339c1f7f7eebaf80669b8e1752550a78a47556706c",
+          "Gateway": "172.16.0.11",
+          "IPAddress": "172.16.0.8",
+          "MacAddress": "ea:02:7d:81:12:b1",
+          "IPPrefixLen": 22,
+          "IPv6Gateway": "",
+          "GlobalIPv6Address": "",
+          "GlobalIPv6PrefixLen": 0,
+          "DNSNames": [
+            "val-joiner--3a630785cd4a40fba3ae4ad63c96161a",
+            "val-joiner",
+            "fb6d83d38c06"
+          ]
+        }
+      }
+    },
+    "val-firedancer": {
+      "name": "val-firedancer--5e1dbabc591c4855a451170e8cd3a4ce",
+      "imageId": "sha256:df0323be2bd129c58dfb53ff5d7c7d9df479e3d9bef568e3b95129e0e99605b1",
+      "startedAt": "2026-10-28T10:10:49.087257013Z",
+      "networks": {
+        "kt-solana-four-client": {
+          "IPAMConfig": {
+            "IPv4Address": "172.16.0.9",
+            "IPv6Address": ""
+          },
+          "Links": null,
+          "Aliases": [
+            "val-firedancer"
+          ],
+          "DriverOpts": null,
+          "GwPriority": 0,
+          "NetworkID": "ce149ebf14e0b14989e1bf481f6b406cf87aefeede862990581d94787941c06a",
+          "EndpointID": "6be528e7a595bb62dd8ef7833b9cefb7fd5e3a694e00f6bb05ef2f1525f18d44",
+          "Gateway": "172.16.0.11",
+          "IPAddress": "172.16.0.9",
+          "MacAddress": "d6:2f:5e:d6:ce:9c",
+          "IPPrefixLen": 22,
+          "IPv6Gateway": "",
+          "GlobalIPv6Address": "",
+          "GlobalIPv6PrefixLen": 0,
+          "DNSNames": [
+            "val-firedancer--5e1dbabc591c4855a451170e8cd3a4ce",
+            "val-firedancer",
+            "5d321ba474d7"
+          ]
+        }
+      }
+    },
+    "sig-observer": {
+      "name": "sig-observer--652c930766af43e884c1401c96ccc81f",
+      "imageId": "sha256:def217d2d59872d33bcd8847e0d63dccb0cb2de33f77aab8ebb3603fa810e219",
+      "startedAt": "2026-10-28T10:11:03.118866824Z",
+      "networks": {
+        "kt-solana-four-client": {
+          "IPAMConfig": {
+            "IPv4Address": "172.16.0.12",
+            "IPv6Address": ""
+          },
+          "Links": null,
+          "Aliases": [
+            "sig-observer"
+          ],
+          "DriverOpts": null,
+          "GwPriority": 0,
+          "NetworkID": "ce149ebf14e0b14989e1bf481f6b406cf87aefeede862990581d94787941c06a",
+          "EndpointID": "fdb6d0d89b25877a22e9dcf4804266aefb8139578314b8748734f140ca3e24c2",
+          "Gateway": "172.16.0.11",
+          "IPAddress": "172.16.0.12",
+          "MacAddress": "9a:20:d4:4c:76:14",
+          "IPPrefixLen": 22,
+          "IPv6Gateway": "",
+          "GlobalIPv6Address": "",
+          "GlobalIPv6PrefixLen": 0,
+          "DNSNames": [
+            "sig-observer--652c930766af43e884c1401c96ccc81f",
+            "sig-observer",
+            "be99e2e8185a"
+          ]
+        }
+      }
+    }
+  },
+  "sourceCommits": {
+    ".": "82e1261d4c12b18f56dc0f9f22755a9a9e859e5b",
+    "firedancer": "a1f6a32ff464ec265c4b5127fe9afedf7c143cb1",
+    "sig": "0c1e96c1ef335ecf9f62e337477faf5bdab0d83a",
+    "solana-package": "e627f4bb6e42eca380a0882c64508e997f3e7616",
+    "agave": "825efd18292aff6ffcf9daa0f7612f21b3531a72",
+    "jito-solana": "07270be44c712356d8fb94dff8e7a1edd425dbff"
+  }
+}

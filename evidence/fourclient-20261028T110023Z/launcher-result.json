@@ -1,0 +1,6 @@
+{
+  "kurtosisResult": "PASS",
+  "launcherExitCode": 2,
+  "export": "completed manually after wrapper failure",
+  "reason": "run-four-client.sh edited while its bash process was blocked in Kurtosis; original bash resumed at stale file offset. Current file passes bash -n. Do not edit a running launcher."
+}

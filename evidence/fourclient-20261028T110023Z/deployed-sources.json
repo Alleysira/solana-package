@@ -1,0 +1,6 @@
+{
+  "packageCommit": "728b11b11c6c1673debcce70ec8a41490f0f9fcb",
+  "verificationScriptSha256": "3a88a9428cbf8468c237df3611f4c9e082be9ea8c32b052fbd934f43b7a88a97",
+  "recordedAfterStart": true,
+  "note": "Deployment launched immediately after pushing 728b11b; subsequent e2100e5 edits are documentation and comments only. Capture-time source commits are in manifest.json."
+}

@@ -1,0 +1,433 @@
+[36mINFO[0m[2026-10-28T18:10:24+08:00] otel ClickHouse running at http://172.17.0.4:8123 (native: 172.17.0.4:9000) 
+[36mINFO[0m[2026-10-28T18:10:24+08:00] otel collector running at http://172.17.0.5:4317 (http: http://172.17.0.5:4318) 
+[36mINFO[0m[2026-10-28T18:10:24+08:00] Creating a new enclave for Starlark to run inside... 
+[36mINFO[0m[2026-10-28T18:10:27+08:00] Enclave 'solana-four-client' created successfully 
+[36mINFO[0m[2026-10-28T18:10:27+08:00] Executing Starlark package at '/home/jie.ma/sol-diff-testing/solana-package' as the passed argument '.' looks like a directory 
+[36mINFO[0m[2026-10-28T18:10:27+08:00] Compressing package 'github.com/0xBloctopus/solana-package' at '.' for upload 
+[36mINFO[0m[2026-10-28T18:10:27+08:00] Kurtosis CLI is running in a non interactive terminal. Everything will work but progress information and the progress bar will not be displayed. 
+
+Container images used in this run:
+> solana-diff/firedancer:full-a1f6a32 - locally cached
+> solana-diff/jito-solana:4.3.0-jito-amd64 - locally cached
+> solana-diff/agave-validator:4.3.0-amd64 - locally cached
+> solana-diff/sig:v0.2.0-amd64 - locally cached
+
+Printing a message
+Parsing multi-client input parameters
+
+Printing a message
+Launching multi-client shared-genesis participant network
+
+Printing a message
+Building shred-stream files-artifact from SIG image 'solana-diff/sig:v0.2.0-amd64' (for mounting on bootstrap)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+total 125088
+drwxr-xr-x 2 root root      4096 Oct 28 10:10 .
+drwxrwxrwt 1 root root      4096 Oct 28 10:10 ..
+-rwxr-xr-x 1 root root 128079056 Oct 28 08:10 shred-stream
+[shred-stream-artifact] staged shred-stream binary
+
+--------------------
+
+Printing a message
+Built shred-stream files-artifact: shred-stream-bin
+
+Printing a message
+Generating shared genesis (single run_sh)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+[genesis] keygen identities/votes/stakes/faucet/tip/merkle/recipient
+[genesis] running solana-genesis (two bootstrap validators plus staked Firedancer account)
+lamports_per_byte_year is deprecated and will be removed in a future release
+rent_exemption_threshold is deprecated and will be removed in a future release
+rent_burn_percentage is deprecated and will be removed in a future release
+[genesis] genesis_hash=5cX8Pd86aSvSUp7sFwGCZvhfttUftM2wcUVdEa3mjjbJ shred_version=39005
+[genesis] meta.env written. Contents:
+GENESIS_HASH=5cX8Pd86aSvSUp7sFwGCZvhfttUftM2wcUVdEa3mjjbJ
+SHRED_VERSION=39005
+BOOTSTRAP_IDENTITY=7KAZPmnT9rXxoQE1WxNQ4S1q4Rfffev7w7nkf8z4sBxM
+BOOTSTRAP_VOTE=F6623w8s3p9HSTCUctRLWM35n1Nh73dk6dUQRoCwFdmL
+BOOTSTRAP_STAKE=3C1hanKHThqfh4Bz6ujHD7ozUUvmKe25Mj26tDnK8eLm
+JOINER_IDENTITY=CXqi96LDettJL1D1zSN491otYqn3LG6GpBRGLn3YvKwD
+JOINER_VOTE=EJo2AQHiqyRCF7zMZwNQBmPEPqH1uVzb3QisqkLAhdK3
+JOINER_STAKE=4dW5SiB6BZRiQUuH4inn69pDAEUHJFAi6Ej9qcf33WDF
+FIREDANCER_IDENTITY=DdgSa3jD9KJUKdMzZrEAYsh7TxaWTyQyKdi7Zkh9n1cQ
+FIREDANCER_VOTE=38w2SpJo9a18Dv49SbyA1iJG9TRZrdQDAH7sdaxLP2Uy
+FIREDANCER_STAKE=28YvNmPEUBkLRvBZfCrELpw3E4jANFHSvhCVgXr35SeA
+RECIPIENT=EEap6ryUfqPkHQf6nHb8UbrVMFv6F9RCFT4hJLRMXVbB
+TIP_PAYMENT=GfuoUh7pAUerRCXoTv5hXj584WwGcyDsTqMbh3SnUSJa
+TIP_DISTRIBUTION=76G55KTfbforBdkKwZSqLK2UVLjiF9b48Z6Y42W4QVPu
+MERKLE_AUTHORITY=AhSByEA1jaZWxU6MtnZeWG9f7KGwfc9drxRxtmB9Bhnk
+BOOTSTRAP_BLS=74bVNL4UbV6V2XJC1M43sARvJF55TduxBH5avJ9P6DxepPDqZRabiTtNFw3nPmxotJ
+JOINER_BLS=62DmE9Rk2Lhf9Yh4HiMDiATsDSeXNkdzPArUpuZpmYZWUuu442Y7LRp7eZYG9dLF4X
+FIREDANCER_BLS=5tFU8MAS4nf3swqphvRU8hgo6SeR7wKnHxpaFAY9NBUgHMPVsHQdmHRkJNS2kPZfCc
+[genesis] DONE
+
+--------------------
+
+Printing a message
+Genesis artifact 'solana-genesis-data' produced
+
+Printing a message
+Launching bank-hash probe 'bank-hash-probe' (privileged; captures slot-0 bank hash)
+
+Adding service with name 'bank-hash-probe' and image 'solana-diff/agave-validator:4.3.0-amd64'
+Service 'bank-hash-probe' added with service UUID 'bef701170ba74590ac8305e084a72156'
+
+Printing a message
+Bank-hash probe container started (sleep infinity, privileged).
+
+Executing command on service 'bank-hash-probe'
+Command returned with exit code '0' and the following output:
+--------------------
+[probe] my_ip=172.16.0.6
+[probe] validator pid=17
+BANK_HASH=7Ak6X9jUJCkPne32dsYz7tXkz1MCMAadxef27kc1a9XJ
+[probe] captured bank-0 hash=7Ak6X9jUJCkPne32dsYz7tXkz1MCMAadxef27kc1a9XJ
+
+--------------------
+
+Executing command on service 'bank-hash-probe'
+Command returned with exit code '0' and the following output: 7Ak6X9jUJCkPne32dsYz7tXkz1MCMAadxef27kc1a9XJ
+
+Printing a message
+Bank-hash probe captured slot-0 bank hash: 7Ak6X9jUJCkPne32dsYz7tXkz1MCMAadxef27kc1a9XJ
+
+Stopping service 'bank-hash-probe'
+Service 'bank-hash-probe' stopped
+
+Printing a message
+Launching validator 'val-bootstrap' (role=voting-bootstrap, image=solana-diff/jito-solana:4.3.0-jito-amd64)
+
+Adding service with name 'val-bootstrap' and image 'solana-diff/jito-solana:4.3.0-jito-amd64'
+Service 'val-bootstrap' added with service UUID 'd3030fe470cd429b8ebb48c2473f9755'
+
+Printing a message
+Validator 'val-bootstrap' launched; rpc=http://val-bootstrap:8899 ws=ws://val-bootstrap:8900
+
+Printing a message
+Launching validator 'val-joiner' (role=voting-joiner, image=solana-diff/agave-validator:4.3.0-amd64)
+
+Adding service with name 'val-joiner' and image 'solana-diff/agave-validator:4.3.0-amd64'
+Service 'val-joiner' added with service UUID '3a630785cd4a40fba3ae4ad63c96161a'
+
+Printing a message
+Validator 'val-joiner' launched; rpc=http://val-joiner:8899 ws=ws://val-joiner:8900
+
+Adding service with name 'val-firedancer' and image 'solana-diff/firedancer:full-a1f6a32'
+Service 'val-firedancer' added with service UUID '5e1dbabc591c4855a451170e8cd3a4ce'
+
+Printing a message
+Extracting real leader schedule from bootstrap RPC via run_sh
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+[schedule] rpc ready=1 after 10 s
+[schedule] lines=432000 (expected 432000)
+[schedule] OK: 0.. + 431999 + , 432000 lines
+0 CXqi96LDettJL1D1zSN491otYqn3LG6GpBRGLn3YvKwD
+1 CXqi96LDettJL1D1zSN491otYqn3LG6GpBRGLn3YvKwD
+431999 7KAZPmnT9rXxoQE1WxNQ4S1q4Rfffev7w7nkf8z4sBxM
+
+--------------------
+
+Printing a message
+Built leader-schedule files-artifact: leader-schedule
+
+Printing a message
+Launching SIG observer 'sig-observer' (image=solana-diff/sig:v0.2.0-amd64, NON-VOTING observer; cluster=development, functional path skip_on_cold_start=False)
+
+Adding service with name 'sig-observer' and image 'solana-diff/sig:v0.2.0-amd64'
+Service 'sig-observer' added with service UUID '652c930766af43e884c1401c96ccc81f'
+
+Printing a message
+SIG observer container started (sleep infinity, privileged, schedule mounted).
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output:
+--------------------
+--- binary ---
+-rwxr-xr-x 1 root root 28142288 Oct 28 08:10 /opt/sig/bin/sig
+--- BUILD-INFO ---
+commit=0c1e96c1ef335ecf9f62e337477faf5bdab0d83a
+fork=yes(Alleysira)
+upstream=Syndica/sig
+fork_diff=main branch; 5 tracked deviation files + DEVIATIONS.md (development observer path)
+upstream_base=b5026c60fe56b51edd79131115b7e741449d6b2e(byte-identical-to-upstream-main)
+zig=0.15.2
+target=x86_64-linux-gnu.2.36
+runtime_platform=linux/amd64
+build_flags=-Dallow-no-sha -Dallow-no-avx512
+client=SIG-v2-observer-non-voting
+note=tracked-deviation-build-see-DEVIATIONS-md
+0c1e96c1 sig v2: bound shred_receiver slot range to the snapshot slot (deviation 5)
+--- schedule ---
+432000 /var/lib/sig/schedule/schedule.txt
+0 CXqi96LDettJL1D1zSN491otYqn3LG6GpBRGLn3YvKwD
+1 CXqi96LDettJL1D1zSN491otYqn3LG6GpBRGLn3YvKwD
+
+--------------------
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output:
+--------------------
+[sig-observer] wrote /var/lib/sig/config.zon (skip_on_cold_start=false)
+[sig-observer] advertise_ip=172.16.0.12 shred_version=39005 entrypoint=val-bootstrap:8001
+.{
+    .sandboxing_mode = .threaded,
+
+    .cluster = .development,
+    .leader_schedule_file = "/var/lib/sig/schedule/schedule.txt",
+    .gossip = .{
+        .port = 8001,
+        .advertise_tvu_port = true,
+        .advertise_ip = "172.16.0.12",
+        .development_entrypoints = .{"val-bootstrap:8001"},
+    },
+    .shred_network = .{
+        .recv_port = 8002,
+        .shred_version = 39005,
+    },
+    .telemetry = .{
+        .port = 9110,
+        .log_level = .info,
+    },
+    .snapshot = .{
+        .folder = "/var/lib/sig/validator",
+        .known_validators = .{"*"},
+        .skip_on_cold_start = false,
+    },
+    .accounts_db = .{
+        .file = "/var/lib/sig/validator/accounts.db",
+        .rooted = .{ .gb = 1 },
+        .unrooted = .{ .gb = 1 },
+    },
+}
+
+--------------------
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output:
+--------------------
+[sig-observer] launched sig pid=35
+[sig-observer] sig exited within 45s (NOT started)
+=== sig.log (first 120 lines) ===
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="accounts_db loaded - servicing replay requests"
+2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .validate_chained_block_id_hardcoded"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .validate_chained_block_id_2_hardcoded"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .upgrade_bpf_stake_program_to_v5"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .enable_sha512_syscall"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .set_lamports_per_byte_to_6333"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .set_lamports_per_byte_to_5080"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .loader_v3_minimum_extend_program_size"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .commission_rate_in_basis_points"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .block_revenue_sharing"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .vote_account_initialize_v2"
+mplete_shreds"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .create_account_allow_prefund"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .replace_spl_token_with_p_token"
+accounts_db message="Feature(active) .static_instruction_limit_hardcoded"
+ble_vote_address_leader_schedule_hardcoded"
+0:11:23.705Z level=info scope=main service=accounts_db message="Feature(active) .migrate_stake_program_to_core_bpf_hardcoded"
+oof_program_enabled"
+ error: NoBlockhashesInSnapshot
+error: Error trace:
+/src/sig/v2/services/replay.zig:327:46: 0x1804d48 in bootstrap (replay-service)
+/src/sig/v2/services/replay.zig:143:5: 0x17fffba in serviceMain (replay-service)
+=== sig.log (last 40 lines) ===
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="accounts_db loaded - servicing replay requests"
+2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .validate_chained_block_id_hardcoded"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .validate_chained_block_id_2_hardcoded"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .upgrade_bpf_stake_program_to_v5"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .enable_sha512_syscall"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .set_lamports_per_byte_to_6333"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .set_lamports_per_byte_to_5080"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .loader_v3_minimum_extend_program_size"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .commission_rate_in_basis_points"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .block_revenue_sharing"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .vote_account_initialize_v2"
+mplete_shreds"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .create_account_allow_prefund"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .replace_spl_token_with_p_token"
+accounts_db message="Feature(active) .static_instruction_limit_hardcoded"
+ble_vote_address_leader_schedule_hardcoded"
+0:11:23.705Z level=info scope=main service=accounts_db message="Feature(active) .migrate_stake_program_to_core_bpf_hardcoded"
+oof_program_enabled"
+ error: NoBlockhashesInSnapshot
+error: Error trace:
+/src/sig/v2/services/replay.zig:327:46: 0x1804d48 in bootstrap (replay-service)
+/src/sig/v2/services/replay.zig:143:5: 0x17fffba in serviceMain (replay-service)
+
+--------------------
+
+Printing a message
+SIG observer 'sig-observer' launched (NON-VOTING; evidence classified after shred-stream)
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output: 33
+
+Printing a message
+Running shred-stream on bootstrap → sig over window (snapshot slot)..(snapshot slot + 64)
+
+Executing command on service 'val-bootstrap'
+Command returned with exit code '0' and the following output:
+--------------------
+[shred-stream] window 33..97 (snapshot start=33)
+[shred-stream] sig-observer resolved to 172.16.0.12
+-rwxr-xr-x 1 root root 128079056 Oct 28 08:10 /opt/shred-stream/shred-stream
+/data/bootstrap-ledger/rocksdb
+[shred-stream] launched pid=1116 target=172.16.0.12:8002 window=33..97
+=== shred-stream.log (first 30 lines) ===
+shred-stream config:
+  ledger: /data/bootstrap-ledger
+  rocksdb: /data/bootstrap-ledger/rocksdb
+  target: 172.16.0.12:8002
+  start_slot: 33
+  end_slot: 97
+  rate_hz: 100
+  test_mode: linear
+  seed: null
+  dry_run: false
+  column_families:
+    meta: present
+    data_shred: present
+    code_shred: present
+slot=53 slots=18 produced=8288 sent=96 produce_pps=8288 send_pps=96 queue=8192/8192 producer_backpressured=true net_idle=true rate_hz=100
+
+--------------------
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' with no output
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output:
+--------------------
+SIG_EVIDENCE_LEVEL=not_started
+SIG_PID=35
+SIG_LOG_BYTES=2172
+=== sig.log tail (60) ===
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="accounts_db loaded - servicing replay requests"
+2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .validate_chained_block_id_hardcoded"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .validate_chained_block_id_2_hardcoded"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .upgrade_bpf_stake_program_to_v5"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .enable_sha512_syscall"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .set_lamports_per_byte_to_6333"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .set_lamports_per_byte_to_5080"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .loader_v3_minimum_extend_program_size"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .commission_rate_in_basis_points"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .block_revenue_sharing"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .vote_account_initialize_v2"
+mplete_shreds"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .create_account_allow_prefund"
+time=2026-10-28T10:11:23.706Z level=info scope=main service=accounts_db message="Feature(active) .replace_spl_token_with_p_token"
+accounts_db message="Feature(active) .static_instruction_limit_hardcoded"
+ble_vote_address_leader_schedule_hardcoded"
+0:11:23.705Z level=info scope=main service=accounts_db message="Feature(active) .migrate_stake_program_to_core_bpf_hardcoded"
+oof_program_enabled"
+ error: NoBlockhashesInSnapshot
+error: Error trace:
+/src/sig/v2/services/replay.zig:327:46: 0x1804d48 in bootstrap (replay-service)
+/src/sig/v2/services/replay.zig:143:5: 0x17fffba in serviceMain (replay-service)
+
+--------------------
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output: not_started
+
+Printing a message
+SIG observer 'sig-observer' classified evidence_level=not_started (NON-VOTING; observer only)
+
+Printing a message
+Participant network launched: bootstrap=val-bootstrap (Jito, voting), joiner=val-joiner (Agave, voting), sig=sig-observer (NON-VOTING observer, evidence=not_started), shred-stream ran inside bootstrap → sig over a bounded window from SIG's snapshot slot
+
+Printing a message
+Multi-client shared-genesis network launched.
+
+Printing a message
+  Bootstrap (voting): http://val-bootstrap:8899
+
+Printing a message
+  Joiner  (voting): http://val-joiner:8899
+
+Printing a message
+  Firedancer (voting): val-firedancer
+
+Printing a message
+  SIG     (NON-VOTING observer, evidence=not_started)
+
+Printing a message
+Slot verifier: waiting for all three voting validators non-delinquent, then slot >= 20
+
+Waiting for at most '15m0s' for service 'val-bootstrap' to reach a certain state
+Wait took 1 tries (224.333292ms in total). Assertion passed with following:
+Command returned with exit code '0' with no output
+
+Printing a message
+All three voting validators are non-delinquent with lastVote>0.
+
+Waiting for at most '15m0s' for service 'val-bootstrap' to reach a certain state
+Wait took 1 tries (202.735255ms in total). Assertion passed with following:
+Command returned with exit code '0' and the following output:
+--------------------
+slot=193
+
+--------------------
+
+Printing a message
+Slot >= 20 reached.
+
+Executing command on service 'val-joiner'
+Command returned with exit code '0' and the following output:
+--------------------
+agave-validator 4.3.0 (src:825efd18; feat:c9ad34d2, client:Agave)
+
+--------------------
+
+Executing command on service 'val-firedancer'
+Command returned with exit code '0' and the following output:
+--------------------
+0.1.1 (a1f6a32ff464ec265c4b5127fe9afedf7c143cb1)
+
+--------------------
+
+Executing command on service 'val-bootstrap'
+There was an error executing Starlark code 
+An error occurred executing instruction (number 53) at github.com/0xBloctopus/solana-package/src/verification/slot_verifier.star[379:31]:
+  exec(service_name="val-bootstrap", recipe=ExecRecipe(command=["bash", "-c", "set -uo pipefail\nexport PATH=\"/opt/jito/bin:/opt/agave/bin:$PATH\"\nsource /data/meta.env\n\nRPC_BS=\"http://val-bootstrap:8899\"\nRPC_JOIN=\"http://val-joiner:8899\"\nSLOTS_TARGET=20\nJOIN_VERSION=\"{{kurtosis:c05b27b5c8a64b25af5ea3e356da6fef:output.runtime_value}}\"\nFIREDANCER_VERSION=\"{{kurtosis:e7eacd0505d14f8e9045eafa092c477a:output.runtime_value}}\"\n# Strip any trailing newline from the joiner version (passed from\n# Starlark; Starlark .strip() should remove it, but a residual newline\n# would land inside the JSON string and make it invalid JSON).\nJOIN_VERSION=$(printf '%s' \"$JOIN_VERSION\" | tr -d '\\n\\r')\nBANK_HASH=\"{{kurtosis:ab190e3c891345669f5448af1700ca9a:output.runtime_value}}\"\nSIG_LEVEL=\"{{kurtosis:0b5a5bef01ab4b99bc16828b06b40f2e:output.runtime_value}}\"\n\nbs_identity=\"$BOOTSTRAP_IDENTITY\"\njoin_identity=\"$JOINER_IDENTITY\"\nbs_vote=\"$BOOTSTRAP_VOTE\"\njoin_vote=\"$JOINER_VOTE\"\nfiredancer_identity=\"$FIREDANCER_IDENTITY\"\nfiredancer_vote=\"$FIREDANCER_VOTE\"\n\n# Slot range + shared-genesis proof (genesis-hash from BOTH nodes must match).\nslot_start=$(solana --url \"$RPC_BS\" slot | tr -d '[:space:]')\nbs_genesis_hash=$(solana --url \"$RPC_BS\" genesis-hash | tr -d '[:space:]')\njoin_genesis_hash=$(solana --url \"$RPC_JOIN\" genesis-hash | tr -d '[:space:]')\nif [[ -z \"$bs_genesis_hash\" || \"$bs_genesis_hash\" != \"$join_genesis_hash\" ]]; then\n  echo \"[verifier] FATAL: genesis hash mismatch: bs=$bs_genesis_hash join=$join_genesis_hash\" >&2; exit 1; fi\n\n# Brief window for slots to advance, then prove advancement.\nsleep 3\nslot_end=$(solana --url \"$RPC_BS\" slot | tr -d '[:space:]')\n[[ \"$slot_end\" -ge \"$SLOTS_TARGET\" ]] || { echo \"[verifier] FATAL: slot $slot_end < $SLOTS_TARGET\" >&2; exit 1; }\n\n# Cross-node finalized transfer: submit on bootstrap, confirm on joiner.\n# Use --output json-compact (same source as smoke-shared-genesis.sh:240)\n# so the signature is on a stable single-line JSON field; extract jq-free\n# with grep (the line looks like {\"signature\":\"<sig>\",...}).\n# RETRY: a fresh cluster can transiently reject the first transfer right\n# after slot_target is reached (blockhash not yet rooted, or the bank is\n# still settling). Retry up to 6 times (30s) before declaring failure —\n# this is a cluster-warmup artifact, NOT a correctness gap (the transfer\n# succeeds once the cluster stabilizes; verified during the 2026-10-02\n# run: the first attempt failed with 'insufficient funds' at slot 652,\n# a manual retry at slot 1649 succeeded with a valid signature).\n#\n# set -e NOTE: a failing `solana transfer` exits non-zero, and under\n# `set -euo pipefail` the `transfer=$(solana ...)` assignment propagates\n# that non-zero exit and aborts the script BEFORE the retry loop runs\n# (the observed symptom: exit 1, no output). Append `|| transfer=\"\"` so\n# a failed transfer attempt sets transfer to the empty string and the\n# loop's `[[ -n $signature ]] && break` / retry logic actually executes.\nrecipient_pub=\"$RECIPIENT\"\nsignature=\"\"\ntransfer=\"\"\nfor _ in $(seq 1 6); do\n  transfer=$(solana --url \"$RPC_BS\" --keypair /data/bootstrap-identity.json \\\n    --commitment finalized transfer \"$recipient_pub\" 1 --allow-unfunded-recipient --output json-compact 2>&1) || transfer=\"\"\n  signature=$(echo \"$transfer\" | grep -o '\"signature\":\"[^\"]*\"' | head -n1 | sed 's/\"signature\":\"//;s/\"$//') || true\n  [[ -n \"$signature\" ]] && break\n  echo \"[verifier] transfer attempt failed (will retry): $transfer\" >&2\n  sleep 5\ndone\n[[ -n \"$signature\" ]] || { echo \"[verifier] FATAL: no signature after 6 transfer attempts; last output: $transfer\" >&2; exit 1; }\nrecipient_lamports=$(solana --url \"$RPC_JOIN\" --commitment finalized \\\n  balance \"$recipient_pub\" --lamports | awk '{print $1}')\n[[ \"$recipient_lamports\" =~ ^[0-9]+$ && \"$recipient_lamports\" -ge 1000000000 ]] || { echo \"[verifier] FATAL: recipient balance $recipient_lamports not >= 1 SOL\" >&2; exit 1; }\n\n# Capture the human-readable validators + gossip tables as separate\n# evidence files (they contain newlines — NOT inlined into the JSON).\nsolana --url \"$RPC_BS\" validators 2>/dev/null > /data/validators.txt\nsolana --url \"$RPC_BS\" gossip 2>/dev/null > /data/gossip.txt\ncurrent_count=$(awk -v first=\"$bs_identity\" -v second=\"$join_identity\" -v third=\"$firedancer_identity\" '\n  $1 == \"!\" { next }\n  { for (i=1;i<=NF;i++) if ($i==first||$i==second||$i==third) { c++; break } }\n  END { print c + 0 }' /data/validators.txt)\n[[ \"$current_count\" == \"3\" ]] || { echo \"[verifier] FATAL: a voting validator is delinquent at evidence capture (current=$current_count)\" >&2; exit 1; }\n\n# Count our three voting identities in the gossip table (column-agnostic — the\n# gossip table also pads fields, so $1 is not the identity; scan all fields).\ngossip_count=$(awk -v first=\"$bs_identity\" -v second=\"$join_identity\" -v third=\"$firedancer_identity\" '\n  /Identity/ { in_hdr=1; next }\n  in_hdr { for (i=1;i<=NF;i++) if ($i==first||$i==second||$i==third){c++;break} }\n  END { print c + 0 }' /data/gossip.txt)\n[[ \"$gossip_count\" == \"3\" ]] || { echo \"[verifier] FATAL: gossip_count=$gossip_count (expected 3)\" >&2; exit 1; }\n\n# Total gossip nodes seen by the bootstrap. Three voting validators plus\n# the SIG observer = 4 when SIG has JOINED the shared-genesis gossip view.\n# This is the authoritative 'joined' signal per AGENTS.md (\"the node\n# appeared in the shared-genesis gossip/network view\"): it is read from a\n# PEER (the bootstrap), not from SIG's own logs. The gossip table's last\n# line is 'Nodes: N'.\ngossip_nodes=$(awk -F\": \" \"/^Nodes:/ {print \\$2}\" /data/gossip.txt)\ngossip_nodes=$(printf \"%s\" \"$gossip_nodes\" | tr -d \"[:space:]\")\nif [[ -z \"$gossip_nodes\" ]]; then gossip_nodes=0; fi\n# Resolve SIG's service IP and require that exact peer in gossip.\nsig_in_gossip=false\nsig_ip=$(getent hosts sig-observer | awk '{print $1}' | head -n1)\nif [[ -n \"$sig_ip\" ]] && awk -v ip=\"$sig_ip\" '$1==ip { found=1 } END { exit !found }' /data/gossip.txt; then sig_in_gossip=true; fi\n[[ \"$sig_in_gossip\" == \"true\" ]] || { echo \"[verifier] FATAL: SIG absent from peer gossip view\" >&2; exit 1; }\necho \"[verifier] gossip_nodes=$gossip_nodes sig_in_gossip=$sig_in_gossip\"\n\nbs_version=$(agave-validator --version 2>/dev/null | tr -d '\\r')\n\n# Assemble the evidence JSON with printf (single { } braces — valid JSON).\nnow=$(date -u +%Y-%m-%dT%H:%M:%SZ)\nevidence=$(printf '{\"verifiedAt\":\"%s\",\"topology\":\"shared-genesis-multi-client\",\"genesisHash\":\"%s\",\"shredVersion\":\"%s\",\"bankHash\":\"%s\",\"slotsTarget\":%s,\"votingValidators\":[{\"role\":\"bootstrap\",\"identity\":\"%s\",\"vote\":\"%s\",\"binaryVersion\":\"%s\"},{\"role\":\"joiner\",\"identity\":\"%s\",\"vote\":\"%s\",\"binaryVersion\":\"%s\"},{\"role\":\"firedancer\",\"identity\":\"%s\",\"vote\":\"%s\",\"binaryVersion\":\"%s\"}],\"sigObserver\":{\"evidenceLevel\":\"%s\",\"voting\":false,\"inGossipView\":%s},\"validatorsFile\":\"/data/validators.txt\",\"gossipFile\":\"/data/gossip.txt\",\"gossipCount\":%s,\"gossipNodes\":%s,\"slots\":{\"start\":%s,\"end\":%s},\"transfer\":{\"signature\":\"%s\",\"recipient\":\"%s\",\"recipientLamports\":\"%s\"}}' \\\n  \"$now\" \"$bs_genesis_hash\" \"$SHRED_VERSION\" \"$BANK_HASH\" \"$SLOTS_TARGET\" \\\n  \"$bs_identity\" \"$bs_vote\" \"$bs_version\" \"$join_identity\" \"$join_vote\" \"$JOIN_VERSION\" \\\n  \"$firedancer_identity\" \"$firedancer_vote\" \"$FIREDANCER_VERSION\" \\\n  \"$SIG_LEVEL\" \"$sig_in_gossip\" \"$gossip_count\" \"$gossip_nodes\" \"$slot_start\" \"$slot_end\" \\\n  \"$signature\" \"$recipient_pub\" \"$recipient_lamports\")\n[[ -n \"$evidence\" ]] || { echo \"[verifier] FATAL: empty evidence JSON\" >&2; exit 1; }\n\necho \"$evidence\" | tee /data/evidence.json\necho \"=== EVIDENCE_JSON_START ===\"\necho \"$evidence\"\necho \"=== EVIDENCE_JSON_END ===\"\necho \"[verifier] OK slot_start=$slot_start slot_end=$slot_end gossip_count=$gossip_count bs_version=$bs_version join_version=$JOIN_VERSION\""]), acceptable_codes=[0])
+  Caused by: Exec returned exit code '1' that is not part of the acceptable status codes '[0]', with output:
+    "[verifier] transfer attempt failed (will retry): \n[verifier] FATAL: SIG absent from peer gossip view\n"
+
+Error encountered running Starlark code.
+
+⭐ us on GitHub - https://github.com/kurtosis-tech/kurtosis
+[36mINFO[0m[2026-10-28T18:12:43+08:00] =========================================================== 
+[36mINFO[0m[2026-10-28T18:12:43+08:00] ||          Created enclave: solana-four-client          || 
+[36mINFO[0m[2026-10-28T18:12:43+08:00] =========================================================== 
+Name:            solana-four-client
+UUID:            44ca6da207b2
+Status:          RUNNING
+Creation Time:   Wed, 28 Oct 2026 18:10:24 CST
+Flags:           
+
+========================================= Files Artifacts =========================================
+UUID           Name
+ea3006728264   leader-schedule
+808409eb7bde   shred-stream-bin
+be5221e23836   solana-genesis-data
+
+========================================== User Services ==========================================
+UUID           Name              Ports                                 Status
+bef701170ba7   bank-hash-probe   <none>                                STOPPED
+652c930766af   sig-observer      <none>                                RUNNING
+d3030fe470cd   val-bootstrap     rpc: 8899/tcp -> 127.0.0.1:32854      RUNNING
+                                 rpc-ws: 8900/tcp -> 127.0.0.1:32855   
+5e1dbabc591c   val-firedancer    <none>                                RUNNING
+3a630785cd4a   val-joiner        rpc: 8899/tcp -> 127.0.0.1:32856      RUNNING
+                                 rpc-ws: 8900/tcp -> 127.0.0.1:32857   
+

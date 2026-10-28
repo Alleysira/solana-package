@@ -1,0 +1,118 @@
+[36mINFO[0m[2026-10-28T18:59:48+08:00] otel ClickHouse running at http://172.17.0.4:8123 (native: 172.17.0.4:9000) 
+[36mINFO[0m[2026-10-28T18:59:48+08:00] otel collector running at http://172.17.0.5:4317 (http: http://172.17.0.5:4318) 
+[36mINFO[0m[2026-10-28T18:59:48+08:00] Executing Starlark package at '/home/jie.ma/sol-diff-testing/solana-package' as the passed argument '.' looks like a directory 
+[36mINFO[0m[2026-10-28T18:59:49+08:00] Compressing package 'github.com/0xBloctopus/solana-package' at '.' for upload 
+[36mINFO[0m[2026-10-28T18:59:49+08:00] Kurtosis CLI is running in a non interactive terminal. Everything will work but progress information and the progress bar will not be displayed. 
+
+Container images used in this run:
+> solana-diff/agave-validator:4.3.0-amd64 - locally cached
+> solana-diff/jito-solana:4.3.0-jito-amd64 - locally cached
+> solana-diff/network-verifier:agave-4.3.0-amd64-v1 - locally cached
+> solana-diff/sig:v0.2.0-amd64 - locally cached
+> solana-diff/firedancer:full-58b02033 - locally cached
+
+Printing a message
+
+Printing a message
+
+Running sh script
+
+Printing a message
+
+Running sh script
+
+Printing a message
+
+Printing a message
+
+Adding service with name 'bank-hash-probe' and image 'solana-diff/agave-validator:4.3.0-amd64'
+
+Printing a message
+
+Executing command on service 'bank-hash-probe'
+
+Executing command on service 'bank-hash-probe'
+
+Printing a message
+
+Stopping service 'bank-hash-probe'
+
+Printing a message
+
+Adding service with name 'val-bootstrap' and image 'solana-diff/jito-solana:4.3.0-jito-amd64'
+
+Printing a message
+
+Printing a message
+
+Adding service with name 'val-joiner' and image 'solana-diff/agave-validator:4.3.0-amd64'
+
+Printing a message
+
+Adding service with name 'val-firedancer' and image 'solana-diff/firedancer:full-58b02033'
+
+Uploading file '../../verification' to files artifact 'network-verification-code'
+
+Adding service with name 'network-verifier' and image 'solana-diff/network-verifier:agave-4.3.0-amd64-v1'
+
+Executing command on service 'network-verifier'
+
+Storing files from service 'network-verifier' at path '/data/prepared-snapshot' to files artifact with name 'sig-initial-snapshot'
+
+Printing a message
+
+Running sh script
+
+Printing a message
+
+Adding service with name 'sig-observer' and image 'solana-diff/sig:v0.2.0-amd64'
+
+Printing a message
+
+Executing command on service 'sig-observer'
+
+Executing command on service 'sig-observer'
+
+Executing command on service 'sig-observer'
+
+Executing command on service 'sig-observer'
+
+Printing a message
+
+Executing command on service 'sig-observer'
+
+Executing command on service 'val-bootstrap'
+
+Executing command on service 'val-bootstrap'
+
+Executing command on service 'val-joiner'
+
+Executing command on service 'val-firedancer'
+
+Executing command on service 'sig-observer'
+
+Executing command on service 'network-verifier'
+
+Waiting for at most '30m0s' for service 'network-verifier' to reach a certain state
+
+Storing files from service 'network-verifier' at path '/data/verification' to files artifact with name 'network-verification-evidence'
+
+Executing command on service 'network-verifier'
+
+Executing command on service 'sig-observer'
+
+Executing command on service 'network-verifier'
+
+⭐ us on GitHub - https://github.com/kurtosis-tech/kurtosis
+Name:            solana-four-client-check
+UUID:            ccb0f9585fcd
+Status:          RUNNING
+Creation Time:   Wed, 28 Oct 2026 18:56:26 CST
+Flags:           
+
+========================================= Files Artifacts =========================================
+UUID   Name
+
+========================================== User Services ==========================================
+UUID   Name   Ports   Status
+

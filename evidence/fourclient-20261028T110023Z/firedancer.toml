@@ -1,0 +1,54 @@
+name = "fd-local"
+user = "firedancer"
+telemetry = false
+[paths]
+base = "/tmp/firedancer"
+identity_key = "/data/firedancer-identity.json"
+vote_account = "/data/firedancer-vote.json"
+genesis = "/data/firedancer-ledger/genesis.bin"
+[gossip]
+entrypoints = ["172.16.0.7:8001"]
+host = "172.16.0.9"
+port = 8001
+[consensus]
+expected_genesis_hash = "8YjDdXiWW1WGVTQc4ePcHQMs6imJ6fWx8vLVxAtuyqZQ"
+expected_shred_version = 44604
+wait_for_vote_to_start_leader = false
+[snapshots]
+genesis_download = false
+incremental_snapshots = false
+wait_for_peers_timeout_seconds = 600
+[snapshots.sources]
+servers = ["http://172.16.0.7:8899"]
+[net]
+provider = "socket"
+interface = "eth0"
+bind_address = "172.16.0.9"
+[hugetlbfs]
+max_page_size = "huge"
+[accounts]
+max_accounts = 1048576
+[development.accdb]
+partition_size_gib = 1
+[tiles.rserve]
+shred_storage_limit_gib = 2
+[tiles.gui]
+enabled = false
+[tiles.rpc]
+rpc_listen_address = "0.0.0.0"
+[layout]
+net_tile_count = 1
+gossvf_tile_count = 1
+execle_tile_count = 1
+verify_tile_count = 1
+execrp_tile_count = 1
+snapdc_tile_count = 1
+snapin_tile_count = 1
+snapzp_tile_count = 1
+sign_tile_count = 2
+[development]
+sandbox = false
+[development.gossip]
+allow_private_address = true
+[development.genesis]
+validate_genesis_hash = false

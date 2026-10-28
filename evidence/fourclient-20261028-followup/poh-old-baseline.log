@@ -1,0 +1,5 @@
+Firedancer build directory is /src/firedancer/build/linux/gcc/x86_64/12.2.0
+CC	test_poh_full.o
+LD	test_poh_full (unit-test)
+bash: line 1: build/linux/gcc/x86_64/unit-test/test_poh_full: No such file or directory
+BASELINE_EXIT=127

@@ -1,0 +1,14 @@
+test_all_three_voters_required (test_verify_network.AcceptanceTests.test_all_three_voters_required) ... ok
+test_delinquent_validator_rejected (test_verify_network.AcceptanceTests.test_delinquent_validator_rejected) ... ok
+test_existing_balance_does_not_prove_transfer (test_verify_network.AcceptanceTests.test_existing_balance_does_not_prove_transfer) ... ok
+test_exited_sig_is_rejected_even_with_stale_gossip (test_verify_network.AcceptanceTests.test_exited_sig_is_rejected_even_with_stale_gossip) ... ok
+test_missing_or_invalid_json_is_not_success (test_verify_network.AcceptanceTests.test_missing_or_invalid_json_is_not_success) ... ok
+test_sig_gossip_identity (test_verify_network.AcceptanceTests.test_sig_gossip_identity) ... ok
+test_stalled_votes_roots_and_finality (test_verify_network.AcceptanceTests.test_stalled_votes_roots_and_finality) ... ok
+test_unfinalized_signature_is_rejected (test_verify_network.AcceptanceTests.test_unfinalized_signature_is_rejected) ... ok
+test_zero_root_rejected (test_verify_network.AcceptanceTests.test_zero_root_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.003s
+
+OK

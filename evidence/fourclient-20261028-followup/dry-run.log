@@ -1,0 +1,32 @@
+[36mINFO[0m[2026-10-28T18:56:26+08:00] otel ClickHouse running at http://172.17.0.4:8123 (native: 172.17.0.4:9000) 
+[36mINFO[0m[2026-10-28T18:56:26+08:00] otel collector running at http://172.17.0.5:4317 (http: http://172.17.0.5:4318) 
+[36mINFO[0m[2026-10-28T18:56:26+08:00] Creating a new enclave for Starlark to run inside... 
+[36mINFO[0m[2026-10-28T18:56:30+08:00] Enclave 'solana-four-client-check' created successfully 
+[36mINFO[0m[2026-10-28T18:56:30+08:00] Executing Starlark package at '/home/jie.ma/sol-diff-testing/solana-package' as the passed argument '.' looks like a directory 
+[36mINFO[0m[2026-10-28T18:56:30+08:00] Compressing package 'github.com/0xBloctopus/solana-package' at '.' for upload 
+[36mINFO[0m[2026-10-28T18:56:31+08:00] Kurtosis CLI is running in a non interactive terminal. Everything will work but progress information and the progress bar will not be displayed. 
+There was an error interpreting Starlark code 
+Evaluation error: '/src/verification/verification' doesn't exist in the package '0xBloctopus/solana-package'
+	at [github.com/0xBloctopus/solana-package/main.star:8:62]: run
+	at [github.com/0xBloctopus/solana-package/src/participant_network.star:26:44]: launch_participant_network
+	at [github.com/0xBloctopus/solana-package/src/verification/slot_verifier.star:5:29]: launch_verifier
+	at [0:0]: upload_files
+
+Error encountered running Starlark code in dry-run mode.
+
+⭐ us on GitHub - https://github.com/kurtosis-tech/kurtosis
+[36mINFO[0m[2026-10-28T18:56:31+08:00] ================================================================= 
+[36mINFO[0m[2026-10-28T18:56:31+08:00] ||          Created enclave: solana-four-client-check          || 
+[36mINFO[0m[2026-10-28T18:56:31+08:00] ================================================================= 
+Name:            solana-four-client-check
+UUID:            ccb0f9585fcd
+Status:          RUNNING
+Creation Time:   Wed, 28 Oct 2026 18:56:26 CST
+Flags:           
+
+========================================= Files Artifacts =========================================
+UUID   Name
+
+========================================== User Services ==========================================
+UUID   Name   Ports   Status
+

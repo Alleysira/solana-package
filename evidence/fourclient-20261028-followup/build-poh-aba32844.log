@@ -1,0 +1,809 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.firedancer-full
+#1 transferring dockerfile: 1.71kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/debian:bookworm-slim
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [builder 1/7] FROM docker.io/library/debian:bookworm-slim@sha256:99c0b25c46d0214d5a2091092e7908907dcaecd6a962cde0ac700acee222b6f3
+#4 resolve docker.io/library/debian:bookworm-slim@sha256:99c0b25c46d0214d5a2091092e7908907dcaecd6a962cde0ac700acee222b6f3 0.0s done
+#4 DONE 0.0s
+
+#5 [builder 2/7] RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl git build-essential clang cmake pkg-config libclang-dev libssl-dev libudev-dev zlib1g-dev protobuf-compiler iproute2 python3 gcc-12 g++-12 make && rm -rf /var/lib/apt/lists/*
+#5 CACHED
+
+#6 [builder 3/7] RUN git clone https://github.com/Alleysira/firedancer.git /src/firedancer && git -C /src/firedancer checkout "aba32844e6481b265ca29518a6fd71d2f96f13fe"
+#6 0.225 Cloning into '/src/firedancer'...
+#6 10.96 Note: switching to 'aba32844e6481b265ca29518a6fd71d2f96f13fe'.
+#6 10.96 
+#6 10.96 You are in 'detached HEAD' state. You can look around, make experimental
+#6 10.96 changes and commit them, and you can discard any commits you make in this
+#6 10.96 state without impacting any branches by switching back to a branch.
+#6 10.96 
+#6 10.96 If you want to create a new branch to retain commits you create, you may
+#6 10.96 do so (now or later) by using -c with the switch command. Example:
+#6 10.96 
+#6 10.96   git switch -c <new-branch-name>
+#6 10.96 
+#6 10.96 Or undo this operation with:
+#6 10.96 
+#6 10.96   git switch -
+#6 10.96 
+#6 10.96 Turn off this advice by setting config variable advice.detachedHead to false
+#6 10.96 
+#6 10.96 HEAD is now at aba32844e Keep sleep-mode transaction hashes separate from PoH ticks
+#6 DONE 11.7s
+
+#7 [builder 4/7] WORKDIR /src/firedancer
+#7 DONE 0.1s
+
+#8 [builder 5/7] RUN FD_AUTO_INSTALL_PACKAGES=1 ./deps.sh fetch check install
+#8 0.244 Submodule 'agave' (https://github.com/firedancer-io/agave.git) registered for path 'agave'
+#8 0.248 Cloning into '/src/firedancer/agave'...
+#8 26.89 Submodule path 'agave': checked out '535ec972e6f0037b6a4c5a5e98cff4597781e678'
+#8 26.89 [~] Checking for required DEB packages
+#8 26.93 [~] OK: DEB packages required for build are installed
+#8 26.93 [!] cargo is not in PATH
+#8 26.93 ./deps.sh: line 248: /root/.cargo/env: No such file or directory
+#8 26.93 [+] Installing rustup
+#8 28.26 info: downloading installer
+#8 28.60 info: profile set to minimal
+#8 28.60 info: default host tuple is x86_64-unknown-linux-gnu
+#8 28.60 info: syncing channel updates for 1.95.0-x86_64-unknown-linux-gnu
+#8 28.81 info: latest update on 2026-04-16 for version 1.95.0 (59807616e 2026-04-14)
+#8 28.81 info: downloading 3 components
+#8 38.07 info: default toolchain set to 1.95.0-x86_64-unknown-linux-gnu
+#8 38.07 
+#8 38.08   1.95.0-x86_64-unknown-linux-gnu installed - rustc 1.95.0 (59807616e 2026-04-14)
+#8 38.08 
+#8 38.08 
+#8 38.08 Rust is installed now. Great!
+#8 38.08 
+#8 38.08 To get started you may need to restart your current shell.
+#8 38.08 This would reload your PATH environment variable to include
+#8 38.08 Cargo's bin directory ($HOME/.cargo/bin).
+#8 38.08 
+#8 38.08 To configure your current shell, you need to source the
+#8 38.08 corresponding env file under $HOME/.cargo.
+#8 38.08 
+#8 38.08 Consider running the right command for your shell (note the leading DOT):
+#8 38.08 . "$HOME/.cargo/env" # For sh/ash/dash/pdksh/bash
+#8 38.08 cargo:rerun-if-env-changed=CC_x86_64-unknown-linux-gnu
+#8 38.08 CC_x86_64-unknown-linux-gnu = None
+#8 38.08 cargo:rerun-if-env-changed=CC_x86_64_unknown_linux_gnu
+#8 38.08 CC_x86_64_unknown_linux_gnu = None
+#8 38.08 cargo:rerun-if-env-changed=HOST_CC
+#8 38.08 HOST_CC = None
+#8 38.08 cargo:rerun-if-env-changed=CC
+#8 38.08 CC = None
+#8 38.08 cargo:rerun-if-env-changed=CC_ENABLE_DEBUG_OUTPUT
+#8 38.10 cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+#8 38.10 CRATE_CC_NO_DEFAULTS = None
+#8 38.10 cargo:rerun-if-env-changed=CFLAGS
+#8 38.10 CFLAGS = None
+#8 38.10 cargo:rerun-if-env-changed=HOST_CFLAGS
+#8 38.10 HOST_CFLAGS = None
+#8 38.10 cargo:rerun-if-env-changed=CFLAGS_x86_64_unknown_linux_gnu
+#8 38.10 CFLAGS_x86_64_unknown_linux_gnu = None
+#8 38.10 cargo:rerun-if-env-changed=CFLAGS_x86_64-unknown-linux-gnu
+#8 38.10 CFLAGS_x86_64-unknown-linux-gnu = None
+#8 DONE 41.9s
+
+#9 [builder 6/7] RUN source "$HOME/.cargo/env" 2>/dev/null || true; source activate MACHINE=linux_gcc_x86_64 CC=gcc-12; make -j8 firedancer test_poh_full
+#9 0.243 Firedancer build directory is /src/firedancer/build/linux/gcc/x86_64/12.2.0
+#9 0.410 CC	fd_blst_curve.o
+#9 0.411 INFO	info
+#9 0.411 CC	fd_blst_field.o
+#9 0.412 AS	assembly.o
+#9 0.412 CC	fd_rdisp.o
+#9 0.413 CC	fd_sched.o
+#9 0.413 CC	fd_replay_tile.o
+#9 0.414 CC	fd_vote_tracker.o
+#9 0.463 CC	fd_rpc_tile.o
+#9 0.598 CC	fd_gui.o
+#9 0.822 CC	fd_gui_shred.o
+#9 0.827 CC	fd_gui_printf.o
+#9 0.914 CC	fd_gui_peers.o
+#9 1.202 CC	fd_gui_config_parse.o
+#9 1.328 CC	fd_gui_tile.o
+#9 1.408 CC	fd_gui_store.o
+#9 2.408 CC	fd_gui_hist.o
+#9 2.947 CC	fd_reedsol_ppt_impl_33.o
+#9 2.951 CC	entropy_common.o
+#9 2.951 CC	error_private.o
+#9 2.971 CC	fd_reedsol_ppt_impl_40.o
+#9 3.054 CC	fd_reedsol_ppt_impl_45.o
+#9 3.065 CC	fse_decompress.o
+#9 3.102 CC	xxhash.o
+#9 3.306 CC	zstd_common.o
+#9 3.401 CC	fse_compress.o
+#9 3.413 CC	fd_reedsol_ppt_impl_50.o
+#9 3.456 CC	hist.o
+#9 3.537 CC	fd_reedsol_ppt_impl_55.o
+#9 3.608 CC	huf_compress.o
+#9 3.674 CC	zstd_compress.o
+#9 3.843 CC	fd_reedsol_ppt_impl_60.o
+#9 3.869 CC	fd_reedsol_ppt_impl_65.o
+#9 4.107 CC	zstd_compress_literals.o
+#9 4.686 CC	fd_reedsol_fft_impl_128_0.o
+#9 4.946 CC	fd_reedsol_fft_impl_128_128.o
+#9 5.156 CC	zstd_compress_sequences.o
+#9 5.240 CC	zstd_compress_superblock.o
+#9 5.392 CC	fd_reedsol_fft_impl_256_0.o
+#9 5.486 CC	zstd_double_fast.o
+#9 5.601 CC	fd_reedsol_ifft_impl_128_0.o
+#9 5.636 CC	zstd_fast.o
+#9 5.648 CC	fd_reedsol_ifft_impl_256_0.o
+#9 5.667 CC	fd_reedsol_fderiv_impl_128.o
+#9 6.131 CC	fd_reedsol_fderiv_impl_256.o
+#9 6.353 CC	zstd_ldm.o
+#9 6.451 CC	fd_reedsol.o
+#9 7.302 CC	fd_reedsol_encode_16.o
+#9 7.368 CC	zstd_opt.o
+#9 7.450 CC	fd_reedsol_encode_32.o
+#9 7.568 CC	zstd_preSplit.o
+#9 7.732 CC	fd_reedsol_encode_64.o
+#9 7.863 CC	fd_reedsol_encode_128.o
+#9 8.475 CC	adler32.o
+#9 8.477 CC	fd_reedsol_recover_16.o
+#9 8.560 CC	crc32.o
+#9 8.608 CC	deflate.o
+#9 8.657 CC	trees.o
+#9 8.931 CC	zutil.o
+#9 9.146 LD	fd_zstd_pack (tool)
+#9 9.146 LD	fd_gzip_pack (tool)
+#9 9.216 ZSTD	index.html.zst
+#9 9.252 CC	fd_reedsol_recover_32.o
+#9 9.291 GZIP	index.html.gz
+#9 9.294 ZSTD	version.zst
+#9 9.297 GZIP	version.gz
+#9 9.298 ZSTD	Chart-DA61kvjz.js.zst
+#9 9.300 GZIP	Chart-DA61kvjz.js.gz
+#9 9.560 ZSTD	NotoFlagsOnly.woff2.zst
+#9 9.593 GZIP	NotoFlagsOnly.woff2.gz
+#9 9.597 CC	fd_reedsol_recover_64.o
+#9 9.604 CC	fd_reedsol_recover_128.o
+#9 9.813 ZSTD	firedancer-D_J0EzUc.svg.zst
+#9 9.838 GZIP	firedancer-D_J0EzUc.svg.gz
+#9 9.860 ZSTD	firedancer_bam_circle_logo-CDCzUQI_.svg.zst
+#9 9.864 GZIP	firedancer_bam_circle_logo-CDCzUQI_.svg.gz
+#9 9.890 ZSTD	firedancer_circle_logo-D9jlxCje.svg.zst
+#9 9.896 GZIP	firedancer_circle_logo-D9jlxCje.svg.gz
+#9 9.917 ZSTD	firedancer_harmonic_circle_logo-BDGMe3Wt.svg.zst
+#9 9.922 GZIP	firedancer_harmonic_circle_logo-BDGMe3Wt.svg.gz
+#9 9.943 ZSTD	firedancer_logo-CrgwxzPk.svg.zst
+#9 9.948 GZIP	firedancer_logo-CrgwxzPk.svg.gz
+#9 9.969 ZSTD	frankendancer-0Top5G94.svg.zst
+#9 9.974 GZIP	frankendancer-0Top5G94.svg.gz
+#9 9.995 ZSTD	frankendancer_circle_logo-D5z79vwQ.svg.zst
+#9 10.00 GZIP	frankendancer_circle_logo-D5z79vwQ.svg.gz
+#9 10.02 ZSTD	frankendancer_harmonic_circle_logo-RW9Ak0Ky.svg.zst
+#9 10.03 GZIP	frankendancer_harmonic_circle_logo-RW9Ak0Ky.svg.gz
+#9 10.05 ZSTD	frankendancer_logo-CHyfJ772.svg.zst
+#9 10.06 GZIP	frankendancer_logo-CHyfJ772.svg.gz
+#9 10.08 ZSTD	index-Csl44Zj6.js.zst
+#9 10.08 GZIP	index-Csl44Zj6.js.gz
+#9 10.12 CC	fd_reedsol_recover_256.o
+#9 10.95 ZSTD	index-DUZVCM52.css.zst
+#9 11.06 GZIP	index-DUZVCM52.css.gz
+#9 11.42 CC	fd_reedsol_pi.o
+#9 11.46 ZSTD	inter-tight-latin-400-normal-BLrFJfvD.woff.zst
+#9 11.51 GZIP	inter-tight-latin-400-normal-BLrFJfvD.woff.gz
+#9 11.51 ZSTD	inter-tight-latin-400-normal-iW8qmuJY.woff2.zst
+#9 11.52 GZIP	inter-tight-latin-400-normal-iW8qmuJY.woff2.gz
+#9 11.52 ZSTD	privateYou-DnAsYVZD.svg.zst
+#9 11.52 GZIP	privateYou-DnAsYVZD.svg.gz
+#9 11.55 ZSTD	roboto-mono-latin-400-normal-DBZPkcnn.woff.zst
+#9 11.55 GZIP	roboto-mono-latin-400-normal-DBZPkcnn.woff.gz
+#9 11.55 ZSTD	roboto-mono-latin-400-normal-GekRknry.woff2.zst
+#9 11.56 GZIP	roboto-mono-latin-400-normal-GekRknry.woff2.gz
+#9 11.56 ZSTD	wsWorker-CrFyKQMK.js.zst
+#9 11.56 GZIP	wsWorker-CrFyKQMK.js.gz
+#9 12.18 CC	fd_vm.o
+#9 12.18 ZSTD	LICENSE_DEPENDENCIES.zst
+#9 12.18 GZIP	LICENSE_DEPENDENCIES.gz
+#9 12.28 CC	fd_vm_interp.o
+#9 12.54 CC	fd_vm_disasm.o
+#9 12.84 CC	fd_vm_trace.o
+#9 13.02 CC	fd_vm_syscall.o
+#9 13.14 CC	fd_vm_syscall_cpi.o
+#9 13.20 CC	fd_vm_syscall_hash.o
+#9 13.33 CC	fd_vm_syscall_crypto.o
+#9 13.86 CC	fd_vm_syscall_curve.o
+#9 13.88 CC	fd_vm_syscall_pda.o
+#9 14.56 CC	fd_vm_syscall_runtime.o
+#9 14.82 CC	fd_vm_syscall_util.o
+#9 14.86 CC	fse_compress.o
+#9 15.01 CC	hist.o
+#9 15.12 CC	huf_compress.o
+#9 15.23 CC	zstd_compress.o
+#9 15.33 CC	zstd_compress_literals.o
+#9 15.52 CC	zstd_compress_sequences.o
+#9 15.61 CC	zstd_compress_superblock.o
+#9 15.62 CC	zstd_double_fast.o
+#9 15.69 CC	zstd_fast.o
+#9 16.10 CC	zstd_ldm.o
+#9 16.23 CC	zstd_opt.o
+#9 16.30 CC	zstd_preSplit.o
+#9 16.40 CC	fd_pack.o
+#9 16.67 CC	fd_pack_rebate_sum.o
+#9 16.95 CC	fd_pack_tile.o
+#9 17.00 CC	fd_quic.o
+#9 17.03 CC	topology.o
+#9 17.66 CC	watch.o
+#9 18.19 CC	fd_forest.o
+#9 18.43 CC	fd_genesi_tile.o
+#9 18.83 CC	fd_motor_tile.o
+#9 18.88 CC	fd_snapct_tile.o
+#9 19.44 CC	fd_snapld_tile.o
+#9 19.46 CC	fd_snapdc_tile.o
+#9 19.57 CC	fd_snapin_tile.o
+#9 19.75 CC	fd_execrp_tile.o
+#9 19.77 CC	fd_snapmk_tile.o
+#9 20.13 CC	fd_snapzp_tile.o
+#9 20.52 CC	fd_snaprd_tile.o
+#9 20.57 CC	fd_snapsv_tile.o
+#9 20.85 CC	fd_solcap_tile.o
+#9 20.88 CC	fd_txsend_tile.o
+#9 20.93 CC	fd_repair_tile.o
+#9 21.37 CC	fd_rserve_tile.o
+#9 21.38 CC	fd_admin_tile.o
+#9 21.42 CC	fd_rotor_tile.o
+#9 21.64 CC	fd_resolv_tile.o
+#9 21.95 CC	fd_tower_tile.o
+#9 22.10 CC	fd_ipecho_tile.o
+#9 22.42 CC	fd_gossip_tile.o
+#9 22.53 CC	fd_gossvf_tile.o
+#9 22.66 CC	fd_poh_tile.o
+#9 22.77 CC	fd_votor_tile.o
+#9 23.01 CC	fd_execle_tile.o
+#9 23.37 CC	fd_quic_tile.o
+#9 23.54 CC	fd_bundle_tile.o
+#9 23.60 CC	fd_sock_tile.o
+#9 23.78 CC	fd_mlx5_tile.o
+#9 23.82 CC	fd_xdp_tile.o
+#9 23.91 CC	fd_diag_tile.o
+#9 24.04 CC	fd_mwaitx_tile.o
+#9 24.53 CC	fd_sign_tile.o
+#9 24.61 CC	fd_dedup_tile.o
+#9 24.94 CC	fd_event_tile.o
+#9 25.07 CC	fd_waker_tile.o
+#9 25.11 CC	fd_verify_tile.o
+#9 25.44 CC	fd_metric_tile.o
+#9 25.44 CC	fd_netlink_tile.o
+#9 25.51 CC	fd_shred_tile.o
+#9 25.53 CC	fd_accdb.o
+#9 25.55 CC	huf_decompress.o
+#9 25.65 CC	zstd_ddict.o
+#9 25.79 CC	zstd_decompress.o
+#9 26.22 CC	zstd_decompress_block.o
+#9 26.26 AS	huf_decompress_amd64.o
+#9 26.32 CC	fd_sha256.o
+#9 26.33 CC	fd_sha256_batch_avx.o
+#9 26.46 CC	fd_sha512.o
+#9 26.51 AS	fd_sha512_core_avx2.o
+#9 26.65 CC	fd_sha512_batch_avx.o
+#9 26.67 CC	fd_bn254.o
+#9 26.68 CC	fd_bn254_field.o
+#9 27.20 CC	fd_bn254_field_ext.o
+#9 27.36 CC	fd_bn254_fp12.o
+#9 27.55 CC	fd_bn254_g1.o
+#9 27.60 CC	fd_bn254_g2.o
+#9 27.65 CC	fd_bn254_g2_check.o
+#9 27.70 CC	fd_bn254_pairing.o
+#9 28.07 CC	fd_bn254_final_exp.o
+#9 28.20 CC	fd_poseidon.o
+#9 29.03 CC	fd_builtin_programs.o
+#9 29.46 CC	fd_bpf_loader_serialization.o
+#9 29.60 CC	fd_precompiles.o
+#9 29.93 CC	fd_bpf_loader_program.o
+#9 29.95 CC	fd_compute_budget_program.o
+#9 30.10 CC	fd_system_program.o
+#9 30.15 CC	fd_system_program_nonce.o
+#9 30.29 CC	fd_vote_program.o
+#9 30.52 CC	fd_zk_elgamal_proof_program.o
+#9 30.53 CC	fd_native_cpi.o
+#9 30.69 CC	fd_vote_codec.o
+#9 30.75 CC	fd_authorized_voters.o
+#9 30.91 CC	fd_vote_utils.o
+#9 30.92 CC	fd_vote_state_versioned.o
+#9 31.09 CC	fd_vote_state_v3.o
+#9 31.12 CC	fd_vote_state_v4.o
+#9 31.13 CC	fd_f25519.o
+#9 31.26 CC	fd_curve25519.o
+#9 31.30 CC	fd_curve25519_scalar.o
+#9 31.37 CC	fd_ed25519_user.o
+#9 31.37 CC	fd_x25519.o
+#9 31.52 CC	fd_ristretto255.o
+#9 31.59 CC	blocksort.o
+#9 31.69 CC	compress.o
+#9 31.72 CC	crctable.o
+#9 31.88 CC	decompress.o
+#9 31.91 CC	huffman.o
+#9 32.19 CC	randtable.o
+#9 32.29 CC	bzlib.o
+#9 32.32 CC	fd_stakes.o
+#9 32.32 CC	fd_vote_stakes.o
+#9 32.34 CC	fd_stake_delegations.o
+#9 32.74 CC	fd_collector_overrides.o
+#9 32.79 CC	fd_stat.o
+#9 32.90 CC	fd_circq.o
+#9 32.93 CC	fd_event_client.o
+#9 33.04 CC	fd_event_report.o
+#9 33.11 CC	fd_boot_report.o
+#9 33.14 CC	fd_event_gen.o
+#9 33.24 CC	fd_topo.o
+#9 33.50 CC	fd_topob.o
+#9 33.51 CC	fd_cpu_topo.o
+#9 33.72 CC	fd_topo_run.o
+#9 33.76 CC	fd_dns_resolve.o
+#9 33.90 CC	fd_blake3.o
+#9 34.04 CC	fd_blake3_sse41.o
+#9 34.09 CC	fd_blake3_avx2.o
+#9 34.27 CC	fd_chainer.o
+#9 34.58 CC	fd_stake_rewards.o
+#9 34.67 CC	fd_rewards.o
+#9 34.67 CC	fd_tower.o
+#9 34.86 CC	fd_tower_serdes.o
+#9 34.95 CC	fd_tower_stakes.o
+#9 34.98 CC	fd_shred_dest.o
+#9 35.01 CC	fd_shredder.o
+#9 35.13 CC	fd_stake_ci.o
+#9 35.13 CC	fd_fec_resolver.o
+#9 35.36 CC	fd_http_server.o
+#9 35.38 CC	fd_dump_pb.o
+#9 35.40 CC	fd_x509.o
+#9 35.46 CC	fd_toml.o
+#9 35.68 CC	fd_rangeproofs.o
+#9 35.87 CC	fd_log.o
+#9 35.92 CC	fd_alloc.o
+#9 35.98 CC	fd_pod.o
+#9 36.20 CC	fd_shmem_admin.o
+#9 36.33 CC	fd_sandbox.o
+#9 36.37 CC	fd_wksp_helper.o
+#9 36.40 CC	fd_wksp_admin.o
+#9 36.44 CC	entropy_common.o
+#9 36.46 CC	error_private.o
+#9 36.55 CC	fse_decompress.o
+#9 36.60 CC	xxhash.o
+#9 36.61 CC	zstd_common.o
+#9 36.61 CC	main.o
+#9 36.64 CC	config.o
+#9 36.69 CC	callbacks.o
+#9 36.69 CC	add_authorized_voter.o
+#9 36.71 CC	remove_all_authorized_voters.o
+#9 36.76 CC	shred_version.o
+#9 36.81 CC	snapshot_create.o
+#9 36.85 CC	set_identity.o
+#9 36.88 CC	get_identity.o
+#9 36.94 CC	adminctl_client.o
+#9 36.98 CC	monitor_gossip.o
+#9 36.99 CC	gossip_diag.o
+#9 37.07 CC	fd_bootinfo.o
+#9 37.07 CC	fd_config.o
+#9 37.09 CC	fd_config_parse.o
+#9 37.13 CC	fd_config_auto.o
+#9 37.15 CC	fd_config_json.o
+#9 37.20 CC	fd_obj_callbacks.o
+#9 37.23 CC	fd_boot.o
+#9 37.40 CC	help.o
+#9 37.42 CC	keys.o
+#9 37.55 CC	mem.o
+#9 37.57 CC	metrics.o
+#9 37.59 CC	netconf.o
+#9 37.59 CC	ps.o
+#9 37.65 CC	ready.o
+#9 37.73 CC	version.o
+#9 37.74 CC	configure.o
+#9 37.80 CC	bonding.o
+#9 37.80 CC	ethtool-channels.o
+#9 37.84 CC	ethtool-offloads.o
+#9 37.85 CC	ethtool-loopback.o
+#9 37.86 CC	irq-affinity.o
+#9 37.89 CC	irq-balance.o
+#9 37.92 CC	fd_ethtool_ioctl.o
+#9 37.95 CC	fd_irqbalance_client.o
+#9 37.98 CC	hugetlbfs.o
+#9 38.01 CC	hyperthreads.o
+#9 38.11 CC	sysctl.o
+#9 38.15 CC	sysfs-poll.o
+#9 38.16 CC	snapshots.o
+#9 38.18 CC	fd_cpu_isolation.o
+#9 38.25 CC	kworkers.o
+#9 38.29 CC	cpuset.o
+#9 38.30 CC	nohz-full.o
+#9 38.31 CC	rcu-nocbs.o
+#9 38.31 CC	console.o
+#9 38.33 CC	monitor.o
+#9 38.36 CC	helper.o
+#9 38.45 CC	run.o
+#9 38.49 CC	run1.o
+#9 38.51 CC	fd_config_extract.o
+#9 38.52 CC	fd_cap_chk.o
+#9 38.52 CC	fd_sys_util.o
+#9 38.55 CC	fd_net_util.o
+#9 38.67 CC	fd_file_util.o
+#9 38.68 CC	fd_genesis_client.o
+#9 38.68 CC	fd_zstd_frame.o
+#9 38.70 CC	fd_ssparse.o
+#9 38.74 CC	fd_ssmanifest_parser.o
+#9 38.78 CC	fd_ssload.o
+#9 38.79 CC	fd_ssping.o
+#9 38.90 CC	fd_http_resolver.o
+#9 38.93 CC	fd_slot_delta_parser.o
+#9 39.00 CC	fd_ssresolve.o
+#9 39.13 CC	fd_sshttp.o
+#9 39.13 CC	fd_ssarchive.o
+#9 39.20 CC	fd_sspeer_selector.o
+#9 39.23 CC	fd_startup.o
+#9 39.38 CC	fd_snap_pool.o
+#9 39.39 CC	fd_ssmanifest_writer.o
+#9 39.43 CC	fd_txncache_writer.o
+#9 39.44 CC	fd_backup_cache.o
+#9 39.46 CC	fd_reqlim.o
+#9 39.53 CC	fd_policy.o
+#9 39.53 CC	fd_inflight.o
+#9 39.57 CC	fd_repair.o
+#9 39.74 CC	fd_repair_metrics.o
+#9 39.76 CC	fd_rserve.o
+#9 39.76 CC	fd_adminctl.o
+#9 39.78 CC	fd_reasm.o
+#9 39.88 CC	fd_ipecho_client.o
+#9 39.93 CC	fd_ipecho_server.o
+#9 39.95 CC	fd_poh.o
+#9 39.98 CC	fd_tpu_reasm.o
+#9 39.98 CC	fd_genesis_cluster.o
+#9 40.03 CC	fd_store.o
+#9 40.03 CC	fd_bundle_crank.o
+#9 40.04 CC	fd_bundle_auth.o
+#9 40.10 CC	fd_bundle_client.o
+#9 40.11 CC	fd_bundle_proto.o
+#9 40.22 CC	fd_net_tile_topo.o
+#9 40.25 CC	fd_linux_bond.o
+#9 40.29 CC	fd_mlx5.o
+#9 40.31 CC	fd_proc_interrupts.o
+#9 40.39 CC	fd_sleep.o
+#9 40.42 CC	fd_keyguard_authorize.o
+#9 40.61 CC	fd_keyguard_match.o
+#9 40.63 CC	fd_keyguard_client.o
+#9 40.67 CC	fd_keyswitch.o
+#9 40.73 CC	fd_keyload.o
+#9 40.79 CC	fd_waker.o
+#9 40.79 CC	fd_prometheus.o
+#9 40.86 CC	fd_metrics.o
+#9 40.87 CC	fd_metrics_all.o
+#9 40.89 CC	fd_accdb_tile.o
+#9 40.97 CC	fd_votes.o
+#9 40.97 CC	fd_eqvoc.o
+#9 40.97 CC	fd_hfork.o
+#9 41.05 CC	fd_ghost.o
+#9 41.13 CC	ag_bls_serde.o
+#9 41.14 CC	ag_vote.o
+#9 41.19 CC	ag_vote_serde.o
+#9 41.22 CC	ag_epoch_info.o
+#9 41.30 CC	ag_cert.o
+#9 41.31 CC	ag_cert_serde.o
+#9 41.33 CC	ag_pool.o
+#9 41.40 CC	ag_slot_state.o
+#9 41.44 CC	ag_finality_tracker.o
+#9 41.48 CC	ag_parent_ready_tracker.o
+#9 41.52 CC	ag_votor.o
+#9 41.76 CC	fd_genesis_parse.o
+#9 41.76 CC	fd_leaders.o
+#9 41.84 CC	fd_multi_epoch_leaders.o
+#9 41.92 CC	fd_txn_generate.o
+#9 41.93 CC	fd_accdb_cache.o
+#9 41.94 CC	fd_accdb_shmem.o
+#9 42.03 CC	fd_alpenglow.o
+#9 42.07 CC	fd_block_marker.o
+#9 42.07 CC	fd_block_marker_serde.o
+#9 42.09 CC	fd_solcap_writer.o
+#9 42.16 CC	fd_capture_ctx.o
+#9 42.17 CC	fd_prog_load.o
+#9 42.21 CC	fd_progcache.o
+#9 42.22 CC	fd_progcache_admin.o
+#9 42.30 CC	fd_progcache_user.o
+#9 42.32 CC	fd_progcache_clock.o
+#9 42.35 CC	fd_progcache_rec.o
+#9 42.42 CC	fd_progcache_reclaim.o
+#9 42.48 CC	fd_accdb_svm.o
+#9 42.49 CC	fd_blockhashes.o
+#9 42.50 CC	fd_core_bpf_migration.o
+#9 42.60 CC	fd_executor.o
+#9 42.61 CC	fd_hashes.o
+#9 42.64 CC	fd_pubkey_utils.o
+#9 42.65 CC	fd_slot_params.o
+#9 42.67 CC	fd_txncache_shmem.o
+#9 42.68 CC	fd_txncache.o
+#9 42.77 CC	fd_cost_tracker.o
+#9 42.83 CC	fd_compute_budget_details.o
+#9 42.84 CC	fd_borrowed_account.o
+#9 42.91 CC	fd_bank.o
+#9 42.92 CC	fd_runtime.o
+#9 42.96 CC	fd_system_ids.o
+#9 43.05 CC	fd_sysvar.o
+#9 43.10 CC	fd_sysvar_cache.o
+#9 43.14 CC	fd_sysvar_cache_db.o
+#9 43.26 CC	fd_sysvar_clock.o
+#9 43.29 CC	fd_sysvar_epoch_rewards.o
+#9 43.29 CC	fd_sysvar_epoch_schedule.o
+#9 43.33 CC	fd_sysvar_instructions.o
+#9 43.37 CC	fd_sysvar_last_restart_slot.o
+#9 43.41 CC	fd_sysvar_recent_hashes.o
+#9 43.47 CC	fd_sysvar_rent.o
+#9 43.54 CC	fd_sysvar_rent1.o
+#9 43.56 CC	fd_sysvar_slot_hashes.o
+#9 43.57 CC	fd_sysvar_slot_history.o
+#9 43.57 CC	fd_sysvar_stake_history.o
+#9 43.60 CC	context.pb.o
+#9 43.65 CC	instr.pb.o
+#9 43.68 CC	txn.pb.o
+#9 43.70 CC	block.pb.o
+#9 43.72 CC	vm.pb.o
+#9 43.73 CC	metadata.pb.o
+#9 43.74 CC	fd_instr_info.o
+#9 43.76 CC	fd_exec_instr_ctx.o
+#9 43.76 CC	fd_event_tl.o
+#9 43.77 CC	fd_event_runtime.o
+#9 43.78 CC	fd_features.o
+#9 43.80 CC	fd_features_generated.o
+#9 43.81 CC	fd_gossip.o
+#9 43.82 CC	fd_gossip_message.o
+#9 43.89 CC	fd_gossip_out.o
+#9 43.96 CC	fd_gossip_txbuild.o
+#9 43.96 CC	fd_gossip_purged.o
+#9 43.97 CC	fd_prune_finder.o
+#9 43.99 CC	fd_bloom.o
+#9 44.02 CC	fd_crds.o
+#9 44.09 CC	fd_active_set.o
+#9 44.10 CC	fd_ping_tracker.o
+#9 44.16 CC	fd_gossip_wsample.o
+#9 44.37 CC	fd_quic_crypto_suites.o
+#9 44.37 CC	fd_quic_transport_params.o
+#9 44.39 CC	fd_quic_tls.o
+#9 44.43 CC	fd_quic_ack_tx.o
+#9 44.46 CC	fd_quic_conn.o
+#9 44.50 CC	fd_quic_pkt_meta.o
+#9 44.55 CC	fd_quic_retry.o
+#9 44.66 CC	fd_quic_svc_q.o
+#9 44.67 CC	fd_quic_stream_pool.o
+#9 44.69 CC	fd_quic_stream.o
+#9 44.72 CC	fd_quic_log.o
+#9 44.77 CC	fd_tls.o
+#9 44.77 CC	fd_tls_proto.o
+#9 44.80 CC	picohttpparser.o
+#9 44.80 AR	libfd_reedsol.a
+#9 44.81 CC	fd_aio.o
+#9 44.85 CC	fd_url.o
+#9 44.93 CC	fd_tlsrec.o
+#9 44.93 CC	fd_tlsrec_sock.o
+#9 44.96 CC	fd_xsk.o
+#9 44.96 CC	fd_xdp1.o
+#9 45.04 CC	fd_xdp_redirect_user.o
+#9 45.08 CC	fd_grpc_codec.o
+#9 45.14 CC	fd_grpc_client.o
+#9 45.19 CC	fd_getaddrinfo.o
+#9 45.21 CC	fd_adns.o
+#9 45.21 CC	fd_io_readline.o
+#9 45.30 CC	fd_netdb_open_fds.o
+#9 45.31 CC	fd_resolvconf.o
+#9 45.32 CC	fd_lookup_name.o
+#9 45.32 CC	fd_lookup_ipliteral.o
+#9 45.38 CC	fd_dn_expand.o
+#9 45.39 CC	fd_dns_parse.o
+#9 45.42 CC	fd_res_mkquery.o
+#9 45.43 CC	fd_res_msend.o
+#9 45.46 CC	fd_netdev_tbl.o
+#9 45.46 CC	fd_netdev_netlink.o
+#9 45.48 CC	fd_hpack.o
+#9 45.50 CC	nghttp2_hd_huffman.o
+#9 45.55 CC	nghttp2_hd_huffman_data.o
+#9 45.60 CC	fd_h2_proto.o
+#9 45.61 CC	fd_h2_callback.o
+#9 45.62 CC	fd_h2_conn.o
+#9 45.64 CC	fd_h2_hdr_match.o
+#9 45.66 CC	fd_h2_tx.o
+#9 45.66 CC	fd_fib4.o
+#9 45.68 CC	fd_netlink1.o
+#9 45.68 CC	fd_fib4_netlink.o
+#9 45.74 CC	fd_neigh4_map.o
+#9 45.74 CC	fd_neigh4_netlink.o
+#9 45.77 CC	fd_neigh4_probe.o
+#9 45.84 CC	fd_tempo.o
+#9 45.84 CC	fd_dcache.o
+#9 45.85 CC	fd_fseq.o
+#9 45.85 CC	fd_tcache.o
+#9 45.92 CC	fd_mcache.o
+#9 45.93 CC	fd_cnc.o
+#9 45.99 CC	pb_common.o
+#9 45.99 CC	pb_decode.o
+#9 46.01 CC	pb_encode.o
+#9 46.04 AS	curve25519_x25519.o
+#9 46.05 AS	curve25519_x25519_alt.o
+#9 46.06 AS	curve25519_x25519base.o
+#9 46.07 AS	curve25519_x25519base_alt.o
+#9 46.07 AS	bignum_mul_4_8.o
+#9 46.08 AS	bignum_mul_4_8_alt.o
+#9 46.09 AS	bignum_mul_6_12.o
+#9 46.10 AS	bignum_mul_6_12_alt.o
+#9 46.10 AS	bignum_demont.o
+#9 46.11 AS	bignum_modinv.o
+#9 46.11 AS	bignum_montifier.o
+#9 46.11 AS	bignum_montmul.o
+#9 46.12 AS	bignum_sub.o
+#9 46.12 AS	bignum_add_p256.o
+#9 46.12 AS	bignum_demont_p256.o
+#9 46.13 AS	bignum_demont_p256_alt.o
+#9 46.13 AS	bignum_mod_n256.o
+#9 46.14 AS	bignum_mod_n256_4.o
+#9 46.14 AS	bignum_mod_n256_alt.o
+#9 46.14 AS	bignum_montinv_p256.o
+#9 46.15 AS	bignum_montmul_p256.o
+#9 46.15 AS	bignum_montmul_p256_alt.o
+#9 46.15 AS	bignum_montsqr_p256.o
+#9 46.15 AS	bignum_montsqr_p256_alt.o
+#9 46.16 AS	bignum_optneg_p256.o
+#9 46.16 AS	bignum_tomont_p256.o
+#9 46.17 AS	bignum_tomont_p256_alt.o
+#9 46.17 AS	p256_montjdouble.o
+#9 46.17 AS	p256_montjdouble_alt.o
+#9 46.17 AS	p256_montjmixadd.o
+#9 46.18 AS	p256_montjmixadd_alt.o
+#9 46.18 AS	p256_montjscalarmul.o
+#9 46.19 AS	p256_montjscalarmul_alt.o
+#9 46.19 AS	p256_scalarmulbase.o
+#9 46.19 AS	p256_scalarmulbase_alt.o
+#9 46.19 AS	bignum_add_p384.o
+#9 46.20 AS	bignum_demont_p384.o
+#9 46.20 AS	bignum_demont_p384_alt.o
+#9 46.21 AS	bignum_mod_n384.o
+#9 46.22 AS	bignum_mod_n384_6.o
+#9 46.22 AS	bignum_mod_n384_alt.o
+#9 46.22 AS	bignum_montinv_p384.o
+#9 46.22 AS	bignum_montmul_p384.o
+#9 46.22 AS	bignum_montmul_p384_alt.o
+#9 46.23 AS	bignum_montsqr_p384.o
+#9 46.23 AS	bignum_montsqr_p384_alt.o
+#9 46.23 AS	bignum_optneg_p384.o
+#9 46.24 AS	bignum_tomont_p384.o
+#9 46.24 AS	bignum_tomont_p384_alt.o
+#9 46.24 AS	p384_montjadd.o
+#9 46.25 AS	p384_montjadd_alt.o
+#9 46.25 AS	p384_montjdouble.o
+#9 46.25 AS	p384_montjdouble_alt.o
+#9 46.25 AS	p384_montjscalarmul.o
+#9 46.25 AS	p384_montjscalarmul_alt.o
+#9 46.26 AS	bignum_add_p256k1.o
+#9 46.27 AS	bignum_demont_p256k1.o
+#9 46.27 AS	bignum_double_p256k1.o
+#9 46.27 AS	bignum_mod_n256k1_4.o
+#9 46.27 AS	bignum_montmul_p256k1.o
+#9 46.29 AS	bignum_montmul_p256k1_alt.o
+#9 46.29 AS	bignum_montsqr_p256k1.o
+#9 46.29 AS	bignum_montsqr_p256k1_alt.o
+#9 46.29 AS	bignum_neg_p256k1.o
+#9 46.29 AS	bignum_sub_p256k1.o
+#9 46.30 AS	bignum_tomont_p256k1.o
+#9 46.30 AS	bignum_tomont_p256k1_alt.o
+#9 46.30 AS	bignum_triple_p256k1.o
+#9 46.31 AS	bignum_triple_p256k1_alt.o
+#9 46.31 AS	sha3_keccak_f1600.o
+#9 46.31 CC	fd_zksdk_zero_ciphertext.o
+#9 46.31 CC	fd_zksdk_ciphertext_ciphertext_equality.o
+#9 46.31 CC	fd_zksdk_ciphertext_commitment_equality.o
+#9 46.32 CC	fd_zksdk_pubkey_validity.o
+#9 46.32 CC	fd_zksdk_percentage_with_cap.o
+#9 46.32 CC	fd_zksdk_batched_range_proof_u64.o
+#9 46.32 CC	fd_zksdk_batched_range_proof_u128.o
+#9 46.32 CC	fd_zksdk_batched_range_proof_u256.o
+#9 46.48 CC	fd_zksdk_grouped_ciphertext_2_handles_validity.o
+#9 46.55 CC	fd_zksdk_batched_grouped_ciphertext_2_handles_validity.o
+#9 46.56 CC	fd_zksdk_grouped_ciphertext_3_handles_validity.o
+#9 46.64 CC	fd_zksdk_batched_grouped_ciphertext_3_handles_validity.o
+#9 46.68 CC	fd_base64.o
+#9 46.68 CC	fd_utf8.o
+#9 46.69 CC	fd_txn_parse.o
+#9 46.74 CC	fd_chacha_sse.o
+#9 46.76 CC	fd_chacha_rng.o
+#9 46.77 CC	fd_chacha_rng_avx.o
+#9 46.77 CC	fd_aes_gcm_x86.o
+#9 46.79 CC	fd_aes_base_ref.o
+#9 46.84 CC	fd_aes_gcm_ref.o
+#9 46.87 CC	fd_aes_gcm_ref_ghash.o
+#9 46.91 CC	fd_secp384r1.o
+#9 46.98 CC	fd_jtok.o
+#9 47.00 CC	fd_keccak256.o
+#9 47.01 CC	fd_secp256k1.o
+#9 47.04 CC	fd_x509_mock.o
+#9 47.05 CC	fd_x509_ca_store.o
+#9 47.09 CC	fd_x509_verify.o
+#9 47.09 CC	fd_hmac.o
+#9 47.09 CC	fd_bmtree.o
+#9 47.18 CC	fd_base58.o
+#9 47.20 CC	fd_sbpf_loader.o
+#9 47.24 CC	fd_wsample.o
+#9 47.40 CC	fd_pb_tokenize.o
+#9 47.45 CC	fd_lthash_adder.o
+#9 47.48 CC	fd_merlin.o
+#9 47.53 CC	fd_rsa.o
+#9 47.55 CC	fd_secp256r1.o
+#9 47.56 CC	fd_sha1.o
+#9 47.58 CC	fd_hex.o
+#9 47.66 CC	fd_murmur3.o
+#9 47.70 CC	fd_shred.o
+#9 47.71 CC	fd_bls12_381.o
+#9 47.75 CC	fd_bls.o
+#9 47.77 CC	fd_siphash13.o
+#9 47.82 CC	fd_wksp_user.o
+#9 47.82 CC	fd_wksp_used_treap.o
+#9 47.84 CC	fd_wksp_free_treap.o
+#9 47.94 CC	fd_io_uring.o
+#9 47.97 CC	fd_io_uring_setup.o
+#9 47.98 CC	fd_ip4.o
+#9 48.01 CC	fd_ip6.o
+#9 48.04 CC	fd_hash.o
+#9 48.06 CC	fd_util.o
+#9 48.09 CC	fd_version.o
+#9 48.09 CC	fd_backtrace.o
+#9 48.13 CC	fd_clock.o
+#9 48.16 CC	fd_rng_secure.o
+#9 48.16 CC	fd_shmem_user.o
+#9 48.17 CC	fd_numa_linux.o
+#9 48.20 CC	fd_io.o
+#9 48.21 CC	fd_map_util.o
+#9 48.23 CC	fd_tile.o
+#9 48.25 CC	fd_tile_threads.o
+#9 48.25 CC	fd_env.o
+#9 48.26 CC	fd_cstr.o
+#9 48.33 CC	fd_scratch.o
+#9 48.36 AR	libfd_zstd.a
+#9 48.38 AR	libfd_blst.a
+#9 48.40 CC	test_poh_full.o
+#9 48.42 CC	http_import_dist.o
+#9 48.42 AR	libfd_firedancer.a
+#9 48.46 AR	libfdctl_shared.a
+#9 48.48 AR	libfdctl_platform.a
+#9 48.48 AR	libfd_discof.a
+#9 48.49 AR	libfd_choreo.a
+#9 48.50 AR	libfd_flamenco.a
+#9 48.52 AR	libfd_quic.a
+#9 48.52 AR	libfd_tls.a
+#9 48.54 AR	libfd_waltz.a
+#9 48.55 AR	libfd_tango.a
+#9 48.55 AR	libfd_disco.a
+#9 48.56 AR	libfd_ballet.a
+#9 48.65 AR	libfd_util.a
+#9 48.70 LD	firedancer (bin)
+#9 48.89 LD	test_poh_full (unit-test)
+#9 DONE 50.9s
+
+#10 [builder 7/7] RUN source activate MACHINE=linux_gcc_x86_64 CC=gcc-12; OBJDIR="$(make env MACHINE=linux_gcc_x86_64 CC=gcc-12 | sed -n 's/^OBJDIR=//p' | tr -d "'")"; "$OBJDIR/unit-test/test_poh_full"; "$OBJDIR/bin/firedancer" version; install -Dm755 "$OBJDIR/bin/firedancer" /stage/firedancer; printf 'source=https://github.com/Alleysira/firedancer\ncommit=%s\ntarget=firedancer\nclient=full\n' "$FIREDANCER_COMMIT" >/stage/BUILD-INFO
+#10 0.259 Firedancer build directory is /src/firedancer/build/linux/gcc/x86_64/12.2.0
+#10 0.291 --log-path not specified; using autogenerated path
+#10 0.291 Log at "/tmp/fd-0.1.1_40_[user]_buildkitsandbox_2026_10_28_10_47_55_446042341_GMT+00"
+#10 0.302 ERR     10-28 10:47:55.457326 0         test_poh_full.c(107): FAIL: ticks==64UL*skipped+t+1UL
+#10 0.317 Log at "/tmp/fd-0.1.1_40_[user]_buildkitsandbox_2026_10_28_10_47_55_446042341_GMT+00"
+#10 ERROR: process "/bin/bash -euo pipefail -c source activate MACHINE=linux_gcc_x86_64 CC=gcc-12; OBJDIR=\"$(make env MACHINE=linux_gcc_x86_64 CC=gcc-12 | sed -n 's/^OBJDIR=//p' | tr -d \"'\")\"; \"$OBJDIR/unit-test/test_poh_full\"; \"$OBJDIR/bin/firedancer\" version; install -Dm755 \"$OBJDIR/bin/firedancer\" /stage/firedancer; printf 'source=https://github.com/Alleysira/firedancer\\ncommit=%s\\ntarget=firedancer\\nclient=full\\n' \"$FIREDANCER_COMMIT\" >/stage/BUILD-INFO" did not complete successfully: exit code: 1
+------
+ > [builder 7/7] RUN source activate MACHINE=linux_gcc_x86_64 CC=gcc-12; OBJDIR="$(make env MACHINE=linux_gcc_x86_64 CC=gcc-12 | sed -n 's/^OBJDIR=//p' | tr -d "'")"; "$OBJDIR/unit-test/test_poh_full"; "$OBJDIR/bin/firedancer" version; install -Dm755 "$OBJDIR/bin/firedancer" /stage/firedancer; printf 'source=https://github.com/Alleysira/firedancer\ncommit=%s\ntarget=firedancer\nclient=full\n' "$FIREDANCER_COMMIT" >/stage/BUILD-INFO:
+0.259 Firedancer build directory is /src/firedancer/build/linux/gcc/x86_64/12.2.0
+0.291 --log-path not specified; using autogenerated path
+0.291 Log at "/tmp/fd-0.1.1_40_[user]_buildkitsandbox_2026_10_28_10_47_55_446042341_GMT+00"
+0.302 ERR     10-28 10:47:55.457326 0         test_poh_full.c(107): FAIL: ticks==64UL*skipped+t+1UL
+0.317 Log at "/tmp/fd-0.1.1_40_[user]_buildkitsandbox_2026_10_28_10_47_55_446042341_GMT+00"
+------
+Dockerfile.firedancer-full:10
+--------------------
+   8 |     RUN FD_AUTO_INSTALL_PACKAGES=1 ./deps.sh fetch check install
+   9 |     RUN source "$HOME/.cargo/env" 2>/dev/null || true; source activate MACHINE=linux_gcc_x86_64 CC=gcc-12; make -j8 firedancer test_poh_full
+  10 | >>> RUN source activate MACHINE=linux_gcc_x86_64 CC=gcc-12; OBJDIR="$(make env MACHINE=linux_gcc_x86_64 CC=gcc-12 | sed -n 's/^OBJDIR=//p' | tr -d "'")"; "$OBJDIR/unit-test/test_poh_full"; "$OBJDIR/bin/firedancer" version; install -Dm755 "$OBJDIR/bin/firedancer" /stage/firedancer; printf 'source=https://github.com/Alleysira/firedancer\ncommit=%s\ntarget=firedancer\nclient=full\n' "$FIREDANCER_COMMIT" >/stage/BUILD-INFO
+  11 |     FROM debian:bookworm-slim
+  12 |     RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates libssl3 libudev1 libatomic1 zlib1g tini iproute2 procps curl && rm -rf /var/lib/apt/lists/* && useradd --create-home --uid 1000 firedancer
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/bash -euo pipefail -c source activate MACHINE=linux_gcc_x86_64 CC=gcc-12; OBJDIR=\"$(make env MACHINE=linux_gcc_x86_64 CC=gcc-12 | sed -n 's/^OBJDIR=//p' | tr -d \"'\")\"; \"$OBJDIR/unit-test/test_poh_full\"; \"$OBJDIR/bin/firedancer\" version; install -Dm755 \"$OBJDIR/bin/firedancer\" /stage/firedancer; printf 'source=https://github.com/Alleysira/firedancer\\ncommit=%s\\ntarget=firedancer\\nclient=full\\n' \"$FIREDANCER_COMMIT\" >/stage/BUILD-INFO" did not complete successfully: exit code: 1

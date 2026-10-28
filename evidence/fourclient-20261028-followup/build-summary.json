@@ -1,0 +1,40 @@
+{
+  "result": "PASS",
+  "phase": "built",
+  "firedancerCommit": "58b02033050ec8d8d206b14e52113d4badb1e16a",
+  "images": [
+    {
+      "Id": "sha256:f45e99d34820325e882f9cefdddf1db6a71f0dcc0a443e4a18fc6db0ff2b3295",
+      "RepoTags": [
+        "solana-diff/firedancer:full-58b02033"
+      ],
+      "Architecture": "amd64"
+    },
+    {
+      "Id": "sha256:209cec94b453ea376f69d4e03b2a4886c71ac44a393381f385bcc1c7b28272ca",
+      "RepoTags": [
+        "solana-diff/network-verifier:agave-4.3.0-amd64-v1"
+      ],
+      "Architecture": "amd64"
+    }
+  ],
+  "tests": [
+    "production PoH state-machine regression passed in Docker build",
+    "9 verifier unit tests passed",
+    "Kurtosis dry-run passed"
+  ],
+  "liveValidation": "pending",
+  "baselineRegression": {
+    "sourceCommit": "a1f6a32ff464ec265c4b5127fe9afedf7c143cb1",
+    "result": "expected failure",
+    "exitCode": 1,
+    "error": "tick=0 got=0 hashcnt=2 remaining=8",
+    "log": "poh-old-baseline-second.log"
+  },
+  "baselineHarnessFirstAttempt": {
+    "result": "invalid test invocation",
+    "exitCode": 127,
+    "reason": "omitted compiler-version component in executable path",
+    "log": "poh-old-baseline.log"
+  }
+}

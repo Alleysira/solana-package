@@ -1,0 +1,47 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.firedancer-full
+#1 transferring dockerfile: 1.71kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/debian:bookworm-slim
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [builder 1/7] FROM docker.io/library/debian:bookworm-slim@sha256:99c0b25c46d0214d5a2091092e7908907dcaecd6a962cde0ac700acee222b6f3
+#4 resolve docker.io/library/debian:bookworm-slim@sha256:99c0b25c46d0214d5a2091092e7908907dcaecd6a962cde0ac700acee222b6f3 0.1s done
+#4 DONE 0.1s
+
+#5 [builder 3/7] RUN git clone https://github.com/Alleysira/firedancer.git /src/firedancer && git -C /src/firedancer checkout "58b02033050ec8d8d206b14e52113d4badb1e16a"
+#5 CACHED
+
+#6 [builder 4/7] WORKDIR /src/firedancer
+#6 CACHED
+
+#7 [builder 5/7] RUN FD_AUTO_INSTALL_PACKAGES=1 ./deps.sh fetch check install
+#7 CACHED
+
+#8 [builder 6/7] RUN source "$HOME/.cargo/env" 2>/dev/null || true; source activate MACHINE=linux_gcc_x86_64 CC=gcc-12; make -j8 firedancer test_poh_full
+#8 CACHED
+
+#9 [builder 2/7] RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl git build-essential clang cmake pkg-config libclang-dev libssl-dev libudev-dev zlib1g-dev protobuf-compiler iproute2 python3 gcc-12 g++-12 make && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [builder 7/7] RUN source activate MACHINE=linux_gcc_x86_64 CC=gcc-12; OBJDIR="$(make env MACHINE=linux_gcc_x86_64 CC=gcc-12 | sed -n 's/^OBJDIR=//p' | tr -d "'")"; "$OBJDIR/unit-test/test_poh_full"; "$OBJDIR/bin/firedancer" version; install -Dm755 "$OBJDIR/bin/firedancer" /stage/firedancer; printf 'source=https://github.com/Alleysira/firedancer\ncommit=%s\ntarget=firedancer\nclient=full\n' "$FIREDANCER_COMMIT" >/stage/BUILD-INFO
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 99.0s done
+#11 exporting manifest sha256:db9da4b0d057bc95cac45a56cc4f922c232d6dc9344d4503183cb60b88113ec3 0.0s done
+#11 exporting config sha256:ddc775635bcfef1d11ac5fa518158c646e7779d0e58eab244527e94a606b518f 0.0s done
+#11 exporting attestation manifest sha256:1b00c7aa1c59a5f23db0ad72957ac82c5bda65261a06bcd71f7ed841d0341152 0.1s done
+#11 exporting manifest list sha256:0036b1ea8077ae766e4e09b82de41aa92c592ab1214480b4ed1e31403d2293b1
+#11 exporting manifest list sha256:0036b1ea8077ae766e4e09b82de41aa92c592ab1214480b4ed1e31403d2293b1 0.0s done
+#11 naming to docker.io/solana-diff/firedancer:poh-regression-builder done
+#11 unpacking to docker.io/solana-diff/firedancer:poh-regression-builder
+#11 unpacking to docker.io/solana-diff/firedancer:poh-regression-builder 56.7s done
+#11 DONE 156.0s
