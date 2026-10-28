@@ -26,6 +26,19 @@ elif sudo -n docker network inspect "kt-$enclave" >/dev/null 2>&1; then
   echo "Enclave already exists. Use --fresh to archive its evidence and recreate it." >&2
   exit 2
 fi
+python3 - "$evidence" <<'PY_SOURCES'
+import hashlib, json, pathlib, subprocess, sys
+root = pathlib.Path.cwd().parent
+sources = {}
+for name in [".", "firedancer", "agave", "jito-solana", "sig", "solana-package"]:
+    repo = root / name
+    sources[name] = {
+        "commit": subprocess.check_output(["git", "-C", str(repo), "rev-parse", "HEAD"], text=True).strip(),
+        "trackedChanges": subprocess.check_output(["git", "-C", str(repo), "status", "--porcelain", "--untracked-files=no"], text=True),
+    }
+sources["verificationScriptSha256"] = hashlib.sha256(pathlib.Path("verification/verify_network.py").read_bytes()).hexdigest()
+pathlib.Path(sys.argv[1], "deployed-sources.json").write_text(json.dumps(sources, indent=2) + "\n")
+PY_SOURCES
 sudo -n ./prepare-fd-host.sh
 config=$(python3 -c 'import json,sys; print(json.dumps({"verification":{"observation_seconds":int(sys.argv[1])}}))' "$seconds")
 printf '%s\n' "$config" > "$evidence/args.json"
