@@ -231,3 +231,15 @@ deploys only as a **non-voting observer**, never a fifth voting validator.
 
 The package must not label an observer, RPC library, or aliased Agave process
 as a distinct voting client merely to reach a count of five.
+
+## Native RPC campaign extension — 2026-10-28
+
+The deployed full Firedancer fork 58b02033050ec8d8d206b14e52113d4badb1e16a
+exposes its own HTTP server on 8899 and WebSocket upgrade at /websocket.
+The three-target driver discovers its private enclave address rather than
+routing requests through Agave/Jito. The source capability inventory is in
+../differ/evidence/firedancer-rpc-20261028/run2/source-capabilities.json;
+unsupported handlers remain explicit capability gaps. This does not change
+the demonstrated four-client deployment or add any SIG features.
+Use the canonical ../differ/docs/THREECLIENT-CAMPAIGN.md commands and consult
+../differ/docs/findings-firedancer-20261028.md for behavioral differences.
