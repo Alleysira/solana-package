@@ -1,0 +1,27 @@
+{
+  "genesisHash": "2ksttLL2Cf6toaGFUjYm3zRLHvbyS1iKQBJm6UsKmNku",
+  "primer": {
+    "signature": "2hu6MB3F1RY12YKz6cDXjVW237ngpMTUAUUyZNArLDAvSvAKgkG8Rt37mDThczoeMyxioLRgTCvmTCthhVutbPT5",
+    "recipient": "G5Zo4ossRZEyuhqKiJCCafqhPgSowKYkeQmWgz1D6eor",
+    "lamports": 1000000000,
+    "slot": 49,
+    "leader": "AwasiQHNnxtb4zVgeX1WYYwfSA2YWx2HeQjKYLNCfx4Z",
+    "observations": {
+      "jito": {
+        "slot": 49,
+        "recipientDelta": 1000000000
+      },
+      "agave": {
+        "slot": 49,
+        "recipientDelta": 1000000000
+      }
+    }
+  },
+  "snapshot": {
+    "filename": "snapshot-52-Bad19rfUF6WgWdtL2brEwzgHzp6PAgezrqaX1bHmP6sS.tar.zst",
+    "slot": 52,
+    "sha256": "67c2124224801d68f0e204b4468be2b66a0d40d94cd6493af61061bf77f69551",
+    "bytes": 21963,
+    "source": "http://val-bootstrap:8899/snapshot-52-Bad19rfUF6WgWdtL2brEwzgHzp6PAgezrqaX1bHmP6sS.tar.zst"
+  }
+}

@@ -1,6 +1,43 @@
 # Multi-client testnet status
 
-**Latest continuation:** full Firedancer fork 58b02033 passed the first 600-second four-client network acceptance: three advancing voters, 27 finalized transfers including Firedancer slot 1249, 138 accepted Firedancer leader slots, and live SIG peer membership. Evidence: evidence/fourclient-20261028T110023Z/verification/summary.json. The launcher export required manual recovery after its file was edited during execution; two complete automatic clean reruns are pending. Run 18 had advancing votes but invalid Firedancer leader blocks (TooFewTicks), so voting alone is insufficient. Use ./run-four-client.sh --fresh --observation-seconds 600. SIG requires existing live network membership only; continuous replay and SVM execution are unsupported at its pin. Evidence: evidence/fourclient-20261028-followup/. Earlier results below remain historical.
+**PASS — two automatic clean Linux x86_64 Kurtosis reproductions, each observed
+for 600 seconds.** Three authentic voting validators (Jito-Solana, Agave and
+independent full Firedancer) plus one live SIG non-voting observer shared genesis
+and peer discovery. All three voters remained current and advanced votes,
+roots and finalized slots.
+
+| Automatic run | Final slots Jito/Agave/Firedancer | Transfers | Firedancer transfer slots | Accepted Firedancer leader slots |
+| --- | --- | --- | --- | --- |
+| fourclient-20261028T111413Z | 1578 / 1578 / 1579 | 27 | 233, 446, 884, 1244, 1533 | 160 |
+| fourclient-20261028T112709Z | 1565 / 1565 / 1565 | 26 | 249, 1013 | 142 |
+
+Both launchers exited 0 and exported evidence automatically. The genesis hashes
+differ and all five validator/tooling image IDs match between runs.
+Current enclave: solana-four-client, left running from the latter run.
+Aggregate evidence: [summary.json](evidence/fourclient-20261028-followup/summary.json).
+Source pins and image IDs: [clients.lock.json](clients.lock.json), per-run
+deployed-sources.json and manifest.json. Reproduce on the server with:
+
+    ./run-four-client.sh --fresh --observation-seconds 600
+
+Full Firedancer is pinned at 58b02033050ec8d8d206b14e52113d4badb1e16a.
+Its sleep-mode PoH repair separates transaction mixins from empty ticks.
+The production-state-machine test fails against a1f6a32 and passes with this
+repair. Run 18's advancing votes had masked invalid TooFewTicks leader blocks;
+the new gate verifies real finalized Firedancer blocks and transfer execution.
+
+SIG remains at 0c1e96c1, unchanged by this task. It uses an exact snapshot after
+a finalized primer, a real leader schedule and the existing bounded shred feed.
+Only live joined membership is claimed: no voting, continuous replay or SVM
+execution. Jito and Agave share code; agreement is not an independent majority.
+This is local deployment acceptance, not a differential campaign or long soak.
+
+The initial repaired network run also passed, but its launcher file was edited
+during execution, disrupting Bash's later export step. Manual recovery and the
+failure are preserved in evidence/fourclient-20261028T110023Z/launcher-result.json.
+Only the two later complete automatic runs count as reproducibility proof.
+
+## Earlier results (historical, superseded where noted)
 
 **2026-10-28 Linux x86_64 extension, partial:** the independent full
 `firedancer` binary from `Alleysira/firedancer@ff881b69` built and ran in one

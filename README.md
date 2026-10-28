@@ -5,7 +5,7 @@ independent full Firedancer) plus one SIG v2 non-voting observer on Linux x86_64
 It uses sleep-mode PoH, 64 ticks per slot and 100/100/40 SOL of genesis stake.
 Exact source pins and capability limits are in [clients.lock.json](clients.lock.json).
 
-The current acceptance run is being validated; see [MULTICLIENT.md](MULTICLIENT.md)
+Two automatic clean 600-second acceptance runs passed; see [MULTICLIENT.md](MULTICLIENT.md)
 and timestamped evidence for results. The original single-test-validator README
 is preserved in [README-LEGACY.md](README-LEGACY.md); its schema is historical.
 

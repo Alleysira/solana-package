@@ -1,0 +1,26 @@
+Name:            solana-four-client
+UUID:            d108029bffb2
+Status:          RUNNING
+Creation Time:   Wed, 28 Oct 2026 19:27:29 CST
+Flags:           
+
+========================================= Files Artifacts =========================================
+UUID           Name
+ac272ff01bd2   leader-schedule
+08799b747914   network-verification-code
+430daff21ac9   network-verification-evidence
+256a5484bf06   shred-stream-bin
+d4e8bcb2d68b   sig-initial-snapshot
+d083868c69a8   solana-genesis-data
+
+========================================== User Services ==========================================
+UUID           Name               Ports                                 Status
+96aa8b1b99e8   bank-hash-probe    <none>                                STOPPED
+417081029723   network-verifier   <none>                                RUNNING
+7b65da15f16b   sig-observer       <none>                                RUNNING
+8208ea19b577   val-bootstrap      rpc: 8899/tcp -> 127.0.0.1:32870      RUNNING
+                                  rpc-ws: 8900/tcp -> 127.0.0.1:32871   
+691d7d74f848   val-firedancer     <none>                                RUNNING
+a17c3626c5f0   val-joiner         rpc: 8899/tcp -> 127.0.0.1:32872      RUNNING
+                                  rpc-ws: 8900/tcp -> 127.0.0.1:32873   
+

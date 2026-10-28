@@ -1,0 +1,168 @@
+{
+  "result": "PASS",
+  "topology": "three-voting-validators-plus-SIG-observer",
+  "automaticCleanReproductions": 2,
+  "networkAcceptanceRuns": 3,
+  "firedancerCommit": "58b02033050ec8d8d206b14e52113d4badb1e16a",
+  "runtimeImplementationCommit": "cf4bfef04e45385c63672e06577f91d0380160b0",
+  "command": "./run-four-client.sh --fresh --observation-seconds 600",
+  "sigCapabilities": {
+    "evidenceLevel": "joined",
+    "voting": false,
+    "continuousReplay": false,
+    "transactionExecution": false
+  },
+  "runs": [
+    {
+      "path": "evidence/fourclient-20261028T110023Z",
+      "networkResult": "PASS",
+      "automaticLauncherPassed": false,
+      "genesisHash": "8YjDdXiWW1WGVTQc4ePcHQMs6imJ6fWx8vLVxAtuyqZQ",
+      "observationSeconds": 600,
+      "sampleCount": 61,
+      "transferCount": 27,
+      "firedancerTransactionSlots": [
+        1249
+      ],
+      "acceptedFiredancerLeaderSlots": 138,
+      "firstFinalized": {
+        "jito": 188,
+        "agave": 188,
+        "firedancer": 187
+      },
+      "lastFinalized": {
+        "jito": 1501,
+        "agave": 1501,
+        "firedancer": 1501
+      },
+      "sigIdentity": "4ygdxouyW2yg5Rk7nsSd8VqcqoNFnp4VRqTYDxiGqX9x",
+      "images": {
+        "sig-observer": "sha256:def217d2d59872d33bcd8847e0d63dccb0cb2de33f77aab8ebb3603fa810e219",
+        "network-verifier": "sha256:209cec94b453ea376f69d4e03b2a4886c71ac44a393381f385bcc1c7b28272ca",
+        "val-firedancer": "sha256:f45e99d34820325e882f9cefdddf1db6a71f0dcc0a443e4a18fc6db0ff2b3295",
+        "val-joiner": "sha256:9366fd7569ed523d803f784f44e0a2fc4bafc565d415b303bc7802aa4254587d",
+        "val-bootstrap": "sha256:366042326b1586e60b8ace1c687a34f82f15c4704ba01bae68e97435268dbd6e"
+      }
+    },
+    {
+      "path": "evidence/fourclient-20261028T111413Z",
+      "networkResult": "PASS",
+      "automaticLauncherPassed": true,
+      "genesisHash": "5BXYpfkR158aSZYjMNtP9uKuUNLFJd4XnYacGPP1x9VH",
+      "observationSeconds": 600,
+      "sampleCount": 61,
+      "transferCount": 27,
+      "firedancerTransactionSlots": [
+        233,
+        446,
+        884,
+        1244,
+        1533
+      ],
+      "acceptedFiredancerLeaderSlots": 160,
+      "firstFinalized": {
+        "jito": 183,
+        "agave": 183,
+        "firedancer": 184
+      },
+      "lastFinalized": {
+        "jito": 1578,
+        "agave": 1578,
+        "firedancer": 1579
+      },
+      "sigIdentity": "EFT8ZD2EYMSTe79ve2nSPyVsKPwY8XnKRBP4bg62i8Kc",
+      "images": {
+        "sig-observer": "sha256:def217d2d59872d33bcd8847e0d63dccb0cb2de33f77aab8ebb3603fa810e219",
+        "network-verifier": "sha256:209cec94b453ea376f69d4e03b2a4886c71ac44a393381f385bcc1c7b28272ca",
+        "val-firedancer": "sha256:f45e99d34820325e882f9cefdddf1db6a71f0dcc0a443e4a18fc6db0ff2b3295",
+        "val-joiner": "sha256:9366fd7569ed523d803f784f44e0a2fc4bafc565d415b303bc7802aa4254587d",
+        "val-bootstrap": "sha256:366042326b1586e60b8ace1c687a34f82f15c4704ba01bae68e97435268dbd6e"
+      }
+    },
+    {
+      "path": "evidence/fourclient-20261028T112709Z",
+      "networkResult": "PASS",
+      "automaticLauncherPassed": true,
+      "genesisHash": "2ksttLL2Cf6toaGFUjYm3zRLHvbyS1iKQBJm6UsKmNku",
+      "observationSeconds": 600,
+      "sampleCount": 61,
+      "transferCount": 26,
+      "firedancerTransactionSlots": [
+        249,
+        1013
+      ],
+      "acceptedFiredancerLeaderSlots": 142,
+      "firstFinalized": {
+        "jito": 188,
+        "agave": 188,
+        "firedancer": 189
+      },
+      "lastFinalized": {
+        "jito": 1565,
+        "agave": 1565,
+        "firedancer": 1565
+      },
+      "sigIdentity": "Ey2fgFQmMwYiNsMqYC6G1XN12HvHpm58j8NH32hnAbUD",
+      "images": {
+        "sig-observer": "sha256:def217d2d59872d33bcd8847e0d63dccb0cb2de33f77aab8ebb3603fa810e219",
+        "network-verifier": "sha256:209cec94b453ea376f69d4e03b2a4886c71ac44a393381f385bcc1c7b28272ca",
+        "val-firedancer": "sha256:f45e99d34820325e882f9cefdddf1db6a71f0dcc0a443e4a18fc6db0ff2b3295",
+        "val-joiner": "sha256:9366fd7569ed523d803f784f44e0a2fc4bafc565d415b303bc7802aa4254587d",
+        "val-bootstrap": "sha256:366042326b1586e60b8ace1c687a34f82f15c4704ba01bae68e97435268dbd6e"
+      }
+    }
+  ],
+  "runningEnclave": "solana-four-client",
+  "currentRun": "evidence/fourclient-20261028T112709Z",
+  "limits": [
+    "Local sleep-mode genesis; not mainnet readiness or differential correctness.",
+    "First network run passed but wrapper export required manual recovery; only subsequent exit-0 runs count as automatic reproductions.",
+    "SIG uses existing observer capabilities; no new SIG functionality."
+  ],
+  "rpcMappingsAtCapture": {
+    "val-bootstrap": {
+      "8899/tcp": [
+        {
+          "HostIp": "0.0.0.0",
+          "HostPort": "32870"
+        },
+        {
+          "HostIp": "::",
+          "HostPort": "32870"
+        }
+      ],
+      "8900/tcp": [
+        {
+          "HostIp": "0.0.0.0",
+          "HostPort": "32871"
+        },
+        {
+          "HostIp": "::",
+          "HostPort": "32871"
+        }
+      ]
+    },
+    "val-joiner": {
+      "8899/tcp": [
+        {
+          "HostIp": "0.0.0.0",
+          "HostPort": "32872"
+        },
+        {
+          "HostIp": "::",
+          "HostPort": "32872"
+        }
+      ],
+      "8900/tcp": [
+        {
+          "HostIp": "0.0.0.0",
+          "HostPort": "32873"
+        },
+        {
+          "HostIp": "::",
+          "HostPort": "32873"
+        }
+      ]
+    }
+  }
+}
