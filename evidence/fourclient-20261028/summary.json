@@ -13,7 +13,12 @@
       "requested2MiBPages": 32198,
       "observed2MiBPages": 32198,
       "note": "privileged container mounted hugetlbfs; no validator started"
-    }
+    },
+    "firedancerTilesRun16": 31,
+    "cpuIsolationWarnings": [
+      "Firedancer tile CPUs not isolated from other processes: /sys/fs/cgroup/fd-local does not exist",
+      "Pack CPU 4 has online hyperthread pair CPU 20; performance may be reduced"
+    ]
   },
   "images": {
     "agave": {
@@ -166,7 +171,8 @@
     "No strict passing four-client end-to-end capture",
     "Run 13 purported success used broken verifier; superseded by strict runs 15 and 16",
     "Run 16 validator JSON is post-failure and post-throttle, not the exact final-capture table",
-    "No exported transaction signature or recipient-balance artifact"
+    "No exported transaction signature or recipient-balance artifact",
+    "31 Firedancer tiles share 32 host vCPUs with Jito, Agave, SIG and Kurtosis; CPU contention is a hypothesis, not a measured cause"
   ],
   "cleanup": "Attempt-16 enclave removed; no validator containers intentionally left running."
 }
