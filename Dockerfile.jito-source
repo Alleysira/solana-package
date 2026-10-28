@@ -52,6 +52,6 @@ WORKDIR /home/validator
 LABEL org.opencontainers.image.source="https://github.com/jito-foundation/jito-solana" \
       org.opencontainers.image.version="v4.3.0-jito" \
       org.opencontainers.image.revision="07270be44c712356d8fb94dff8e7a1edd425dbff" \
-      org.opencontainers.image.build="native-linux-arm64-source"
+      org.opencontainers.image.build="native-linux-amd64-source"
 ENTRYPOINT ["/usr/bin/tini", "-g", "--"]
 CMD ["agave-validator", "--version"]

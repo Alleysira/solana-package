@@ -33,6 +33,7 @@
 genesis_launcher = import_module("./genesis/genesis_launcher.star")
 bank_hash_probe = import_module("./genesis/bank_hash_probe.star")
 solana_validator = import_module("./solana_validator/solana_validator_launcher.star")
+firedancer_validator = import_module("./firedancer/firedancer_launcher.star")
 sig_observer = import_module("./sig_observer/sig_observer_launcher.star")
 constants = import_module("./package_io/constants.star")
 
@@ -121,6 +122,12 @@ def launch_participant_network(plan, args, global_node_selectors={}):
         genesis_artifact=genesis_artifact,
         bank_hash=bank_hash,
         global_node_selectors=global_node_selectors,
+    )
+
+    firedancer = firedancer_validator.launch_firedancer(
+        plan,
+        genesis_artifact=genesis_artifact,
+        image=args.firedancer_image,
     )
 
     # Stage 5: extract the REAL leader schedule from the bootstrap RPC (official
@@ -226,6 +233,7 @@ def launch_participant_network(plan, args, global_node_selectors={}):
     return struct(
         bootstrap=bootstrap,
         joiner=joiner,
+        firedancer=firedancer,
         sig=struct(
             service=sig.service,
             name=sig.name,

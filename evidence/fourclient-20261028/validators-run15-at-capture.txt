@@ -1,0 +1,21 @@
+   Identity                                      Vote Account                              Commission  Last Vote        Root Slot     Skip Rate  Credits  Version Client Id                Active Stake
+! 6F2kwkxDHWZhMoaBk3qxCfb5bnV3gz6yoPN69CLi2aym  CgJ9bn9vLUcwjvUnVcgjfAiuYedoSYr7qXRLzWCHE9vc  100.00%        203              181       100.00%        0    0.1.1 Firedancer           39.997717120 SOL (16.67%)
+  ggSkxmgFuedyGP7tteeY5eafXgHoxB7v9aNDxyQ9yqK   7BmnT7Fw7FdzrJuGKRy7nDcCpMKgRYK8oxVwc3UDkCzr  100.00%        383 (  0)        285 (  0)  91.67%      867    4.3.0 JitoLabs             99.997717120 SOL (41.67%)
+  48Jc7SXEvqhy25mmWsoWUfLJaLNFTUpphiKv8J8zzpiH  CHEVTSkqFCy6N8LLUxwXd6EAVy3sQo4fij122EET4y4F  100.00%        383 (  0)        285 (  0)   1.06%      928    4.3.0 Agave                99.997717120 SOL (41.67%)
+
+Average Stake-Weighted Skip Rate: 55.30%
+Average Unweighted Skip Rate:     64.24%
+
+Active Stake: 239.99315136 SOL
+Current Stake: 199.99543424 SOL (83.33%)
+Delinquent Stake: 39.99771712 SOL (16.67%)
+
+Stake By Version:
+4.3.0   -    2 current validators (83.33%)
+0.1.1   -    0 current validators ( 0.00%)   1 delinquent validators (16.67%)
+
+Stake By Client ID:
+Agave          -    1 current validators (41.67%)
+Firedancer     -    0 current validators ( 0.00%)   1 delinquent validators (16.67%)
+JitoLabs       -    1 current validators (41.67%)
+

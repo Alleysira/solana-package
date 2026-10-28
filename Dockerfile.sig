@@ -1,4 +1,6 @@
 # syntax=docker/dockerfile:1
+# 2026-10-28 native amd64 build: the Zig builder tarball below is x86_64-linux.
+# Earlier arm64/OrbStack notes in this file describe prior experiments.
 #
 # SIG v2 (Zig Solana validator) — container build.
 #
@@ -160,8 +162,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # x86_64-linux-gnu.2.36 via -Dtarget.  Pinned tarball + sha256.
 # Source: https://ziglang.org/download/index.json (fetched 2026-09-29)
 ARG ZIG_VERSION=0.15.2
-ARG ZIG_TARBALL_URL=https://ziglang.org/download/0.15.2/zig-aarch64-linux-0.15.2.tar.xz
-ARG ZIG_TARBALL_SHA256=958ed7d1e00d0ea76590d27666efbf7a932281b3d7ba0c6b01b0ff26498f667f
+ARG ZIG_TARBALL_URL=https://ziglang.org/download/0.15.2/zig-x86_64-linux-0.15.2.tar.xz
+ARG ZIG_TARBALL_SHA256=02aa270f183da276e5b5920b1dac44a63f1a49e55050ebde3aecc9eb82f93239
 
 RUN curl -fsSL "$ZIG_TARBALL_URL" -o /tmp/zig.tar.xz \
     && echo "${ZIG_TARBALL_SHA256}  /tmp/zig.tar.xz" | sha256sum -c - \

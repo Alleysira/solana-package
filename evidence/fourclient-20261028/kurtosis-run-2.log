@@ -1,0 +1,128 @@
+[36mINFO[0m[2026-10-28T08:46:08Z] otel ClickHouse running at http://172.17.0.4:8123 (native: 172.17.0.4:9000) 
+[36mINFO[0m[2026-10-28T08:46:08Z] otel collector running at http://172.17.0.5:4317 (http: http://172.17.0.5:4318) 
+[36mINFO[0m[2026-10-28T08:46:08Z] Creating a new enclave for Starlark to run inside... 
+[36mINFO[0m[2026-10-28T08:46:11Z] Enclave 'solana-four-client' created successfully 
+[36mINFO[0m[2026-10-28T08:46:11Z] Executing Starlark package at '/home/jie.ma/sol-diff-testing/solana-package' as the passed argument '.' looks like a directory 
+[36mINFO[0m[2026-10-28T08:46:11Z] Compressing package 'github.com/0xBloctopus/solana-package' at '.' for upload 
+[36mINFO[0m[2026-10-28T08:46:11Z] Kurtosis CLI is running in a non interactive terminal. Everything will work but progress information and the progress bar will not be displayed. 
+
+Container images used in this run:
+> solana-diff/sig:v0.2.0-amd64 - locally cached
+> solana-diff/firedancer:full-ff881b69 - locally cached
+> solana-diff/agave-validator:4.3.0-amd64 - locally cached
+> solana-diff/jito-solana:4.3.0-jito-amd64 - locally cached
+
+Printing a message
+Parsing multi-client input parameters
+
+Printing a message
+Launching multi-client shared-genesis participant network
+
+Printing a message
+Building shred-stream files-artifact from SIG image 'solana-diff/sig:v0.2.0-amd64' (for mounting on bootstrap)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+total 125088
+drwxr-xr-x 2 root root      4096 Oct 28 08:46 .
+drwxrwxrwt 1 root root      4096 Oct 28 08:46 ..
+-rwxr-xr-x 1 root root 128079056 Oct 28 08:10 shred-stream
+[shred-stream-artifact] staged shred-stream binary
+
+--------------------
+
+Printing a message
+Built shred-stream files-artifact: shred-stream-bin
+
+Printing a message
+Generating shared genesis (single run_sh)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+[genesis] keygen identities/votes/stakes/faucet/tip/merkle/recipient
+[genesis] running solana-genesis (three bootstrap validators)
+lamports_per_byte_year is deprecated and will be removed in a future release
+rent_exemption_threshold is deprecated and will be removed in a future release
+rent_burn_percentage is deprecated and will be removed in a future release
+[genesis] genesis_hash=J7kdNjRdQieDmSJsQmxXK1eFo1vy3nmKDRe1fcJoNx2j shred_version=12183
+[genesis] meta.env written. Contents:
+GENESIS_HASH=J7kdNjRdQieDmSJsQmxXK1eFo1vy3nmKDRe1fcJoNx2j
+SHRED_VERSION=12183
+BOOTSTRAP_IDENTITY=8YLXUBQttae4PvY6wvn7dvHud4rD67fVX5ALAsZP8P5A
+BOOTSTRAP_VOTE=BsYbHgkCoshC4GW1XDARAuD8pNjXU1iHXwLy7DX8GQgP
+BOOTSTRAP_STAKE=BxGbTKL3nn6Lf6DWHz79hH3qgKkwi9BX7Z1VSePGFUNY
+JOINER_IDENTITY=JCswtJ81myeAt63qycwB4W4MxrFuCru3qakXv4m6eAhd
+JOINER_VOTE=AvzJMrBJLRXd4pqqJwDPnZQcVhNcNzHd33KtLsHCHYP6
+JOINER_STAKE=GKEqvtSVe9nLKZqUVHscxatg6d7nifFa7bZZKnWEMtu2
+FIREDANCER_IDENTITY=2hTK3Cc8188FXypqcxFRJg1YXtkVBT1wyYDmM59kb8Ye
+FIREDANCER_VOTE=9CnT15ahLo2Adha44yYq9JfLJj2E1R9FY8grc54wACLB
+FIREDANCER_STAKE=6Eg9Gc9mfCrkqKbb2CverexoHxJjSDr9AK9mFoMLCT2G
+RECIPIENT=FnFRHY1ARTxVYriKW8hAhhYJM9oLCfNhKBmJ7dArSAtt
+TIP_PAYMENT=97owN8xPjXQazf9p4P2eRUZFhRC9Wgbuj7jVdJzm2tUb
+TIP_DISTRIBUTION=BmmsBKCMNGS8QajV4QmQJx3uY8oRy2P5RoBk3qtfA9kb
+MERKLE_AUTHORITY=G6MKe7qKeocbsBG3P8MhCnH4uTNHi6k6LuE9kqQiaLRP
+BOOTSTRAP_BLS=5otJdNzQZLDShipxNbrhfwEifFYyjZHx6Hcbr1m5aJPj4Gh1Q6UgRM24CnXNMzWoB3
+JOINER_BLS=7buo7ban6DRUxnrXobXnfeWGU92mFtNqKUPJGLF8FXw2cCo13AgYEGXDsZ21aVboHG
+FIREDANCER_BLS=6PjzfmAAqMhvNpocTsH2dYWzM6Kb8jBjAPUN1vZPiTYy2GU5mRTKg7G31QiwsWf33o
+[genesis] DONE
+
+--------------------
+
+Printing a message
+Genesis artifact 'solana-genesis-data' produced
+
+Printing a message
+Launching bank-hash probe 'bank-hash-probe' (privileged; captures slot-0 bank hash)
+
+Adding service with name 'bank-hash-probe' and image 'solana-diff/agave-validator:4.3.0-amd64'
+Service 'bank-hash-probe' added with service UUID '4b4ce02fbba84771a2f2c7e07475f5a8'
+
+Printing a message
+Bank-hash probe container started (sleep infinity, privileged).
+
+Executing command on service 'bank-hash-probe'
+Command returned with exit code '0' and the following output:
+--------------------
+[probe] my_ip=172.16.0.7
+[probe] validator pid=17
+BANK_HASH=8ZtWVw2eg8fDxex7Pr7LM5D4xn88RRVN7bhMMz2crGhJ
+[probe] captured bank-0 hash=8ZtWVw2eg8fDxex7Pr7LM5D4xn88RRVN7bhMMz2crGhJ
+
+--------------------
+
+Executing command on service 'bank-hash-probe'
+Command returned with exit code '0' and the following output: 8ZtWVw2eg8fDxex7Pr7LM5D4xn88RRVN7bhMMz2crGhJ
+
+Printing a message
+Bank-hash probe captured slot-0 bank hash: 8ZtWVw2eg8fDxex7Pr7LM5D4xn88RRVN7bhMMz2crGhJ
+
+Stopping service 'bank-hash-probe'
+Service 'bank-hash-probe' stopped
+
+Printing a message
+Launching validator 'val-bootstrap' (role=voting-bootstrap, image=solana-diff/jito-solana:4.3.0-jito-amd64)
+
+Adding service with name 'val-bootstrap' and image 'solana-diff/jito-solana:4.3.0-jito-amd64'
+Service 'val-bootstrap' added with service UUID '464d2c04383e41f382dfdcde9bc44aea'
+
+Printing a message
+Validator 'val-bootstrap' launched; rpc=http://val-bootstrap:8899 ws=ws://val-bootstrap:8900
+
+Printing a message
+Launching validator 'val-joiner' (role=voting-joiner, image=solana-diff/agave-validator:4.3.0-amd64)
+
+Adding service with name 'val-joiner' and image 'solana-diff/agave-validator:4.3.0-amd64'
+Service 'val-joiner' added with service UUID '7f992f9797e944ba9adf815ccda661b6'
+
+Printing a message
+Validator 'val-joiner' launched; rpc=http://val-joiner:8899 ws=ws://val-joiner:8900
+
+Adding service with name 'val-firedancer' and image 'solana-diff/firedancer:full-ff881b69'
+Service 'val-firedancer' added with service UUID '75a99563354b43d8a9365af9d25fb60f'
+
+Printing a message
+Extracting real leader schedule from bootstrap RPC via run_sh
+
+Running sh script

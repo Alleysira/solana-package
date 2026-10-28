@@ -1,8 +1,8 @@
-# Slot verifier — wait for both voting validators to be non-delinquent and for
+# Slot verifier — wait for all three voting validators to be non-delinquent and for
 # the slot count to reach the target, then capture the verification evidence.
 #
-# This module is the gate for the 20-slot goal. It does NOT gate on SIG — SIG is
-# a non-voting observer and its evidence level is recorded, not required.
+# This module gates the three voting validators and SIG's appearance in peer
+# gossip. SIG is a non-voting observer and has no vote-account gate.
 #
 # Ported from smoke-shared-genesis.sh:204-285 (the proven readiness poll + final
 # verification block), adapted to the Kurtosis plan.wait / plan.exec API.
@@ -17,11 +17,8 @@
 # verifier robust to image drift. If the images are later rebuilt with jq, this
 # path keeps working (it does not depend on jq being absent).
 #
-#   Stage 1 (plan.wait): block until BOTH validators are non-delinquent with
-#   lastVote>0. Parses `solana validators` (human table): each validator prints
-#   a row whose first field is the identity pubkey; delinquent validators appear
-#   under a separately labeled "Delinquent" block, so a validator present ONLY in
-#   the active (non-delinquent) table with a numeric Last Vote > 0 counts.
+#   Stage 1 (plan.wait): block until all three validators are non-delinquent
+#   with lastVote>0. Solana marks delinquent rows with a leading "!".
 #
 #   Stage 2 (plan.wait): block until the current slot >= slots_target (proven
 #   20-slot goal). Polls `solana slot` on the bootstrap RPC.
@@ -54,13 +51,10 @@ def _joiner_rpc_url(topology):
 
 
 def _validators_ready_cmd(rpc_url):
-    """Exit 0 only when BOTH validators are non-delinquent with lastVote>0.
+    """Exit 0 only when all three validators are non-delinquent with lastVote>0.
 
-    jq-FREE. `solana validators` (human table) prints an active block then,
-    if any, a "Delinquent" block. We scan the table from the header line down
-    to (but not including) any "Delinquent" line, counting rows whose first
-    field is one of our two identities AND whose "Last Vote" field (5th) is a
-    number > 0. Exit 0 only when count == 2.
+    jq-FREE. Scan the human table and skip rows marked with a leading "!".
+    Exit 0 only when all three identities have a positive vote field.
 
     The two identity pubkeys are sourced from /data/meta.env at runtime
     (BOOTSTRAP_IDENTITY / JOINER_IDENTITY), so we do not depend on Starlark
@@ -74,9 +68,7 @@ def _validators_ready_cmd(rpc_url):
     # the two identity pubkeys, and confirm the row has a positive pure-integer
     # field (lastVote / rootSlot / credits are all >0 when voting; the
     # commission "100.00%" and the "( 0)" skip are not pure integers or are 0).
-    # We count only rows in the ACTIVE section (header down to the first
-    # "Delinquent" / "Average" footer line — delinquent validators print in a
-    # separate block). Exit 0 only when count == 2.
+    # We skip rows marked "!" and stop at the Average footer.
     #
     # IMPORTANT: .replace() (NOT .format()) for __RPC__ — the awk program has
     # literal single { } braces that .format() would misinterpret (KeyError).
@@ -89,9 +81,10 @@ def _validators_ready_cmd(rpc_url):
         "count=$(echo \"$out\" | awk '",
         "  /Identity/ { in_hdr=1; next }",
         "  in_hdr && (/Delinquent/ || /Average/) { exit }",
+        "  in_hdr && $1 == \"!\" { next }",
         "  in_hdr {",
         "    for (i=1; i<=NF; i++) {",
-        "      if ($i == first || $i == second) {",
+        "      if ($i == first || $i == second || $i == third) {",
         "        for (j=1; j<=NF; j++) {",
         "          if ($j ~ /^[0-9]+$/ && $j+0 > 0) { c++; break }",
         "        }",
@@ -100,8 +93,8 @@ def _validators_ready_cmd(rpc_url):
         "    }",
         "  }",
         "  END { print c + 0 }",
-        "' first=\"$BOOTSTRAP_IDENTITY\" second=\"$JOINER_IDENTITY\")",
-        '[[ "$count" == "2" ]] && exit 0 || exit 1',
+        "' first=\"$BOOTSTRAP_IDENTITY\" second=\"$JOINER_IDENTITY\" third=\"$FIREDANCER_IDENTITY\")",
+        '[[ "$count" == "3" ]] && exit 0 || exit 1',
     ]
     script = "\n".join(lines).replace("__RPC__", rpc_url)
     return ["bash", "-c", script]
@@ -122,7 +115,7 @@ slot="${{slot//[^0-9]/}}"
     return ["bash", "-c", script]
 
 
-def _capture_evidence_cmd(topology, slots_target, joiner_version, sig_evidence_level, bank_hash):
+def _capture_evidence_cmd(topology, slots_target, joiner_version, firedancer_version, sig_evidence_level, bank_hash):
     """Capture the full verification evidence JSON and write it to /data.
 
     jq-FREE. Mirrors smoke-shared-genesis.sh:229-285 (genesis-hash from both
@@ -181,6 +174,7 @@ def _capture_evidence_cmd(topology, slots_target, joiner_version, sig_evidence_l
         'RPC_JOIN="__RPC_JOIN__"',
         "SLOTS_TARGET=__SLOTS_TARGET__",
         'JOIN_VERSION="__JOIN_VERSION__"',
+        'FIREDANCER_VERSION="__FIREDANCER_VERSION__"',
         "# Strip any trailing newline from the joiner version (passed from",
         "# Starlark; Starlark .strip() should remove it, but a residual newline",
         "# would land inside the JSON string and make it invalid JSON).",
@@ -192,6 +186,8 @@ def _capture_evidence_cmd(topology, slots_target, joiner_version, sig_evidence_l
         "join_identity=\"$JOINER_IDENTITY\"",
         "bs_vote=\"$BOOTSTRAP_VOTE\"",
         "join_vote=\"$JOINER_VOTE\"",
+        "firedancer_identity=\"$FIREDANCER_IDENTITY\"",
+        "firedancer_vote=\"$FIREDANCER_VOTE\"",
         "",
         "# Slot range + shared-genesis proof (genesis-hash from BOTH nodes must match).",
         "slot_start=$(solana --url \"$RPC_BS\" slot | tr -d '[:space:]')",
@@ -243,17 +239,22 @@ def _capture_evidence_cmd(topology, slots_target, joiner_version, sig_evidence_l
         "# evidence files (they contain newlines — NOT inlined into the JSON).",
         "solana --url \"$RPC_BS\" validators 2>/dev/null > /data/validators.txt",
         "solana --url \"$RPC_BS\" gossip 2>/dev/null > /data/gossip.txt",
+        'current_count=$(awk -v first="$bs_identity" -v second="$join_identity" -v third="$firedancer_identity" \'',
+        '  $1 == "!" { next }',
+        '  { for (i=1;i<=NF;i++) if ($i==first||$i==second||$i==third) { c++; break } }',
+        '  END { print c + 0 }' + "' /data/validators.txt)",
+        '[[ "$current_count" == "3" ]] || { echo "[verifier] FATAL: a voting validator is delinquent at evidence capture (current=$current_count)" >&2; exit 1; }',
         "",
-        "# Count our two identities in the gossip table (column-agnostic — the",
+        "# Count our three voting identities in the gossip table (column-agnostic — the",
         "# gossip table also pads fields, so $1 is not the identity; scan all fields).",
-        'gossip_count=$(awk -v first="$bs_identity" -v second="$join_identity" \'',
+        'gossip_count=$(awk -v first="$bs_identity" -v second="$join_identity" -v third="$firedancer_identity" \'',
         "  /Identity/ { in_hdr=1; next }",
-        "  in_hdr { for (i=1;i<=NF;i++) if ($i==first||$i==second){c++;break} }",
+        "  in_hdr { for (i=1;i<=NF;i++) if ($i==first||$i==second||$i==third){c++;break} }",
         "  END { print c + 0 }' /data/gossip.txt)",
-        '[[ "$gossip_count" == "2" ]] || echo "[verifier] WARN: gossip_count=$gossip_count (expected 2)"',
+        '[[ "$gossip_count" == "3" ]] || { echo "[verifier] FATAL: gossip_count=$gossip_count (expected 3)" >&2; exit 1; }',
         "",
-        "# Total gossip nodes seen by the bootstrap. The two voting validators plus",
-        "# the SIG observer = 3 when SIG has JOINED the shared-genesis gossip view.",
+        "# Total gossip nodes seen by the bootstrap. Three voting validators plus",
+        "# the SIG observer = 4 when SIG has JOINED the shared-genesis gossip view.",
         "# This is the authoritative 'joined' signal per AGENTS.md (\"the node",
         "# appeared in the shared-genesis gossip/network view\"): it is read from a",
         "# PEER (the bootstrap), not from SIG's own logs. The gossip table's last",
@@ -261,21 +262,24 @@ def _capture_evidence_cmd(topology, slots_target, joiner_version, sig_evidence_l
         'gossip_nodes=$(awk -F": " "/^Nodes:/ {print \\$2}" /data/gossip.txt)',
         'gossip_nodes=$(printf "%s" "$gossip_nodes" | tr -d "[:space:]")',
         'if [[ -z "$gossip_nodes" ]]; then gossip_nodes=0; fi',
-        "# SIG is present in a peer's gossip view iff the bootstrap sees a 3rd node",
-        "# beyond the two voting validators.",
+        "# Resolve SIG's service IP and require that exact peer in gossip.",
         'sig_in_gossip=false',
-        'if [[ "$gossip_nodes" -ge 3 ]]; then sig_in_gossip=true; fi',
+        "sig_ip=$(getent hosts sig-observer | awk '{print $1}' | head -n1)",
+        "if [[ -n \"$sig_ip\" ]] && awk -v ip=\"$sig_ip\" '$1==ip { found=1 } END { exit !found }' /data/gossip.txt; then sig_in_gossip=true; fi",
+        '[[ "$sig_in_gossip" == "true" ]] || { echo "[verifier] FATAL: SIG absent from peer gossip view" >&2; exit 1; }',
         'echo "[verifier] gossip_nodes=$gossip_nodes sig_in_gossip=$sig_in_gossip"',
         "",
         "bs_version=$(agave-validator --version 2>/dev/null | tr -d '\\r')",
         "",
         "# Assemble the evidence JSON with printf (single { } braces — valid JSON).",
         'now=$(date -u +%Y-%m-%dT%H:%M:%SZ)',
-        "evidence=$(printf '{\"verifiedAt\":\"%s\",\"topology\":\"shared-genesis-multi-client\",\"genesisHash\":\"%s\",\"shredVersion\":\"%s\",\"bankHash\":\"%s\",\"slotsTarget\":%s,\"votingValidators\":[{\"role\":\"bootstrap\",\"identity\":\"%s\",\"vote\":\"%s\",\"binaryVersion\":\"%s\"},{\"role\":\"joiner\",\"identity\":\"%s\",\"vote\":\"%s\",\"binaryVersion\":\"%s\"}],\"sigObserver\":{\"evidenceLevel\":\"%s\",\"voting\":false,\"inGossipView\":%s},\"validatorsFile\":\"/data/validators.txt\",\"gossipFile\":\"/data/gossip.txt\",\"gossipCount\":%s,\"gossipNodes\":%s,\"slots\":{\"start\":%s,\"end\":%s},\"transfer\":{\"signature\":\"%s\",\"recipient\":\"%s\",\"recipientLamports\":\"%s\"}}' \\",
+        "evidence=$(printf '{\"verifiedAt\":\"%s\",\"topology\":\"shared-genesis-multi-client\",\"genesisHash\":\"%s\",\"shredVersion\":\"%s\",\"bankHash\":\"%s\",\"slotsTarget\":%s,\"votingValidators\":[{\"role\":\"bootstrap\",\"identity\":\"%s\",\"vote\":\"%s\",\"binaryVersion\":\"%s\"},{\"role\":\"joiner\",\"identity\":\"%s\",\"vote\":\"%s\",\"binaryVersion\":\"%s\"},{\"role\":\"firedancer\",\"identity\":\"%s\",\"vote\":\"%s\",\"binaryVersion\":\"%s\"}],\"sigObserver\":{\"evidenceLevel\":\"%s\",\"voting\":false,\"inGossipView\":%s},\"validatorsFile\":\"/data/validators.txt\",\"gossipFile\":\"/data/gossip.txt\",\"gossipCount\":%s,\"gossipNodes\":%s,\"slots\":{\"start\":%s,\"end\":%s},\"transfer\":{\"signature\":\"%s\",\"recipient\":\"%s\",\"recipientLamports\":\"%s\"}}' \\",
         '  "$now" "$bs_genesis_hash" "$SHRED_VERSION" "$BANK_HASH" "$SLOTS_TARGET" \\',
         '  "$bs_identity" "$bs_vote" "$bs_version" "$join_identity" "$join_vote" "$JOIN_VERSION" \\',
+        '  "$firedancer_identity" "$firedancer_vote" "$FIREDANCER_VERSION" \\',
         '  "$SIG_LEVEL" "$sig_in_gossip" "$gossip_count" "$gossip_nodes" "$slot_start" "$slot_end" \\',
         '  "$signature" "$recipient_pub" "$recipient_lamports")',
+        '[[ -n "$evidence" ]] || { echo "[verifier] FATAL: empty evidence JSON" >&2; exit 1; }',
         "",
         "echo \"$evidence\" | tee /data/evidence.json",
         'echo "=== EVIDENCE_JSON_START ==="',
@@ -290,6 +294,7 @@ def _capture_evidence_cmd(topology, slots_target, joiner_version, sig_evidence_l
     script = script.replace("__RPC_JOIN__", rpc_join)
     script = script.replace("__SLOTS_TARGET__", str(slots_target))
     script = script.replace("__JOIN_VERSION__", joiner_version)
+    script = script.replace("__FIREDANCER_VERSION__", firedancer_version)
     script = script.replace("__BANK_HASH__", bank_hash)
     script = script.replace("__SIG_LEVEL__", sig_evidence_level)
     return ["bash", "-c", script]
@@ -316,7 +321,7 @@ def wait_for_slots(plan, topology, slots_target, global_node_selectors={}):
     rpc_url = _bootstrap_rpc_url(topology)
 
     plan.print(
-        "Slot verifier: waiting for BOTH validators non-delinquent, then slot >= {0}"
+        "Slot verifier: waiting for all three voting validators non-delinquent, then slot >= {0}"
         .format(slots_target),
     )
 
@@ -333,9 +338,9 @@ def wait_for_slots(plan, topology, slots_target, global_node_selectors={}):
         field="code",
         assertion="==",
         target_value=0,
-        timeout="240s",
+        timeout="900s",
     )
-    plan.print("Both voting validators are non-delinquent with lastVote>0.")
+    plan.print("All three voting validators are non-delinquent with lastVote>0.")
 
     # Stage 2: wait for the slot count to reach the target. jq-free.
     plan.wait(
@@ -344,7 +349,7 @@ def wait_for_slots(plan, topology, slots_target, global_node_selectors={}):
         field="code",
         assertion="==",
         target_value=0,
-        timeout="300s",
+        timeout="900s",
     )
     plan.print("Slot >= {0} reached.".format(slots_target))
 
@@ -358,6 +363,12 @@ def wait_for_slots(plan, topology, slots_target, global_node_selectors={}):
         acceptable_codes=[0],
     )
     joiner_version = joiner_version_result.get("output", "").strip()
+    firedancer_version_result = plan.exec(
+        recipe=ExecRecipe(command=["firedancer", "version"]),
+        service_name=topology.firedancer.name,
+        acceptable_codes=[0],
+    )
+    firedancer_version = firedancer_version_result.get("output", "").strip()
 
     # Stage 3b: capture the full evidence snapshot on the bootstrap node.
     # NOTE: plan.exec's returned `output` is TRUNCATED for long-running execs
@@ -367,7 +378,7 @@ def wait_for_slots(plan, topology, slots_target, global_node_selectors={}):
     # STREAMED log (always complete) even if the returned struct is truncated.
     capture_result = plan.exec(
         recipe=ExecRecipe(command=_capture_evidence_cmd(
-            topology, slots_target, joiner_version, sig.evidence_level, bank_hash,
+            topology, slots_target, joiner_version, firedancer_version, sig.evidence_level, bank_hash,
         )),
         service_name=bootstrap.name,
         acceptable_codes=[0],

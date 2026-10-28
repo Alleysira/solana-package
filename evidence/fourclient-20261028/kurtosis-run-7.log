@@ -1,0 +1,163 @@
+[36mINFO[0m[2026-10-28T17:02:50+08:00] otel ClickHouse running at http://172.17.0.4:8123 (native: 172.17.0.4:9000) 
+[36mINFO[0m[2026-10-28T17:02:50+08:00] otel collector running at http://172.17.0.5:4317 (http: http://172.17.0.5:4318) 
+[36mINFO[0m[2026-10-28T17:02:50+08:00] Creating a new enclave for Starlark to run inside... 
+[36mINFO[0m[2026-10-28T17:02:54+08:00] Enclave 'solana-four-client' created successfully 
+[36mINFO[0m[2026-10-28T17:02:54+08:00] Executing Starlark package at '/home/jie.ma/sol-diff-testing/solana-package' as the passed argument '.' looks like a directory 
+[36mINFO[0m[2026-10-28T17:02:54+08:00] Compressing package 'github.com/0xBloctopus/solana-package' at '.' for upload 
+[36mINFO[0m[2026-10-28T17:02:54+08:00] Kurtosis CLI is running in a non interactive terminal. Everything will work but progress information and the progress bar will not be displayed. 
+
+Container images used in this run:
+> solana-diff/sig:v0.2.0-amd64 - locally cached
+> solana-diff/firedancer:full-ff881b69 - locally cached
+> solana-diff/jito-solana:4.3.0-jito-amd64 - locally cached
+> solana-diff/agave-validator:4.3.0-amd64 - locally cached
+
+Printing a message
+Parsing multi-client input parameters
+
+Printing a message
+Launching multi-client shared-genesis participant network
+
+Printing a message
+Building shred-stream files-artifact from SIG image 'solana-diff/sig:v0.2.0-amd64' (for mounting on bootstrap)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+total 125088
+drwxr-xr-x 2 root root      4096 Oct 28 09:02 .
+drwxrwxrwt 1 root root      4096 Oct 28 09:02 ..
+-rwxr-xr-x 1 root root 128079056 Oct 28 08:10 shred-stream
+[shred-stream-artifact] staged shred-stream binary
+
+--------------------
+
+Printing a message
+Built shred-stream files-artifact: shred-stream-bin
+
+Printing a message
+Generating shared genesis (single run_sh)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+[genesis] keygen identities/votes/stakes/faucet/tip/merkle/recipient
+[genesis] running solana-genesis (two bootstrap validators plus staked Firedancer account)
+lamports_per_byte_year is deprecated and will be removed in a future release
+rent_exemption_threshold is deprecated and will be removed in a future release
+rent_burn_percentage is deprecated and will be removed in a future release
+[genesis] genesis_hash=EPYduW6aensFVfCyd9tcvCK8gtgvhVqwes2DBki23c1Y shred_version=2559
+[genesis] meta.env written. Contents:
+GENESIS_HASH=EPYduW6aensFVfCyd9tcvCK8gtgvhVqwes2DBki23c1Y
+SHRED_VERSION=2559
+BOOTSTRAP_IDENTITY=ErQE7oYS5LstwBuxWZTcK2UVeeswCf2VZKsgr71HWcZK
+BOOTSTRAP_VOTE=9B5CC9ZePkoS2mNJQyuXk6xJYz1nNkVQLHDsHAKY1Mpx
+BOOTSTRAP_STAKE=EpqdV8JYySjxDM4EZMbmVRHpkQWR6Lc94XGZ63e5gpAz
+JOINER_IDENTITY=859f8SDx8Noqcw5H3HbK73irBytZZWgeGGAt64nXytja
+JOINER_VOTE=8ekMguSA4U1yVf2SyYq7kKuYjvvfUZQbXP4CMjAvWTVt
+JOINER_STAKE=8EyuB29rBuDdgAJd8kCpkbS5vVZpJyoZnVw1YNwhdfi7
+FIREDANCER_IDENTITY=9vxXh9u9xJsJ3u3uZSGC7yKsbXibvuC3AxYHKA8e1y6P
+FIREDANCER_VOTE=3RwuYu4bFXpJwkxp1xZ2u5WGRZxFxWChiLHdHeojhAUW
+FIREDANCER_STAKE=7BdHeyNaTEoqiPd3hpsTatp2oFqk27CYZXj6quhVDvwR
+RECIPIENT=wHLa5A4hcVhnDWnvT9ngvPvPbRMK6xXVMYjhEfaZLLt
+TIP_PAYMENT=6ZvAUdCDtfZ9zVJ5ykeqksz1651iUqDhdiDVaF3Rss5Q
+TIP_DISTRIBUTION=2cVCxBEFSzscNgso9n9n8peMeaXVnjvVNmcQSuauV6qx
+MERKLE_AUTHORITY=FqqeeBqh8AzZhSSZd2YRzSxjPamKj6om4UCPSeG9edFs
+BOOTSTRAP_BLS=6K8vWC8ZkxDGkqGuQWwHqRewFZmoibAKejyoyZ5Hzw7EM1LS2odCfiRsRwX9vaLhth
+JOINER_BLS=7i3MFvpWdCyYVM9xfKniRfdCUueZLdwoYPNqgcu72dEMJ9w6Z9CFSeKHH9TXfi5Rc4
+FIREDANCER_BLS=684tLQdHeom3jBEFp8hkxujAgA8ypYBCGkPczvHNVMTPymyNvavGnK7Nbh3tWsicz5
+[genesis] DONE
+
+--------------------
+
+Printing a message
+Genesis artifact 'solana-genesis-data' produced
+
+Printing a message
+Launching bank-hash probe 'bank-hash-probe' (privileged; captures slot-0 bank hash)
+
+Adding service with name 'bank-hash-probe' and image 'solana-diff/agave-validator:4.3.0-amd64'
+Service 'bank-hash-probe' added with service UUID 'e04dafc9c39b45c0ac1b8c0eb85a8637'
+
+Printing a message
+Bank-hash probe container started (sleep infinity, privileged).
+
+Executing command on service 'bank-hash-probe'
+Command returned with exit code '0' and the following output:
+--------------------
+[probe] my_ip=172.16.0.7
+[probe] validator pid=17
+BANK_HASH=Lrm43yxd7qUshdyWH7MSELnXbMZ1DTYnCWN8Q1Wdhgc
+[probe] captured bank-0 hash=Lrm43yxd7qUshdyWH7MSELnXbMZ1DTYnCWN8Q1Wdhgc
+
+--------------------
+
+Executing command on service 'bank-hash-probe'
+Command returned with exit code '0' and the following output: Lrm43yxd7qUshdyWH7MSELnXbMZ1DTYnCWN8Q1Wdhgc
+
+Printing a message
+Bank-hash probe captured slot-0 bank hash: Lrm43yxd7qUshdyWH7MSELnXbMZ1DTYnCWN8Q1Wdhgc
+
+Stopping service 'bank-hash-probe'
+Service 'bank-hash-probe' stopped
+
+Printing a message
+Launching validator 'val-bootstrap' (role=voting-bootstrap, image=solana-diff/jito-solana:4.3.0-jito-amd64)
+
+Adding service with name 'val-bootstrap' and image 'solana-diff/jito-solana:4.3.0-jito-amd64'
+Service 'val-bootstrap' added with service UUID '72c253df8e314fa1845d308491a88db8'
+
+Printing a message
+Validator 'val-bootstrap' launched; rpc=http://val-bootstrap:8899 ws=ws://val-bootstrap:8900
+
+Printing a message
+Launching validator 'val-joiner' (role=voting-joiner, image=solana-diff/agave-validator:4.3.0-amd64)
+
+Adding service with name 'val-joiner' and image 'solana-diff/agave-validator:4.3.0-amd64'
+Service 'val-joiner' added with service UUID 'e3dc9e961c714665bdbd6fd3f03ee6d2'
+
+Printing a message
+Validator 'val-joiner' launched; rpc=http://val-joiner:8899 ws=ws://val-joiner:8900
+
+Adding service with name 'val-firedancer' and image 'solana-diff/firedancer:full-ff881b69'
+Service 'val-firedancer' added with service UUID '4a248ac61a9a4c3188192c1d6d3692c9'
+
+Printing a message
+Extracting real leader schedule from bootstrap RPC via run_sh
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+[schedule] rpc ready=1 after 15 s
+[schedule] lines=432000 (expected 432000)
+[schedule] OK: 0.. + 431999 + , 432000 lines
+0 859f8SDx8Noqcw5H3HbK73irBytZZWgeGGAt64nXytja
+1 859f8SDx8Noqcw5H3HbK73irBytZZWgeGGAt64nXytja
+431999 ErQE7oYS5LstwBuxWZTcK2UVeeswCf2VZKsgr71HWcZK
+
+--------------------
+
+Printing a message
+Built leader-schedule files-artifact: leader-schedule
+
+Printing a message
+Launching SIG observer 'sig-observer' (image=solana-diff/sig:v0.2.0-amd64, NON-VOTING observer; cluster=development, functional path skip_on_cold_start=False)
+
+Adding service with name 'sig-observer' and image 'solana-diff/sig:v0.2.0-amd64'
+There was an error executing Starlark code 
+An error occurred executing instruction (number 27) at github.com/0xBloctopus/solana-package/src/sig_observer/sig_observer_launcher.star[716:31]:
+  add_service(name="sig-observer", config=ServiceConfig(image="solana-diff/sig:v0.2.0-amd64", files={"/data": "solana-genesis-data", "/var/lib/sig/schedule": "leader-schedule"}, entrypoint=["sleep"], cmd=["infinity"], node_selectors={}, privileged=True))
+  Caused by: Unexpected error occurred starting service 'sig-observer'
+  Caused by: An error occurred doing files artifacts expansion to get user service volumes
+  Caused by: An error occurred running files artifacts expander for service '86dd6ff3e44e4d8ca956ffcd2002addb'
+  Caused by: Files artifacts expander container 'files-artifacts-expander--7264bf3046c44fff9f57fd30d5d30fb5--ffcc302fdb3a407187de5389947afcc7' for service '86dd6ff3e44e4d8ca956ffcd2002addb' finished with non-0 exit code '1' and logs:
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Logs for container 'dd264723d81f39c5073431d46fd56e64511c99ab1c2ccd2b54bb5a1f1d6ef840' <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>> End logs for container 'dd264723d81f39c5073431d46fd56e64511c99ab1c2ccd2b54bb5a1f1d6ef840' <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Failed to write to log: write /root/.local/share/kurtosis/cli/kurtosis-cli-1793178170322830.log: no space left on device
+
+Error encountered running Starlark code.
+Failed to write to log: write /root/.local/share/kurtosis/cli/kurtosis-cli-1793178170322830.log: no space left on device
+
+⭐ us on GitHub - https://github.com/kurtosis-tech/kurtosis
+Failed to write 

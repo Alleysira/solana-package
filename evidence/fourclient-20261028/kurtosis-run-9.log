@@ -1,0 +1,13 @@
+[36mINFO[0m[2026-10-28T17:05:52+08:00] otel ClickHouse running at http://172.17.0.4:8123 (native: 172.17.0.4:9000) 
+[36mINFO[0m[2026-10-28T17:05:52+08:00] otel collector running at http://172.17.0.5:4317 (http: http://172.17.0.5:4318) 
+[36mINFO[0m[2026-10-28T17:05:52+08:00] Creating a new enclave for Starlark to run inside... 
+Error:  An error occurred running command 'run'
+  Caused by: An error occurred calling the run function for command 'run'
+  Caused by: An error occurred getting the enclave context for enclave 'solana-four-client'
+  Caused by: Unable to create new enclave with name 'solana-four-client'
+  Caused by: An error occurred creating an enclave with name 'solana-four-client'
+  Caused by: rpc error: code = Unknown desc = An error occurred creating new enclave with name 'solana-four-client'
+  Caused by: An error occurred creating new enclave with name 'solana-four-client' using api container image version '' and api container log level 'debug'
+  Caused by: An error occurred creating the logs collector with TCP port number '9712' and HTTP port number '9713'
+  Caused by: An error occurred creating the logs collector with TCP port number '9712' and HTTP port number '9713'
+  Caused by: The logs aggregator container exists but is not running. Instead logs aggregator container status is 'STOPPED'. The logs collector cannot be run without a logs aggregator.

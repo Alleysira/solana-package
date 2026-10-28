@@ -34,6 +34,7 @@ def input_parser(plan, args):
     participants = args.get("participants", {})
     bootstrap_image = participants.get("bootstrap_image", constants.JITO_IMAGE)
     joiner_image = participants.get("joiner_image", constants.AGAVE_IMAGE)
+    firedancer_image = participants.get("firedancer_image", constants.FIREDANCER_IMAGE)
 
     # ── genesis knobs (all optional, default to constants) ─────────────────
     genesis = args.get("genesis", {})
@@ -48,6 +49,9 @@ def input_parser(plan, args):
         ),
         "bootstrap_validator_stake_lamports": genesis.get(
             "bootstrap_validator_stake_lamports", constants.BOOTSTRAP_STAKE_LAMPORTS
+        ),
+        "firedancer_stake_lamports": genesis.get(
+            "firedancer_stake_lamports", constants.FIREDANCER_STAKE_LAMPORTS
         ),
     }
 
@@ -73,6 +77,7 @@ def input_parser(plan, args):
         slots_target = slots_target,
         bootstrap_image = bootstrap_image,
         joiner_image = joiner_image,
+        firedancer_image = firedancer_image,
         genesis_config = genesis_config,
         sig_config = sig_config,
         explorer_config = explorer_config,

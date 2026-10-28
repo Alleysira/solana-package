@@ -1,0 +1,285 @@
+[36mINFO[0m[2026-10-28T17:06:06+08:00] otel ClickHouse running at http://172.17.0.4:8123 (native: 172.17.0.4:9000) 
+[36mINFO[0m[2026-10-28T17:06:06+08:00] otel collector running at http://172.17.0.5:4317 (http: http://172.17.0.5:4318) 
+[36mINFO[0m[2026-10-28T17:06:06+08:00] Creating a new enclave for Starlark to run inside... 
+[36mINFO[0m[2026-10-28T17:06:09+08:00] Enclave 'solana-four-client' created successfully 
+[36mINFO[0m[2026-10-28T17:06:09+08:00] Executing Starlark package at '/home/jie.ma/sol-diff-testing/solana-package' as the passed argument '.' looks like a directory 
+[36mINFO[0m[2026-10-28T17:06:09+08:00] Compressing package 'github.com/0xBloctopus/solana-package' at '.' for upload 
+[36mINFO[0m[2026-10-28T17:06:10+08:00] Kurtosis CLI is running in a non interactive terminal. Everything will work but progress information and the progress bar will not be displayed. 
+
+Container images used in this run:
+> solana-diff/firedancer:full-ff881b69 - locally cached
+> solana-diff/jito-solana:4.3.0-jito-amd64 - locally cached
+> solana-diff/agave-validator:4.3.0-amd64 - locally cached
+> solana-diff/sig:v0.2.0-amd64 - locally cached
+
+Printing a message
+Parsing multi-client input parameters
+
+Printing a message
+Launching multi-client shared-genesis participant network
+
+Printing a message
+Building shred-stream files-artifact from SIG image 'solana-diff/sig:v0.2.0-amd64' (for mounting on bootstrap)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+total 125088
+drwxr-xr-x 2 root root      4096 Oct 28 09:06 .
+drwxrwxrwt 1 root root      4096 Oct 28 09:06 ..
+-rwxr-xr-x 1 root root 128079056 Oct 28 08:10 shred-stream
+[shred-stream-artifact] staged shred-stream binary
+
+--------------------
+
+Printing a message
+Built shred-stream files-artifact: shred-stream-bin
+
+Printing a message
+Generating shared genesis (single run_sh)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+[genesis] keygen identities/votes/stakes/faucet/tip/merkle/recipient
+[genesis] running solana-genesis (two bootstrap validators plus staked Firedancer account)
+lamports_per_byte_year is deprecated and will be removed in a future release
+rent_exemption_threshold is deprecated and will be removed in a future release
+rent_burn_percentage is deprecated and will be removed in a future release
+[genesis] genesis_hash=Fp4t63BxVnNFyg1wDhysuyhRqsRfwemAWbQ4iPjUbDuM shred_version=29812
+[genesis] meta.env written. Contents:
+GENESIS_HASH=Fp4t63BxVnNFyg1wDhysuyhRqsRfwemAWbQ4iPjUbDuM
+SHRED_VERSION=29812
+BOOTSTRAP_IDENTITY=FLJHrmSZjCf8EDGhh184FRDQm3MgfWGkJE4Vvm6TS1CG
+BOOTSTRAP_VOTE=5ZGknp3yVDLoCMjbv58k8ZsEcLxpDganVdgbv4EKoLEN
+BOOTSTRAP_STAKE=8k4MQ8dKaLtUWfPag3pzVxK9y6XrkEFJhhFy8FW4qhre
+JOINER_IDENTITY=5ik3KtnNwjwqLh7RecQDfw87GbsYqchkKJdmrY6e3UtX
+JOINER_VOTE=6QinnsNfYKsZGAcJVn8rXewnhXDtSCphMW6H3mUZBLcW
+JOINER_STAKE=CTK61icLf8onPmAjzi8aWrD2apVgHBMJKWTatqtwZwqi
+FIREDANCER_IDENTITY=F9zovUAJ4kTukY5tmfxWzmu5C4ofbG16YdemkN7raBr2
+FIREDANCER_VOTE=Eth5VFdsoNakNDppLN5LdPDoPNCw8pEAJEUHT9HRimWP
+FIREDANCER_STAKE=w6fULhBNW1RgQEEguWXE6skaWzKi5JmLQ5RFPxufT7E
+RECIPIENT=oupcUQCnFZKAh1gDYFVozX6SSrUE4UHkQorQyoUPsT9
+TIP_PAYMENT=qqfeS6823dAxNLDsxrYojFPoYUfTcKGAPcTd3YwdpBN
+TIP_DISTRIBUTION=EeH28YxkPyZaALzyJ15hgnyuRvz5FwbKGYNGATVCvJHa
+MERKLE_AUTHORITY=GZRwgjiRHAKVNgBhBAAu8VhX7fBqCgNR4LnheqW2XgvB
+BOOTSTRAP_BLS=6R23rSVbqfEXJhYLtkpcG5EwZMcpRLEcmQz17pmudk7SMJULdGWbzV68wD7VJMTgxM
+JOINER_BLS=6NAzjqkYksGJap3USEATDTm2cde6bKEcoNNJCnCmTPVsSbT1d3LTfQUUpEaJeSJYHf
+FIREDANCER_BLS=7XzPMA8E64A7n34Ni6Nc6X1gcg6qh9KFmsU4zFSEeXh98VZTeVxHyQgM5UQnohmb7H
+[genesis] DONE
+
+--------------------
+
+Printing a message
+Genesis artifact 'solana-genesis-data' produced
+
+Printing a message
+Launching bank-hash probe 'bank-hash-probe' (privileged; captures slot-0 bank hash)
+
+Adding service with name 'bank-hash-probe' and image 'solana-diff/agave-validator:4.3.0-amd64'
+Service 'bank-hash-probe' added with service UUID 'd89ba87353144c23a0fb4b02ca1a06b5'
+
+Printing a message
+Bank-hash probe container started (sleep infinity, privileged).
+
+Executing command on service 'bank-hash-probe'
+Command returned with exit code '0' and the following output:
+--------------------
+[probe] my_ip=172.16.0.7
+[probe] validator pid=17
+BANK_HASH=38WgNTJi4B9A8CtXX8dark3tfEYJnW4d1DN2MLhf9E5w
+[probe] captured bank-0 hash=38WgNTJi4B9A8CtXX8dark3tfEYJnW4d1DN2MLhf9E5w
+
+--------------------
+
+Executing command on service 'bank-hash-probe'
+Command returned with exit code '0' and the following output: 38WgNTJi4B9A8CtXX8dark3tfEYJnW4d1DN2MLhf9E5w
+
+Printing a message
+Bank-hash probe captured slot-0 bank hash: 38WgNTJi4B9A8CtXX8dark3tfEYJnW4d1DN2MLhf9E5w
+
+Stopping service 'bank-hash-probe'
+Service 'bank-hash-probe' stopped
+
+Printing a message
+Launching validator 'val-bootstrap' (role=voting-bootstrap, image=solana-diff/jito-solana:4.3.0-jito-amd64)
+
+Adding service with name 'val-bootstrap' and image 'solana-diff/jito-solana:4.3.0-jito-amd64'
+Service 'val-bootstrap' added with service UUID '601fefa60fe0433aad35d3afdbfee20d'
+
+Printing a message
+Validator 'val-bootstrap' launched; rpc=http://val-bootstrap:8899 ws=ws://val-bootstrap:8900
+
+Printing a message
+Launching validator 'val-joiner' (role=voting-joiner, image=solana-diff/agave-validator:4.3.0-amd64)
+
+Adding service with name 'val-joiner' and image 'solana-diff/agave-validator:4.3.0-amd64'
+Service 'val-joiner' added with service UUID 'e10c8e7acecf494d83f1d36a50ee4619'
+
+Printing a message
+Validator 'val-joiner' launched; rpc=http://val-joiner:8899 ws=ws://val-joiner:8900
+
+Adding service with name 'val-firedancer' and image 'solana-diff/firedancer:full-ff881b69'
+Service 'val-firedancer' added with service UUID 'be667e82272f407599055053b3d541f9'
+
+Printing a message
+Extracting real leader schedule from bootstrap RPC via run_sh
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+[schedule] rpc ready=1 after 25 s
+[schedule] lines=432000 (expected 432000)
+[schedule] OK: 0.. + 431999 + , 432000 lines
+0 FLJHrmSZjCf8EDGhh184FRDQm3MgfWGkJE4Vvm6TS1CG
+1 FLJHrmSZjCf8EDGhh184FRDQm3MgfWGkJE4Vvm6TS1CG
+431999 5ik3KtnNwjwqLh7RecQDfw87GbsYqchkKJdmrY6e3UtX
+
+--------------------
+
+Printing a message
+Built leader-schedule files-artifact: leader-schedule
+
+Printing a message
+Launching SIG observer 'sig-observer' (image=solana-diff/sig:v0.2.0-amd64, NON-VOTING observer; cluster=development, functional path skip_on_cold_start=False)
+
+Adding service with name 'sig-observer' and image 'solana-diff/sig:v0.2.0-amd64'
+Service 'sig-observer' added with service UUID '361bf5fa97dd45b68383dd6119b7818c'
+
+Printing a message
+SIG observer container started (sleep infinity, privileged, schedule mounted).
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output:
+--------------------
+--- binary ---
+-rwxr-xr-x 1 root root 28142288 Oct 28 08:10 /opt/sig/bin/sig
+--- BUILD-INFO ---
+commit=0c1e96c1ef335ecf9f62e337477faf5bdab0d83a
+fork=yes(Alleysira)
+upstream=Syndica/sig
+fork_diff=main branch; 5 tracked deviation files + DEVIATIONS.md (development observer path)
+upstream_base=b5026c60fe56b51edd79131115b7e741449d6b2e(byte-identical-to-upstream-main)
+zig=0.15.2
+target=x86_64-linux-gnu.2.36
+runtime_platform=linux/amd64
+build_flags=-Dallow-no-sha -Dallow-no-avx512
+client=SIG-v2-observer-non-voting
+note=tracked-deviation-build-see-DEVIATIONS-md
+0c1e96c1 sig v2: bound shred_receiver slot range to the snapshot slot (deviation 5)
+--- schedule ---
+432000 /var/lib/sig/schedule/schedule.txt
+0 FLJHrmSZjCf8EDGhh184FRDQm3MgfWGkJE4Vvm6TS1CG
+1 FLJHrmSZjCf8EDGhh184FRDQm3MgfWGkJE4Vvm6TS1CG
+
+--------------------
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output:
+--------------------
+[sig-observer] wrote /var/lib/sig/config.zon (skip_on_cold_start=false)
+[sig-observer] advertise_ip=172.16.0.12 shred_version=29812 entrypoint=val-bootstrap:8001
+.{
+    .sandboxing_mode = .threaded,
+
+    .cluster = .development,
+    .leader_schedule_file = "/var/lib/sig/schedule/schedule.txt",
+    .gossip = .{
+        .port = 8001,
+        .advertise_tvu_port = true,
+        .advertise_ip = "172.16.0.12",
+        .development_entrypoints = .{"val-bootstrap:8001"},
+    },
+    .shred_network = .{
+        .recv_port = 8002,
+        .shred_version = 29812,
+    },
+    .telemetry = .{
+        .port = 9110,
+        .log_level = .info,
+    },
+    .snapshot = .{
+        .folder = "/var/lib/sig/validator",
+        .known_validators = .{"*"},
+        .skip_on_cold_start = false,
+    },
+    .accounts_db = .{
+        .file = "/var/lib/sig/validator/accounts.db",
+        .rooted = .{ .gb = 1 },
+        .unrooted = .{ .gb = 1 },
+    },
+}
+
+--------------------
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output:
+--------------------
+[sig-observer] launched sig pid=35
+[sig-observer] sig is alive after 45s (started)
+=== sig.log (first 120 lines) ===
+time=2026-10-28T09:07:28.636Z level=info scope=main service=accounts_db message="no existing rooted db. reading from snapshot"
+vel=info scope=main service=net message="binding 0.0.0.0:8002"
+time=2026-10-28T09:07:15.637Z level=info scope=main port=8001 identity=7k66pbfos632XCtYCFrpAUp7BmdRHgcdTptJW1aaf7Jp shred_version=29812 entrypoints="{ 172.16.0.8:8001 }" service=gossip message="Gossip started"
+time=2026-10-28T09:07:15.815Z level=info scope=main service=shred_receiver message="Waiting for shreds on port 8002"
+time=2026-10-28T09:07:26.059Z level=info scope=main service=snapshot message="snapshot path /var/lib/sig/validator"
+time=2026-10-28T09:07:28.567Z level=info scope=main service=accounts_db message="accounts_db started into file: /var/lib/sig/validator/accounts.db"
+time=2026-10-28T09:07:28.632Z level=info scope=Rooted.writeJournal service=accounts_db message="writing journal: .{ .magic = .valid, .state = .empty, .writing_slot = 0, .committed_slot = 0, .committed_offset = 0, .blockhash_max_age = 300 }"
+
+info: Initializing region 'net.Pair' (44171904 bytes)
+info: Initializing region 'net.Pair' (44171904 bytes)
+info: Initializing region 'ipc.ring.Ring(256,api.SnapshotSource)' (24832 bytes)
+info: Initializing region 'api.SnapshotData' (16777600 bytes)
+info: Initializing region 'api.RuntimeMetadata' (8704 bytes)
+info: Initializing region 'account_pool.AccountPool' (1073741984 bytes)
+info: Initializing region '[3221225472]u8' (3221225472 bytes)
+info: Initializing region 'ipc.ring.Ring(1024,api.DeshreddedFecSet)' (39346432 bytes)
+info: Initializing region 'api.AccountLookups' (17920 bytes)
+info: Initializing region 'collections.pool.SharedPool([1232]u8,10000)' (12320002 bytes)
+info: Initializing region 'collections.pool.SharedPool(api.Node,1024)' (16392 bytes)
+info: Initializing region 'api.ExecReqResponse' (274944 bytes)
+info: Initializing region 'telemetry.Region' (629376624 bytes)
+=== sig.log (last 40 lines) ===
+time=2026-10-28T09:07:28.636Z level=info scope=main service=accounts_db message="no existing rooted db. reading from snapshot"
+vel=info scope=main service=net message="binding 0.0.0.0:8002"
+time=2026-10-28T09:07:15.637Z level=info scope=main port=8001 identity=7k66pbfos632XCtYCFrpAUp7BmdRHgcdTptJW1aaf7Jp shred_version=29812 entrypoints="{ 172.16.0.8:8001 }" service=gossip message="Gossip started"
+time=2026-10-28T09:07:15.815Z level=info scope=main service=shred_receiver message="Waiting for shreds on port 8002"
+time=2026-10-28T09:07:26.059Z level=info scope=main service=snapshot message="snapshot path /var/lib/sig/validator"
+time=2026-10-28T09:07:28.567Z level=info scope=main service=accounts_db message="accounts_db started into file: /var/lib/sig/validator/accounts.db"
+time=2026-10-28T09:07:28.632Z level=info scope=Rooted.writeJournal service=accounts_db message="writing journal: .{ .magic = .valid, .state = .empty, .writing_slot = 0, .committed_slot = 0, .committed_offset = 0, .blockhash_max_age = 300 }"
+
+info: Initializing region 'net.Pair' (44171904 bytes)
+info: Initializing region 'net.Pair' (44171904 bytes)
+info: Initializing region 'ipc.ring.Ring(256,api.SnapshotSource)' (24832 bytes)
+info: Initializing region 'api.SnapshotData' (16777600 bytes)
+info: Initializing region 'api.RuntimeMetadata' (8704 bytes)
+info: Initializing region 'account_pool.AccountPool' (1073741984 bytes)
+info: Initializing region '[3221225472]u8' (3221225472 bytes)
+info: Initializing region 'ipc.ring.Ring(1024,api.DeshreddedFecSet)' (39346432 bytes)
+info: Initializing region 'api.AccountLookups' (17920 bytes)
+info: Initializing region 'collections.pool.SharedPool([1232]u8,10000)' (12320002 bytes)
+info: Initializing region 'collections.pool.SharedPool(api.Node,1024)' (16392 bytes)
+info: Initializing region 'api.ExecReqResponse' (274944 bytes)
+info: Initializing region 'telemetry.Region' (629376624 bytes)
+
+--------------------
+
+Printing a message
+SIG observer 'sig-observer' launched (NON-VOTING; evidence classified after shred-stream)
+
+Executing command on service 'sig-observer'
+[31mERRO[0m[2026-10-28T17:08:04+08:00] Unexpected error happened reading the stream. Client might have cancelled the stream
+rpc error: code = Unavailable desc = error reading from server: EOF 
+[33mWARN[0m[2026-10-28T17:08:04+08:00] An error occurred configuring the user services port forwarding
+Error was: An error was encountered while sending the connect request to the API Container.
+ --- at /__w/kurtosis/kurtosis/api/golang/core/lib/enclaves/enclave_context.go:572 (EnclaveContext.ConnectServices) ---
+Caused by: rpc error: code = Unavailable desc = connection error: desc = "error reading server preface: connection reset by peer" 
+[33mWARN[0m[2026-10-28T17:08:04+08:00] Tried getting number of services in the enclave to log metrics but failed 
+[36mINFO[0m[2026-10-28T17:08:04+08:00] =========================================================== 
+[36mINFO[0m[2026-10-28T17:08:04+08:00] ||          Created enclave: solana-four-client          || 
+[36mINFO[0m[2026-10-28T17:08:04+08:00] =========================================================== 
+[31mERRO[0m[2026-10-28T17:08:07+08:00] An error occurred while printing enclave status and contents:
+An error occurred getting the enclave for identifier 'solana-four-client'
+ --- at /__w/kurtosis/kurtosis/cli/cli/commands/enclave/inspect/inspect.go:121 (PrintEnclaveInspect) ---
+Caused by: No running enclave found with identifier 'solana-four-client'
+ --- at /__w/kurtosis/kurtosis/api/golang/engine/lib/kurtosis_context/kurtosis_context.go:266 (KurtosisContext.GetEnclave) --- 

@@ -1,0 +1,85 @@
+{
+  "totalActiveStake": 239993151360,
+  "totalCurrentStake": 199995434240,
+  "totalDelinquentStake": 39997717120,
+  "validators": [
+    {
+      "identityPubkey": "GfBPC7EkAhQMjbQdk8sHdnSrbJ9PJeELV3WR3cNfRnik",
+      "voteAccountPubkey": "As3qgeLMfChZio5q84Ae6EsiWCrWM8L9JKi94vXEfYZ4",
+      "commissionBps": 10000,
+      "lastVote": 231,
+      "rootSlot": 188,
+      "credits": 784,
+      "epochCredits": 784,
+      "activatedStake": 99997717120,
+      "version": "4.3.0",
+      "clientId": "Agave",
+      "delinquent": false,
+      "skipRate": 0.0
+    },
+    {
+      "identityPubkey": "686zTvQncCRz9BqVV4a6mWoroCRrrPBGUWr8tpr8isKY",
+      "voteAccountPubkey": "5x22H2VqimUWatvf9GPnbChPiPyXHg8gyWratdBCLQQi",
+      "commissionBps": 10000,
+      "lastVote": 231,
+      "rootSlot": 188,
+      "credits": 692,
+      "epochCredits": 692,
+      "activatedStake": 99997717120,
+      "version": "4.3.0",
+      "clientId": "JitoLabs",
+      "delinquent": false,
+      "skipRate": 94.04761904761905
+    },
+    {
+      "identityPubkey": "5YoWCb8BmXZqeViy33jmcCohaBYNU7cCXJYooKNeorEz",
+      "voteAccountPubkey": "5Cp11JPAfZFHuPGWpmrK1jMFh3LiXb7HjNMgQe4GQN6Y",
+      "commissionBps": 10000,
+      "lastVote": 59,
+      "rootSlot": 57,
+      "credits": 0,
+      "epochCredits": 0,
+      "activatedStake": 39997717120,
+      "version": "0.1.1",
+      "clientId": "Firedancer",
+      "delinquent": true,
+      "skipRate": 100.0
+    }
+  ],
+  "averageSkipRate": 64.68253968253968,
+  "averageStakeWeightedSkipRate": 55.85292264122271,
+  "stakeByVersion": {
+    "0.1.1": {
+      "currentValidators": 0,
+      "delinquentValidators": 1,
+      "currentActiveStake": 0,
+      "delinquentActiveStake": 39997717120
+    },
+    "4.3.0": {
+      "currentValidators": 2,
+      "delinquentValidators": 0,
+      "currentActiveStake": 199995434240,
+      "delinquentActiveStake": 0
+    }
+  },
+  "stakeByClientId": {
+    "Agave": {
+      "currentValidators": 1,
+      "delinquentValidators": 0,
+      "currentActiveStake": 99997717120,
+      "delinquentActiveStake": 0
+    },
+    "Firedancer": {
+      "currentValidators": 0,
+      "delinquentValidators": 1,
+      "currentActiveStake": 0,
+      "delinquentActiveStake": 39997717120
+    },
+    "JitoLabs": {
+      "currentValidators": 1,
+      "delinquentValidators": 0,
+      "currentActiveStake": 99997717120,
+      "delinquentActiveStake": 0
+    }
+  }
+}

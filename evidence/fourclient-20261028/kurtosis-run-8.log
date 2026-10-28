@@ -1,0 +1,183 @@
+[36mINFO[0m[2026-10-28T17:04:11+08:00] otel ClickHouse running at http://172.17.0.4:8123 (native: 172.17.0.4:9000) 
+[36mINFO[0m[2026-10-28T17:04:11+08:00] otel collector running at http://172.17.0.5:4317 (http: http://172.17.0.5:4318) 
+[36mINFO[0m[2026-10-28T17:04:11+08:00] Creating a new enclave for Starlark to run inside... 
+[36mINFO[0m[2026-10-28T17:04:14+08:00] Enclave 'solana-four-client' created successfully 
+[36mINFO[0m[2026-10-28T17:04:14+08:00] Executing Starlark package at '/home/jie.ma/sol-diff-testing/solana-package' as the passed argument '.' looks like a directory 
+[36mINFO[0m[2026-10-28T17:04:15+08:00] Compressing package 'github.com/0xBloctopus/solana-package' at '.' for upload 
+[36mINFO[0m[2026-10-28T17:04:15+08:00] Kurtosis CLI is running in a non interactive terminal. Everything will work but progress information and the progress bar will not be displayed. 
+
+Container images used in this run:
+> solana-diff/agave-validator:4.3.0-amd64 - locally cached
+> solana-diff/sig:v0.2.0-amd64 - locally cached
+> solana-diff/firedancer:full-ff881b69 - locally cached
+> solana-diff/jito-solana:4.3.0-jito-amd64 - locally cached
+
+Printing a message
+Parsing multi-client input parameters
+
+Printing a message
+Launching multi-client shared-genesis participant network
+
+Printing a message
+Building shred-stream files-artifact from SIG image 'solana-diff/sig:v0.2.0-amd64' (for mounting on bootstrap)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+total 125088
+drwxr-xr-x 2 root root      4096 Oct 28 09:04 .
+drwxrwxrwt 1 root root      4096 Oct 28 09:04 ..
+-rwxr-xr-x 1 root root 128079056 Oct 28 08:10 shred-stream
+[shred-stream-artifact] staged shred-stream binary
+
+--------------------
+
+Printing a message
+Built shred-stream files-artifact: shred-stream-bin
+
+Printing a message
+Generating shared genesis (single run_sh)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+[genesis] keygen identities/votes/stakes/faucet/tip/merkle/recipient
+[genesis] running solana-genesis (two bootstrap validators plus staked Firedancer account)
+lamports_per_byte_year is deprecated and will be removed in a future release
+rent_exemption_threshold is deprecated and will be removed in a future release
+rent_burn_percentage is deprecated and will be removed in a future release
+[genesis] genesis_hash=BmqBzyccLrBtzkjpq6UzpSDYGE1BN2roh8TtyZskTmiM shred_version=3299
+[genesis] meta.env written. Contents:
+GENESIS_HASH=BmqBzyccLrBtzkjpq6UzpSDYGE1BN2roh8TtyZskTmiM
+SHRED_VERSION=3299
+BOOTSTRAP_IDENTITY=43LMr54baM2GsC72H1rCkpR1MTZF4oZmqPdV8dyXC4om
+BOOTSTRAP_VOTE=JCXuLPZgWqrh867gnoSJcGmR8hFFaaBLY8EPZ9oENuCV
+BOOTSTRAP_STAKE=Et4jf6rxNMYDXoRCYNxN4YMQnS1nfrvp6jba4pYp8tMq
+JOINER_IDENTITY=AGaHHHYuAp6MEzn938pvyoVkQ4DKAnRm8U5PezAy9F8q
+JOINER_VOTE=EE3hPZfyrAokzuGA36y1Jig1Wf7HLr1TL1d7M3SMnTNH
+JOINER_STAKE=E2RXQDfgREuLTaRkyL8tpn9KpscKFpsDhVk9Gyqa9Ckc
+FIREDANCER_IDENTITY=HWH26vZyAmcQQyWsg8eLWXbdfRiVDKQ4BdYYQvodWY8K
+FIREDANCER_VOTE=22ZjUxxdb2W75M8vZpRevFnZsSRxgRpw8Sc28YHq6zak
+FIREDANCER_STAKE=4gUTdxnFRkb5cDR4F2jR7gSDNo7Vt7b75nWfukNLPfkb
+RECIPIENT=BRh4pyANtQY14WyRFTApUjuNXuQ9uRKn5svJPxczm12Z
+TIP_PAYMENT=9mZ13viFTyg4BToQPPP2yDBpZSf4u6VToxxL1fcccCHy
+TIP_DISTRIBUTION=4jQR7Wq4TNhwSJZYt1fF5EC3veE1rKGxDvgm5z7jWsii
+MERKLE_AUTHORITY=E9Tk4ijYmwGqck4wwUa9rHt5m1kq9qpkUoCTpzr3WDbv
+BOOTSTRAP_BLS=6VbaTqNQ3LwrgpkT1GBEadumrC9kwWytY1hqXGeEHFwhxdsSbC7bC4DD7db2Cu7BPR
+JOINER_BLS=7SqJHfxQxVaKdoMhEBZuVro2ZXBaqQAKsvTs7GBMdBPSgcwmPmVE65HnK1pudvBCBE
+FIREDANCER_BLS=6xYRC7s9mWDGB63XXYwM2jMosicobr7jUHXyDtcPRiwAf6RqjD6URRe5nDZhbu23CY
+[genesis] DONE
+
+--------------------
+
+Printing a message
+Genesis artifact 'solana-genesis-data' produced
+
+Printing a message
+Launching bank-hash probe 'bank-hash-probe' (privileged; captures slot-0 bank hash)
+
+Adding service with name 'bank-hash-probe' and image 'solana-diff/agave-validator:4.3.0-amd64'
+Service 'bank-hash-probe' added with service UUID '89ec3ea61b7c4355aa4e92758a424398'
+
+Printing a message
+Bank-hash probe container started (sleep infinity, privileged).
+
+Executing command on service 'bank-hash-probe'
+Command returned with exit code '0' and the following output:
+--------------------
+[probe] my_ip=172.16.0.6
+[probe] validator pid=17
+BANK_HASH=6sBYstySJxf4mdiaTcdjeaep2SdmngL2e1gFYM7RLbmD
+[probe] captured bank-0 hash=6sBYstySJxf4mdiaTcdjeaep2SdmngL2e1gFYM7RLbmD
+
+--------------------
+
+Executing command on service 'bank-hash-probe'
+Command returned with exit code '0' and the following output: 6sBYstySJxf4mdiaTcdjeaep2SdmngL2e1gFYM7RLbmD
+
+Printing a message
+Bank-hash probe captured slot-0 bank hash: 6sBYstySJxf4mdiaTcdjeaep2SdmngL2e1gFYM7RLbmD
+
+Stopping service 'bank-hash-probe'
+Service 'bank-hash-probe' stopped
+
+Printing a message
+Launching validator 'val-bootstrap' (role=voting-bootstrap, image=solana-diff/jito-solana:4.3.0-jito-amd64)
+
+Adding service with name 'val-bootstrap' and image 'solana-diff/jito-solana:4.3.0-jito-amd64'
+Service 'val-bootstrap' added with service UUID '072812b25d284ec69a44bf0182ee89ac'
+
+Printing a message
+Validator 'val-bootstrap' launched; rpc=http://val-bootstrap:8899 ws=ws://val-bootstrap:8900
+
+Printing a message
+Launching validator 'val-joiner' (role=voting-joiner, image=solana-diff/agave-validator:4.3.0-amd64)
+
+Adding service with name 'val-joiner' and image 'solana-diff/agave-validator:4.3.0-amd64'
+Service 'val-joiner' added with service UUID '7b709057333348f7b5f52d50cf1cd952'
+
+Printing a message
+Validator 'val-joiner' launched; rpc=http://val-joiner:8899 ws=ws://val-joiner:8900
+
+Adding service with name 'val-firedancer' and image 'solana-diff/firedancer:full-ff881b69'
+Service 'val-firedancer' added with service UUID 'd6f2c4449d5e43908d460af1b22af949'
+
+Printing a message
+Extracting real leader schedule from bootstrap RPC via run_sh
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+[schedule] rpc ready=1 after 25 s
+[schedule] lines=432000 (expected 432000)
+[schedule] OK: 0.. + 431999 + , 432000 lines
+0 AGaHHHYuAp6MEzn938pvyoVkQ4DKAnRm8U5PezAy9F8q
+1 AGaHHHYuAp6MEzn938pvyoVkQ4DKAnRm8U5PezAy9F8q
+431999 43LMr54baM2GsC72H1rCkpR1MTZF4oZmqPdV8dyXC4om
+
+--------------------
+
+Printing a message
+Built leader-schedule files-artifact: leader-schedule
+
+Printing a message
+Launching SIG observer 'sig-observer' (image=solana-diff/sig:v0.2.0-amd64, NON-VOTING observer; cluster=development, functional path skip_on_cold_start=False)
+
+Adding service with name 'sig-observer' and image 'solana-diff/sig:v0.2.0-amd64'
+There was an error executing Starlark code 
+An error occurred executing instruction (number 27) at github.com/0xBloctopus/solana-package/src/sig_observer/sig_observer_launcher.star[716:31]:
+  add_service(name="sig-observer", config=ServiceConfig(image="solana-diff/sig:v0.2.0-amd64", files={"/data": "solana-genesis-data", "/var/lib/sig/schedule": "leader-schedule"}, entrypoint=["sleep"], cmd=["infinity"], node_selectors={}, privileged=True))
+  Caused by: Unexpected error occurred starting service 'sig-observer'
+  Caused by: An error occurred doing files artifacts expansion to get user service volumes
+  Caused by: An error occurred running files artifacts expander for service 'dafadec5df17447fbfc99de2090d10f8'
+  Caused by: An error occurred creating files artifacts expander container 'files-artifacts-expander--de6825b72be9408d824837a238490273--91588f76219d49a79e41de84e823abed' for service 'dafadec5df17447fbfc99de2090d10f8'
+  Caused by: Could not create Docker container 'files-artifacts-expander--de6825b72be9408d824837a238490273--91588f76219d49a79e41de84e823abed' from image 'kurtosistech/files-artifacts-expander:1.22.2'
+  Caused by: Error response from daemon: failed to create prepare snapshot dir: mkdir /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/new-1088990684/work: no space left on device
+
+Error encountered running Starlark code.
+
+⭐ us on GitHub - https://github.com/kurtosis-tech/kurtosis
+[36mINFO[0m[2026-10-28T17:05:08+08:00] =========================================================== 
+[36mINFO[0m[2026-10-28T17:05:08+08:00] ||          Created enclave: solana-four-client          || 
+[36mINFO[0m[2026-10-28T17:05:08+08:00] =========================================================== 
+Name:            solana-four-client
+UUID:            91588f76219d
+Status:          RUNNING
+Creation Time:   Wed, 28 Oct 2026 17:04:11 CST
+Flags:           
+
+========================================= Files Artifacts =========================================
+UUID           Name
+d8e3c2932f41   leader-schedule
+cbcbd83b65de   shred-stream-bin
+9a7faf75662e   solana-genesis-data
+
+========================================== User Services ==========================================
+UUID           Name              Ports              Status
+89ec3ea61b7c   bank-hash-probe   <none>             STOPPED
+072812b25d28   val-bootstrap     rpc: 8899/tcp      STOPPED
+                                 rpc-ws: 8900/tcp   
+d6f2c4449d5e   val-firedancer    <none>             STOPPED
+7b7090573333   val-joiner        rpc: 8899/tcp      STOPPED
+                                 rpc-ws: 8900/tcp   
+

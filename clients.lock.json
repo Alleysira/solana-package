@@ -82,7 +82,7 @@
       "implementation": "validator",
       "stableReleaseCanVote": true,
       "targetNetwork": "generation-4.3-candidate",
-      "localStatus": "frankendancer-started-qemu-tcg-research-grade-genesis-load-resolved (QEMU); built-in-kurtosis-container-with-kernel-gate-blocked (OrbStack)",
+      "localStatus": "full-firedancer-voting-transient-2026-10-28; four-client gossip joined; strict runs 15/16 failed final delinquency gate; no sustained four-client end-to-end",
       "forkPin": {
         "repository": "https://github.com/Alleysira/firedancer",
         "commit": "ff881b69a93a6519c1a6f09698aaf208753a0a8f",
@@ -94,9 +94,11 @@
           "fd_numa_linux.c NUMA-fabrication fallback (topology fabrication; invalid for runtime sizing or validator claims)"
         ]
       },
-      "buildTarget": "frankendancer-fdctl-solana",
-      "buildTargetNote": "Official docs (docs.firedancer.io/guide/getting-started.html, inspected 2026-09-28) label v26.09.4 as the Frankendancer (Agave hybrid) target and state it is not yet possible to run a full Firedancer validator. Building Frankendancer is an explicit, recorded relaxation of the full-Firedancer rule.",
+      "buildTarget": "full-firedancer-binary (new native amd64 candidate); prior frankendancer-fdctl-solana retained in evidence",
+      "buildTargetNote": "The independent full firedancer binary built and ran in the four-client enclave. It voted transiently but lagged behind Jito/Agave; strict final verification failed. Prior Frankendancer evidence remains separate.",
       "evidence": [
+        "2026-10-28 native x86_64 Linux: full Firedancer joined Jito, Agave and SIG in four-node gossip, loaded Jito snapshot, replayed and advanced on-chain vote/root (run 13: 367/329), then became delinquent. Strict runs 15/16 failed at final capture. See evidence/fourclient-20261028/summary.json.",
+        "2026-10-28 native x86_64 Linux: full firedancer target version 0.1.1 (ff881b69) built in image sha256:b047fbcb462d20588e2a6bbf89b4740ad2d0b6b13923d8cd01a1db0f8b9a399c; privileged hugetlbfs preflight reserved 32198 2MiB pages. No startup/network/voting claim. See evidence/fourclient-20261028/build-summary.json.",
         "The v26.09.4 release is named `Firedancer Mainnet Release v26.09.4`, has no binary assets, and states support for Solana 4.3 features.",
         "The same release reports an approximately 109 GiB testnet memory footprint.",
         "https://docs.firedancer.io/guide/getting-started.html",

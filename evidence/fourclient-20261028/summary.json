@@ -1,0 +1,172 @@
+{
+  "recordedAt": "2026-10-28T09:36:32.502796+00:00",
+  "experiment": "four-client full Firedancer Kurtosis, attempts 1-16",
+  "host": {
+    "kernel": "7.0.0-1014-gcp",
+    "architecture": "x86_64",
+    "cpu": "x86_64",
+    "memoryBytes": 270247272448,
+    "hugetlbfsProbe": {
+      "result": "PASS",
+      "binary": "full firedancer 0.1.1",
+      "command": "docker run --rm --privileged ... firedancer configure init hugetlbfs --config /tmp/fd-local-parse.toml",
+      "requested2MiBPages": 32198,
+      "observed2MiBPages": 32198,
+      "note": "privileged container mounted hugetlbfs; no validator started"
+    }
+  },
+  "images": {
+    "agave": {
+      "source": "https://github.com/anza-xyz/agave",
+      "commit": "825efd18292aff6ffcf9daa0f7612f21b3531a72",
+      "image": "solana-diff/agave-validator:4.3.0-amd64",
+      "imageId": "sha256:9366fd7569ed523d803f784f44e0a2fc4bafc565d415b303bc7802aa4254587d",
+      "version": "agave-validator 4.3.0 (src:825efd18; feat:c9ad34d2, client:Agave)",
+      "evidenceLevel": "built"
+    },
+    "firedancer": {
+      "source": "https://github.com/Alleysira/firedancer",
+      "commit": "ff881b69a93a6519c1a6f09698aaf208753a0a8f",
+      "target": "firedancer",
+      "image": "solana-diff/firedancer:full-ff881b69",
+      "imageId": "sha256:b047fbcb462d20588e2a6bbf89b4740ad2d0b6b13923d8cd01a1db0f8b9a399c",
+      "architecture": "amd64",
+      "version": "0.1.1"
+    },
+    "sig": {
+      "source": "https://github.com/Alleysira/sig",
+      "commit": "0c1e96c1ef335ecf9f62e337477faf5bdab0d83a",
+      "image": "solana-diff/sig:v0.2.0-amd64",
+      "imageId": "sha256:def217d2d59872d33bcd8847e0d63dccb0cb2de33f77aab8ebb3603fa810e219",
+      "evidenceLevel": "built"
+    },
+    "jito": {
+      "source": "https://github.com/jito-foundation/jito-solana",
+      "commit": "07270be44c712356d8fb94dff8e7a1edd425dbff",
+      "image": "solana-diff/jito-solana:4.3.0-jito-amd64",
+      "imageId": "sha256:366042326b1586e60b8ace1c687a34f82f15c4704ba01bae68e97435268dbd6e"
+    }
+  },
+  "finalResult": "PARTIAL",
+  "highestProvenFiredancerLevel": "voting (transient; on-chain vote and root advanced, then delinquent)",
+  "fourClientEndToEnd": false,
+  "sharedGenesisHash": "CTDh6yJmHq9kihuc4Vztq2opM42kW2XrMCHUqpP4h6om",
+  "shredVersion": 33748,
+  "gossipNodesRun16": 4,
+  "sigVoting": false,
+  "strictRun16": {
+    "result": "FAIL",
+    "reason": "Firedancer delinquent at final evidence capture",
+    "readiness": "all three validators briefly non-delinquent with lastVote>0",
+    "firedancerLastVoteAfterThrottle": 59,
+    "firedancerRootAfterThrottle": 57,
+    "jitoAndAgaveCrossNodeFinalizedTransfer": "Verifier reached final delinquency check after transfer and recipient-balance checks; signature and exact balance were not exported as standalone evidence.",
+    "genesisConfig": {
+      "hashesPerTick": 62500,
+      "ticksPerSlot": 128
+    }
+  },
+  "validatorSnapshotAfterThrottle": {
+    "totalActiveStake": 239993151360,
+    "totalCurrentStake": 199995434240,
+    "totalDelinquentStake": 39997717120,
+    "validators": [
+      {
+        "identityPubkey": "GfBPC7EkAhQMjbQdk8sHdnSrbJ9PJeELV3WR3cNfRnik",
+        "voteAccountPubkey": "As3qgeLMfChZio5q84Ae6EsiWCrWM8L9JKi94vXEfYZ4",
+        "commissionBps": 10000,
+        "lastVote": 231,
+        "rootSlot": 188,
+        "credits": 784,
+        "epochCredits": 784,
+        "activatedStake": 99997717120,
+        "version": "4.3.0",
+        "clientId": "Agave",
+        "delinquent": false,
+        "skipRate": 0.0
+      },
+      {
+        "identityPubkey": "686zTvQncCRz9BqVV4a6mWoroCRrrPBGUWr8tpr8isKY",
+        "voteAccountPubkey": "5x22H2VqimUWatvf9GPnbChPiPyXHg8gyWratdBCLQQi",
+        "commissionBps": 10000,
+        "lastVote": 231,
+        "rootSlot": 188,
+        "credits": 692,
+        "epochCredits": 692,
+        "activatedStake": 99997717120,
+        "version": "4.3.0",
+        "clientId": "JitoLabs",
+        "delinquent": false,
+        "skipRate": 94.04761904761905
+      },
+      {
+        "identityPubkey": "5YoWCb8BmXZqeViy33jmcCohaBYNU7cCXJYooKNeorEz",
+        "voteAccountPubkey": "5Cp11JPAfZFHuPGWpmrK1jMFh3LiXb7HjNMgQe4GQN6Y",
+        "commissionBps": 10000,
+        "lastVote": 59,
+        "rootSlot": 57,
+        "credits": 0,
+        "epochCredits": 0,
+        "activatedStake": 39997717120,
+        "version": "0.1.1",
+        "clientId": "Firedancer",
+        "delinquent": true,
+        "skipRate": 100.0
+      }
+    ],
+    "averageSkipRate": 64.68253968253968,
+    "averageStakeWeightedSkipRate": 55.85292264122271,
+    "stakeByVersion": {
+      "0.1.1": {
+        "currentValidators": 0,
+        "delinquentValidators": 1,
+        "currentActiveStake": 0,
+        "delinquentActiveStake": 39997717120
+      },
+      "4.3.0": {
+        "currentValidators": 2,
+        "delinquentValidators": 0,
+        "currentActiveStake": 199995434240,
+        "delinquentActiveStake": 0
+      }
+    },
+    "stakeByClientId": {
+      "Agave": {
+        "currentValidators": 1,
+        "delinquentValidators": 0,
+        "currentActiveStake": 99997717120,
+        "delinquentActiveStake": 0
+      },
+      "Firedancer": {
+        "currentValidators": 0,
+        "delinquentValidators": 1,
+        "currentActiveStake": 0,
+        "delinquentActiveStake": 39997717120
+      },
+      "JitoLabs": {
+        "currentValidators": 1,
+        "delinquentValidators": 0,
+        "currentActiveStake": 99997717120,
+        "delinquentActiveStake": 0
+      }
+    }
+  },
+  "evidenceFiles": [
+    "kurtosis-run-16.log",
+    "validators-run16.json",
+    "gossip-run16.txt",
+    "firedancer-run16-before-throttle.log",
+    "firedancer-run16-internal.log",
+    "kurtosis-run-15.log",
+    "validators-run15-at-capture.txt",
+    "kurtosis-run-13.log",
+    "validators-run13.json"
+  ],
+  "limits": [
+    "No strict passing four-client end-to-end capture",
+    "Run 13 purported success used broken verifier; superseded by strict runs 15 and 16",
+    "Run 16 validator JSON is post-failure and post-throttle, not the exact final-capture table",
+    "No exported transaction signature or recipient-balance artifact"
+  ],
+  "cleanup": "Attempt-16 enclave removed; no validator containers intentionally left running."
+}

@@ -1,0 +1,112 @@
+[36mINFO[0m[2026-10-28T08:45:10Z] otel ClickHouse running at http://172.17.0.2:8123 (native: 172.17.0.2:9000) 
+[36mINFO[0m[2026-10-28T08:45:10Z] otel collector running at http://172.17.0.5:4317 (http: http://172.17.0.5:4318) 
+[36mINFO[0m[2026-10-28T08:45:10Z] Creating a new enclave for Starlark to run inside... 
+[36mINFO[0m[2026-10-28T08:45:13Z] Enclave 'solana-four-client' created successfully 
+[36mINFO[0m[2026-10-28T08:45:13Z] Executing Starlark package at '/home/jie.ma/sol-diff-testing/solana-package' as the passed argument '.' looks like a directory 
+[36mINFO[0m[2026-10-28T08:45:13Z] Compressing package 'github.com/0xBloctopus/solana-package' at '.' for upload 
+[36mINFO[0m[2026-10-28T08:45:14Z] Kurtosis CLI is running in a non interactive terminal. Everything will work but progress information and the progress bar will not be displayed. 
+
+Container images used in this run:
+> solana-diff/sig:v0.2.0-amd64 - locally cached
+> solana-diff/firedancer:full-ff881b69 - locally cached
+> solana-diff/agave-validator:4.3.0-amd64 - locally cached
+> solana-diff/jito-solana:4.3.0-jito-amd64 - locally cached
+
+Printing a message
+Parsing multi-client input parameters
+
+Printing a message
+Launching multi-client shared-genesis participant network
+
+Printing a message
+Building shred-stream files-artifact from SIG image 'solana-diff/sig:v0.2.0-amd64' (for mounting on bootstrap)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+total 125088
+drwxr-xr-x 2 root root      4096 Oct 28 08:45 .
+drwxrwxrwt 1 root root      4096 Oct 28 08:45 ..
+-rwxr-xr-x 1 root root 128079056 Oct 28 08:10 shred-stream
+[shred-stream-artifact] staged shred-stream binary
+
+--------------------
+
+Printing a message
+Built shred-stream files-artifact: shred-stream-bin
+
+Printing a message
+Generating shared genesis (single run_sh)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+[genesis] keygen identities/votes/stakes/faucet/tip/merkle/recipient
+[genesis] running solana-genesis (two bootstrap validators)
+lamports_per_byte_year is deprecated and will be removed in a future release
+rent_exemption_threshold is deprecated and will be removed in a future release
+rent_burn_percentage is deprecated and will be removed in a future release
+[genesis] genesis_hash=BeGskvTeHPB2EA4UuXNxVqagvnkcGzdcZz5PkQjif1i9 shred_version=43750
+[genesis] meta.env written. Contents:
+GENESIS_HASH=BeGskvTeHPB2EA4UuXNxVqagvnkcGzdcZz5PkQjif1i9
+SHRED_VERSION=43750
+BOOTSTRAP_IDENTITY=BijHm451NEocTgtbDAh6H3VucoakFZa4kRG5Hth76SYN
+BOOTSTRAP_VOTE=BoWTJ5QoEiHnQDR3UBKA4VZrJWwPzdZjqZhWwhWxAzc1
+BOOTSTRAP_STAKE=HbeoPSDbZVkCn7MM2nnkTECRDSLUBbzmPX95LusZsFLF
+JOINER_IDENTITY=Be97Uu7VuE2qnhAUDkC8HdRDHpYF9UzYzmTkqy8VA6q3
+JOINER_VOTE=Er3ZRAYCJLbidkmhBCXXZ5fK9Q9khvqjCrxUZPAXMWD8
+JOINER_STAKE=6ZDxDXZx6MfaQWDP9FVdvbUBm2d7iYYNjJ8Lwg7SGryz
+FIREDANCER_IDENTITY=GBWewgDuWUGbxtbT3gEgQ2rddoSW61z4CQBcnsefsqg9
+FIREDANCER_VOTE=EjboQZAPFv7b8vcLA4CYUfJ18K2igL3zuGdw8MnJenkW
+FIREDANCER_STAKE=6UQwkdQq5dc21tVrgbnEvZaqbz3w4qZjiBeZj6bCKiqb
+RECIPIENT=37X1a4oNq1E5UqTshBFWbC1j9fKWyGS5egw93qUCfimP
+TIP_PAYMENT=3km2KLybNLkoyoBGujiRwFyGxrtuSM2NHQAXxK1vC9gw
+TIP_DISTRIBUTION=AcYEKFNNLPigq6ddBVuPsZWy968HC44UHDo3bnYpYmJh
+MERKLE_AUTHORITY=GhJyYGcifu3rtLi3gphJgMRcgJXoL6UbMBGLJUM2nemY
+BOOTSTRAP_BLS=6aQuD4DkjPxtwpus6fAQnt9ghX8P4Dg1w2ETmKQ4w12UXmjQRa5Xi7FJv5uRgDwJQs
+JOINER_BLS=7jDxhHRBTPhSXg4hTRQogKALZZwhtbNySWEbk1Toi6xGfohsM5DAmkocSwH9ri36iv
+FIREDANCER_BLS=69CovqSEb8XzbyPJ7mwrAr4J53Wb34HzTuL8JbBBfG2yR7TbWAKMMrLKdE4gyF8cWg
+[genesis] DONE
+
+--------------------
+
+Printing a message
+Genesis artifact 'solana-genesis-data' produced
+
+Printing a message
+Launching bank-hash probe 'bank-hash-probe' (privileged; captures slot-0 bank hash)
+
+Adding service with name 'bank-hash-probe' and image 'solana-diff/agave-validator:4.3.0-amd64'
+Service 'bank-hash-probe' added with service UUID '221aa100c6454d10875e038a244be999'
+
+Printing a message
+Bank-hash probe container started (sleep infinity, privileged).
+
+Executing command on service 'bank-hash-probe'
+There was an error executing Starlark code 
+An error occurred executing instruction (number 12) at github.com/0xBloctopus/solana-package/src/genesis/bank_hash_probe.star[190:23]:
+  exec(service_name="bank-hash-probe", recipe=ExecRecipe(command=["bash", "-c", "set -uo pipefail\nexport PATH=\"/opt/agave/bin:/opt/jito/bin:$PATH\"\nsource /data/meta.env\ncd /data\n\n# Resolve this container's in-enclave IP (probe needs --bind-address).\nMY_IP=\"$(hostname -I | awk '{print $1}')\"\nif [[ -z \"$MY_IP\" ]]; then echo \"[probe] FATAL: hostname -I returned no IP\" >&2; exit 1; fi\necho \"[probe] my_ip=$MY_IP\"\n\n# Boot the probe validator on a genesis-ledger copy. It does NOT join\n# the real cluster (no --entrypoint; --no-snapshot/--genesis-fetch). It\n# only needs to reach bank-0 freeze and print the hash. --no-wait-for-\n# vote-to-start-leader lets it produce slot 0 immediately. A bounded\n# `timeout 45` caps its lifetime so it never lingers.\ntimeout 100 agave-validator \\\n  --ledger /data/probe-ledger \\\n  --identity /data/bootstrap-identity.json \\\n  --vote-account \"${BOOTSTRAP_VOTE}\" \\\n  --bind-address \"$MY_IP\" \\\n  --public-tpu-address \"${MY_IP}:8003\" \\\n  --public-tpu-forwards-address \"${MY_IP}:8004\" \\\n  --public-tvu-address \"${MY_IP}:8002\" \\\n  --gossip-port 8001 \\\n  --dynamic-port-range 8002-8035 \\\n  --rpc-bind-address 127.0.0.1 \\\n  --rpc-port 9899 \\\n  --no-snapshots \\\n  --no-genesis-fetch \\\n  --no-snapshot-fetch \\\n  --no-xdp \\\n  --no-os-network-limits-test \\\n  --no-poh-speed-test \\\n  --no-port-check \\\n  --allow-private-addr \\\n  --no-wait-for-vote-to-start-leader \\\n  --limit-blockstore-size 100000000 \\\n  --expected-genesis-hash \"$GENESIS_HASH\" \\\n  --expected-shred-version \"$SHRED_VERSION\" \\\n  --log - > /tmp/probe.log 2>&1 &\nPROBE_PID=$!\necho \"[probe] validator pid=$PROBE_PID\"\n\n# Poll up to 90s for the `bank frozen: 0 hash:` line. Under OrbStack\n# Rosetta/TCG the Agave validator can be slow to reach bank-0 freeze,\n# so the window is generous (smoke-shared-genesis.sh uses 90 iterations).\nBANK_HASH=\"\"\nfor _ in $(seq 1 90); do\n  BANK_HASH=\"$(sed -n 's/.*bank frozen: 0 hash: \\([^ ]*\\).*/\\1/p' /tmp/probe.log 2>/dev/null | tail -n 1)\"\n  if [[ -n \"$BANK_HASH\" ]]; then break; fi\n  if ! kill -0 \"$PROBE_PID\" 2>/dev/null; then\n    echo \"[probe] validator exited before freezing bank 0\" >&2\n    # Dump the full log to stdout so it reaches the Kurtosis exec output\n    # (plan.exec captures stdout; this lets us diagnose on failure).\n    echo '--- probe.log (validator exited) ---'\n    cat /tmp/probe.log 2>/dev/null\n    echo '--- end probe.log ---'\n    exit 1\n  fi\n  sleep 1\ndone\nif [[ -z \"$BANK_HASH\" ]]; then\n  echo \"[probe] FATAL: could not capture slot-0 bank hash in 90s\" >&2\n  echo '--- probe.log (timeout) ---'\n  cat /tmp/probe.log 2>/dev/null\n  echo '--- end probe.log ---'\n  # Still kill the validator before exiting.\n  kill \"$PROBE_PID\" 2>/dev/null || true\n  exit 1\nfi\necho \"BANK_HASH=$BANK_HASH\"\necho \"[probe] captured bank-0 hash=$BANK_HASH\"\n# Persist the hash to a FILE (not just stdout). plan.exec's returned\n# `output` field is truncated for long-running execs (the validator probe\n# streams ~90s of log; only the first ~66 bytes survive in result.output).\n# A second short `cat` exec below reads this file — its output is tiny and\n# survives intact.\nprintf \"%s\" \"$BANK_HASH\" > /tmp/bank_hash.txt\n# Kill the probe validator explicitly (timeout would too, but be safe).\nkill \"$PROBE_PID\" 2>/dev/null || true\nwait \"$PROBE_PID\" 2>/dev/null || true\nexit 0"]), acceptable_codes=[0])
+  Caused by: Exec returned exit code '1' that is not part of the acceptable status codes '[0]', with output:
+    "[probe] my_ip=172.16.0.7\n[probe] validator pid=17\n--- probe.log (validator exited) ---\n[probe] validator exited before freezing bank 0\n[2026-10-28T08:45:27.380025400Z INFO  agave_validator::commands::run::execute] agave-validator 4.3.0 (src:825efd18; feat:c9ad34d2, client:Agave)\n[2026-10-28T08:45:27.380065469Z INFO  agave_validator::commands::run::execute] Starting validator with: ArgsOs {\n        inner: [\n            \"agave-validator\",\n            \"--ledger\",\n            \"/data/probe-ledger\",\n            \"--identity\",\n            \"/data/bootstrap-identity.json\",\n            \"--vote-account\",\n            \"BoWTJ5QoEiHnQDR3UBKA4VZrJWwPzdZjqZhWwhWxAzc1\",\n            \"--bind-address\",\n            \"172.16.0.7\",\n            \"--public-tpu-address\",\n            \"172.16.0.7:8003\",\n            \"--public-tpu-forwards-address\",\n            \"172.16.0.7:8004\",\n            \"--public-tvu-address\",\n            \"172.16.0.7:8002\",\n            \"--gossip-port\",\n            \"8001\",\n            \"--dynamic-port-range\",\n            \"8002-8035\",\n            \"--rpc-bind-address\",\n            \"127.0.0.1\",\n            \"--rpc-port\",\n            \"9899\",\n            \"--no-snapshots\",\n            \"--no-genesis-fetch\",\n            \"--no-snapshot-fetch\",\n            \"--no-xdp\",\n            \"--no-os-network-limits-test\",\n            \"--no-poh-speed-test\",\n            \"--no-port-check\",\n            \"--allow-private-addr\",\n            \"--no-wait-for-vote-to-start-leader\",\n            \"--limit-blockstore-size\",\n            \"100000000\",\n            \"--expected-genesis-hash\",\n            \"BeGskvTeHPB2EA4UuXNxVqagvnkcGzdcZz5PkQjif1i9\",\n            \"--expected-shred-version\",\n            \"43750\",\n            \"--log\",\n            \"-\",\n        ],\n    }\n[2026-10-28T08:45:27.380105269Z INFO  solana_metrics::metrics] host id: BijHm451NEocTgtbDAh6H3VucoakFZa4kRG5Hth76SYN\n[2026-10-28T08:45:27.380519329Z INFO  solana_gossip::node] Bound all network sockets as follows: Sockets { gossip: [UdpSocket { addr: 172.16.0.7:8001, fd: 3 }], ip_echo: Some(TcpListener { addr: 172.16.0.7:8001, fd: 4 }), tvu: [UdpSocket { addr: 172.16.0.7:8002, fd: 5 }], tpu_vote: [UdpSocket { addr: 172.16.0.7:8005, fd: 8 }], broadcast: [UdpSocket { addr: 172.16.0.7:8010, fd: 24 }, UdpSocket { addr: 172.16.0.7:8010, fd: 25 }, UdpSocket { addr: 172.16.0.7:8010, fd: 26 }, UdpSocket { addr: 172.16.0.7:8010, fd: 27 }], repair: UdpSocket { addr: 172.16.0.7:8008, fd: 22 }, retransmit_sockets: [UdpSocket { addr: 172.16.0.7:8007, fd: 10 }, UdpSocket { addr: 172.16.0.7:8007, fd: 11 }, UdpSocket { addr: 172.16.0.7:8007, fd: 12 }, UdpSocket { addr: 172.16.0.7:8007, fd: 13 }, UdpSocket { addr: 172.16.0.7:8007, fd: 14 }, UdpSocket { addr: 172.16.0.7:8007, fd: 15 }, UdpSocket { addr: 172.16.0.7:8007, fd: 16 }, UdpSocket { addr: 172.16.0.7:8007, fd: 17 }, UdpSocket { addr: 172.16.0.7:8007, fd: 18 }, UdpSocket { addr: 172.16.0.7:8007, fd: 19 }, UdpSocket { addr: 172.16.0.7:8007, fd: 20 }, UdpSocket { addr: 172.16.0.7:8007, fd: 21 }], serve_repair: UdpSocket { addr: 172.16.0.7:8009, fd: 23 }, ancestor_hashes_requests: UdpSocket { addr: 172.16.0.7:8011, fd: 28 }, tpu_quic: [UdpSocket { addr: 172.16.0.7:8003, fd: 6 }], tpu_forwards_quic: [UdpSocket { addr: 172.16.0.7:8004, fd: 7 }], tpu_vote_quic: [UdpSocket { addr: 172.16.0.7:8006, fd: 9 }], block_id_repair: UdpSocket { addr: 172.16.0.7:8013, fd: 30 }, tpu_vote_forwarding_client: UdpSocket { addr: 172.16.0.7:8014, fd: 31 }, tpu_transaction_forwarding_clients: [UdpSocket { addr: 172.16.0.7:8015, fd: 32 }], votor_server: [UdpSocket { addr: 172.16.0.7:8012, fd: 29 }], quic_vote_client: UdpSocket { addr: 172.16.0.7:8016, fd: 33 }, quic_votor_client: UdpSocket { addr: 172.16.0.7:8017, fd: 34 }, rpc_sts_client: UdpSocket { addr: 172.16.0.7:8018, fd: 35 } }\n[2026-10-28T08:45:27.380617850Z INFO  solana_perf] AVX detected\n[2026-10-28T08:45:27.380620810Z INFO  solana_perf] AVX2 detected\n[2026-10-28T08:45:27.380940239Z INFO  agave_validator::commands::run::execute] Snapshot configuration: full snapshot interval: disabled, incremental snapshot interval: disabled\n[2026-10-28T08:45:27.381022279Z WARN  solana_core::resource_limits] Unable to increase the maximum memory lock limit to 2000000000 from 8388608\n[2026-10-28T08:45:27.381029989Z INFO  agave_validator::commands::run::execute] Transaction signatures will not be stored in the status cache because full RPC and snapshot generation are disabled\n[2026-10-28T08:45:27.381495900Z INFO  solana_core::validator] debug-assertion status: disabled\n[2026-10-28T08:45:27.381515959Z ERROR solana_core::resource_limits] unable to increase the nofile limit to 1000000 from 1024; setrlimit() error: -1\n[2026-10-28T08:45:27.382337069Z INFO  agave_validator::admin_rpc_service] started admin rpc service!\n[2026-10-28T08:45:27.382649679Z ERROR agave_validator] Failed to start validator: unable to increase the nofile limit to 1000000 from 1024; setrlimit() error: -1\n    \n    Stack backtrace:\n       0: <unknown>\n       1: <unknown>\n       2: <unknown>\n       3: <unknown>\n       4: <unknown>\n       5: <unknown>\n       6: <unknown>\n       7: <unknown>\n       8: <unknown>\n       9: __libc_start_main\n      10: <unknown>\nValidator command failed: unable to increase the nofile limit to 1000000 from 1024; setrlimit() error: -1\n\nStack backtrace:\n   0: <unknown>\n   1: <unknown>\n   2: <unknown>\n   3: <unknown>\n   4: <unknown>\n   5: <unknown>\n   6: <unknown>\n   7: <unknown>\n   8: <unknown>\n   9: __libc_start_main\n  10: <unknown>\n--- end probe.log ---\n"
+
+Error encountered running Starlark code.
+
+⭐ us on GitHub - https://github.com/kurtosis-tech/kurtosis
+[36mINFO[0m[2026-10-28T08:45:28Z] =========================================================== 
+[36mINFO[0m[2026-10-28T08:45:28Z] ||          Created enclave: solana-four-client          || 
+[36mINFO[0m[2026-10-28T08:45:28Z] =========================================================== 
+Name:            solana-four-client
+UUID:            c3cc6d65f502
+Status:          RUNNING
+Creation Time:   Wed, 28 Oct 2026 08:45:10 UTC
+Flags:           
+
+========================================= Files Artifacts =========================================
+UUID           Name
+b5a67fbb6a88   shred-stream-bin
+2f5e318a844a   solana-genesis-data
+
+========================================== User Services ==========================================
+UUID           Name              Ports    Status
+221aa100c645   bank-hash-probe   <none>   RUNNING
+

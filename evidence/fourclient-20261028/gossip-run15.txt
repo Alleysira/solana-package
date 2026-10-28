@@ -1,0 +1,8 @@
+IP Address      | Identity                                     | Gossip | TPU   | TPU-QUIC | RPC Address           | Version | Feature Set
+----------------+----------------------------------------------+--------+-------+----------+-----------------------+---------+----------------
+172.16.0.8      | ggSkxmgFuedyGP7tteeY5eafXgHoxB7v9aNDxyQ9yqK  | 8001   | none  | 8003     | 172.16.0.8:8899       | 4.3.0   | 3383571666
+172.16.0.9      | 48Jc7SXEvqhy25mmWsoWUfLJaLNFTUpphiKv8J8zzpiH | 8001   | none  | 8003     | 172.16.0.9:8899       | 4.3.0   | 3383571666
+172.16.0.10     | 6F2kwkxDHWZhMoaBk3qxCfb5bnV3gz6yoPN69CLi2aym | 8001   | none  | 9007     | none                  | 0.1.1   | 1766517360
+172.16.0.12     | 84TcDrAnGhFThWaBXKfhDUeufpS577k83qriNqT1MLbk | 8001   | none  | none     | none                  | 0.0.0   | 0
+Nodes: 4
+

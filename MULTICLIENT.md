@@ -1,5 +1,17 @@
 # Multi-client testnet status
 
+**2026-10-28 Linux x86_64 extension, partial:** the independent full
+`firedancer` binary from `Alleysira/firedancer@ff881b69` built and ran in one
+Kurtosis enclave with Jito, Agave, and the non-voting SIG observer. All four
+appeared in peer gossip. Firedancer replayed a Jito snapshot and its on-chain
+vote/root advanced; it briefly passed the non-delinquency check, then fell
+behind before final evidence capture. Strict runs 15 and 16 failed on that
+check. Jito and Agave finalized a cross-node 1 SOL transfer in run 16. The
+four-client acceptance gate remains unmet; the earlier Jito + Agave + SIG
+run is still the strongest completed network result. See
+`evidence/fourclient-20261028/summary.json` and the root handoff. The full
+binary is distinct from the Frankendancer `fdctl`/Agave hybrid below.
+
 The exact acceptance target—five voting validators, one from every client in
 the Solana documentation, while using every project's latest stable release—is
 not currently satisfiable upstream.

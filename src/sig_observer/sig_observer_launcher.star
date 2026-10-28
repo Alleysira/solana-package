@@ -209,12 +209,12 @@ def build_schedule_artifact(plan, schedule_image, global_node_selectors={}):
         "FALLBACK=${BOOTSTRAP_IDENTITY:-" + _SCHEDULE_FALLBACK_PUBKEY + "}",
         # Poll the bootstrap RPC until it is up. plan.run_sh has no access to the
         # bootstrap service directly, but in-enclave DNS resolves val-bootstrap.
-        # Up to 60s of polling (12 × 5s); acceptable_codes allows 0 only — if the
+        # Up to 180s of polling (36 × 5s); acceptable_codes allows 0 only — if the
         # RPC never comes up the run_sh fails (and the plan stops), which is the
         # honest signal that the schedule could not be extracted.
         "ready=0",
         "i=0",
-        "while [ $i -lt 60 ]; do",
+        "while [ $i -lt 180 ]; do",
         "  slot=$(solana --url " + rpc_url + " slot 2>/dev/null || echo 0)",
         "  case \"$slot\" in",
         "    ''|*[!0-9]*) slot=0 ;;",
@@ -271,7 +271,7 @@ def build_schedule_artifact(plan, schedule_image, global_node_selectors={}):
         # parent /var/lib/sig writable for config.zon / sig.log / accounts.db.
         store=[StoreSpec(src=outdir, name=artifact_name)],
         acceptable_codes=[0],
-        wait="180s",
+        wait="300s",
     )
     return result.files_artifacts[0]
 

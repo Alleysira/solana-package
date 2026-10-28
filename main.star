@@ -38,6 +38,7 @@ def run(plan, args={}):
     plan.print("Multi-client shared-genesis network launched.")
     plan.print("  Bootstrap (voting): {0}".format(topology.bootstrap.rpc_url))
     plan.print("  Joiner  (voting): {0}".format(topology.joiner.rpc_url))
+    plan.print("  Firedancer (voting): {0}".format(topology.firedancer.name))
     plan.print(
         "  SIG     (NON-VOTING observer, evidence={0})".format(topology.sig.evidence_level),
     )

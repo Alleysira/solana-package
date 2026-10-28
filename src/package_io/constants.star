@@ -32,17 +32,20 @@ TPU_FW_PORT_NUM = 8004
 # Agave : linux/arm64 (native source build, has solana-genesis/solana-keygen).
 # SIG   : linux/arm64 (native; deviated fork with the development-observer path
 #         + the shred-stream tool → v0.2.0-arm64-functional).
-JITO_IMAGE = "solana-diff/jito-solana:4.3.0-jito-arm64"
-AGAVE_IMAGE = "solana-diff/agave-validator:4.3.0-arm64"
-SIG_IMAGE = "solana-diff/sig:v0.2.0-arm64-functional"
+JITO_IMAGE = "solana-diff/jito-solana:4.3.0-jito-amd64"
+AGAVE_IMAGE = "solana-diff/agave-validator:4.3.0-amd64"
+SIG_IMAGE = "solana-diff/sig:v0.2.0-amd64"
+FIREDANCER_IMAGE = "solana-diff/firedancer:full-ff881b69"
 
 # The genesis-generator image must have solana-genesis + solana-keygen +
 # solana-validator (for the bank-hash probe). The Agave image has all three.
 GENESIS_IMAGE = AGAVE_IMAGE
 
 # ── Genesis defaults ───────────────────────────────────────────────────────
-# development cluster type + sleep hashes (no PoH benchmark) keeps the local
-# testnet deterministic and CPU-light. SIG v2's leader_schedule.zig:10
+# Development cluster type + a small explicit hashes-per-tick value keeps the
+# testnet CPU-light while giving full Firedancer a nonzero PoH hash budget.
+# Agave's `sleep` setting encodes no hash count, which crashes this pinned
+# full Firedancer PoH tile after snapshot replay. SIG v2's leader_schedule.zig:10
 # HARDCODES `const slots_per_epoch = 432000;` and fromCommand() (line 69)
 # returns error.IncorrectNumberOfSlots unless the schedule file has exactly
 # 432000 contiguous <slot> <pubkey> lines. Since `solana leader-schedule`
@@ -51,13 +54,14 @@ GENESIS_IMAGE = AGAVE_IMAGE
 # validator" path requires a real schedule). This is a SIG-driven constraint,
 # not a Solana default.
 CLUSTER_TYPE = "development"
-HASHES_PER_TICK = "sleep"
-TICKS_PER_SLOT = 8
+HASHES_PER_TICK = "62500"
+TICKS_PER_SLOT = 128
 SLOTS_PER_EPOCH = 432000
 
 FAUCET_LAMPORTS = 500000000000000          # 500M SOL faucet
 BOOTSTRAP_VALIDATOR_LAMPORTS = 500000000000  # 500 SOL
 BOOTSTRAP_STAKE_LAMPORTS = 100000000000      # 100 SOL stake
+FIREDANCER_STAKE_LAMPORTS = 40000000000       # 40 SOL; Jito+Agave retain >80% stake
 
 # ── Shared data mount point ─────────────────────────────────────────────────
 # The genesis artifact is mounted at /data on every client. meta.env (a

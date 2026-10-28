@@ -1,0 +1,43 @@
+{
+  "recordedAt": "2026-10-28T08:10:38.264222+00:00",
+  "host": {
+    "kernel": "7.0.0-1014-gcp",
+    "architecture": "x86_64",
+    "cpu": "x86_64",
+    "memoryBytes": 270247272448,
+    "hugetlbfsProbe": {
+      "result": "PASS",
+      "binary": "full firedancer 0.1.1",
+      "command": "docker run --rm --privileged ... firedancer configure init hugetlbfs --config /tmp/fd-local-parse.toml",
+      "requested2MiBPages": 32198,
+      "observed2MiBPages": 32198,
+      "note": "privileged container mounted hugetlbfs; no validator started"
+    }
+  },
+  "firedancer": {
+    "source": "https://github.com/Alleysira/firedancer",
+    "commit": "ff881b69a93a6519c1a6f09698aaf208753a0a8f",
+    "target": "firedancer",
+    "image": "solana-diff/firedancer:full-ff881b69",
+    "imageId": "sha256:b047fbcb462d20588e2a6bbf89b4740ad2d0b6b13923d8cd01a1db0f8b9a399c",
+    "architecture": "amd64",
+    "version": "0.1.1"
+  },
+  "evidenceLevel": "built",
+  "limits": "Binary and image only; no startup, gossip, voting or four-client network proven",
+  "sig": {
+    "source": "https://github.com/Alleysira/sig",
+    "commit": "0c1e96c1ef335ecf9f62e337477faf5bdab0d83a",
+    "image": "solana-diff/sig:v0.2.0-amd64",
+    "imageId": "sha256:def217d2d59872d33bcd8847e0d63dccb0cb2de33f77aab8ebb3603fa810e219",
+    "evidenceLevel": "built"
+  },
+  "agave": {
+    "source": "https://github.com/anza-xyz/agave",
+    "commit": "825efd18292aff6ffcf9daa0f7612f21b3531a72",
+    "image": "solana-diff/agave-validator:4.3.0-amd64",
+    "imageId": "sha256:9366fd7569ed523d803f784f44e0a2fc4bafc565d415b303bc7802aa4254587d",
+    "version": "agave-validator 4.3.0 (src:825efd18; feat:c9ad34d2, client:Agave)",
+    "evidenceLevel": "built"
+  }
+}

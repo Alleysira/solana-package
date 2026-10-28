@@ -52,6 +52,6 @@ WORKDIR /home/validator
 LABEL org.opencontainers.image.source="https://github.com/anza-xyz/agave" \
       org.opencontainers.image.version="v4.3.0" \
       org.opencontainers.image.revision="825efd18292aff6ffcf9daa0f7612f21b3531a72" \
-      org.opencontainers.image.build="native-linux-arm64-source-validator"
+      org.opencontainers.image.build="native-linux-amd64-source-validator"
 ENTRYPOINT ["/usr/bin/tini", "-g", "--"]
 CMD ["agave-validator", "--version"]

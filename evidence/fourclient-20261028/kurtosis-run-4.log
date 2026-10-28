@@ -1,0 +1,169 @@
+[36mINFO[0m[2026-10-28T08:48:32Z] otel ClickHouse running at http://172.17.0.4:8123 (native: 172.17.0.4:9000) 
+[36mINFO[0m[2026-10-28T08:48:32Z] otel collector running at http://172.17.0.5:4317 (http: http://172.17.0.5:4318) 
+[36mINFO[0m[2026-10-28T08:48:32Z] Creating a new enclave for Starlark to run inside... 
+[36mINFO[0m[2026-10-28T08:48:35Z] Enclave 'solana-four-client' created successfully 
+[36mINFO[0m[2026-10-28T08:48:35Z] Executing Starlark package at '/home/jie.ma/sol-diff-testing/solana-package' as the passed argument '.' looks like a directory 
+[36mINFO[0m[2026-10-28T08:48:35Z] Compressing package 'github.com/0xBloctopus/solana-package' at '.' for upload 
+[36mINFO[0m[2026-10-28T08:48:35Z] Kurtosis CLI is running in a non interactive terminal. Everything will work but progress information and the progress bar will not be displayed. 
+
+Container images used in this run:
+> solana-diff/agave-validator:4.3.0-amd64 - locally cached
+> solana-diff/jito-solana:4.3.0-jito-amd64 - locally cached
+> solana-diff/sig:v0.2.0-amd64 - locally cached
+> solana-diff/firedancer:full-ff881b69 - locally cached
+
+Printing a message
+Parsing multi-client input parameters
+
+Printing a message
+Launching multi-client shared-genesis participant network
+
+Printing a message
+Building shred-stream files-artifact from SIG image 'solana-diff/sig:v0.2.0-amd64' (for mounting on bootstrap)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+total 125088
+drwxr-xr-x 2 root root      4096 Oct 28 08:48 .
+drwxrwxrwt 1 root root      4096 Oct 28 08:48 ..
+-rwxr-xr-x 1 root root 128079056 Oct 28 08:10 shred-stream
+[shred-stream-artifact] staged shred-stream binary
+
+--------------------
+
+Printing a message
+Built shred-stream files-artifact: shred-stream-bin
+
+Printing a message
+Generating shared genesis (single run_sh)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+[genesis] keygen identities/votes/stakes/faucet/tip/merkle/recipient
+[genesis] running solana-genesis (three bootstrap validators)
+lamports_per_byte_year is deprecated and will be removed in a future release
+rent_exemption_threshold is deprecated and will be removed in a future release
+rent_burn_percentage is deprecated and will be removed in a future release
+[genesis] genesis_hash=F6dZLYzdRErCPutJV7VJdmUcBgT4dUVBZwcxmhEAhPvo shred_version=58106
+[genesis] meta.env written. Contents:
+GENESIS_HASH=F6dZLYzdRErCPutJV7VJdmUcBgT4dUVBZwcxmhEAhPvo
+SHRED_VERSION=58106
+BOOTSTRAP_IDENTITY=F9rhMSJRx6heUZ4PbjHPiBAirPhkQez1ZrZ6qKT6niNV
+BOOTSTRAP_VOTE=8sFLYbSmC8Uwr8mdG3t758AB9vXqKpXw9tgZPfkYKX12
+BOOTSTRAP_STAKE=2aZPLwCr1uWbVyXCMtR9jh9CPXabMXJF82d4iAK6qjS5
+JOINER_IDENTITY=2BPjP4VthDDeU3KWtmk8YH3n6ExAmU6Sg24nqayBR14J
+JOINER_VOTE=2CehvHQySb6twfqMLYBYnmdFoACqazSq2oU1DUWPFux5
+JOINER_STAKE=3xfMEiXAP4KH1mbZmDCG2Tg3Lc6p9xFr6YUgkwSoH2Hf
+FIREDANCER_IDENTITY=WmS2wcPuKikeGw5Fsyv14jeVi5iykgH7BJ3zK7NqPma
+FIREDANCER_VOTE=8r5tyMFTmAMVaZmHF1s1Vq3ksyi2b9w2L8Rut3knNxzY
+FIREDANCER_STAKE=4VEJP4JMwALQyAKAAktYcVVF85Z37zYZRjKuVaqJvtRN
+RECIPIENT=4y8cgRfjeoe28nfh7rwdqY2Uk2jaLhWP1nmmvCKrgvva
+TIP_PAYMENT=DGA8QgKWPDoXJ87Vejq1zxbtoL7wXkRUVC2GqdEYVnW7
+TIP_DISTRIBUTION=2gTDbtkLeRT83xU6qDXo4YXqvzCZh8D622M2uHp76B6d
+MERKLE_AUTHORITY=5FdY5U4WnVoUinn4GwcLm5r4D89xmqC2qxX1uTfQ5rir
+BOOTSTRAP_BLS=6t3sxs53LoUTAi6Q5Zb5AUmnaH24ALHnM86xMLrQjTgvnhKsChPiopPpjEb7VHMTyB
+JOINER_BLS=6zcwfFnru96RiDNet6dqf458AL22ckBNt8rgseFwtvC5bbhgGB8kqG22ZMs866mCjr
+FIREDANCER_BLS=7LDzQNPXS55y8tEGYnh6mrvTP2N3U2bdwHsKjj6Ez8oC2FEQBhcErbsd1GVHqs7V8C
+[genesis] DONE
+
+--------------------
+
+Printing a message
+Genesis artifact 'solana-genesis-data' produced
+
+Printing a message
+Launching bank-hash probe 'bank-hash-probe' (privileged; captures slot-0 bank hash)
+
+Adding service with name 'bank-hash-probe' and image 'solana-diff/agave-validator:4.3.0-amd64'
+Service 'bank-hash-probe' added with service UUID 'b8e5c4096a9f400d9aec40d2324cb697'
+
+Printing a message
+Bank-hash probe container started (sleep infinity, privileged).
+
+Executing command on service 'bank-hash-probe'
+Command returned with exit code '0' and the following output:
+--------------------
+[probe] my_ip=172.16.0.7
+[probe] validator pid=16
+BANK_HASH=EerptPoX3tVZFYWVuGb1o3jRt2NQkxrNJUu2C8oYAbwj
+[probe] captured bank-0 hash=EerptPoX3tVZFYWVuGb1o3jRt2NQkxrNJUu2C8oYAbwj
+
+--------------------
+
+Executing command on service 'bank-hash-probe'
+Command returned with exit code '0' and the following output: EerptPoX3tVZFYWVuGb1o3jRt2NQkxrNJUu2C8oYAbwj
+
+Printing a message
+Bank-hash probe captured slot-0 bank hash: EerptPoX3tVZFYWVuGb1o3jRt2NQkxrNJUu2C8oYAbwj
+
+Stopping service 'bank-hash-probe'
+Service 'bank-hash-probe' stopped
+
+Printing a message
+Launching validator 'val-bootstrap' (role=voting-bootstrap, image=solana-diff/jito-solana:4.3.0-jito-amd64)
+
+Adding service with name 'val-bootstrap' and image 'solana-diff/jito-solana:4.3.0-jito-amd64'
+Service 'val-bootstrap' added with service UUID '40a89f611d9044dd8ca63157e44937bc'
+
+Printing a message
+Validator 'val-bootstrap' launched; rpc=http://val-bootstrap:8899 ws=ws://val-bootstrap:8900
+
+Printing a message
+Launching validator 'val-joiner' (role=voting-joiner, image=solana-diff/agave-validator:4.3.0-amd64)
+
+Adding service with name 'val-joiner' and image 'solana-diff/agave-validator:4.3.0-amd64'
+Service 'val-joiner' added with service UUID 'c197d2c55f014a15abc2191531b3884c'
+
+Printing a message
+Validator 'val-joiner' launched; rpc=http://val-joiner:8899 ws=ws://val-joiner:8900
+
+Adding service with name 'val-firedancer' and image 'solana-diff/firedancer:full-ff881b69'
+Service 'val-firedancer' added with service UUID '4be75714a63a4ff496c34e2819b8d572'
+
+Printing a message
+Extracting real leader schedule from bootstrap RPC via run_sh
+
+Running sh script
+There was an error executing Starlark code 
+An error occurred executing instruction (number 24) at github.com/0xBloctopus/solana-package/src/sig_observer/sig_observer_launcher.star[264:25]:
+  run_sh(run="set -eu\nrm -rf /tmp/schedule-stage\nmkdir -p /tmp/schedule-stage/out\nexport PATH=/opt/agave/bin:/opt/jito/bin:$PATH\nif [ -f /data/meta.env ]; then . /data/meta.env; fi\nFALLBACK=${BOOTSTRAP_IDENTITY:-11111111111111111111111111111112}\nready=0\ni=0\nwhile [ $i -lt 60 ]; do\n  slot=$(solana --url http://val-bootstrap:8899 slot 2>/dev/null || echo 0)\n  case \"$slot\" in\n    ''|*[!0-9]*) slot=0 ;;\n  esac\n  if [ \"$slot\" -gt 0 ] 2>/dev/null; then ready=1; break; fi\n  i=$((i+5))\n  sleep 5\ndone\necho \"[schedule] rpc ready=$ready after $i s\"\nif [ \"$ready\" -ne 1 ]; then\n  echo '[schedule] FATAL: bootstrap RPC never returned a slot' >&2\n  exit 1\nfi\nsolana --url http://val-bootstrap:8899 leader-schedule --no-address-labels > /tmp/schedule-stage/raw.txt 2>/dev/null\nawk 'NF==2{print $1\" \"$2}' /tmp/schedule-stage/raw.txt > /tmp/schedule-stage/norm.txt\nawk -v fb=\"$FALLBACK\" 'NF==2{if($2==\"?\"||$2==\"??\") $2=fb; print $1\" \"$2}' /tmp/schedule-stage/norm.txt > /tmp/schedule-stage/out/schedule.txt\nLINES=$(wc -l < /tmp/schedule-stage/out/schedule.txt | tr -d ' ')\necho \"[schedule] lines=$LINES (expected 432000)\"\nif [ \"$LINES\" -ne 432000 ]; then\n  echo '[schedule] FATAL: line count mismatch' >&2\n  echo '--- raw head ---' >&2; head -3 /tmp/schedule-stage/raw.txt >&2\n  echo '--- norm head ---' >&2; head -3 /tmp/schedule-stage/norm.txt >&2\n  exit 1\nfi\nFIRST=$(head -1 /tmp/schedule-stage/out/schedule.txt | awk '{print $1}')\nLAST=$(tail -1 /tmp/schedule-stage/out/schedule.txt | awk '{print $1}')\nif [ \"$FIRST\" != 0 ] || [ \"$LAST\" != 431999 ]; then\n  echo '[schedule] FATAL: not contiguous 0..' + 431999 >&2\n  echo \"first=$FIRST last=$LAST\" >&2\n  exit 1\nfi\necho '[schedule] OK: 0..' + $LAST + ', 432000 lines'\nhead -2 /tmp/schedule-stage/out/schedule.txt\ntail -1 /tmp/schedule-stage/out/schedule.txt", image="solana-diff/agave-validator:4.3.0-amd64", store=[StoreSpec(src="/tmp/schedule-stage/out", name="leader-schedule")], wait="180s", acceptable_codes=[0])
+  Caused by: Run sh returned exit code '1' that is not part of the acceptable status codes '[0]', with output:
+    "[schedule] FATAL: bootstrap RPC never returned a slot\n[schedule] rpc ready=0 after 60 s\n"
+
+Error encountered running Starlark code.
+
+⭐ us on GitHub - https://github.com/kurtosis-tech/kurtosis
+[33mWARN[0m[2026-10-28T08:50:26Z] Tried getting number of services in the enclave to log metrics but failed 
+[36mINFO[0m[2026-10-28T08:50:26Z] =========================================================== 
+[36mINFO[0m[2026-10-28T08:50:26Z] ||          Created enclave: solana-four-client          || 
+[36mINFO[0m[2026-10-28T08:50:26Z] =========================================================== 
+[31mERRO[0m[2026-10-28T08:50:56Z] An error occurred while printing enclave status and contents:
+An error occurred getting the enclave for identifier 'solana-four-client'
+ --- at /__w/kurtosis/kurtosis/cli/cli/commands/enclave/inspect/inspect.go:121 (PrintEnclaveInspect) ---
+Caused by: An error occurred getting enclave for identifier 'solana-four-client'
+ --- at /__w/kurtosis/kurtosis/api/golang/engine/lib/kurtosis_context/kurtosis_context.go:256 (KurtosisContext.GetEnclave) ---
+Caused by: rpc error: code = Unknown desc = An error occurred getting info for enclaves
+ --- at /home/runner/work/kurtosis/kurtosis/engine/server/engine/server/engine_connect_server_service.go:226 (EngineConnectServerService.GetEnclavesByUuids) ---
+Caused by: An error occurred getting the enclave '[0745fd8aba77402798a2d9213c1cdd1c 8359a6fc2448401283b260ca1a9b464c ffe278e6432b4d8086a9e1a104ee4393]' without mutex
+ --- at /home/runner/work/kurtosis/kurtosis/engine/server/engine/enclave_manager/enclave_manager.go:265 (EnclaveManager.GetEnclavesByUuid) ---
+Caused by: An error occurred getting enclave '[0745fd8aba77402798a2d9213c1cdd1c 8359a6fc2448401283b260ca1a9b464c ffe278e6432b4d8086a9e1a104ee4393]'
+ --- at /home/runner/work/kurtosis/kurtosis/engine/server/engine/enclave_manager/enclave_manager.go:681 (EnclaveManager.getEnclavesByUuidWithoutMutex) ---
+Caused by: An error occurred getting enclaves using filters: &{UUIDs:map[0745fd8aba77402798a2d9213c1cdd1c:true 8359a6fc2448401283b260ca1a9b464c:true ffe278e6432b4d8086a9e1a104ee4393:true] Statuses:map[]}
+ --- at /home/runner/work/kurtosis/kurtosis/container-engine-lib/lib/backend_impls/metrics_reporting/metrics_reporting_kurtosis_backend.go:147 (MetricsReportingKurtosisBackend.GetEnclaves) ---
+Caused by: An error occurred getting enclave networks matching filters '&{UUIDs:map[0745fd8aba77402798a2d9213c1cdd1c:true 8359a6fc2448401283b260ca1a9b464c:true ffe278e6432b4d8086a9e1a104ee4393:true] Statuses:map[]}'
+ --- at /home/runner/work/kurtosis/kurtosis/container-engine-lib/lib/backend_impls/docker/docker_kurtosis_backend/docker_kurtosis_backend_enclave_functions.go:180 (DockerKurtosisBackend.GetEnclaves) ---
+Caused by: An error occurred getting enclave status and containers from network for enclave 'ffe278e6432b4d8086a9e1a104ee4393'
+ --- at /home/runner/work/kurtosis/kurtosis/container-engine-lib/lib/backend_impls/docker/docker_kurtosis_backend/docker_kurtosis_backend_enclave_functions.go:471 (DockerKurtosisBackend.getMatchingEnclaveNetworkInfo) ---
+Caused by: An error occurred getting the containers for enclave 'ffe278e6432b4d8086a9e1a104ee4393'
+ --- at /home/runner/work/kurtosis/kurtosis/container-engine-lib/lib/backend_impls/docker/docker_kurtosis_backend/docker_kurtosis_backend_enclave_functions.go:502 (DockerKurtosisBackend.getEnclaveStatusAndContainers) ---
+Caused by: An error occurred getting the containers for enclave 'ffe278e6432b4d8086a9e1a104ee4393' by labels 'map[com.kurtosistech.app-id:kurtosis com.kurtosistech.enclave-id:ffe278e6432b4d8086a9e1a104ee4393]'
+ --- at /home/runner/work/kurtosis/kurtosis/container-engine-lib/lib/backend_impls/docker/docker_kurtosis_backend/docker_kurtosis_backend_enclave_functions.go:539 (DockerKurtosisBackend.getAllEnclaveContainers) ---
+Caused by: An error occurred getting containers with labels '{fields:map[label:map[com.kurtosistech.app-id=kurtosis:true com.kurtosistech.enclave-id=ffe278e6432b4d8086a9e1a104ee4393:true]]}'
+ --- at /home/runner/work/kurtosis/kurtosis/container-engine-lib/lib/backend_impls/docker/docker_manager/docker_manager.go:1346 (DockerManager.GetContainersByLabels) ---
+Caused by: An error occurred inspecting the docker container with ID 'c44d677b4af51f1d37e99c8d9dcba0de30b8bc48a8a545cbe0ad4937bb705723'
+ --- at /home/runner/work/kurtosis/kurtosis/container-engine-lib/lib/backend_impls/docker/docker_manager/docker_manager.go:2212 (DockerManager.getContainersByFilterArgs) ---
+Caused by: An error occurred inspecting container 'c44d677b4af51f1d37e99c8d9dcba0de30b8bc48a8a545cbe0ad4937bb705723'
+ --- at /home/runner/work/kurtosis/kurtosis/container-engine-lib/lib/backend_impls/docker/docker_manager/docker_manager.go:600 (DockerManager.InspectContainer) ---
+Caused by: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.51/containers/c44d677b4af51f1d37e99c8d9dcba0de30b8bc48a8a545cbe0ad4937bb705723/json": net/http: request canceled (Client.Timeout exceeded while awaiting headers) 

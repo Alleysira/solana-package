@@ -1,0 +1,537 @@
+[36mINFO[0m[2026-10-28T17:11:44+08:00] otel ClickHouse running at http://172.17.0.4:8123 (native: 172.17.0.4:9000) 
+[36mINFO[0m[2026-10-28T17:11:44+08:00] otel collector running at http://172.17.0.5:4317 (http: http://172.17.0.5:4318) 
+[36mINFO[0m[2026-10-28T17:11:44+08:00] Creating a new enclave for Starlark to run inside... 
+[36mINFO[0m[2026-10-28T17:11:47+08:00] Enclave 'solana-four-client' created successfully 
+[36mINFO[0m[2026-10-28T17:11:47+08:00] Executing Starlark package at '/home/jie.ma/sol-diff-testing/solana-package' as the passed argument '.' looks like a directory 
+[36mINFO[0m[2026-10-28T17:11:47+08:00] Compressing package 'github.com/0xBloctopus/solana-package' at '.' for upload 
+[36mINFO[0m[2026-10-28T17:11:47+08:00] Kurtosis CLI is running in a non interactive terminal. Everything will work but progress information and the progress bar will not be displayed. 
+
+Container images used in this run:
+> solana-diff/firedancer:full-ff881b69 - locally cached
+> solana-diff/agave-validator:4.3.0-amd64 - locally cached
+> solana-diff/jito-solana:4.3.0-jito-amd64 - locally cached
+> solana-diff/sig:v0.2.0-amd64 - locally cached
+
+Printing a message
+Parsing multi-client input parameters
+
+Printing a message
+Launching multi-client shared-genesis participant network
+
+Printing a message
+Building shred-stream files-artifact from SIG image 'solana-diff/sig:v0.2.0-amd64' (for mounting on bootstrap)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+total 125088
+drwxr-xr-x 2 root root      4096 Oct 28 09:11 .
+drwxrwxrwt 1 root root      4096 Oct 28 09:11 ..
+-rwxr-xr-x 1 root root 128079056 Oct 28 08:10 shred-stream
+[shred-stream-artifact] staged shred-stream binary
+
+--------------------
+
+Printing a message
+Built shred-stream files-artifact: shred-stream-bin
+
+Printing a message
+Generating shared genesis (single run_sh)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+[genesis] keygen identities/votes/stakes/faucet/tip/merkle/recipient
+[genesis] running solana-genesis (two bootstrap validators plus staked Firedancer account)
+lamports_per_byte_year is deprecated and will be removed in a future release
+rent_exemption_threshold is deprecated and will be removed in a future release
+rent_burn_percentage is deprecated and will be removed in a future release
+[genesis] genesis_hash=BCATzEXAf5FZ1FYMBVzDZU5983h7JYSrBL2ya8yVnRK6 shred_version=3795
+[genesis] meta.env written. Contents:
+GENESIS_HASH=BCATzEXAf5FZ1FYMBVzDZU5983h7JYSrBL2ya8yVnRK6
+SHRED_VERSION=3795
+BOOTSTRAP_IDENTITY=QBQdk4u1jPHYfqwRMtBoti1B8EAuWyHEZB2Q7TPPrb2
+BOOTSTRAP_VOTE=9zrcwVhyKz1NNCJBySkHC4cpfW4N2TrEzNniGQFku49X
+BOOTSTRAP_STAKE=BFqsD8RQXmzAyhcmVHPSKMfLMkBgR1VXShLxfsDCkfvk
+JOINER_IDENTITY=DVadFXQosDm4TzeP8HYc8FWmpPiubxHcebsC6ifGJtTg
+JOINER_VOTE=2y1yT97o23oz1EVJCVA3qTdqoPthWGwNMXWEEmd6f9sM
+JOINER_STAKE=39eP5auJHUJKjwkLdijfKrfKheDewWrBqB2QCTrDvqxW
+FIREDANCER_IDENTITY=8v9TXiCzd3jtzqykiaQBoTSxP5PNJyrXbKUXHhJWQvYC
+FIREDANCER_VOTE=WFGFyUW4tKZj91gtWvznnLdi7mGt4ySS4BLBJ54TRfa
+FIREDANCER_STAKE=7vUqaUwfHf93opG1m64Pe6121Fb5sQKBMqcxZuzaaK9L
+RECIPIENT=5gnvqFLA8BYctvrsVsrK6cTBQJwCXQFpK5miQoBfYk6T
+TIP_PAYMENT=Cu4x3ZFzuKhppzBaJuWdu8tex24vxRTBLCapy87u9Lca
+TIP_DISTRIBUTION=Dqjt9yxyRhp6MajX6DA8cqGwPS8dxsJqyDtymSVzmmjM
+MERKLE_AUTHORITY=9GTc1yWjuuKw1YKUgCp9dQ2CvgrFpPjcTXkQAYVLPat
+BOOTSTRAP_BLS=7jJnKKshjfjCX6hxt3Jcgt58MNeAFSGpCdeVysVBko2hJ5fBQru8kmNdqKFsD7dpvn
+JOINER_BLS=7St2MteXjGDj4fWKvHzEnyoPRhGs7j9PThYVFCEmDe5rLeCvmDM2oDfhBF8o2nUEFd
+FIREDANCER_BLS=7oiuvUHKHCcvcGsUHzo7QkVq8ArPaRxbNHw2jWKtoaeCcbWcxcEvGrS63DnsANfomv
+[genesis] DONE
+
+--------------------
+
+Printing a message
+Genesis artifact 'solana-genesis-data' produced
+
+Printing a message
+Launching bank-hash probe 'bank-hash-probe' (privileged; captures slot-0 bank hash)
+
+Adding service with name 'bank-hash-probe' and image 'solana-diff/agave-validator:4.3.0-amd64'
+Service 'bank-hash-probe' added with service UUID 'd41f2bb457e9495f81194bb0249fb625'
+
+Printing a message
+Bank-hash probe container started (sleep infinity, privileged).
+
+Executing command on service 'bank-hash-probe'
+Command returned with exit code '0' and the following output:
+--------------------
+[probe] my_ip=172.16.0.7
+[probe] validator pid=17
+BANK_HASH=5bX7ZxoofKpkZbnfDJgfkfxNPhfGCNxXedMfe7Nfjr7Y
+[probe] captured bank-0 hash=5bX7ZxoofKpkZbnfDJgfkfxNPhfGCNxXedMfe7Nfjr7Y
+
+--------------------
+
+Executing command on service 'bank-hash-probe'
+Command returned with exit code '0' and the following output: 5bX7ZxoofKpkZbnfDJgfkfxNPhfGCNxXedMfe7Nfjr7Y
+
+Printing a message
+Bank-hash probe captured slot-0 bank hash: 5bX7ZxoofKpkZbnfDJgfkfxNPhfGCNxXedMfe7Nfjr7Y
+
+Stopping service 'bank-hash-probe'
+Service 'bank-hash-probe' stopped
+
+Printing a message
+Launching validator 'val-bootstrap' (role=voting-bootstrap, image=solana-diff/jito-solana:4.3.0-jito-amd64)
+
+Adding service with name 'val-bootstrap' and image 'solana-diff/jito-solana:4.3.0-jito-amd64'
+Service 'val-bootstrap' added with service UUID '2437fc894e914af08ce8afe39ec89c11'
+
+Printing a message
+Validator 'val-bootstrap' launched; rpc=http://val-bootstrap:8899 ws=ws://val-bootstrap:8900
+
+Printing a message
+Launching validator 'val-joiner' (role=voting-joiner, image=solana-diff/agave-validator:4.3.0-amd64)
+
+Adding service with name 'val-joiner' and image 'solana-diff/agave-validator:4.3.0-amd64'
+Service 'val-joiner' added with service UUID 'ead98b095bf54078a88b5f466e5e0ff2'
+
+Printing a message
+Validator 'val-joiner' launched; rpc=http://val-joiner:8899 ws=ws://val-joiner:8900
+
+Adding service with name 'val-firedancer' and image 'solana-diff/firedancer:full-ff881b69'
+Service 'val-firedancer' added with service UUID '739880be34be4d9eb3d1ada7a45169e1'
+
+Printing a message
+Extracting real leader schedule from bootstrap RPC via run_sh
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+[schedule] rpc ready=1 after 25 s
+[schedule] lines=432000 (expected 432000)
+[schedule] OK: 0.. + 431999 + , 432000 lines
+0 DVadFXQosDm4TzeP8HYc8FWmpPiubxHcebsC6ifGJtTg
+1 DVadFXQosDm4TzeP8HYc8FWmpPiubxHcebsC6ifGJtTg
+431999 QBQdk4u1jPHYfqwRMtBoti1B8EAuWyHEZB2Q7TPPrb2
+
+--------------------
+
+Printing a message
+Built leader-schedule files-artifact: leader-schedule
+
+Printing a message
+Launching SIG observer 'sig-observer' (image=solana-diff/sig:v0.2.0-amd64, NON-VOTING observer; cluster=development, functional path skip_on_cold_start=False)
+
+Adding service with name 'sig-observer' and image 'solana-diff/sig:v0.2.0-amd64'
+Service 'sig-observer' added with service UUID 'c1691d845b3f4067a48e14b3a6b38a9c'
+
+Printing a message
+SIG observer container started (sleep infinity, privileged, schedule mounted).
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output:
+--------------------
+--- binary ---
+-rwxr-xr-x 1 root root 28142288 Oct 28 08:10 /opt/sig/bin/sig
+--- BUILD-INFO ---
+commit=0c1e96c1ef335ecf9f62e337477faf5bdab0d83a
+fork=yes(Alleysira)
+upstream=Syndica/sig
+fork_diff=main branch; 5 tracked deviation files + DEVIATIONS.md (development observer path)
+upstream_base=b5026c60fe56b51edd79131115b7e741449d6b2e(byte-identical-to-upstream-main)
+zig=0.15.2
+target=x86_64-linux-gnu.2.36
+runtime_platform=linux/amd64
+build_flags=-Dallow-no-sha -Dallow-no-avx512
+client=SIG-v2-observer-non-voting
+note=tracked-deviation-build-see-DEVIATIONS-md
+0c1e96c1 sig v2: bound shred_receiver slot range to the snapshot slot (deviation 5)
+--- schedule ---
+432000 /var/lib/sig/schedule/schedule.txt
+0 DVadFXQosDm4TzeP8HYc8FWmpPiubxHcebsC6ifGJtTg
+1 DVadFXQosDm4TzeP8HYc8FWmpPiubxHcebsC6ifGJtTg
+
+--------------------
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output:
+--------------------
+[sig-observer] wrote /var/lib/sig/config.zon (skip_on_cold_start=false)
+[sig-observer] advertise_ip=172.16.0.12 shred_version=3795 entrypoint=val-bootstrap:8001
+.{
+    .sandboxing_mode = .threaded,
+
+    .cluster = .development,
+    .leader_schedule_file = "/var/lib/sig/schedule/schedule.txt",
+    .gossip = .{
+        .port = 8001,
+        .advertise_tvu_port = true,
+        .advertise_ip = "172.16.0.12",
+        .development_entrypoints = .{"val-bootstrap:8001"},
+    },
+    .shred_network = .{
+        .recv_port = 8002,
+        .shred_version = 3795,
+    },
+    .telemetry = .{
+        .port = 9110,
+        .log_level = .info,
+    },
+    .snapshot = .{
+        .folder = "/var/lib/sig/validator",
+        .known_validators = .{"*"},
+        .skip_on_cold_start = false,
+    },
+    .accounts_db = .{
+        .file = "/var/lib/sig/validator/accounts.db",
+        .rooted = .{ .gb = 1 },
+        .unrooted = .{ .gb = 1 },
+    },
+}
+
+--------------------
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output:
+--------------------
+[sig-observer] launched sig pid=34
+[sig-observer] sig is alive after 45s (started)
+=== sig.log (first 120 lines) ===
+time=2026-10-28T09:12:52.237Z level=info scope=main service=accounts_db message="Feature(active) .block_revenue_sharing"
+time=2026-10-28T09:12:52.237Z level=info scope=main service=accounts_db message="Feature(active) .vote_account_initialize_v2"
+time=2026-10-28T09:12:52.237Z level=info scope=main service=accounts_db message="accounts_db loaded - servicing replay requests"
+tend_program_size"
+time=2026-10-28T09:12:52.237Z level=info scope=main service=accounts_db message="Feature(active) .commission_rate_in_basis_points"
+2026-10-28T09:12:52.237Z level=info scope=main service=accounts_db message="Feature(active) .validate_chained_block_id_hardcoded"
+ount_pointers_in_program_input"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .account_data_direct_mapping"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .fix_alt_bn128_pairing_length_check_hardcoded"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .poseidon_enforce_padding"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .relax_intrabatch_account_locks_hardcoded"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .provide_instruction_data_offset_in_vm_r2_hardcoded"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .enforce_fixed_fec_set_hardcoded"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .increase_cpi_account_info_limit_hardcoded"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .deprecate_rent_exemption_threshold"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .static_instruction_limit_hardcoded"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .vote_state_v4_hardcoded"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .alt_bn128_little_endian"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .enable_bls12_381_syscall"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .enable_alt_bn128_g2_syscalls"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .switch_to_chacha8_turbine_hardcoded"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .bls_pubkey_management_in_vote_account"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .relax_programdata_account_check_migration"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .remove_simple_vote_from_cost_model"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .limit_instruction_accounts"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .validator_admission_ticket"
+zation_hardcoded"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .disable_zk_elgamal_proof_program"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .reenable_zk_elgamal_proof_program"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .formalize_loaded_transaction_data_size_hardcoded"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .define_ltds_fee_only_semantics"
+time=2026-10-28T09:12:52.236Z level=info scope=main service=accounts_db message="Feature(active) .require_static_nonce_account_hardcoded"
+th error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+=== sig.log (last 40 lines) ===
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+
+--------------------
+
+Printing a message
+SIG observer 'sig-observer' launched (NON-VOTING; evidence classified after shred-stream)
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output: 358
+
+Printing a message
+Running shred-stream on bootstrap → sig over window (snapshot slot)..(snapshot slot + 64)
+
+Executing command on service 'val-bootstrap'
+Command returned with exit code '0' and the following output:
+--------------------
+[shred-stream] window 358..422 (snapshot start=358)
+[shred-stream] sig-observer resolved to 172.16.0.12
+-rwxr-xr-x 1 root root 128079056 Oct 28 08:10 /opt/shred-stream/shred-stream
+/data/bootstrap-ledger/rocksdb
+[shred-stream] launched pid=1237 target=172.16.0.12:8002 window=358..422
+=== shred-stream.log (first 30 lines) ===
+shred-stream config:
+  ledger: /data/bootstrap-ledger
+  rocksdb: /data/bootstrap-ledger/rocksdb
+  target: 172.16.0.12:8002
+  start_slot: 358
+  end_slot: 422
+  rate_hz: 100
+  test_mode: linear
+  seed: null
+  dry_run: false
+  column_families:
+    meta: present
+    data_shred: present
+    code_shred: present
+slot=411 slots=22 produced=1480 sent=96 produce_pps=1480 send_pps=96 queue=1384/8192 producer_backpressured=false net_idle=true rate_hz=100
+slot=411 slots=22 produced=1480 sent=192 produce_pps=0 send_pps=96 queue=1288/8192 producer_backpressured=false net_idle=false rate_hz=100
+
+--------------------
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' with no output
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output:
+--------------------
+SIG_EVIDENCE_LEVEL=joined
+SIG_PID=34
+SIG_LOG_BYTES=1639158
+=== sig.log tail (60) ===
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+(shred_receiver) warning: packet failed with error.ShredTooNew
+
+--------------------
+
+Executing command on service 'sig-observer'
+Command returned with exit code '0' and the following output: joined
+
+Printing a message
+SIG observer 'sig-observer' classified evidence_level=joined (NON-VOTING; observer only)
+
+Printing a message
+Participant network launched: bootstrap=val-bootstrap (Jito, voting), joiner=val-joiner (Agave, voting), sig=sig-observer (NON-VOTING observer, evidence=joined), shred-stream ran inside bootstrap → sig over a bounded window from SIG's snapshot slot
+
+Printing a message
+Multi-client shared-genesis network launched.
+
+Printing a message
+  Bootstrap (voting): http://val-bootstrap:8899
+
+Printing a message
+  Joiner  (voting): http://val-joiner:8899
+
+Printing a message
+  Firedancer (voting): val-firedancer
+
+Printing a message
+  SIG     (NON-VOTING observer, evidence=joined)
+
+Printing a message
+Slot verifier: waiting for BOTH validators non-delinquent, then slot >= 20
+
+Waiting for at most '15m0s' for service 'val-bootstrap' to reach a certain state
+[31mERRO[0m[2026-10-28T17:14:19+08:00] Unexpected error happened reading the stream. Client might have cancelled the stream
+rpc error: code = Unavailable desc = error reading from server: EOF 
+[33mWARN[0m[2026-10-28T17:14:19+08:00] An error occurred configuring the user services port forwarding
+Error was: An error was encountered while sending the connect request to the API Container.
+ --- at /__w/kurtosis/kurtosis/api/golang/core/lib/enclaves/enclave_context.go:572 (EnclaveContext.ConnectServices) ---
+Caused by: rpc error: code = Unavailable desc = connection error: desc = "error reading server preface: connection reset by peer" 
+[33mWARN[0m[2026-10-28T17:14:19+08:00] Tried getting number of services in the enclave to log metrics but failed 
+[36mINFO[0m[2026-10-28T17:14:19+08:00] =========================================================== 
+[36mINFO[0m[2026-10-28T17:14:19+08:00] ||          Created enclave: solana-four-client          || 
+[36mINFO[0m[2026-10-28T17:14:19+08:00] =========================================================== 
+[31mERRO[0m[2026-10-28T17:14:21+08:00] An error occurred while printing enclave status and contents:
+An error occurred getting the enclave for identifier 'solana-four-client'
+ --- at /__w/kurtosis/kurtosis/cli/cli/commands/enclave/inspect/inspect.go:121 (PrintEnclaveInspect) ---
+Caused by: No running enclave found with identifier 'solana-four-client'
+ --- at /__w/kurtosis/kurtosis/api/golang/engine/lib/kurtosis_context/kurtosis_context.go:266 (KurtosisContext.GetEnclave) --- 

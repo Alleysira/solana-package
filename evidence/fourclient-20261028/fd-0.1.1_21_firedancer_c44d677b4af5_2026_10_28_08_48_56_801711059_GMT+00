@@ -1,0 +1,40 @@
+INFO    2026-10-28 08:48:56.801915709 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1299)[fd_log_private_boot_custom]: fd_log: build info:
+# date     2026-10-28 08:06:28 +0000
+# source   root@1fe558567705:/src/firedancer
+# machine  linux_gcc_x86_64
+# extras   
+# branch.oid ff881b69a93a6519c1a6f09698aaf208753a0a8f
+# branch.head (detached)
+
+INFO    2026-10-28 08:48:56.801946579 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1301)[fd_log_private_boot_custom]: fd_log: --log-path          /tmp/fd-0.1.1_21_firedancer_c44d677b4af5_2026_10_28_08_48_56_801711059_GMT+00
+INFO    2026-10-28 08:48:56.801950799 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1302)[fd_log_private_boot_custom]: fd_log: --log-dedup         1
+INFO    2026-10-28 08:48:56.801962269 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1303)[fd_log_private_boot_custom]: fd_log: --log-colorize      0
+INFO    2026-10-28 08:48:56.801964729 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1304)[fd_log_private_boot_custom]: fd_log: --log-level-logfile 1
+INFO    2026-10-28 08:48:56.801966939 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1305)[fd_log_private_boot_custom]: fd_log: --log-level-logfile 1
+INFO    2026-10-28 08:48:56.801969149 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1306)[fd_log_private_boot_custom]: fd_log: --log-level-stderr  2
+INFO    2026-10-28 08:48:56.801971349 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1307)[fd_log_private_boot_custom]: fd_log: --log-level-flush   8
+INFO    2026-10-28 08:48:56.801973549 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1308)[fd_log_private_boot_custom]: fd_log: --log-level-core    5
+INFO    2026-10-28 08:48:56.801975919 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1309)[fd_log_private_boot_custom]: fd_log: --log-app-id        0
+INFO    2026-10-28 08:48:56.801978249 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1310)[fd_log_private_boot_custom]: fd_log: --log-app           fd-local
+INFO    2026-10-28 08:48:56.801980589 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1311)[fd_log_private_boot_custom]: fd_log: --log-thread-id     0
+INFO    2026-10-28 08:48:56.801982819 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1312)[fd_log_private_boot_custom]: fd_log: --log-thread        main
+INFO    2026-10-28 08:48:56.801985049 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1313)[fd_log_private_boot_custom]: fd_log: --log-host-id       0
+INFO    2026-10-28 08:48:56.801987269 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1314)[fd_log_private_boot_custom]: fd_log: --log-host          c44d677b4af5
+INFO    2026-10-28 08:48:56.801989539 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1315)[fd_log_private_boot_custom]: fd_log: --log-cpu-id        0
+INFO    2026-10-28 08:48:56.801991759 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1316)[fd_log_private_boot_custom]: fd_log: --log-cpu           f0
+INFO    2026-10-28 08:48:56.801994039 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1317)[fd_log_private_boot_custom]: fd_log: --log-group-id      21
+INFO    2026-10-28 08:48:56.801996299 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1318)[fd_log_private_boot_custom]: fd_log: --log-group         [group]
+INFO    2026-10-28 08:48:56.801998579 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1319)[fd_log_private_boot_custom]: fd_log: --log-tid           21
+INFO    2026-10-28 08:48:56.802006619 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1320)[fd_log_private_boot_custom]: fd_log: --log-user-id       1000
+INFO    2026-10-28 08:48:56.802009079 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1321)[fd_log_private_boot_custom]: fd_log: --log-user          firedancer
+INFO    2026-10-28 08:48:56.802011359 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/log/fd_log.c(1323)[fd_log_private_boot_custom]: fd_log: boot success
+INFO    2026-10-28 08:48:56.802021699 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/shmem/fd_shmem_admin.c(683)[fd_shmem_private_boot]: fd_shmem: booting
+INFO    2026-10-28 08:48:56.802356379 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/shmem/fd_shmem_admin.c(739)[fd_shmem_private_boot]: fd_shmem: --shmem-path /mnt/.fd
+INFO    2026-10-28 08:48:56.802360569 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/shmem/fd_shmem_admin.c(740)[fd_shmem_private_boot]: fd_shmem: boot success
+INFO    2026-10-28 08:48:56.802363549 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/tile/fd_tile_threads.c(772)[fd_tile_private_boot]: fd_tile: --tile-cpus not specified
+INFO    2026-10-28 08:48:56.802367019 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/tile/fd_tile_threads.c(757)[fd_tile_private_boot_str]: fd_tile: no cpus specified; treating thread group as single tile running on O/S assigned cpu(s)
+INFO    2026-10-28 08:48:56.802372119 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/tile/fd_tile_threads.c(556)[fd_tile_private_map_boot]: fd_tile: booting thread group 0:0/1
+INFO    2026-10-28 08:48:56.802380059 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/tile/fd_tile_threads.c(685)[fd_tile_private_map_boot]: fd tile: booting tile 0 on cpu 0:float
+INFO    2026-10-28 08:48:56.802461759 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/tile/fd_tile_threads.c(743)[fd_tile_private_map_boot]: fd_tile: boot tile 0 success (thread 0:0 in thread group 0:0/1)
+INFO    2026-10-28 08:48:56.802466459 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/util/tile/fd_tile_threads.c(748)[fd_tile_private_map_boot]: fd_tile: boot success
+INFO    2026-10-28 08:48:56.802469129 GMT+00     21:21     firedancer:c44d677b4af5:f0   fd-local:[group]:main src/app/shared/boot/fd_boot.c(245)[fd_main_init]: network auto configure system info: provider=socket xdp_mode=skb poll_mode=softirq zero_copy=0 native_bond=0 listen_gre=0 rss_queue_mode=simple (driver=unknown kernel=7.0 gre=0 virtual_if=1 bonded_if=0 lacp_if=0 slaves=0, net_tile_cnt=1)

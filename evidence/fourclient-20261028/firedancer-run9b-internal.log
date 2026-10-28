@@ -1,0 +1,759 @@
+INFO    2026-10-28 09:06:40.377790245 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1299)[fd_log_private_boot_custom]: fd_log: build info:
+# date     2026-10-28 08:06:28 +0000
+# source   root@1fe558567705:/src/firedancer
+# machine  linux_gcc_x86_64
+# extras   
+# branch.oid ff881b69a93a6519c1a6f09698aaf208753a0a8f
+# branch.head (detached)
+
+INFO    2026-10-28 09:06:40.377826925 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1301)[fd_log_private_boot_custom]: fd_log: --log-path          /tmp/fd-0.1.1_8_firedancer_124ecbb598ef_2026_10_28_09_06_40_377570705_GMT+00
+INFO    2026-10-28 09:06:40.377831005 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1302)[fd_log_private_boot_custom]: fd_log: --log-dedup         1
+INFO    2026-10-28 09:06:40.377833665 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1303)[fd_log_private_boot_custom]: fd_log: --log-colorize      0
+INFO    2026-10-28 09:06:40.377836205 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1304)[fd_log_private_boot_custom]: fd_log: --log-level-logfile 1
+INFO    2026-10-28 09:06:40.377838455 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1305)[fd_log_private_boot_custom]: fd_log: --log-level-logfile 1
+INFO    2026-10-28 09:06:40.377840685 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1306)[fd_log_private_boot_custom]: fd_log: --log-level-stderr  2
+INFO    2026-10-28 09:06:40.377843015 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1307)[fd_log_private_boot_custom]: fd_log: --log-level-flush   8
+INFO    2026-10-28 09:06:40.377845255 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1308)[fd_log_private_boot_custom]: fd_log: --log-level-core    5
+INFO    2026-10-28 09:06:40.377847545 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1309)[fd_log_private_boot_custom]: fd_log: --log-app-id        0
+INFO    2026-10-28 09:06:40.377849815 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1310)[fd_log_private_boot_custom]: fd_log: --log-app           fd-local
+INFO    2026-10-28 09:06:40.377852315 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1311)[fd_log_private_boot_custom]: fd_log: --log-thread-id     0
+INFO    2026-10-28 09:06:40.377854595 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1312)[fd_log_private_boot_custom]: fd_log: --log-thread        main
+INFO    2026-10-28 09:06:40.377857065 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1313)[fd_log_private_boot_custom]: fd_log: --log-host-id       0
+INFO    2026-10-28 09:06:40.377859355 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1314)[fd_log_private_boot_custom]: fd_log: --log-host          124ecbb598ef
+INFO    2026-10-28 09:06:40.377861805 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1315)[fd_log_private_boot_custom]: fd_log: --log-cpu-id        0
+INFO    2026-10-28 09:06:40.377864105 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1316)[fd_log_private_boot_custom]: fd_log: --log-cpu           f0
+INFO    2026-10-28 09:06:40.377866515 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1317)[fd_log_private_boot_custom]: fd_log: --log-group-id      8
+INFO    2026-10-28 09:06:40.377868755 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1318)[fd_log_private_boot_custom]: fd_log: --log-group         [group]
+INFO    2026-10-28 09:06:40.377871095 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1319)[fd_log_private_boot_custom]: fd_log: --log-tid           8
+INFO    2026-10-28 09:06:40.377879595 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1320)[fd_log_private_boot_custom]: fd_log: --log-user-id       1000
+INFO    2026-10-28 09:06:40.377882135 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1321)[fd_log_private_boot_custom]: fd_log: --log-user          firedancer
+INFO    2026-10-28 09:06:40.377884475 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/log/fd_log.c(1323)[fd_log_private_boot_custom]: fd_log: boot success
+INFO    2026-10-28 09:06:40.377890635 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/shmem/fd_shmem_admin.c(683)[fd_shmem_private_boot]: fd_shmem: booting
+INFO    2026-10-28 09:06:40.378270635 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/shmem/fd_shmem_admin.c(739)[fd_shmem_private_boot]: fd_shmem: --shmem-path /mnt/.fd
+INFO    2026-10-28 09:06:40.378276905 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/shmem/fd_shmem_admin.c(740)[fd_shmem_private_boot]: fd_shmem: boot success
+INFO    2026-10-28 09:06:40.378280305 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/tile/fd_tile_threads.c(772)[fd_tile_private_boot]: fd_tile: --tile-cpus not specified
+INFO    2026-10-28 09:06:40.378283495 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/tile/fd_tile_threads.c(757)[fd_tile_private_boot_str]: fd_tile: no cpus specified; treating thread group as single tile running on O/S assigned cpu(s)
+INFO    2026-10-28 09:06:40.378288985 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/tile/fd_tile_threads.c(556)[fd_tile_private_map_boot]: fd_tile: booting thread group 0:0/1
+INFO    2026-10-28 09:06:40.378295875 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/tile/fd_tile_threads.c(685)[fd_tile_private_map_boot]: fd tile: booting tile 0 on cpu 0:float
+INFO    2026-10-28 09:06:40.378388905 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/tile/fd_tile_threads.c(743)[fd_tile_private_map_boot]: fd_tile: boot tile 0 success (thread 0:0 in thread group 0:0/1)
+INFO    2026-10-28 09:06:40.378393315 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/tile/fd_tile_threads.c(748)[fd_tile_private_map_boot]: fd_tile: boot success
+INFO    2026-10-28 09:06:40.378395995 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/app/shared/boot/fd_boot.c(245)[fd_main_init]: network auto configure system info: provider=socket xdp_mode=skb poll_mode=softirq zero_copy=0 native_bond=0 listen_gre=0 rss_queue_mode=simple (driver=unknown kernel=7.0 gre=0 virtual_if=1 bonded_if=0 lacp_if=0 slaves=0, net_tile_cnt=1)
+INFO    2026-10-28 09:06:40.402936593 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/disco/topo/fd_topo.c(612)[fd_topo_print_log]: ── Summary ─────────────────────────────────────────────────────────────────────
+  Total Tiles              31
+  Total Memory Locked      54 GiB + 706 MiB + 300 KiB  (58722660352 bytes)
+  Required Gigantic Pages  0
+  Required Huge Pages      28001
+  Required Normal Pages    75
+
+── Workspaces (90) ─────────────────────────────────────────────────────────────
+   ID        SIZE  NAME           PAGES  PAGE SZ   NUMA     FOOTPRINT         LOOSE
+    0    36.0 MiB  metric            18  huge         0      35946496       1798144
+    1     2.0 MiB  diag               1  huge         0        548864       1544192
+    2   244.0 MiB  genesi           122  huge         0     187682816      68100096
+    3     2.0 MiB  ipecho             1  huge         0        106496       1986560
+    4   172.0 MiB  gossvf            86  huge         0     179097600       1253376
+    5   904.0 MiB  gossip           452  huge         0     947134464        774144
+    6   366.0 MiB  shred            183  huge         0     382267392       1507328
+    7   494.0 MiB  repair           247  huge         0     516382720       1609728
+    8     6.0 MiB  rserve             3  huge         0       6041600        245760
+    9     1.9 GiB  replay           964  huge         0    2020958208        692224
+   10    18.0 MiB  accdb              9  huge         0      16822272       2048000
+   11   466.0 MiB  execrp           233  huge         0     487616512       1015808
+   12     7.6 GiB  tower           3896  huge         0    8169041920       1458176
+   13    16.0 MiB  txsend             8  huge         0      15376384       1396736
+   14     2.0 MiB  sign               1  huge         0         20480       2072576
+   15     2.0 MiB  admin              1  huge         0          8192       2084864
+   16     1.7 GiB  quic             867  huge         0    1816756224       1470464
+   17    98.0 MiB  verify            49  huge         0     100675584       2080768
+   18   770.0 MiB  dedup            385  huge         0     805314560       2084864
+   19   776.0 MiB  resolv           388  huge         0     813285376        405504
+   20   930.0 MiB  pack             465  huge         0     974757888        413696
+   21   506.0 MiB  execle           253  huge         0     530337792        237568
+   22    16.0 MiB  poh                8  huge         0      16752640         20480
+   23     2.0 MiB  metric_in          1  huge         0         94208       1998848
+   24    66.0 MiB  net_gossip        33  huge         0      68173824       1028096
+   25    66.0 MiB  net_shred         33  huge         0      68173824       1028096
+   26    34.0 MiB  net_repair        17  huge         0      34095104       1552384
+   27    34.0 MiB  net_rserve        17  huge         0      34095104       1552384
+   28    34.0 MiB  net_txsend        17  huge         0      34095104       1552384
+   29    34.0 MiB  net_quic          17  huge         0      34095104       1552384
+   30    50.0 MiB  genesi_out        25  huge         0      50352128       2072576
+   31     2.0 MiB  ipecho_out         1  huge         0          8192       2084864
+   32   402.0 MiB  gossvf_gossip    201  huge         0     420020224       1503232
+   33    42.0 MiB  gossip_gossvf     21  huge         0      41959424       2076672
+   34   362.0 MiB  gossip_out       181  huge         0     377503744       2076672
+   35    84.0 MiB  shred_out         42  huge         0      86167552       1908736
+   36    28.0 MiB  repair_out        14  huge         0      27279360       2076672
+   37     6.0 MiB  replay_epoch       3  huge         0       5820416        466944
+   38    82.0 MiB  replay_execrp     41  huge         0      84434944       1544192
+   39   332.0 MiB  replay_out       166  huge         0     346054656       2068480
+   40    70.0 MiB  tower_out         35  huge         0      71856128       1540096
+   41     2.0 MiB  txsend_out         1  huge         0        569344       1523712
+   42   596.0 MiB  quic_verify      298  huge         0     623398912       1548288
+   43     6.0 MiB  verify_dedup       3  huge         0       5300224        987136
+   44    82.0 MiB  dedup_resolv      41  huge         0      84434944       1544192
+   45    30.0 MiB  resolv_pack       15  huge         0      29519872       1933312
+   46     4.0 MiB  pack_poh           2  huge         0       2244608       1945600
+   47     6.0 MiB  pack_execle        3  huge         0       4612096       1675264
+   48     2.0 MiB  resolv_replay      1  huge         0        671744       1421312
+   49    14.0 MiB  execle_pack        7  huge         0      13312000       1363968
+   50   100.0 MiB  execle_poh        50  huge         0     102957056       1896448
+   51     2.0 MiB  execle_busy        1  huge         0          8192       2084864
+   52    82.0 MiB  poh_shred         41  huge         0      84598784       1380352
+   53     2.0 MiB  poh_replay         1  huge         0        671744       1421312
+   54     2.0 MiB  adminctl           1  huge         0          8192       2084864
+   55     2.0 GiB  progcache       1024  huge         0    2147475456          4096
+   56     7.7 GiB  txncache        3935  huge         0    8251654144        634880
+   57    18.8 GiB  accdb_data      9616  huge         0   20164882432       1327104
+   58     1.7 GiB  banks            868  huge         0    1820315648          8192
+   59     2.8 GiB  store           1419  huge         0    2974588928       1265664
+   60     2.0 MiB  rnonce             1  huge         0          8192       2084864
+   61     2.0 MiB  gossip_sign        1  huge         0        282624       1810432
+   62     2.0 MiB  sign_gossip        1  huge         0         36864       2056192
+   63     2.0 MiB  shred_sign         1  huge         0         36864       2056192
+   64     2.0 MiB  sign_shred         1  huge         0         36864       2056192
+   65     2.0 MiB  repair_sign        1  huge         0         57344       2035712
+   66     2.0 MiB  sign_repair        1  huge         0         36864       2056192
+   67     2.0 MiB  rserve_sign        1  huge         0         36864       2056192
+   68     2.0 MiB  sign_rserve        1  huge         0         36864       2056192
+   69     2.0 MiB  txsend_sign        1  huge         0        184320       1908736
+   70     2.0 MiB  sign_txsend        1  huge         0         36864       2056192
+   71    12.0 MiB  execrp_replay      6  huge         0      11026432       1552384
+   72     2.0 MiB  admin_replay       1  huge         0          8192       2084864
+   73    78.0 MiB  snapct            39  huge         0      80134144       1650688
+   74     2.0 MiB  snapld             1  huge         0       1404928        688128
+   75    34.0 MiB  snapdc            17  huge         0      34050048       1597440
+   76   598.0 MiB  snapin           299  huge         0     625496064       1548288
+   77     2.0 MiB  snapct_ld          1  huge         0        602112       1490944
+   78    66.0 MiB  snapld_dc         33  huge         0      67153920       2048000
+   79   128.0 MiB  snapdc_in         64  huge         0     134164480         49152
+   80     2.0 MiB  snapin_ct          1  huge         0         12288       2080768
+   81     2.0 MiB  snapin_shmem       1  huge         0         24576       2068480
+   82   118.0 MiB  snapin_manif      59  huge         0     123105280        622592
+   83     2.0 MiB  snapct_repr        1  huge         0         12288       2080768
+   84   196.0 MiB  net_umem          98  huge         0     205336576        180224
+   85     2.0 MiB  sock               1  huge         0        147456       1945600
+   86   694.0 MiB  rpc              347  huge         0     658722816      68919296
+   87     2.0 MiB  rpc_replay         1  huge         0          8192       2084864
+   88     2.0 MiB  waker              1  huge         0          8192       2084864
+   89     2.0 MiB  waker_ready        1  huge         0          8192       2084864
+
+── Objects (295) ───────────────────────────────────────────────────────────────
+    ID        SIZE  WORKSPACE      OBJECT         WKSP        OFFSET  PROPERTIES
+     0     1.0 MiB  net_gossip     mcache           24          4096  depth=32768
+     1    64.0 MiB  net_gossip     dcache           24       1056768  depth=32768 burst=1 mtu=2048
+     2     1.0 MiB  net_shred      mcache           25          4096  depth=32768
+     3    64.0 MiB  net_shred      dcache           25       1056768  depth=32768 burst=1 mtu=2048
+     4   512.2 KiB  net_repair     mcache           26          4096  depth=16384
+     5    32.0 MiB  net_repair     dcache           26        532480  depth=16384 burst=1 mtu=2048
+     6   512.2 KiB  net_txsend     mcache           28          4096  depth=16384
+     7    32.0 MiB  net_txsend     dcache           28        532480  depth=16384 burst=1 mtu=2048
+     8   512.2 KiB  net_quic       mcache           29          4096  depth=16384
+     9    32.0 MiB  net_quic       dcache           29        532480  depth=16384 burst=1 mtu=2048
+    10   512.2 KiB  net_rserve     mcache           27          4096  depth=16384
+    11    32.0 MiB  net_rserve     dcache           27        532480  depth=16384 burst=1 mtu=2048
+    12     4.2 KiB  rserve_sign    mcache           67          4096  depth=128
+    13    24.0 KiB  rserve_sign    dcache           67         12288  depth=128 burst=1 mtu=32
+    14     4.2 KiB  sign_rserve    mcache           68          4096  depth=128
+    15    24.0 KiB  sign_rserve    dcache           68         12288  depth=128 burst=1 mtu=64
+    16     4.2 KiB  snapct_ld      mcache           77          4096  depth=128
+    17   576.0 KiB  snapct_ld      dcache           77         12288  depth=128 burst=1 mtu=4376
+    18    32.2 KiB  snapld_dc      mcache           78          4096  depth=1024
+    19    64.0 MiB  snapld_dc      dcache           78         40960  depth=1024 burst=1 mtu=65408
+    20    64.2 KiB  snapdc_in      mcache           79          4096  depth=2048
+    21   127.9 MiB  snapdc_in      dcache           79         73728  depth=2048 burst=1 mtu=65408
+    22       384 B  snapin_manif   mcache           82          4096  depth=4
+    23   117.4 MiB  snapin_manif   dcache           82          8192  depth=4 burst=1 mtu=20514960
+    24     4.2 KiB  snapct_repr    mcache           83          4096  depth=128
+    25     4.2 KiB  snapin_ct      mcache           80          4096  depth=128
+    26       384 B  genesi_out     mcache           30          4096  depth=1
+    27    48.0 MiB  genesi_out     dcache           30          8192  depth=1 burst=1 mtu=16779392
+    28       384 B  ipecho_out     mcache           31          4096  depth=2
+    29   512.2 KiB  gossvf_gossip  mcache           32          4096  depth=16384
+    30   400.1 MiB  gossvf_gossip  dcache           32        532480  depth=16384 burst=1 mtu=25505
+    31     8.0 MiB  gossip_gossvf  mcache           33          4096  depth=262144
+    32    32.0 MiB  gossip_gossvf  dcache           33       8396800  depth=262144 burst=1 mtu=48
+    33     8.0 MiB  gossip_out     mcache           34          4096  depth=262144
+    34   352.0 MiB  gossip_out     dcache           34       8396800  depth=262144 burst=1 mtu=1328
+    35   512.2 KiB  quic_verify    mcache           42          4096  depth=16384
+    36   594.0 MiB  quic_verify    dcache           42        532480  depth=16384 burst=131072 mtu=4224
+    37    32.2 KiB  verify_dedup   mcache           43          4096  depth=1024
+    38     5.0 MiB  verify_dedup   dcache           43         40960  depth=1024 burst=1 mtu=5040
+    39       768 B  replay_epoch   mcache           37          4096  depth=16
+    40     5.5 MiB  replay_epoch   dcache           37          8192  depth=16 burst=1 mtu=322496
+    41     2.0 MiB  replay_out     mcache           39          4096  depth=65536
+    42   328.0 MiB  replay_out     dcache           39       2105344  depth=65536 burst=1 mtu=5184
+    43   512.2 KiB  replay_execrp  mcache           38          4096  depth=16384
+    44    80.0 MiB  replay_execrp  dcache           38        532480  depth=16384 burst=1 mtu=5120
+    45     1.2 KiB  admin_replay   mcache           72          4096  depth=32
+    46     1.2 KiB  admin_replay   mcache           72          5376  depth=32
+    47   512.2 KiB  dedup_resolv   mcache           44          4096  depth=16384
+    48    80.0 MiB  dedup_resolv   dcache           44        532480  depth=16384 burst=1 mtu=5040
+    49   128.2 KiB  resolv_pack    mcache           45          4096  depth=4096
+    50    28.0 MiB  resolv_pack    dcache           45        139264  depth=4096 burst=1 mtu=7088
+    51   128.2 KiB  pack_poh       mcache           46          4096  depth=4096
+    52     2.0 MiB  pack_poh       dcache           46        139264  depth=4096 burst=1 mtu=496
+    53   128.2 KiB  execle_poh     mcache           50          4096  depth=4096
+    54    98.1 MiB  execle_poh     dcache           50        139264  depth=4096 burst=1 mtu=25056
+    55     4.2 KiB  pack_execle    mcache           47          4096  depth=128
+    56     4.4 MiB  pack_execle    dcache           47         12288  depth=128 burst=1 mtu=35256
+    57    32.2 KiB  execle_pack    mcache           49          4096  depth=1024
+    58    12.7 MiB  execle_pack    dcache           49         40960  depth=1024 burst=1 mtu=12848
+    59   128.2 KiB  poh_shred      mcache           52          4096  depth=4096
+    60    80.5 MiB  poh_shred      dcache           52        139264  depth=4096 burst=1 mtu=20584
+    61   128.2 KiB  poh_replay     mcache           53          4096  depth=4096
+    62   520.0 KiB  poh_replay     dcache           53        139264  depth=4096 burst=1 mtu=120
+    63   128.2 KiB  resolv_replay  mcache           48          4096  depth=4096
+    64   520.0 KiB  resolv_replay  dcache           48        139264  depth=4096 burst=1 mtu=8
+    65     4.2 KiB  shred_sign     mcache           63          4096  depth=128
+    66    24.0 KiB  shred_sign     dcache           63         12288  depth=128 burst=1 mtu=32
+    67     4.2 KiB  sign_shred     mcache           64          4096  depth=128
+    68    24.0 KiB  sign_shred     dcache           64         12288  depth=128 burst=1 mtu=64
+    69     4.2 KiB  gossip_sign    mcache           61          4096  depth=128
+    70   264.0 KiB  gossip_sign    dcache           61         12288  depth=128 burst=1 mtu=2048
+    71     4.2 KiB  sign_gossip    mcache           62          4096  depth=128
+    72    24.0 KiB  sign_gossip    dcache           62         12288  depth=128 burst=1 mtu=64
+    73     8.2 KiB  repair_sign    mcache           65          4096  depth=256
+    74    40.0 KiB  repair_sign    dcache           65         16384  depth=256 burst=1 mtu=124
+    75     4.2 KiB  sign_repair    mcache           66          4096  depth=128
+    76    24.0 KiB  sign_repair    dcache           66         12288  depth=128 burst=1 mtu=64
+    77     4.2 KiB  txsend_sign    mcache           69          4096  depth=128
+    78   168.0 KiB  txsend_sign    dcache           69         12288  depth=128 burst=1 mtu=1232
+    79     4.2 KiB  sign_txsend    mcache           70          4096  depth=128
+    80    24.0 KiB  sign_txsend    dcache           70         12288  depth=128 burst=1 mtu=128
+    81     2.0 MiB  shred_out      mcache           35          4096  depth=65536
+    82    80.2 MiB  shred_out      dcache           35       2105344  depth=65536 burst=132 mtu=1264
+    83     2.0 MiB  repair_out     mcache           36          4096  depth=65536
+    84    24.0 MiB  repair_out     dcache           36       2105344  depth=65536 burst=1 mtu=280
+    85   512.2 KiB  tower_out      mcache           40          4096  depth=16384
+    86    68.0 MiB  tower_out      dcache           40        532480  depth=16384 burst=2 mtu=4272
+    87     4.2 KiB  txsend_out     mcache           41          4096  depth=128
+    88   544.0 KiB  txsend_out     dcache           41         12288  depth=128 burst=1 mtu=4184
+    89   512.2 KiB  execrp_replay  mcache           71          4096  depth=16384
+    90    10.0 MiB  execrp_replay  dcache           71        532480  depth=16384 burst=1 mtu=528
+    91   140.0 KiB  sock           tile             85          4096 
+    92     2.6 KiB  metric_in      metrics          23          4096  in_cnt=6
+    93   512.2 KiB  net_umem       mcache           84          4096  depth=16384
+    94    32.1 MiB  net_umem       dcache           84        532480  depth=16384 burst=64 mtu=2048
+    95   512.2 KiB  net_umem       mcache           84      34226176  depth=16384
+    96    32.1 MiB  net_umem       dcache           84      34754560  depth=16384 burst=64 mtu=2048
+    97   512.2 KiB  net_umem       mcache           84      68448256  depth=16384
+    98    32.1 MiB  net_umem       dcache           84      68976640  depth=16384 burst=64 mtu=2048
+    99   512.2 KiB  net_umem       mcache           84     102670336  depth=16384
+   100    32.1 MiB  net_umem       dcache           84     103198720  depth=16384 burst=64 mtu=2048
+   101   512.2 KiB  net_umem       mcache           84     136892416  depth=16384
+   102    32.1 MiB  net_umem       dcache           84     137420800  depth=16384 burst=64 mtu=2048
+   103   512.2 KiB  net_umem       mcache           84     171114496  depth=16384
+   104    32.1 MiB  net_umem       dcache           84     171642880  depth=16384 burst=64 mtu=2048
+   105    34.3 MiB  metric         tile              0          4096 
+   106     2.2 KiB  metric_in      metrics          23          6784  in_cnt=0
+   107   530.9 KiB  diag           tile              1          4096 
+   108     2.2 KiB  metric_in      metrics          23          9088  in_cnt=0
+   109    76.4 MiB  snapct         tile             73          4096 
+   110     2.4 KiB  metric_in      metrics          23         11392  in_cnt=3
+   111     1.3 MiB  snapld         tile             74          4096 
+   112     2.2 KiB  metric_in      metrics          23         13824  in_cnt=1
+   113    32.5 MiB  snapdc         tile             75          4096 
+   114     2.2 KiB  metric_in      metrics          23         16128  in_cnt=1
+   115   596.5 MiB  snapin         tile             76          4096 
+   116     2.2 KiB  metric_in      metrics          23         18432  in_cnt=1
+   117   178.9 MiB  genesi         tile              2         69632 
+   118     2.2 KiB  metric_in      metrics          23         20736  in_cnt=0
+   119    98.9 KiB  ipecho         tile              3          4096 
+   120     2.2 KiB  metric_in      metrics          23         23040  in_cnt=1
+   121   170.8 MiB  gossvf         tile              4          4096 
+   122     2.5 KiB  metric_in      metrics          23         25344  in_cnt=5
+   123       128 B  gossvf         keyswitch         4     179094528 
+   124   903.3 MiB  gossip         tile              5          4096 
+   125     2.6 KiB  metric_in      metrics          23         27904  in_cnt=6
+   126       128 B  gossip         keyswitch         5     947134080 
+   127   364.6 MiB  shred          tile              6          4096 
+   128     2.6 KiB  metric_in      metrics          23         30592  in_cnt=7
+   129       128 B  shred          keyswitch         6     382266112 
+   130   492.5 MiB  repair         tile              7          4096 
+   131     2.8 KiB  metric_in      metrics          23         33280  in_cnt=8
+   132       128 B  repair         keyswitch         7     516380032 
+   133     5.8 MiB  rserve         tile              8          4096 
+   134     2.4 KiB  metric_in      metrics          23         36096  in_cnt=2
+   135       128 B  rserve         keyswitch         8       6040320 
+   136     1.9 GiB  replay         tile              9          4096 
+   137     3.0 KiB  metric_in      metrics          23         38528  in_cnt=12
+   138       128 B  replay         keyswitch         9    2020957056 
+   139    16.0 MiB  accdb          tile             10          4096 
+   140     2.2 KiB  metric_in      metrics          23         41600  in_cnt=0
+   141   465.0 MiB  execrp         tile             11          4096 
+   142     2.2 KiB  metric_in      metrics          23         43904  in_cnt=1
+   143     7.6 GiB  tower          tile             12          4096 
+   144     2.6 KiB  metric_in      metrics          23         46208  in_cnt=6
+   145       128 B  tower          keyswitch        12    8169041280 
+   146       128 B  tower          keyswitch        12    8169041408 
+   147    14.7 MiB  txsend         tile             13          4096 
+   148     2.5 KiB  metric_in      metrics          23         48896  in_cnt=4
+   149       128 B  txsend         keyswitch        13      15372288 
+   150       128 B  txsend         keyswitch        13      15372416 
+   151     1.7 GiB  quic           tile             16          4096 
+   152     2.2 KiB  metric_in      metrics          23         51456  in_cnt=1
+   153    96.0 MiB  verify         tile             17          4096 
+   154     2.4 KiB  metric_in      metrics          23         53760  in_cnt=3
+   155   768.0 MiB  dedup          tile             18          4096 
+   156     2.4 KiB  metric_in      metrics          23         56192  in_cnt=2
+   157   775.6 MiB  resolv         tile             19          4096 
+   158     2.4 KiB  metric_in      metrics          23         58624  in_cnt=2
+   159   929.6 MiB  pack           tile             20          4096 
+   160     2.4 KiB  metric_in      metrics          23         61056  in_cnt=3
+   161   505.8 MiB  execle         tile             21          4096 
+   162     2.2 KiB  metric_in      metrics          23         63488  in_cnt=1
+   163    10.0 MiB  poh            tile             22          4096 
+   164     2.4 KiB  metric_in      metrics          23         65792  in_cnt=3
+   165     6.1 KiB  sign           tile             14          4096 
+   166     2.5 KiB  metric_in      metrics          23         68224  in_cnt=4
+   167       128 B  sign           keyswitch        14         10368 
+   168       128 B  sign           keyswitch        14         10496 
+   169     6.1 KiB  sign           tile             14         10624 
+   170     2.2 KiB  metric_in      metrics          23         70784  in_cnt=1
+   171       128 B  sign           keyswitch        14         16896 
+   172       128 B  sign           keyswitch        14         17024 
+   173   628.1 MiB  rpc            tile             86         69632 
+   174     2.6 KiB  metric_in      metrics          23         73088  in_cnt=6
+   175       128 B  rpc            keyswitch        86     658720000 
+   176     2.5 KiB  admin          tile             15          4096 
+   177     2.2 KiB  metric_in      metrics          23         75776  in_cnt=1
+   178       128 B  metric_in      fseq             23         78080 
+   179       128 B  metric_in      fseq             23         78208 
+   180       128 B  metric_in      fseq             23         78336 
+   181       128 B  metric_in      fseq             23         78464 
+   182       128 B  metric_in      fseq             23         78592 
+   183       128 B  metric_in      fseq             23         78720 
+   184       128 B  metric_in      fseq             23         78848 
+   185       128 B  metric_in      fseq             23         78976 
+   186       128 B  metric_in      fseq             23         79104 
+   187       128 B  metric_in      fseq             23         79232 
+   188       128 B  metric_in      fseq             23         79360 
+   189       128 B  metric_in      fseq             23         79488 
+   190       128 B  metric_in      fseq             23         79616 
+   191       128 B  metric_in      fseq             23         79744 
+   192       128 B  metric_in      fseq             23         79872 
+   193       128 B  metric_in      fseq             23         80000 
+   194       128 B  metric_in      fseq             23         80128 
+   195       128 B  metric_in      fseq             23         80256 
+   196       128 B  metric_in      fseq             23         80384 
+   197       128 B  metric_in      fseq             23         80512 
+   198       128 B  metric_in      fseq             23         80640 
+   199       128 B  metric_in      fseq             23         80768 
+   200       128 B  metric_in      fseq             23         80896 
+   201       128 B  metric_in      fseq             23         81024 
+   202       128 B  metric_in      fseq             23         81152 
+   203       128 B  metric_in      fseq             23         81280 
+   204       128 B  metric_in      fseq             23         81408 
+   205       128 B  metric_in      fseq             23         81536 
+   206       128 B  metric_in      fseq             23         81664 
+   207       128 B  metric_in      fseq             23         81792 
+   208       128 B  metric_in      fseq             23         81920 
+   209       128 B  metric_in      fseq             23         82048 
+   210       128 B  metric_in      fseq             23         82176 
+   211       128 B  metric_in      fseq             23         82304 
+   212       128 B  metric_in      fseq             23         82432 
+   213       128 B  metric_in      fseq             23         82560 
+   214       128 B  metric_in      fseq             23         82688 
+   215       128 B  metric_in      fseq             23         82816 
+   216       128 B  metric_in      fseq             23         82944 
+   217       128 B  metric_in      fseq             23         83072 
+   218       128 B  metric_in      fseq             23         83200 
+   219       128 B  metric_in      fseq             23         83328 
+   220       128 B  metric_in      fseq             23         83456 
+   221       128 B  metric_in      fseq             23         83584 
+   222       128 B  metric_in      fseq             23         83712 
+   223       128 B  metric_in      fseq             23         83840 
+   224       128 B  metric_in      fseq             23         83968 
+   225       128 B  metric_in      fseq             23         84096 
+   226       128 B  metric_in      fseq             23         84224 
+   227       128 B  metric_in      fseq             23         84352 
+   228       128 B  metric_in      fseq             23         84480 
+   229       128 B  metric_in      fseq             23         84608 
+   230       128 B  metric_in      fseq             23         84736 
+   231       128 B  metric_in      fseq             23         84864 
+   232       128 B  metric_in      fseq             23         84992 
+   233       128 B  metric_in      fseq             23         85120 
+   234       128 B  metric_in      fseq             23         85248 
+   235       128 B  metric_in      fseq             23         85376 
+   236       128 B  metric_in      fseq             23         85504 
+   237       128 B  metric_in      fseq             23         85632 
+   238       128 B  metric_in      fseq             23         85760 
+   239       128 B  metric_in      fseq             23         85888 
+   240       128 B  metric_in      fseq             23         86016 
+   241       128 B  metric_in      fseq             23         86144 
+   242       128 B  metric_in      fseq             23         86272 
+   243       128 B  metric_in      fseq             23         86400 
+   244       128 B  metric_in      fseq             23         86528 
+   245       128 B  metric_in      fseq             23         86656 
+   246       128 B  metric_in      fseq             23         86784 
+   247       128 B  metric_in      fseq             23         86912 
+   248       128 B  metric_in      fseq             23         87040 
+   249       128 B  metric_in      fseq             23         87168 
+   250       128 B  metric_in      fseq             23         87296 
+   251       128 B  metric_in      fseq             23         87424 
+   252       128 B  metric_in      fseq             23         87552 
+   253       128 B  metric_in      fseq             23         87680 
+   254       128 B  metric_in      fseq             23         87808 
+   255       128 B  metric_in      fseq             23         87936 
+   256       128 B  metric_in      fseq             23         88064 
+   257       128 B  metric_in      fseq             23         88192 
+   258       128 B  metric_in      fseq             23         88320 
+   259       128 B  metric_in      fseq             23         88448 
+   260       128 B  metric_in      fseq             23         88576 
+   261       128 B  metric_in      fseq             23         88704 
+   262       128 B  metric_in      fseq             23         88832 
+   263       128 B  metric_in      fseq             23         88960 
+   264       128 B  metric_in      fseq             23         89088 
+   265       512 B  rpc_replay     mcache           87          4096  depth=8
+   266       128 B  metric_in      fseq             23         89216 
+   267       128 B  metric_in      fseq             23         89344 
+   268       128 B  metric_in      fseq             23         89472 
+   269       128 B  metric_in      fseq             23         89600 
+   270       128 B  metric_in      fseq             23         89728 
+   271       128 B  metric_in      fseq             23         89856 
+   272       128 B  metric_in      fseq             23         89984 
+   273     1.1 KiB  adminctl       adminctl         54          4096 
+   274       128 B  execle_busy    fseq             51          4096 
+   275        64 B  rnonce         rnonce_ss        60          4096 
+   276       112 B  replay         node_info         9    2020957184 
+   277     6.0 MiB  poh            ldr_tt           22      10474752  max_txn_per_slot=98039
+   278     1.7 GiB  banks          banks            58          4096  max_live_slots=2048 max_fork_width=32 bench_max_cost_per_block=0
+   279     2.0 GiB  progcache      progcache        55          4096  txn_max=2048 progcache_sz=2147471360
+   280     2.8 GiB  store          store            59          4096  fec_max=2228225 fec_data_max=31840 shred_storage_gib=2 shred_cache_bytes=33554432 fec_set_cnt=32786 max_shreds_per_block=32768 disk_path=/tmp/firedancer/shreds.db
+   281     7.7 GiB  txncache       txncache         56          4096  max_live_slots=2048 max_txn_per_slot=196078
+   282    18.8 GiB  accdb_data     accdb            57          4096  max_accounts=1048576 max_live_slots=2048 max_account_writes_per_slot=293324 partition_cnt=8192 partition_sz=1073741824 cache_footprint=12884901888 cache_min_reserved=192 bundle_enabled=0 joiner_cnt=7 max_incremental_accounts=0
+   283    16.2 KiB  snapin_shmem   snapin_shmem     81          4096 
+   284       128 B  snapdc         fseq             75      34048000 
+   285       128 B  metric         fseq              0      35945344 
+   286       128 B  metric         fseq              0      35945472 
+   287     1.0 KiB  waker          tile             88          4096 
+   288     2.2 KiB  metric_in      metrics          23         90112  in_cnt=0
+   289       128 B  waker_ready    fseq             89          4096 
+   290       128 B  waker_ready    fseq             89          4224 
+   291       128 B  waker_ready    fseq             89          4352 
+   292       128 B  waker_ready    fseq             89          4480 
+   293       128 B  waker_ready    fseq             89          4608 
+   294       128 B  waker_ready    fseq             89          4736 
+
+── Links (55) ──────────────────────────────────────────────────────────────────
+   ID        SIZE  NAME           KIND  WKSP     DEPTH        MTU  BURST
+    0    64.0 MiB  gossip_net        0    24     32768       2048      1
+    1    64.0 MiB  shred_net         0    25     32768       2048      1
+    2    32.0 MiB  repair_net        0    26     16384       2048      1
+    3    32.0 MiB  txsend_net        0    28     16384       2048      1
+    4    32.0 MiB  quic_net          0    29     16384       2048      1
+    5    32.0 MiB  rserve_net        0    27     16384       2048      1
+    6    16.2 KiB  rserve_sign       0    67       128         32      1
+    7    16.2 KiB  sign_rserve       0    68       128         64      1
+    8   568.8 KiB  snapct_ld         0    77       128       4376      1
+    9    64.0 MiB  snapld_dc         0    78      1024      65408      1
+   10   127.9 MiB  snapdc_in         0    79      2048      65408      1
+   11   117.4 MiB  snapin_manif      0    82         4   20514960      1
+   12         0 B  snapct_repr       0    83       128          0      1
+   13         0 B  snapin_ct         0    80       128          0      1
+   14    48.0 MiB  genesi_out        0    30         1   16779392      1
+   15         0 B  ipecho_out        0    31         2          0      1
+   16   400.0 MiB  gossvf_gossip     0    32     16384      25505      1
+   17    32.0 MiB  gossip_gossvf     0    33    262144         48      1
+   18   352.0 MiB  gossip_out        0    34    262144       1328      1
+   19   594.0 MiB  quic_verify       0    42     16384       4224  131072
+   20     5.0 MiB  verify_dedup      0    43      1024       5040      1
+   21     5.5 MiB  replay_epoch      0    37        16     322496      1
+   22   328.0 MiB  replay_out        0    39     65536       5184      1
+   23    80.0 MiB  replay_execrp     0    38     16384       5120      1
+   24         0 B  admin_replay      0    72        32          0      1
+   25         0 B  replay_admin      0    72        32          0      1
+   26    80.0 MiB  dedup_resolv      0    44     16384       5040      1
+   27    28.0 MiB  resolv_pack       0    45      4096       7088      1
+   28     2.0 MiB  pack_poh          0    46      4096        496      1
+   29    98.0 MiB  execle_poh        0    50      4096      25056      1
+   30     4.4 MiB  pack_execle       0    47       128      35256      1
+   31    12.6 MiB  execle_pack       0    49      1024      12848      1
+   32    80.5 MiB  poh_shred         0    52      4096      20584      1
+   33   512.2 KiB  poh_replay        0    53      4096        120      1
+   34   512.2 KiB  resolv_replay     0    48      4096          8      1
+   35    16.2 KiB  shred_sign        0    63       128         32      1
+   36    16.2 KiB  sign_shred        0    64       128         64      1
+   37   260.0 KiB  gossip_sign       0    61       128       2048      1
+   38    16.2 KiB  sign_gossip       0    62       128         64      1
+   39    32.2 KiB  repair_sign       0    65       256        124      1
+   40    16.2 KiB  sign_repair       0    66       128         64      1
+   41   162.5 KiB  txsend_sign       0    69       128       1232      1
+   42    16.2 KiB  sign_txsend       0    70       128        128      1
+   43    80.2 MiB  shred_out         0    35     65536       1264    132
+   44    24.0 MiB  repair_out        0    36     65536        280      1
+   45    68.0 MiB  tower_out         0    40     16384       4272      2
+   46   536.2 KiB  txsend_out        0    41       128       4184      1
+   47    10.0 MiB  execrp_replay     0    71     16384        528      1
+   48    32.1 MiB  net_gossvf        0    84     16384       2048     64
+   49    32.1 MiB  net_shred         0    84     16384       2048     64
+   50    32.1 MiB  net_repair        0    84     16384       2048     64
+   51    32.1 MiB  net_rserve        0    84     16384       2048     64
+   52    32.1 MiB  net_txsend        0    84     16384       2048     64
+   53    32.1 MiB  net_quic          0    84     16384       2048     64
+   54         0 B  rpc_replay        0    87         8          0      1
+
+── Tiles (31) ──────────────────────────────────────────────────────────────────
+   ID       MLOCK  NAME           KIND  WKSP   CPU  NUMA  LINKS / OBJECTS
+    0   480.0 MiB  sock              0    85     1     0  in=[-1,  0, -2, -3, -4, -5]  out=[48, 49, 50, 51, 52, 53]  objs=[91:rw 92:rw 93:rw 94:rw 95:rw 96:rw 97:rw 98:rw 99:rw 100:rw 101:rw 102:rw 103:rw 104:rw 183:rw 2:ro 3:ro 184:rw 0:ro 1:ro 185:rw 4:ro 5:ro 186:rw 6:ro 7:ro 187:rw 8:ro 9:ro 200:rw 10:ro 11:ro]
+    1    52.0 MiB  metric            0     0   any     0  in=[]  out=[]  objs=[105:rw 106:rw 289:rw]
+    2    16.0 MiB  diag              0     1   any     0  in=[]  out=[]  objs=[107:rw 108:rw]
+    3   528.0 MiB  snapct            0    73    10     0  in=[18,  9, 13]  out=[ 8, 12]  objs=[109:rw 110:rw 202:rw 33:ro 34:ro 203:rw 18:ro 19:ro 16:rw 17:rw 24:rw 204:rw 25:ro 290:rw]
+    4    86.0 MiB  snapld            0    74    26     0  in=[ 8]  out=[ 9]  objs=[111:rw 112:rw 205:rw 16:ro 17:ro 18:rw 19:rw 291:rw]
+    5   242.0 MiB  snapdc            0    75    11     0  in=[ 9]  out=[10]  objs=[113:rw 114:rw 206:rw 18:ro 19:ro 20:rw 21:rw 284:rw]
+    6    29.0 GiB  snapin            0    76    27     0  in=[10]  out=[13, 11]  objs=[115:rw 116:rw 25:rw 207:rw 20:ro 21:ro 22:rw 23:rw 278:rw 281:rw 282:rw 283:rw]
+    7   310.0 MiB  genesi            0     2    25     0  in=[]  out=[14]  objs=[117:rw 118:rw 26:rw 27:rw 292:rw]
+    8    70.0 MiB  ipecho            0     3   any     0  in=[14]  out=[15]  objs=[119:rw 120:rw 188:rw 26:ro 27:ro 28:rw 293:rw]
+    9     1.2 GiB  gossvf            0     4    22     0  in=[-48, 18, 17, 15, 21]  out=[16]  objs=[121:rw 122:rw 123:rw 178:rw 93:ro 94:ro 29:rw 30:rw 189:rw 33:ro 34:ro 190:rw 31:ro 32:ro 191:rw 28:ro 192:rw 39:ro 40:ro]
+   10     1.9 GiB  gossip            0     5     7     0  in=[21, 15, -16, 46, 45, 11, -38]  out=[18,  0, 17, 37]  objs=[124:rw 125:rw 126:rw 193:rw 39:ro 40:ro 33:rw 34:rw 0:rw 1:rw 194:rw 28:ro 195:rw 29:ro 30:ro 196:rw 87:ro 88:ro 197:rw 85:ro 86:ro 31:rw 32:rw 201:rw 22:ro 23:ro 69:rw 70:rw 256:rw 71:ro 72:ro]
+   11     4.0 GiB  shred             0     6    21     0  in=[-49, 32, 21, 18, 15, -45, -36]  out=[43,  1, 35]  objs=[127:rw 128:rw 129:rw 179:rw 95:ro 96:ro 250:rw 59:ro 60:ro 251:rw 39:ro 40:ro 252:rw 33:ro 34:ro 81:rw 82:rw 253:rw 28:ro 254:rw 85:ro 86:ro 2:rw 3:rw 65:rw 66:rw 258:rw 67:ro 68:ro 275:ro 280:rw]
+   12     1.7 GiB  repair            0     7    23     0  in=[-50, 14, 18, 22, 43, 11, 45, -40]  out=[ 2, 44, 39]  objs=[130:rw 131:rw 132:rw 180:rw 97:ro 98:ro 4:rw 5:rw 208:rw 26:ro 27:ro 209:rw 33:ro 34:ro 210:rw 41:ro 42:ro 211:rw 81:ro 82:ro 212:rw 22:ro 23:ro 213:rw 85:ro 86:ro 83:rw 84:rw 73:rw 74:rw 260:rw 75:ro 76:ro 275:rw]
+   13     3.1 GiB  rserve            0     8     8     0  in=[-51, 43, -7]  out=[ 5,  6]  objs=[133:rw 134:rw 135:rw 198:rw 99:ro 100:ro 199:rw 81:ro 82:ro 10:rw 11:rw 12:rw 13:rw 262:rw 14:ro 15:ro 280:rw]
+   14    35.9 GiB  replay            0     9    24     0  in=[44, 14, 47, 33, 45, 46, 34, 15, 18, 11, 24, 54]  out=[22, 21, 23, 25]  objs=[136:rw 137:rw 138:rw 214:rw 83:ro 84:ro 215:rw 26:ro 27:ro 41:rw 42:rw 39:rw 40:rw 43:rw 44:rw 216:rw 89:ro 90:ro 217:rw 61:ro 62:ro 218:rw 85:ro 86:ro 219:rw 87:ro 88:ro 220:rw 63:ro 64:ro 221:rw 28:ro 222:rw 33:ro 34:ro 223:rw 22:ro 23:ro 224:rw 45:ro 46:rw 268:rw 265:ro 276:rw 277:ro 278:rw 279:rw 280:rw 281:rw 282:rw]
+   15    20.8 GiB  accdb             0    10    25     0  in=[]  out=[]  objs=[139:rw 140:rw 279:rw 282:rw 285:ro 286:ro]
+   16    30.7 GiB  execrp            0    11    26     0  in=[23]  out=[47]  objs=[141:rw 142:rw 226:rw 43:ro 44:ro 89:rw 90:rw 278:rw 279:rw 281:rw 282:rw]
+   17    30.9 GiB  tower             0    12     9     0  in=[26, 21, 18, 15, 22, 43]  out=[45]  objs=[143:rw 144:rw 145:rw 146:rw 227:rw 47:ro 48:ro 228:rw 39:ro 40:ro 229:rw 33:ro 34:ro 230:rw 28:ro 231:rw 41:ro 42:ro 232:rw 81:ro 82:ro 85:rw 86:rw 276:rw 278:ro 282:rw]
+   18   704.0 MiB  txsend            0    13    12     0  in=[-52, 21, 18, 45, -42]  out=[ 3, 46, 41]  objs=[147:rw 148:rw 149:rw 150:rw 181:rw 101:ro 102:ro 233:rw 39:ro 40:ro 234:rw 33:ro 34:ro 235:rw 85:ro 86:ro 6:rw 7:rw 87:rw 88:rw 77:rw 78:rw 264:rw 79:ro 80:ro]
+   19     2.5 GiB  quic              0    16    17     0  in=[-53]  out=[19,  4]  objs=[151:rw 152:rw 182:rw 103:ro 104:ro 35:rw 36:rw 8:rw 9:rw]
+   20     1.1 GiB  verify            0    17     2     0  in=[-19, 18, 46]  out=[20]  objs=[153:rw 154:rw 236:rw 35:ro 36:ro 237:rw 33:ro 34:ro 238:rw 87:ro 88:ro 37:rw 38:rw]
+   21     1.2 GiB  dedup             0    18    18     0  in=[20, 22]  out=[26]  objs=[155:rw 156:rw 239:rw 37:ro 38:ro 240:rw 41:ro 42:ro 47:rw 48:rw]
+   22    21.7 GiB  resolv            0    19     3     0  in=[26, 22]  out=[27, 34]  objs=[157:rw 158:rw 241:rw 47:ro 48:ro 242:rw 41:ro 42:ro 49:rw 50:rw 63:rw 64:rw 278:ro 282:ro 286:rw]
+   23     1.3 GiB  pack              0    20     4     0  in=[27, 22, 31]  out=[30, 28]  objs=[159:rw 160:rw 243:rw 49:ro 50:ro 244:rw 41:ro 42:ro 55:rw 56:rw 51:rw 52:rw 245:rw 57:ro 58:ro 274:ro]
+   24    30.8 GiB  execle            0    21    10     0  in=[30]  out=[29, 31]  objs=[161:rw 162:rw 246:rw 55:ro 56:ro 53:rw 54:rw 57:rw 58:rw 274:rw 278:rw 279:rw 281:rw 282:rw]
+   25   550.0 MiB  poh               0    22    11     0  in=[29, 28, 22]  out=[32, 33]  objs=[163:rw 164:rw 247:rw 53:ro 54:ro 248:rw 51:ro 52:ro 249:rw 41:ro 42:ro 59:rw 60:rw 61:rw 62:rw 277:rw]
+   26    32.0 MiB  sign              0    14    19     0  in=[-37, -35,  6, 41]  out=[38, 36,  7, 42]  objs=[165:rw 166:rw 167:rw 168:rw 255:rw 69:ro 70:ro 71:rw 72:rw 257:rw 65:ro 66:ro 67:rw 68:rw 261:rw 12:ro 13:ro 14:rw 15:rw 263:rw 77:ro 78:ro 79:rw 80:rw]
+   27    20.0 MiB  sign              1    14     5     0  in=[-39]  out=[40]  objs=[169:rw 170:rw 171:rw 172:rw 259:rw 73:ro 74:ro 75:rw 76:rw]
+   28    20.4 GiB  rpc               0    86     6     0  in=[22, 14, 18, -43, 45, 21]  out=[54]  objs=[173:rw 174:rw 175:rw 265:rw 266:rw 41:ro 42:ro 267:rw 26:ro 27:ro 269:rw 33:ro 34:ro 270:rw 81:ro 82:ro 271:rw 85:ro 86:ro 272:rw 39:ro 40:ro 282:ro 285:rw 294:rw]
+   29    12.1 GiB  admin             0    15   any     0  in=[25]  out=[24]  objs=[176:rw 177:rw 45:rw 225:rw 46:ro 273:rw 123:rw 126:rw 129:rw 132:rw 135:rw 138:rw 145:rw 146:rw 149:rw 150:rw 167:rw 168:rw 171:rw 172:rw 175:rw]
+   30    18.0 MiB  waker             0    88   any     0  in=[]  out=[]  objs=[287:rw 288:rw 289:rw 290:rw 291:rw 292:rw 293:rw 294:rw]
+WARNING 2026-10-28 09:06:40.405974903 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/app/shared/commands/configure/hyperthreads.c(113)[check]: pack cpu 4 has hyperthread pair cpu 20 which should be offline or in the isolated cpuset partition (`configure init cpuset`). Proceeding but performance may be reduced.
+WARNING 2026-10-28 09:06:40.406102343 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/app/shared/commands/configure/hyperthreads.c(116)[check]: poh cpu 11 has hyperthread pair cpu 27 which is used by another tile. Proceeding but performance may be reduced.
+WARNING 2026-10-28 09:06:40.406138243 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/app/shared/commands/run/run.c(1015)[fdctl_check_configure]: Kernel workqueues may steal CPU time from Firedancer tiles: kernel workqueue cpumask includes Firedancer tile CPUs 1-12,17-19,21-27. For lower jitter, run `firedancer configure init kworkers`.
+WARNING 2026-10-28 09:06:40.408301493 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/app/shared/commands/run/run.c(1040)[fdctl_check_configure]: Firedancer tile CPUs are not isolated from other processes: `/sys/fs/cgroup/fd-local` does not exist. For lower jitter, run `firedancer configure init cpuset`.
+INFO    2026-10-28 09:06:44.356831991 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/disco/topo/fd_topo.c(158)[fd_topo_wksp_new]: fd_topo_wksp_new(accdb) took 93 ms
+INFO    2026-10-28 09:06:44.756094309 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/disco/topo/fd_topo.c(158)[fd_topo_wksp_new]: fd_topo_wksp_new(store) took 38 ms
+NOTICE  2026-10-28 09:06:44.980527452 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/app/shared/fd_bootinfo.c(161)[fd_bootinfo_write]: booting validator fd-local version 0.1.1 (ff881b69a93) pid 8 with 31 tiles and 55 GiB memory at /mnt/.fd
+INFO    2026-10-28 09:06:44.983201782 GMT+00      8:8      firedancer:124ecbb598ef:f0   fd-local:[group]:main src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.158183458 GMT+00     27:48     firedancer:124ecbb598ef:f0   fd-local:[group]:metric:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile metric:0 pid:27 tid:48
+INFO    2026-10-28 09:06:45.158770288 GMT+00     27:48     firedancer:124ecbb598ef:f0   fd-local:[group]:metric:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+NOTICE  2026-10-28 09:06:45.159020067 GMT+00     27:48     firedancer:124ecbb598ef:f0   fd-local:[group]:metric:0 src/disco/metrics/fd_metric_tile.c(148)[unprivileged_init]: prometheus server listening at http://127.0.0.1:7999/metrics
+INFO    2026-10-28 09:06:45.159049167 GMT+00     27:48     firedancer:124ecbb598ef:f0   fd-local:[group]:metric:0 src/disco/metrics/../stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 10000000 ns)
+INFO    2026-10-28 09:06:45.159068668 GMT+00     27:48     firedancer:124ecbb598ef:f0   fd-local:[group]:metric:0 src/disco/metrics/../stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 128
+INFO    2026-10-28 09:06:45.161362597 GMT+00     28:50     firedancer:124ecbb598ef:f0   fd-local:[group]:diag:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile diag:0 pid:28 tid:50
+INFO    2026-10-28 09:06:45.165025907 GMT+00     29:52     firedancer:124ecbb598ef:f0   fd-local:[group]:ipecho:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile ipecho:0 pid:29 tid:52
+INFO    2026-10-28 09:06:45.166338817 GMT+00     29:52     firedancer:124ecbb598ef:f0   fd-local:[group]:ipecho:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.167274897 GMT+00     29:52     firedancer:124ecbb598ef:f0   fd-local:[group]:ipecho:0 src/discof/ipecho/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 10000000 ns)
+INFO    2026-10-28 09:06:45.167308157 GMT+00     29:52     firedancer:124ecbb598ef:f0   fd-local:[group]:ipecho:0 src/discof/ipecho/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 2
+INFO    2026-10-28 09:06:45.167744577 GMT+00     29:52     firedancer:124ecbb598ef:f0   fd-local:[group]:ipecho:0 src/discof/ipecho/fd_ipecho_tile.c(91)[poll_client]: retrieved shred version 29812 from entrypoint
+INFO    2026-10-28 09:06:45.171193456 GMT+00     32:55     firedancer:124ecbb598ef:1    fd-local:[group]:sock:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile sock:0 pid:32 tid:55
+INFO    2026-10-28 09:06:45.173779877 GMT+00     30:57     firedancer:124ecbb598ef:f0   fd-local:[group]:admin:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile admin:0 pid:30 tid:57
+INFO    2026-10-28 09:06:45.174814316 GMT+00     32:55     firedancer:124ecbb598ef:1    fd-local:[group]:sock:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.175558016 GMT+00     32:55     firedancer:124ecbb598ef:1    fd-local:[group]:sock:0 src/disco/net/sock/../../stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 10000000 ns)
+INFO    2026-10-28 09:06:45.175586837 GMT+00     32:55     firedancer:124ecbb598ef:1    fd-local:[group]:sock:0 src/disco/net/sock/../../stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 128
+INFO    2026-10-28 09:06:45.182265626 GMT+00     30:57     firedancer:124ecbb598ef:f0   fd-local:[group]:admin:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.182455446 GMT+00     30:57     firedancer:124ecbb598ef:f0   fd-local:[group]:admin:0 src/discof/admin/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 1000000 ns)
+INFO    2026-10-28 09:06:45.182526886 GMT+00     30:57     firedancer:124ecbb598ef:f0   fd-local:[group]:admin:0 src/discof/admin/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 32
+INFO    2026-10-28 09:06:45.193838655 GMT+00     31:60     firedancer:124ecbb598ef:f0   fd-local:[group]:waker:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile waker:0 pid:31 tid:60
+INFO    2026-10-28 09:06:45.194258905 GMT+00     31:60     firedancer:124ecbb598ef:f0   fd-local:[group]:waker:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.194526575 GMT+00     31:60     firedancer:124ecbb598ef:f0   fd-local:[group]:waker:0 src/disco/waker/../stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 10000000 ns)
+INFO    2026-10-28 09:06:45.194549915 GMT+00     31:60     firedancer:124ecbb598ef:f0   fd-local:[group]:waker:0 src/disco/waker/../stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 128
+INFO    2026-10-28 09:06:45.216906423 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile snapct:0 pid:33 tid:64
+INFO    2026-10-28 09:06:45.229701762 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/utils/fd_ssarchive.c(74)[fd_ssarchive_latest_pair]: unrecognized snapshot file `/tmp/firedancer/snapshots/.snapshot-x0.partial` in snapshots directory
+INFO    2026-10-28 09:06:45.229762362 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/utils/fd_ssarchive.c(74)[fd_ssarchive_latest_pair]: unrecognized snapshot file `/tmp/firedancer/snapshots/.snapshot-x2.partial` in snapshots directory
+INFO    2026-10-28 09:06:45.229766822 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/utils/fd_ssarchive.c(74)[fd_ssarchive_latest_pair]: unrecognized snapshot file `/tmp/firedancer/snapshots/.snapshot-x1.partial` in snapshots directory
+INFO    2026-10-28 09:06:45.229770122 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/utils/fd_ssarchive.c(74)[fd_ssarchive_latest_pair]: unrecognized snapshot file `/tmp/firedancer/snapshots/.snapshot-x3.partial` in snapshots directory
+INFO    2026-10-28 09:06:45.229923352 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.231115812 GMT+00     38:65     firedancer:124ecbb598ef:22   fd-local:[group]:gossvf:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile gossvf:0 pid:38 tid:65
+WARNING 2026-10-28 09:06:45.232779692 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/fd_snapct_tile.c(2235)[unprivileged_init]: incremental snapshots disabled via [snapshots.incremental_snapshots].
+INFO    2026-10-28 09:06:45.233011562 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 1000 ns)
+INFO    2026-10-28 09:06:45.233023432 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 128
+INFO    2026-10-28 09:06:45.233255082 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/utils/fd_ssping.c(450)[recv_pings]: pinged 172.16.0.8:8899 in 224991 nanos
+INFO    2026-10-28 09:06:45.233288592 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/utils/fd_http_resolver.c(567)[fd_http_resolver_advance]: resolving 172.16.0.8:8899
+INFO    2026-10-28 09:06:45.236217602 GMT+00     38:65     firedancer:124ecbb598ef:22   fd-local:[group]:gossvf:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+WARNING 2026-10-28 09:06:45.237789752 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/utils/fd_ssresolve.c(421)[fd_ssresolve_read_response]: unexpected response code 404 accessing http://172.16.0.8:8899/snapshot.tar.bz2
+INFO    2026-10-28 09:06:45.238115761 GMT+00     39:67     firedancer:124ecbb598ef:7    fd-local:[group]:gossip:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile gossip:0 pid:39 tid:67
+INFO    2026-10-28 09:06:45.238105521 GMT+00     36:66     firedancer:124ecbb598ef:27   fd-local:[group]:snapin:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile snapin:0 pid:36 tid:66
+INFO    2026-10-28 09:06:45.243066841 GMT+00     42:68     firedancer:124ecbb598ef:8    fd-local:[group]:rserve:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile rserve:0 pid:42 tid:68
+INFO    2026-10-28 09:06:45.244203911 GMT+00     39:67     firedancer:124ecbb598ef:7    fd-local:[group]:gossip:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.248152430 GMT+00     40:69     firedancer:124ecbb598ef:21   fd-local:[group]:shred:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile shred:0 pid:40 tid:69
+INFO    2026-10-28 09:06:45.248361400 GMT+00     42:68     firedancer:124ecbb598ef:8    fd-local:[group]:rserve:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.250214261 GMT+00     42:68     firedancer:124ecbb598ef:8    fd-local:[group]:rserve:0 src/discof/repair/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 64000 ns)
+INFO    2026-10-28 09:06:45.250272830 GMT+00     42:68     firedancer:124ecbb598ef:8    fd-local:[group]:rserve:0 src/discof/repair/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 128
+INFO    2026-10-28 09:06:45.253148400 GMT+00     35:70     firedancer:124ecbb598ef:11   fd-local:[group]:snapdc:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile snapdc:0 pid:35 tid:70
+INFO    2026-10-28 09:06:45.253829450 GMT+00     35:70     firedancer:124ecbb598ef:11   fd-local:[group]:snapdc:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.253989920 GMT+00     40:69     firedancer:124ecbb598ef:21   fd-local:[group]:shred:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.254637480 GMT+00     35:70     firedancer:124ecbb598ef:11   fd-local:[group]:snapdc:0 src/discof/restore/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 384000 ns)
+INFO    2026-10-28 09:06:45.254660370 GMT+00     35:70     firedancer:124ecbb598ef:11   fd-local:[group]:snapdc:0 src/discof/restore/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 2048
+INFO    2026-10-28 09:06:45.260973990 GMT+00     36:66     firedancer:124ecbb598ef:27   fd-local:[group]:snapin:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.261198200 GMT+00     43:71     firedancer:124ecbb598ef:24   fd-local:[group]:replay:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile replay:0 pid:43 tid:71
+INFO    2026-10-28 09:06:45.261498080 GMT+00     36:66     firedancer:124ecbb598ef:27   fd-local:[group]:snapin:0 src/discof/restore/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 384000 ns)
+INFO    2026-10-28 09:06:45.261523940 GMT+00     36:66     firedancer:124ecbb598ef:27   fd-local:[group]:snapin:0 src/discof/restore/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 4
+INFO    2026-10-28 09:06:45.267916139 GMT+00     38:65     firedancer:124ecbb598ef:22   fd-local:[group]:gossvf:0 src/discof/gossip/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 384000 ns)
+INFO    2026-10-28 09:06:45.268004849 GMT+00     38:65     firedancer:124ecbb598ef:22   fd-local:[group]:gossvf:0 src/discof/gossip/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 128
+INFO    2026-10-28 09:06:45.274258239 GMT+00     54:72     firedancer:124ecbb598ef:3    fd-local:[group]:resolv:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile resolv:0 pid:54 tid:72
+INFO    2026-10-28 09:06:45.278139348 GMT+00     46:73     firedancer:124ecbb598ef:9    fd-local:[group]:tower:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile tower:0 pid:46 tid:73
+INFO    2026-10-28 09:06:45.278187298 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile repair:0 pid:41 tid:74
+INFO    2026-10-28 09:06:45.279051138 GMT+00     49:75     firedancer:124ecbb598ef:17   fd-local:[group]:quic:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile quic:0 pid:49 tid:75
+INFO    2026-10-28 09:06:45.282098278 GMT+00     49:75     firedancer:124ecbb598ef:17   fd-local:[group]:quic:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.282294748 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.285056368 GMT+00     40:69     firedancer:124ecbb598ef:21   fd-local:[group]:shred:0 src/disco/shred/../stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 384000 ns)
+INFO    2026-10-28 09:06:45.285102488 GMT+00     40:69     firedancer:124ecbb598ef:21   fd-local:[group]:shred:0 src/disco/shred/../stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 65536
+INFO    2026-10-28 09:06:45.285251828 GMT+00     43:71     firedancer:124ecbb598ef:24   fd-local:[group]:replay:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.288846068 GMT+00     54:72     firedancer:124ecbb598ef:3    fd-local:[group]:resolv:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.290126258 GMT+00     56:76     firedancer:124ecbb598ef:4    fd-local:[group]:pack:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile pack:0 pid:56 tid:76
+INFO    2026-10-28 09:06:45.291631287 GMT+00     56:76     firedancer:124ecbb598ef:4    fd-local:[group]:pack:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.292366707 GMT+00     53:77     firedancer:124ecbb598ef:18   fd-local:[group]:dedup:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile dedup:0 pid:53 tid:77
+INFO    2026-10-28 09:06:45.296143757 GMT+00     53:77     firedancer:124ecbb598ef:18   fd-local:[group]:dedup:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.297279087 GMT+00     61:78     firedancer:124ecbb598ef:19   fd-local:[group]:sign:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile sign:0 pid:61 tid:78
+INFO    2026-10-28 09:06:45.302603706 GMT+00     61:78     firedancer:124ecbb598ef:19   fd-local:[group]:sign:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.302750216 GMT+00     46:73     firedancer:124ecbb598ef:9    fd-local:[group]:tower:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.304564776 GMT+00     34:79     firedancer:124ecbb598ef:26   fd-local:[group]:snapld:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile snapld:0 pid:34 tid:79
+INFO    2026-10-28 09:06:45.307714156 GMT+00     61:78     firedancer:124ecbb598ef:19   fd-local:[group]:sign:0 src/disco/keyguard/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 384000 ns)
+INFO    2026-10-28 09:06:45.307815966 GMT+00     61:78     firedancer:124ecbb598ef:19   fd-local:[group]:sign:0 src/disco/keyguard/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 128
+INFO    2026-10-28 09:06:45.308062576 GMT+00     39:67     firedancer:124ecbb598ef:7    fd-local:[group]:gossip:0 src/discof/gossip/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 384000 ns)
+INFO    2026-10-28 09:06:45.308115876 GMT+00     39:67     firedancer:124ecbb598ef:7    fd-local:[group]:gossip:0 src/discof/gossip/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 262144
+INFO    2026-10-28 09:06:45.312005865 GMT+00     34:79     firedancer:124ecbb598ef:26   fd-local:[group]:snapld:0 src/discof/restore/utils/fd_ssarchive.c(74)[fd_ssarchive_latest_pair]: unrecognized snapshot file `/tmp/firedancer/snapshots/.snapshot-x0.partial` in snapshots directory
+INFO    2026-10-28 09:06:45.312071456 GMT+00     34:79     firedancer:124ecbb598ef:26   fd-local:[group]:snapld:0 src/discof/restore/utils/fd_ssarchive.c(74)[fd_ssarchive_latest_pair]: unrecognized snapshot file `/tmp/firedancer/snapshots/.snapshot-x2.partial` in snapshots directory
+INFO    2026-10-28 09:06:45.312107006 GMT+00     34:79     firedancer:124ecbb598ef:26   fd-local:[group]:snapld:0 src/discof/restore/utils/fd_ssarchive.c(74)[fd_ssarchive_latest_pair]: unrecognized snapshot file `/tmp/firedancer/snapshots/.snapshot-x1.partial` in snapshots directory
+INFO    2026-10-28 09:06:45.312111046 GMT+00     34:79     firedancer:124ecbb598ef:26   fd-local:[group]:snapld:0 src/discof/restore/utils/fd_ssarchive.c(74)[fd_ssarchive_latest_pair]: unrecognized snapshot file `/tmp/firedancer/snapshots/.snapshot-x3.partial` in snapshots directory
+INFO    2026-10-28 09:06:45.311960656 GMT+00     51:80     firedancer:124ecbb598ef:2    fd-local:[group]:verify:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile verify:0 pid:51 tid:80
+INFO    2026-10-28 09:06:45.314301535 GMT+00     34:79     firedancer:124ecbb598ef:26   fd-local:[group]:snapld:0 src/ballet/x509/fd_x509_ca_store.c(125)[fd_x509_ca_store_load]: ignoring CA cert at /etc/ssl/certs/ca-certificates.crt offset 106720: parse failed
+INFO    2026-10-28 09:06:45.318192515 GMT+00     34:79     firedancer:124ecbb598ef:26   fd-local:[group]:snapld:0 src/ballet/x509/fd_x509_ca_store.c(125)[fd_x509_ca_store_load]: ignoring CA cert at /etc/ssl/certs/ca-certificates.crt offset 170354: parse failed
+INFO    2026-10-28 09:06:45.318528815 GMT+00     34:79     firedancer:124ecbb598ef:26   fd-local:[group]:snapld:0 src/ballet/x509/fd_x509_ca_store.c(125)[fd_x509_ca_store_load]: ignoring CA cert at /etc/ssl/certs/ca-certificates.crt offset 213982: parse failed
+INFO    2026-10-28 09:06:45.318666765 GMT+00     34:79     firedancer:124ecbb598ef:26   fd-local:[group]:snapld:0 src/ballet/x509/fd_x509_ca_store.c(180)[fd_x509_ca_store_load_system]: Loaded 145 CA certificates from /etc/ssl/certs/ca-certificates.crt
+INFO    2026-10-28 09:06:45.318771085 GMT+00     34:79     firedancer:124ecbb598ef:26   fd-local:[group]:snapld:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.319076665 GMT+00     34:79     firedancer:124ecbb598ef:26   fd-local:[group]:snapld:0 src/discof/restore/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 384000 ns)
+INFO    2026-10-28 09:06:45.319096495 GMT+00     34:79     firedancer:124ecbb598ef:26   fd-local:[group]:snapld:0 src/discof/restore/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 1024
+INFO    2026-10-28 09:06:45.320086145 GMT+00     51:80     firedancer:124ecbb598ef:2    fd-local:[group]:verify:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.320102845 GMT+00     62:81     firedancer:124ecbb598ef:5    fd-local:[group]:sign:1 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile sign:1 pid:62 tid:81
+INFO    2026-10-28 09:06:45.320824185 GMT+00     62:81     firedancer:124ecbb598ef:5    fd-local:[group]:sign:1 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.321602445 GMT+00     62:81     firedancer:124ecbb598ef:5    fd-local:[group]:sign:1 src/disco/keyguard/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 384000 ns)
+INFO    2026-10-28 09:06:45.321622395 GMT+00     62:81     firedancer:124ecbb598ef:5    fd-local:[group]:sign:1 src/disco/keyguard/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 128
+INFO    2026-10-28 09:06:45.322302065 GMT+00     37:82     firedancer:124ecbb598ef:25   fd-local:[group]:genesi:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile genesi:0 pid:37 tid:82
+INFO    2026-10-28 09:06:45.323521575 GMT+00     37:82     firedancer:124ecbb598ef:25   fd-local:[group]:genesi:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.327635364 GMT+00     37:82     firedancer:124ecbb598ef:25   fd-local:[group]:genesi:0 src/discof/genesis/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 100000 ns)
+INFO    2026-10-28 09:06:45.327806484 GMT+00     37:82     firedancer:124ecbb598ef:25   fd-local:[group]:genesi:0 src/discof/genesis/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 1
+NOTICE  2026-10-28 09:06:45.327844804 GMT+00     37:82     firedancer:124ecbb598ef:25   fd-local:[group]:genesi:0 src/discof/genesis/fd_genesi_tile.c(261)[after_credit]: loaded local genesis.bin from file /data/firedancer-ledger/genesis.bin
+INFO    2026-10-28 09:06:45.339186494 GMT+00     63:83     firedancer:124ecbb598ef:6    fd-local:[group]:rpc:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile rpc:0 pid:63 tid:83
+INFO    2026-10-28 09:06:45.362682971 GMT+00     45:84     firedancer:124ecbb598ef:26   fd-local:[group]:execrp:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile execrp:0 pid:45 tid:84
+INFO    2026-10-28 09:06:45.367303821 GMT+00     44:85     firedancer:124ecbb598ef:25   fd-local:[group]:accdb:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile accdb:0 pid:44 tid:85
+INFO    2026-10-28 09:06:45.371439391 GMT+00     56:76     firedancer:124ecbb598ef:4    fd-local:[group]:pack:0 src/disco/pack/fd_pack_tile.c(1554)[unprivileged_init]: packing microblocks of at most 1 transactions to 1 execle tiles using strategy 1
+INFO    2026-10-28 09:06:45.371509251 GMT+00     56:76     firedancer:124ecbb598ef:4    fd-local:[group]:pack:0 src/disco/pack/../stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 384000 ns)
+INFO    2026-10-28 09:06:45.371527521 GMT+00     56:76     firedancer:124ecbb598ef:4    fd-local:[group]:pack:0 src/disco/pack/../stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 128
+INFO    2026-10-28 09:06:45.373119431 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(1272)[unprivileged_init]: repair my addr - intake addr: 0.0.0.0:8701
+INFO    2026-10-28 09:06:45.373273881 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 64000 ns)
+INFO    2026-10-28 09:06:45.373289351 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 65536
+NOTICE  2026-10-28 09:06:45.373702161 GMT+00     63:83     firedancer:124ecbb598ef:6    fd-local:[group]:rpc:0 src/discof/rpc/fd_rpc_tile.c(3067)[privileged_init]: rpc server listening at http://127.0.0.1:8899
+INFO    2026-10-28 09:06:45.374098211 GMT+00     63:83     firedancer:124ecbb598ef:6    fd-local:[group]:rpc:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.374609610 GMT+00     63:83     firedancer:124ecbb598ef:6    fd-local:[group]:rpc:0 src/discof/rpc/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 384000 ns)
+INFO    2026-10-28 09:06:45.374635910 GMT+00     63:83     firedancer:124ecbb598ef:6    fd-local:[group]:rpc:0 src/discof/rpc/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 8
+INFO    2026-10-28 09:06:45.375547400 GMT+00     54:72     firedancer:124ecbb598ef:3    fd-local:[group]:resolv:0 src/discof/resolv/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 128000 ns)
+INFO    2026-10-28 09:06:45.375634941 GMT+00     54:72     firedancer:124ecbb598ef:3    fd-local:[group]:resolv:0 src/discof/resolv/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 4096
+INFO    2026-10-28 09:06:45.378184300 GMT+00     51:80     firedancer:124ecbb598ef:2    fd-local:[group]:verify:0 src/disco/verify/../stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 2305 ns)
+INFO    2026-10-28 09:06:45.378248230 GMT+00     51:80     firedancer:124ecbb598ef:2    fd-local:[group]:verify:0 src/disco/verify/../stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 1024
+INFO    2026-10-28 09:06:45.382170680 GMT+00     44:85     firedancer:124ecbb598ef:25   fd-local:[group]:accdb:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.382424640 GMT+00     44:85     firedancer:124ecbb598ef:25   fd-local:[group]:accdb:0 src/flamenco/accdb/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 384000 ns)
+INFO    2026-10-28 09:06:45.382445260 GMT+00     44:85     firedancer:124ecbb598ef:25   fd-local:[group]:accdb:0 src/flamenco/accdb/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 128
+INFO    2026-10-28 09:06:45.389043149 GMT+00     45:84     firedancer:124ecbb598ef:26   fd-local:[group]:execrp:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.389419189 GMT+00     45:84     firedancer:124ecbb598ef:26   fd-local:[group]:execrp:0 src/discof/execrp/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 1000000 ns)
+INFO    2026-10-28 09:06:45.389465969 GMT+00     45:84     firedancer:124ecbb598ef:26   fd-local:[group]:execrp:0 src/discof/execrp/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 16384
+INFO    2026-10-28 09:06:45.413890767 GMT+00     46:73     firedancer:124ecbb598ef:9    fd-local:[group]:tower:0 src/discof/tower/fd_tower_tile.c(1843)[unprivileged_init]: my vote account: Eth5VFdsoNakNDppLN5LdPDoPNCw8pEAJEUHT9HRimWP
+INFO    2026-10-28 09:06:45.413953657 GMT+00     46:73     firedancer:124ecbb598ef:9    fd-local:[group]:tower:0 src/discof/tower/fd_tower_tile.c(1844)[unprivileged_init]: my identity key: F9zovUAJ4kTukY5tmfxWzmu5C4ofbG16YdemkN7raBr2
+INFO    2026-10-28 09:06:45.413973948 GMT+00     46:73     firedancer:124ecbb598ef:9    fd-local:[group]:tower:0 src/discof/tower/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 384000 ns)
+INFO    2026-10-28 09:06:45.413988197 GMT+00     46:73     firedancer:124ecbb598ef:9    fd-local:[group]:tower:0 src/discof/tower/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 16384
+INFO    2026-10-28 09:06:45.433085756 GMT+00     59:86     firedancer:124ecbb598ef:11   fd-local:[group]:poh:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile poh:0 pid:59 tid:86
+INFO    2026-10-28 09:06:45.434158726 GMT+00     59:86     firedancer:124ecbb598ef:11   fd-local:[group]:poh:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.434395766 GMT+00     59:86     firedancer:124ecbb598ef:11   fd-local:[group]:poh:0 src/discof/poh/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 384000 ns)
+INFO    2026-10-28 09:06:45.434417456 GMT+00     59:86     firedancer:124ecbb598ef:11   fd-local:[group]:poh:0 src/discof/poh/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 4096
+INFO    2026-10-28 09:06:45.438160145 GMT+00     58:87     firedancer:124ecbb598ef:10   fd-local:[group]:execle:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile execle:0 pid:58 tid:87
+INFO    2026-10-28 09:06:45.445467845 GMT+00     43:71     firedancer:124ecbb598ef:24   fd-local:[group]:replay:0 src/discof/replay/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 36865 ns)
+INFO    2026-10-28 09:06:45.445556375 GMT+00     43:71     firedancer:124ecbb598ef:24   fd-local:[group]:replay:0 src/discof/replay/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 16
+INFO    2026-10-28 09:06:45.471587393 GMT+00     58:87     firedancer:124ecbb598ef:10   fd-local:[group]:execle:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.471907843 GMT+00     58:87     firedancer:124ecbb598ef:10   fd-local:[group]:execle:0 src/discof/execle/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 384000 ns)
+INFO    2026-10-28 09:06:45.471945983 GMT+00     58:87     firedancer:124ecbb598ef:10   fd-local:[group]:execle:0 src/discof/execle/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 1024
+INFO    2026-10-28 09:06:45.481885062 GMT+00     53:77     firedancer:124ecbb598ef:18   fd-local:[group]:dedup:0 src/disco/dedup/../stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 36865 ns)
+INFO    2026-10-28 09:06:45.481948062 GMT+00     53:77     firedancer:124ecbb598ef:18   fd-local:[group]:dedup:0 src/disco/dedup/../stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 16384
+INFO    2026-10-28 09:06:45.669969007 GMT+00     49:75     firedancer:124ecbb598ef:17   fd-local:[group]:quic:0 src/disco/quic/../stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 10000000 ns)
+INFO    2026-10-28 09:06:45.670026627 GMT+00     49:75     firedancer:124ecbb598ef:17   fd-local:[group]:quic:0 src/disco/quic/../stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 128
+INFO    2026-10-28 09:06:45.806702996 GMT+00     47:88     firedancer:124ecbb598ef:12   fd-local:[group]:txsend:0 src/disco/topo/fd_topo_run.c(32)[initialize_logging]: booting tile txsend:0 pid:47 tid:88
+INFO    2026-10-28 09:06:45.816880396 GMT+00     25:8      firedancer:124ecbb598ef:f0   fd-local:[group]:pidns src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.817370425 GMT+00     25:8      firedancer:124ecbb598ef:f0   fd-local:[group]:pidns src/app/shared/commands/run/run.c(697)[main_pid_namespace]: tile genesi:0 exited gracefully with code 0
+INFO    2026-10-28 09:06:45.818146355 GMT+00     47:88     firedancer:124ecbb598ef:12   fd-local:[group]:txsend:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.819762485 GMT+00     28:50     firedancer:124ecbb598ef:f0   fd-local:[group]:diag:0 src/util/sandbox/fd_sandbox.c(729)[fd_sandbox_switch_uid_gid]: sandbox: sandbox disabled
+INFO    2026-10-28 09:06:45.821374585 GMT+00     28:50     firedancer:124ecbb598ef:f0   fd-local:[group]:diag:0 src/disco/diag/../../disco/stem/fd_stem_run1.c(148)[stem_run1_park]: Configuring housekeeping (lazy 10000000 ns)
+INFO    2026-10-28 09:06:45.821403045 GMT+00     28:50     firedancer:124ecbb598ef:f0   fd-local:[group]:diag:0 src/disco/diag/../../disco/stem/fd_stem_run1.c(164)[stem_run1_park]: Running stem, cr_max = 128
+INFO    2026-10-28 09:06:45.823788255 GMT+00     47:88     firedancer:124ecbb598ef:12   fd-local:[group]:txsend:0 src/discof/txsend/../../disco/stem/fd_stem_run1.c(148)[stem_run1_spin]: Configuring housekeeping (lazy 384000 ns)
+INFO    2026-10-28 09:06:45.823954615 GMT+00     47:88     firedancer:124ecbb598ef:12   fd-local:[group]:txsend:0 src/discof/txsend/../../disco/stem/fd_stem_run1.c(164)[stem_run1_spin]: Running stem, cr_max = 128
+INFO    2026-10-28 09:06:46.066929566 GMT+00     39:67     firedancer:124ecbb598ef:7    fd-local:[group]:gossip:0 src/discof/gossip/fd_gossip_tile.c(290)[after_credit]: gossip peer table saturated (2 peers, quiet for 500 ms)
+INFO    2026-10-28 09:06:50.233747027 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/utils/fd_http_resolver.c(567)[fd_http_resolver_advance]: resolving 172.16.0.8:8899
+WARNING 2026-10-28 09:06:50.235115487 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/utils/fd_ssresolve.c(421)[fd_ssresolve_read_response]: unexpected response code 404 accessing http://172.16.0.8:8899/snapshot.tar.bz2
+INFO    2026-10-28 09:06:55.235104791 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/utils/fd_http_resolver.c(567)[fd_http_resolver_advance]: resolving 172.16.0.8:8899
+WARNING 2026-10-28 09:06:55.235840271 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/utils/fd_ssresolve.c(421)[fd_ssresolve_read_response]: unexpected response code 404 accessing http://172.16.0.8:8899/snapshot.tar.bz2
+INFO    2026-10-28 09:07:00.235834237 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/utils/fd_http_resolver.c(567)[fd_http_resolver_advance]: resolving 172.16.0.8:8899
+WARNING 2026-10-28 09:07:00.236786817 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/utils/fd_ssresolve.c(421)[fd_ssresolve_read_response]: unexpected response code 404 accessing http://172.16.0.8:8899/snapshot.tar.bz2
+INFO    2026-10-28 09:07:05.236772999 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/utils/fd_http_resolver.c(567)[fd_http_resolver_advance]: resolving 172.16.0.8:8899
+INFO    2026-10-28 09:07:05.237974789 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/fd_snapct_tile.c(1014)[after_credit]: no local snapshot available, downloading from peer
+NOTICE  2026-10-28 09:07:05.361619439 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/fd_snapct_tile.c(668)[log_download]: downloading full snapshot from http://172.16.0.8:8899
+INFO    2026-10-28 09:07:05.361755379 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/fd_snapct_tile.c(671)[log_download]: downloading full snapshot at slot 103 from configured server with index 0 at http://172.16.0.8:8899
+INFO    2026-10-28 09:07:05.362381029 GMT+00     34:79     firedancer:124ecbb598ef:26   fd-local:[group]:snapld:0 src/discof/restore/utils/fd_sshttp.c(572)[follow_redirect]: following redirect to http://172.16.0.8:8899/snapshot-103-7RAbjcuq6a8irUif7zSvWaopSbh8yqLNeBCopZBFvUMf.tar.zst
+INFO    2026-10-28 09:07:05.365593508 GMT+00     34:79     firedancer:124ecbb598ef:26   fd-local:[group]:snapld:0 src/discof/restore/fd_snapld_tile.c(431)[after_credit]: redirect resolved to `snapshot-103-7RAbjcuq6a8irUif7zSvWaopSbh8yqLNeBCopZBFvUMf.tar.zst` (slot 103) for full snapshot
+INFO    2026-10-28 09:07:05.366657799 GMT+00     34:79     firedancer:124ecbb598ef:26   fd-local:[group]:snapld:0 src/discof/restore/fd_snapld_tile.c(477)[after_credit]: finished downloading full snapshot
+INFO    2026-10-28 09:07:05.366681048 GMT+00     36:66     firedancer:124ecbb598ef:27   fd-local:[group]:snapin:0 src/discof/restore/fd_snapin_tile.c(1160)[process_manifest]: snapshot manifest slot=103 indicates lthash[..32]=Bk1RhnMcrsDUuic2TKEKWNqVgVDVVLRuNqEHYuacHcra blake3(lthash)=7RAbjcuq6a8irUif7zSvWaopSbh8yqLNeBCopZBFvUMf
+INFO    2026-10-28 09:07:05.367862638 GMT+00     36:66     firedancer:124ecbb598ef:27   fd-local:[group]:snapin:0 src/flamenco/accdb/fd_accdb.c(1732)[change_partition]: growing accounts database from 0 GiB to 1 GiB
+INFO    2026-10-28 09:07:05.376929458 GMT+00     36:66     firedancer:124ecbb598ef:27   fd-local:[group]:snapin:0 src/flamenco/accdb/fd_accdb.c(1732)[change_partition]: growing accounts database from 1 GiB to 2 GiB
+INFO    2026-10-28 09:07:05.378181317 GMT+00     36:66     firedancer:124ecbb598ef:27   fd-local:[group]:snapin:0 src/flamenco/accdb/fd_accdb_shmem.c(499)[fd_accdb_shmem_try_enqueue_compaction]: compaction of layer 2 partition 0 started
+INFO    2026-10-28 09:07:05.378927967 GMT+00     33:64     firedancer:124ecbb598ef:10   fd-local:[group]:snapct:0 src/discof/restore/fd_snapct_tile.c(693)[log_completion]: full snapshot load completed in 0.141 seconds
+INFO    2026-10-28 09:07:05.379529008 GMT+00     44:85     firedancer:124ecbb598ef:25   fd-local:[group]:accdb:0 src/flamenco/accdb/fd_accdb.c(1732)[change_partition]: growing accounts database from 2 GiB to 3 GiB
+NOTICE  2026-10-28 09:07:05.379826997 GMT+00     36:66     firedancer:124ecbb598ef:27   fd-local:[group]:snapin:0 src/discof/restore/fd_snapin_tile.c(353)[should_shutdown]: loaded 317 accounts (0 dups) from snapshot in 20.118 seconds
+INFO    2026-10-28 09:07:05.381474457 GMT+00     44:85     firedancer:124ecbb598ef:25   fd-local:[group]:accdb:0 src/flamenco/accdb/fd_accdb.c(2077)[background_compact]: compaction of partition 0 completed
+INFO    2026-10-28 09:07:05.384924957 GMT+00     25:8      firedancer:124ecbb598ef:f0   fd-local:[group]:pidns src/app/shared/commands/run/run.c(697)[main_pid_namespace]: tile snapld:0 exited gracefully with code 0
+INFO    2026-10-28 09:07:05.387331167 GMT+00     25:8      firedancer:124ecbb598ef:f0   fd-local:[group]:pidns src/app/shared/commands/run/run.c(697)[main_pid_namespace]: tile snapct:0 exited gracefully with code 0
+INFO    2026-10-28 09:07:05.387390547 GMT+00     25:8      firedancer:124ecbb598ef:f0   fd-local:[group]:pidns src/app/shared/commands/run/run.c(697)[main_pid_namespace]: tile snapdc:0 exited gracefully with code 0
+INFO    2026-10-28 09:07:05.388048417 GMT+00     43:71     firedancer:124ecbb598ef:24   fd-local:[group]:replay:0 src/discof/replay/fd_replay_tile.c(2415)[on_snapshot_message]: replay ready at slot 103 (0.009 s after snapshot done, 25.558 s since boot)
+INFO    2026-10-28 09:07:05.388687667 GMT+00     43:71     firedancer:124ecbb598ef:24   fd-local:[group]:replay:0 src/discof/replay/fd_replay_tile.c(1951)[try_become_leader]: becoming leader for slot 172, parent slot is 103
+INFO    2026-10-28 09:07:05.388833357 GMT+00     56:76     firedancer:124ecbb598ef:4    fd-local:[group]:pack:0 src/disco/pack/fd_pack_tile.c(1225)[after_frag]: pack_became_leader(slot=172,ends_at=1793178425388686569)
+INFO    2026-10-28 09:07:05.388899997 GMT+00     56:76     firedancer:124ecbb598ef:4    fd-local:[group]:pack:0 src/disco/pack/fd_pack_tile.c(379)[log_end_block_metrics]: pack_end_block(slot=172,time,1,ticks_since_last_schedule=13530717436652,reasons=0,0,0,0,0,0,0,0;remaining=0+2+0+0;smallest=18446744073709551615;cus=0->0)
+INFO    2026-10-28 09:07:05.388931437 GMT+00     59:86     firedancer:124ecbb598ef:11   fd-local:[group]:poh:0 src/discof/poh/fd_poh.c(279)[fd_poh_begin_leader]: begin_leader(slot=172, last_slot=104, last_hashcnt=0)
+INFO    2026-10-28 09:07:05.391891836 GMT+00     25:8      firedancer:124ecbb598ef:f0   fd-local:[group]:pidns src/app/shared/commands/run/run.c(697)[main_pid_namespace]: tile snapin:0 exited gracefully with code 0
+INFO    2026-10-28 09:07:05.399131146 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(832)[after_frag]: [Turbine] slot: 140, root: 103
+INFO    2026-10-28 09:07:05.410334425 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 140. num_data_shreds: 32, num_repaired: 0, num_turbine: 32, num_recovered: 7, duration: 11.40 ms. last recvd fec: 0, mr EFxtpGCPvv6mRU6Ny34HkMcF2Da4dnNoon6ZgpZQH51B. current block_id: EFxtpGCPvv6mRU6Ny34HkMcF2Da4dnNoon6ZgpZQH51B
+INFO    2026-10-28 09:07:05.466903900 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(832)[after_frag]: [Turbine] slot: 141, root: 103
+INFO    2026-10-28 09:07:05.471703780 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 141. num_data_shreds: 32, num_repaired: 0, num_turbine: 32, num_recovered: 10, duration: 4.91 ms. last recvd fec: 0, mr 3Vwj3V8k7yPGe4GiiYFyoL7cMTnGU4imk5jZu2GfEGLR. current block_id: 3Vwj3V8k7yPGe4GiiYFyoL7cMTnGU4imk5jZu2GfEGLR
+INFO    2026-10-28 09:07:05.488184889 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 104. num_data_shreds: 32, num_repaired: 32, num_turbine: 0, num_recovered: 0, duration: 82.96 ms. last recvd fec: 0, mr BPzMKnqtssnfKnH4NhbTR2A8n4hRPuoR6FKUzyDhYpEN. current block_id: BPzMKnqtssnfKnH4NhbTR2A8n4hRPuoR6FKUzyDhYpEN
+INFO    2026-10-28 09:07:05.489045279 GMT+00     43:71     firedancer:124ecbb598ef:24   fd-local:[group]:replay:0 src/flamenco/runtime/fd_runtime.c(288)[fd_runtime_settle_fees]: slot=104 priority_fees=0 execution_fees=10000 fee_burn=5000 fee_rewards=5000
+INFO    2026-10-28 09:07:05.489209239 GMT+00     43:71     firedancer:124ecbb598ef:24   fd-local:[group]:replay:0 src/discof/replay/fd_replay_tile.c(3942)[process_tower_slot_done]: tower_slot_done(reset_slot=104, next_leader_slot=173, vote_slot=104, replay_slot=104, root_slot=18446744073709551615, seqno=6)
+INFO    2026-10-28 09:07:05.489259799 GMT+00     47:88     firedancer:124ecbb598ef:12   fd-local:[group]:txsend:0 src/discof/txsend/fd_txsend_tile.c(618)[handle_vote_msg]: vote txn for slot 104 created: 2pCbgsUfMWDoqQruhiREmbhXr4F2DDU8ev5Zv8J3dUF8gVnfr9rP1ukZkPAtzDQGYEWZwZrH2N4dQyx7fsPVw3QW
+INFO    2026-10-28 09:07:05.490199179 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 107. num_data_shreds: 32, num_repaired: 32, num_turbine: 0, num_recovered: 0, duration: 83.14 ms. last recvd fec: 0, mr HHkR9v5Z55FPqJMRCfVJEtn8y9p9TCqs4Wz4d1sSQx35. current block_id: HHkR9v5Z55FPqJMRCfVJEtn8y9p9TCqs4Wz4d1sSQx35
+INFO    2026-10-28 09:07:05.493297468 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 117. num_data_shreds: 32, num_repaired: 31, num_turbine: 1, num_recovered: 0, duration: 84.02 ms. last recvd fec: 0, mr 9CfUcvCqtmp28DGVsKPsWtCQHcFnfpKc4JvHtALXBBfU. current block_id: 9CfUcvCqtmp28DGVsKPsWtCQHcFnfpKc4JvHtALXBBfU
+INFO    2026-10-28 09:07:05.495594938 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 110. num_data_shreds: 32, num_repaired: 32, num_turbine: 0, num_recovered: 0, duration: 84.26 ms. last recvd fec: 0, mr 824kC66Jttj2cLUwD3bBgqr1daWbkcauM5Hvb1mETtdQ. current block_id: 824kC66Jttj2cLUwD3bBgqr1daWbkcauM5Hvb1mETtdQ
+INFO    2026-10-28 09:07:05.498162978 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 113. num_data_shreds: 32, num_repaired: 32, num_turbine: 0, num_recovered: 0, duration: 85.76 ms. last recvd fec: 0, mr 2qraYzd3pmsgwUwCHyJygkUAUFufENFHX14gQcAYZRLr. current block_id: 2qraYzd3pmsgwUwCHyJygkUAUFufENFHX14gQcAYZRLr
+INFO    2026-10-28 09:07:05.498548048 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 116. num_data_shreds: 32, num_repaired: 32, num_turbine: 0, num_recovered: 0, duration: 85.10 ms. last recvd fec: 0, mr 8W4MW55xkWhvPUZXnLC6VK94NDebnk2RyE778ACmixJC. current block_id: 8W4MW55xkWhvPUZXnLC6VK94NDebnk2RyE778ACmixJC
+INFO    2026-10-28 09:07:05.502231418 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 123. num_data_shreds: 32, num_repaired: 31, num_turbine: 1, num_recovered: 0, duration: 87.48 ms. last recvd fec: 0, mr 7Hg5sZhesgEHewi8bkmJ9hVDiTfZUhxYfYjQazF26v4F. current block_id: 7Hg5sZhesgEHewi8bkmJ9hVDiTfZUhxYfYjQazF26v4F
+INFO    2026-10-28 09:07:05.502651908 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 121. num_data_shreds: 32, num_repaired: 31, num_turbine: 1, num_recovered: 0, duration: 99.51 ms. last recvd fec: 0, mr C53bfJBqjK7dsBqkaAgER6rXPqHRhSzvv1a9SjL8ej6j. current block_id: C53bfJBqjK7dsBqkaAgER6rXPqHRhSzvv1a9SjL8ej6j
+INFO    2026-10-28 09:07:05.503009068 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 127. num_data_shreds: 32, num_repaired: 31, num_turbine: 1, num_recovered: 0, duration: 99.65 ms. last recvd fec: 0, mr Fhi2s9XTWpQ8HwHJgE9k9SUN8s55YYXkkjuy8T7852Nq. current block_id: Fhi2s9XTWpQ8HwHJgE9k9SUN8s55YYXkkjuy8T7852Nq
+INFO    2026-10-28 09:07:05.505352828 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 132. num_data_shreds: 32, num_repaired: 31, num_turbine: 1, num_recovered: 0, duration: 82.44 ms. last recvd fec: 0, mr 9eH3pAhxHCvgWmi3JXAzzQLsgWBbHwPYVux25iiMMMq5. current block_id: 9eH3pAhxHCvgWmi3JXAzzQLsgWBbHwPYVux25iiMMMq5
+INFO    2026-10-28 09:07:05.509294667 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 135. num_data_shreds: 32, num_repaired: 31, num_turbine: 1, num_recovered: 0, duration: 83.23 ms. last recvd fec: 0, mr C4ympDihBWAzjb4KzpiAQDCBBjZYFfYCT5Rzkz2cgKxo. current block_id: C4ympDihBWAzjb4KzpiAQDCBBjZYFfYCT5Rzkz2cgKxo
+INFO    2026-10-28 09:07:05.512124137 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 138. num_data_shreds: 32, num_repaired: 31, num_turbine: 1, num_recovered: 0, duration: 82.97 ms. last recvd fec: 0, mr 9pL9bePZPAjvx4iR81tSDTmRtqq8GbgwCyXM4SLp3KBo. current block_id: 9pL9bePZPAjvx4iR81tSDTmRtqq8GbgwCyXM4SLp3KBo
+INFO    2026-10-28 09:07:05.528629886 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(832)[after_frag]: [Turbine] slot: 142, root: 103
+INFO    2026-10-28 09:07:05.534752265 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 142. num_data_shreds: 32, num_repaired: 0, num_turbine: 32, num_recovered: 6, duration: 6.26 ms. last recvd fec: 0, mr 7wEPUWRiVbRqB1W244WgGgHTCEoeNg1W3TBjnZoqyT8X. current block_id: 7wEPUWRiVbRqB1W244WgGgHTCEoeNg1W3TBjnZoqyT8X
+INFO    2026-10-28 09:07:05.541190104 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 119. num_data_shreds: 32, num_repaired: 32, num_turbine: 0, num_recovered: 0, duration: 86.98 ms. last recvd fec: 0, mr D7Bjq79mJDrqqkH6XB1xAwBA7g6cazszXgARidMD84gA. current block_id: D7Bjq79mJDrqqkH6XB1xAwBA7g6cazszXgARidMD84gA
+INFO    2026-10-28 09:07:05.541553784 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 122. num_data_shreds: 32, num_repaired: 32, num_turbine: 0, num_recovered: 0, duration: 87.28 ms. last recvd fec: 0, mr H4rhAg1mB14DXFpUk43kZmLMuaocvhuF28GRY7Fqc1FH. current block_id: H4rhAg1mB14DXFpUk43kZmLMuaocvhuF28GRY7Fqc1FH
+ERR     2026-10-28 09:07:05.555213564 GMT+00     25:8      firedancer:124ecbb598ef:f0   fd-local:[group]:pidns src/app/shared/commands/run/run.c(691)[main_pid_namespace]: tile poh:0 exited with signal 8 (SIGFPE-Arithmetic exception)
+INFO    2026-10-28 09:07:05.563954373 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 106. num_data_shreds: 32, num_repaired: 31, num_turbine: 1, num_recovered: 0, duration: 163.74 ms. last recvd fec: 0, mr 6D4oeQ9mnezi3fmxYs16sxZkHf7tktrfBb3HVJtrtR5h. current block_id: 6D4oeQ9mnezi3fmxYs16sxZkHf7tktrfBb3HVJtrtR5h
+INFO    2026-10-28 09:07:05.564012873 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 105. num_data_shreds: 32, num_repaired: 31, num_turbine: 1, num_recovered: 0, duration: 163.69 ms. last recvd fec: 0, mr 53nMEcsXRwZKbr5tvEGjdTSBVgMjGv2MLzrYSyVjGKfr. current block_id: 53nMEcsXRwZKbr5tvEGjdTSBVgMjGv2MLzrYSyVjGKfr
+INFO    2026-10-28 09:07:05.564769833 GMT+00     43:71     firedancer:124ecbb598ef:24   fd-local:[group]:replay:0 src/flamenco/runtime/fd_runtime.c(288)[fd_runtime_settle_fees]: slot=105 priority_fees=0 execution_fees=10000 fee_burn=5000 fee_rewards=5000
+INFO    2026-10-28 09:07:05.564938933 GMT+00     43:71     firedancer:124ecbb598ef:24   fd-local:[group]:replay:0 src/discof/replay/fd_replay_tile.c(3942)[process_tower_slot_done]: tower_slot_done(reset_slot=105, next_leader_slot=173, vote_slot=105, replay_slot=105, root_slot=18446744073709551615, seqno=18)
+INFO    2026-10-28 09:07:05.564942543 GMT+00     47:88     firedancer:124ecbb598ef:12   fd-local:[group]:txsend:0 src/discof/txsend/fd_txsend_tile.c(618)[handle_vote_msg]: vote txn for slot 105 created: 2fZpjUy7KpM8aPjwAskdKN3S4CdUFE3imavZBjXrsdKhcZWK2rmra5Zynzb5zJnuAtXY1D6Yz9fdu6QQ7DdA22tV
+INFO    2026-10-28 09:07:05.565129553 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 109. num_data_shreds: 32, num_repaired: 31, num_turbine: 1, num_recovered: 0, duration: 163.28 ms. last recvd fec: 0, mr HP2WYbL2M7Yzw9dq29TYyfnfuKFRtC5Pz9cfsRXupTNY. current block_id: HP2WYbL2M7Yzw9dq29TYyfnfuKFRtC5Pz9cfsRXupTNY
+INFO    2026-10-28 09:07:05.565980753 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 115. num_data_shreds: 32, num_repaired: 31, num_turbine: 1, num_recovered: 0, duration: 163.90 ms. last recvd fec: 0, mr 8LBoWVMg2sg44rMrn1hXrzjcE2ZjoWUBPiDc57747tVK. current block_id: 8LBoWVMg2sg44rMrn1hXrzjcE2ZjoWUBPiDc57747tVK
+INFO    2026-10-28 09:07:05.566034903 GMT+00     43:71     firedancer:124ecbb598ef:24   fd-local:[group]:replay:0 src/flamenco/runtime/fd_runtime.c(288)[fd_runtime_settle_fees]: slot=106 priority_fees=0 execution_fees=10000 fee_burn=5000 fee_rewards=5000
+INFO    2026-10-28 09:07:05.566169853 GMT+00     43:71     firedancer:124ecbb598ef:24   fd-local:[group]:replay:0 src/discof/replay/fd_replay_tile.c(3942)[process_tower_slot_done]: tower_slot_done(reset_slot=106, next_leader_slot=173, vote_slot=106, replay_slot=106, root_slot=18446744073709551615, seqno=23)
+INFO    2026-10-28 09:07:05.566161983 GMT+00     47:88     firedancer:124ecbb598ef:12   fd-local:[group]:txsend:0 src/discof/txsend/fd_txsend_tile.c(618)[handle_vote_msg]: vote txn for slot 106 created: 3AKeMKqC7pRoTM1HajGjXn5s9C4xExJMcZYpogVK5mY14TiWTJ7MVRP2bJkjjeVNLNX3xcXKPoikc84mr9XgYF3K
+INFO    2026-10-28 09:07:05.567037983 GMT+00     43:71     firedancer:124ecbb598ef:24   fd-local:[group]:replay:0 src/flamenco/runtime/fd_runtime.c(288)[fd_runtime_settle_fees]: slot=107 priority_fees=0 execution_fees=10000 fee_burn=5000 fee_rewards=5000
+INFO    2026-10-28 09:07:05.567102173 GMT+00     43:71     firedancer:124ecbb598ef:24   fd-local:[group]:replay:0 src/discof/replay/fd_replay_tile.c(3942)[process_tower_slot_done]: tower_slot_done(reset_slot=107, next_leader_slot=173, vote_slot=107, replay_slot=107, root_slot=18446744073709551615, seqno=28)
+INFO    2026-10-28 09:07:05.567139672 GMT+00     47:88     firedancer:124ecbb598ef:12   fd-local:[group]:txsend:0 src/discof/txsend/fd_txsend_tile.c(618)[handle_vote_msg]: vote txn for slot 107 created: 2TG4vPXN8BQrQk9dMKmT82LoCY77yXxaDEwtDL8mqNdGdRSqpzo9zfCiUYPfVjYWuv4r4aTppM7QSc31iwcr9j5F
+INFO    2026-10-28 09:07:05.567349793 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 112. num_data_shreds: 32, num_repaired: 31, num_turbine: 1, num_recovered: 0, duration: 165.39 ms. last recvd fec: 0, mr GLooEd146dygkoY2PMEe1aPB5XXHUz3rLPxM9BXiYSP8. current block_id: GLooEd146dygkoY2PMEe1aPB5XXHUz3rLPxM9BXiYSP8
+INFO    2026-10-28 09:07:05.567812533 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 111. num_data_shreds: 32, num_repaired: 31, num_turbine: 1, num_recovered: 0, duration: 163.01 ms. last recvd fec: 0, mr 6f5U4H1PjBRWJcGys7m1ZWMqrzcybYpzjVdR66oDPfjB. current block_id: 6f5U4H1PjBRWJcGys7m1ZWMqrzcybYpzjVdR66oDPfjB
+INFO    2026-10-28 09:07:05.568118643 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 118. num_data_shreds: 32, num_repaired: 31, num_turbine: 1, num_recovered: 0, duration: 165.93 ms. last recvd fec: 0, mr MwrFnWd9Gcc9VdJ1J9pnoFHNKcidnAwwPkibb5vrysY. current block_id: MwrFnWd9Gcc9VdJ1J9pnoFHNKcidnAwwPkibb5vrysY
+INFO    2026-10-28 09:07:05.570141093 GMT+00     41:74     firedancer:124ecbb598ef:23   fd-local:[group]:repair:0 src/discof/repair/fd_repair_tile.c(653)[after_fec]: [after_fec] slot is complete 114. num_data_shreds: 32, num_repaired: 31, num_turbine: 1, num_recovered: 0, duration: 161.92 ms. last recvd fec: 0, mr BDqfSsWeaaSFRYvFcUdg85GfRhy8Upuq8MriXrQHu7Uv. current block_id: BDqfSsWeaaSFRYvFcUdg85GfRhy8Upuq8MriXrQHu7Uv

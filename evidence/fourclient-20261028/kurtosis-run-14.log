@@ -1,0 +1,161 @@
+[36mINFO[0m[2026-10-28T17:18:57+08:00] otel ClickHouse running at http://172.17.0.4:8123 (native: 172.17.0.4:9000) 
+[36mINFO[0m[2026-10-28T17:18:57+08:00] otel collector running at http://172.17.0.5:4317 (http: http://172.17.0.5:4318) 
+[36mINFO[0m[2026-10-28T17:18:57+08:00] Creating a new enclave for Starlark to run inside... 
+[36mINFO[0m[2026-10-28T17:19:00+08:00] Enclave 'solana-four-client' created successfully 
+[36mINFO[0m[2026-10-28T17:19:00+08:00] Executing Starlark package at '/home/jie.ma/sol-diff-testing/solana-package' as the passed argument '.' looks like a directory 
+[36mINFO[0m[2026-10-28T17:19:00+08:00] Compressing package 'github.com/0xBloctopus/solana-package' at '.' for upload 
+[36mINFO[0m[2026-10-28T17:19:00+08:00] Kurtosis CLI is running in a non interactive terminal. Everything will work but progress information and the progress bar will not be displayed. 
+
+Container images used in this run:
+> solana-diff/firedancer:full-ff881b69 - locally cached
+> solana-diff/agave-validator:4.3.0-amd64 - locally cached
+> solana-diff/jito-solana:4.3.0-jito-amd64 - locally cached
+> solana-diff/sig:v0.2.0-amd64 - locally cached
+
+Printing a message
+Parsing multi-client input parameters
+
+Printing a message
+Launching multi-client shared-genesis participant network
+
+Printing a message
+Building shred-stream files-artifact from SIG image 'solana-diff/sig:v0.2.0-amd64' (for mounting on bootstrap)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+total 125088
+drwxr-xr-x 2 root root      4096 Oct 28 09:19 .
+drwxrwxrwt 1 root root      4096 Oct 28 09:19 ..
+-rwxr-xr-x 1 root root 128079056 Oct 28 08:10 shred-stream
+[shred-stream-artifact] staged shred-stream binary
+
+--------------------
+
+Printing a message
+Built shred-stream files-artifact: shred-stream-bin
+
+Printing a message
+Generating shared genesis (single run_sh)
+
+Running sh script
+Command returned with exit code '0' and the following output:
+--------------------
+[genesis] keygen identities/votes/stakes/faucet/tip/merkle/recipient
+[genesis] running solana-genesis (two bootstrap validators plus staked Firedancer account)
+lamports_per_byte_year is deprecated and will be removed in a future release
+rent_exemption_threshold is deprecated and will be removed in a future release
+rent_burn_percentage is deprecated and will be removed in a future release
+[genesis] genesis_hash=9cX2LmJzcLufUYFpgvF3um6rDL4hShtix5iypd2cEqNZ shred_version=5276
+[genesis] meta.env written. Contents:
+GENESIS_HASH=9cX2LmJzcLufUYFpgvF3um6rDL4hShtix5iypd2cEqNZ
+SHRED_VERSION=5276
+BOOTSTRAP_IDENTITY=ExdVZT4ThUp9MaBmJTVmPvP4Zv61WDy6P8tu9AB6FbDH
+BOOTSTRAP_VOTE=3EdHpzF6XpRN5rcrXhu8vVJZTu4cg4TioYUfygamaaWD
+BOOTSTRAP_STAKE=EdxCHRYGUFUNGcA663RreRjVk4XhNYCzJ8i1pEKUzk3t
+JOINER_IDENTITY=EGVBc5JsCzWpbiQhTe6PGxW7kFkTMXvZtQK9ztWPDpbj
+JOINER_VOTE=C6y8Ey9pEZm5HY9xTy6FWFNJrrDSWdxtSUbK6JU5ndVW
+JOINER_STAKE=Gsr6JHKMaoVuBAa9afvN8eKLP7FRDw88dTwWu4x2stbY
+FIREDANCER_IDENTITY=J8nzSGC7LnJhytQRzvFnvZvRU8juuysektZx9kJu2w6r
+FIREDANCER_VOTE=Fdy3ozLc8UnbcnFirBZWugkZZfY1pFTphK2FVCybWSdG
+FIREDANCER_STAKE=3XzsoQCjgabj9s8wMjKQG5iEmyYi8Hz4WWrjGGb9hVf5
+RECIPIENT=47X9EfKtcGys3WJSDukUT7maRQZqdzHxb3MVTNNwhLvY
+TIP_PAYMENT=J7qLwenn244aaanZK7fBdTaXBXyv67JRwFUc86c4aiks
+TIP_DISTRIBUTION=2mLLf4VsAVdX7pfKJQjCmqRB3oX9kAVd3UEhXNxi9MU9
+MERKLE_AUTHORITY=7ZmDtmymMpdLu1JNti6cxz9sPNc6rcsHbiPFEt4c9t1d
+BOOTSTRAP_BLS=5vwMA28vFKGAaNkSqssXTTBmGww9nyEjvETfjr3dpF2Cvr89HVKxui7caF1JJmWWNA
+JOINER_BLS=6NQFPWx1pkRjthC1iGRe5i3VJKh66UjN7JhM7vfmkvH1mg52cxdme42mYrJaUrMCwy
+FIREDANCER_BLS=6yCDK486wSepSNVLPhpESkjW3PCUBhbYL7HippsQWdEtcwtwDi3co3dDm9ujWMmmD3
+[genesis] DONE
+
+--------------------
+
+Printing a message
+Genesis artifact 'solana-genesis-data' produced
+
+Printing a message
+Launching bank-hash probe 'bank-hash-probe' (privileged; captures slot-0 bank hash)
+
+Adding service with name 'bank-hash-probe' and image 'solana-diff/agave-validator:4.3.0-amd64'
+Service 'bank-hash-probe' added with service UUID '67968b2e5ebb423fb35db466b353acaa'
+
+Printing a message
+Bank-hash probe container started (sleep infinity, privileged).
+
+Executing command on service 'bank-hash-probe'
+Command returned with exit code '0' and the following output:
+--------------------
+[probe] my_ip=172.16.0.7
+[probe] validator pid=17
+BANK_HASH=E1o2CMWSG47ATm4NgFJ4YDJNzMYap7KDMSJSdVkNvX3E
+[probe] captured bank-0 hash=E1o2CMWSG47ATm4NgFJ4YDJNzMYap7KDMSJSdVkNvX3E
+
+--------------------
+
+Executing command on service 'bank-hash-probe'
+Command returned with exit code '0' and the following output: E1o2CMWSG47ATm4NgFJ4YDJNzMYap7KDMSJSdVkNvX3E
+
+Printing a message
+Bank-hash probe captured slot-0 bank hash: E1o2CMWSG47ATm4NgFJ4YDJNzMYap7KDMSJSdVkNvX3E
+
+Stopping service 'bank-hash-probe'
+Service 'bank-hash-probe' stopped
+
+Printing a message
+Launching validator 'val-bootstrap' (role=voting-bootstrap, image=solana-diff/jito-solana:4.3.0-jito-amd64)
+
+Adding service with name 'val-bootstrap' and image 'solana-diff/jito-solana:4.3.0-jito-amd64'
+Service 'val-bootstrap' added with service UUID 'e7be48379f5144a1a2934756b60c2642'
+
+Printing a message
+Validator 'val-bootstrap' launched; rpc=http://val-bootstrap:8899 ws=ws://val-bootstrap:8900
+
+Printing a message
+Launching validator 'val-joiner' (role=voting-joiner, image=solana-diff/agave-validator:4.3.0-amd64)
+
+Adding service with name 'val-joiner' and image 'solana-diff/agave-validator:4.3.0-amd64'
+Service 'val-joiner' added with service UUID '315a67561f4a4aceb7a86082f9bb4366'
+
+Printing a message
+Validator 'val-joiner' launched; rpc=http://val-joiner:8899 ws=ws://val-joiner:8900
+
+Adding service with name 'val-firedancer' and image 'solana-diff/firedancer:full-ff881b69'
+Service 'val-firedancer' added with service UUID 'c5f9c071a9be410aa72a46ba59204c08'
+
+Printing a message
+Extracting real leader schedule from bootstrap RPC via run_sh
+
+Running sh script
+There was an error executing Starlark code 
+An error occurred executing instruction (number 24) at github.com/0xBloctopus/solana-package/src/sig_observer/sig_observer_launcher.star[264:25]:
+  run_sh(run="set -eu\nrm -rf /tmp/schedule-stage\nmkdir -p /tmp/schedule-stage/out\nexport PATH=/opt/agave/bin:/opt/jito/bin:$PATH\nif [ -f /data/meta.env ]; then . /data/meta.env; fi\nFALLBACK=${BOOTSTRAP_IDENTITY:-11111111111111111111111111111112}\nready=0\ni=0\nwhile [ $i -lt 60 ]; do\n  slot=$(solana --url http://val-bootstrap:8899 slot 2>/dev/null || echo 0)\n  case \"$slot\" in\n    ''|*[!0-9]*) slot=0 ;;\n  esac\n  if [ \"$slot\" -gt 0 ] 2>/dev/null; then ready=1; break; fi\n  i=$((i+5))\n  sleep 5\ndone\necho \"[schedule] rpc ready=$ready after $i s\"\nif [ \"$ready\" -ne 1 ]; then\n  echo '[schedule] FATAL: bootstrap RPC never returned a slot' >&2\n  exit 1\nfi\nsolana --url http://val-bootstrap:8899 leader-schedule --no-address-labels > /tmp/schedule-stage/raw.txt 2>/dev/null\nawk 'NF==2{print $1\" \"$2}' /tmp/schedule-stage/raw.txt > /tmp/schedule-stage/norm.txt\nawk -v fb=\"$FALLBACK\" 'NF==2{if($2==\"?\"||$2==\"??\") $2=fb; print $1\" \"$2}' /tmp/schedule-stage/norm.txt > /tmp/schedule-stage/out/schedule.txt\nLINES=$(wc -l < /tmp/schedule-stage/out/schedule.txt | tr -d ' ')\necho \"[schedule] lines=$LINES (expected 432000)\"\nif [ \"$LINES\" -ne 432000 ]; then\n  echo '[schedule] FATAL: line count mismatch' >&2\n  echo '--- raw head ---' >&2; head -3 /tmp/schedule-stage/raw.txt >&2\n  echo '--- norm head ---' >&2; head -3 /tmp/schedule-stage/norm.txt >&2\n  exit 1\nfi\nFIRST=$(head -1 /tmp/schedule-stage/out/schedule.txt | awk '{print $1}')\nLAST=$(tail -1 /tmp/schedule-stage/out/schedule.txt | awk '{print $1}')\nif [ \"$FIRST\" != 0 ] || [ \"$LAST\" != 431999 ]; then\n  echo '[schedule] FATAL: not contiguous 0..' + 431999 >&2\n  echo \"first=$FIRST last=$LAST\" >&2\n  exit 1\nfi\necho '[schedule] OK: 0..' + $LAST + ', 432000 lines'\nhead -2 /tmp/schedule-stage/out/schedule.txt\ntail -1 /tmp/schedule-stage/out/schedule.txt", image="solana-diff/agave-validator:4.3.0-amd64", store=[StoreSpec(src="/tmp/schedule-stage/out", name="leader-schedule")], wait="180s", acceptable_codes=[0])
+  Caused by: Run sh returned exit code '1' that is not part of the acceptable status codes '[0]', with output:
+    "[schedule] FATAL: bootstrap RPC never returned a slot\n[schedule] rpc ready=0 after 60 s\n"
+
+Error encountered running Starlark code.
+
+⭐ us on GitHub - https://github.com/kurtosis-tech/kurtosis
+[36mINFO[0m[2026-10-28T17:20:22+08:00] =========================================================== 
+[36mINFO[0m[2026-10-28T17:20:22+08:00] ||          Created enclave: solana-four-client          || 
+[36mINFO[0m[2026-10-28T17:20:22+08:00] =========================================================== 
+Name:            solana-four-client
+UUID:            8fbf6fd15e14
+Status:          RUNNING
+Creation Time:   Wed, 28 Oct 2026 17:18:57 CST
+Flags:           
+
+========================================= Files Artifacts =========================================
+UUID           Name
+99415c8bbf93   shred-stream-bin
+58049153d2fd   solana-genesis-data
+
+========================================== User Services ==========================================
+UUID           Name                                        Ports                                 Status
+67968b2e5ebb   bank-hash-probe                             <none>                                STOPPED
+ae29680a65db   task-05260c02-8a16-4ea4-83b9-830290e17eb9   <none>                                RUNNING
+e7be48379f51   val-bootstrap                               rpc: 8899/tcp -> 127.0.0.1:32833      RUNNING
+                                                           rpc-ws: 8900/tcp -> 127.0.0.1:32834   
+c5f9c071a9be   val-firedancer                              <none>                                RUNNING
+315a67561f4a   val-joiner                                  rpc: 8899/tcp -> 127.0.0.1:32835      RUNNING
+                                                           rpc-ws: 8900/tcp -> 127.0.0.1:32836   
+
