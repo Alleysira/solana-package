@@ -26,12 +26,7 @@ TPU_PORT_NUM = 8003
 TPU_FW_PORT_NUM = 8004
 
 # ── Client images (all built + verified; see clients.lock.json) ──────────────
-# Jito  : linux/arm64 (native source build from the pinned jito-solana submodule;
-#         Jito publishes no arm64-linux release, so we build native. The amd64
-#         release image aborts under OrbStack Rosetta with "missing AVX support".)
-# Agave : linux/arm64 (native source build, has solana-genesis/solana-keygen).
-# SIG   : linux/arm64 (native; deviated fork with the development-observer path
-#         + the shred-stream tool → v0.2.0-arm64-functional).
+# Native Linux x86_64 images; source pins and run image IDs are recorded.
 JITO_IMAGE = "solana-diff/jito-solana:4.3.0-jito-amd64"
 AGAVE_IMAGE = "solana-diff/agave-validator:4.3.0-amd64"
 SIG_IMAGE = "solana-diff/sig:v0.2.0-amd64"
@@ -66,8 +61,7 @@ GENESIS_DATA_MOUNTPOINT = "/data"
 
 # ── Honest roles ───────────────────────────────────────────────────────────
 # SIG v2 is a NON-VOTING OBSERVER (no vote/stake accounts — structurally
-# impossible). The 20-slot goal is met by the two VOTING validators
-# (Jito bootstrap + Agave joiner). SIG is deployed as an observer only.
+# impossible). Three voting validators must advance; SIG joins as an observer.
 ROLE_VOTING_BOOTSTRAP = "voting-bootstrap"
 ROLE_VOTING_JOINER = "voting-joiner"
 ROLE_SIG_OBSERVER = "sig-observer"
