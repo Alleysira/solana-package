@@ -1,0 +1,305 @@
+{
+  "capturedAt": "2026-10-28T11:26:52.723029+00:00",
+  "enclave": "solana-four-client",
+  "services": {
+    "sig-observer": {
+      "container": "sig-observer--567864bb24c443b28a4641fdfc94b7d3",
+      "imageId": "sha256:def217d2d59872d33bcd8847e0d63dccb0cb2de33f77aab8ebb3603fa810e219",
+      "imageTag": "solana-diff/sig:v0.2.0-amd64",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 430751,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-28T11:15:47.103142516Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "ports": {},
+      "networks": {
+        "kt-solana-four-client": {
+          "IPAMConfig": {
+            "IPv4Address": "172.16.0.12",
+            "IPv6Address": ""
+          },
+          "Links": null,
+          "Aliases": [
+            "sig-observer"
+          ],
+          "DriverOpts": null,
+          "GwPriority": 0,
+          "NetworkID": "a8667f7d5f9333bd70de8e999da758a233e559560b7f4bb15e6a5369c0a5dd7a",
+          "EndpointID": "0679df16a069dfb9d28695b29ac45b336509d78e67cd28ebb720ee4a12dbddaa",
+          "Gateway": "172.16.0.14",
+          "IPAddress": "172.16.0.12",
+          "MacAddress": "f2:9c:4b:c9:71:07",
+          "IPPrefixLen": 22,
+          "IPv6Gateway": "",
+          "GlobalIPv6Address": "",
+          "GlobalIPv6PrefixLen": 0,
+          "DNSNames": [
+            "sig-observer--567864bb24c443b28a4641fdfc94b7d3",
+            "sig-observer",
+            "c53611016c43"
+          ]
+        }
+      },
+      "buildInfo": "commit=0c1e96c1ef335ecf9f62e337477faf5bdab0d83a\nfork=yes(Alleysira)\nupstream=Syndica/sig\nfork_diff=main branch; 5 tracked deviation files + DEVIATIONS.md (development observer path)\nupstream_base=b5026c60fe56b51edd79131115b7e741449d6b2e(byte-identical-to-upstream-main)\nzig=0.15.2\ntarget=x86_64-linux-gnu.2.36\nruntime_platform=linux/amd64\nbuild_flags=-Dallow-no-sha -Dallow-no-avx512\nclient=SIG-v2-observer-non-voting\nnote=tracked-deviation-build-see-DEVIATIONS-md\n0c1e96c1 sig v2: bound shred_receiver slot range to the snapshot slot (deviation 5)\n",
+      "actualProcessAlive": true
+    },
+    "network-verifier": {
+      "container": "network-verifier--e57483c9d72f4b4f857712a2081ab002",
+      "imageId": "sha256:209cec94b453ea376f69d4e03b2a4886c71ac44a393381f385bcc1c7b28272ca",
+      "imageTag": "solana-diff/network-verifier:agave-4.3.0-amd64-v1",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 429447,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-28T11:15:06.046862218Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "ports": {},
+      "networks": {
+        "kt-solana-four-client": {
+          "IPAMConfig": {
+            "IPv4Address": "172.16.0.10",
+            "IPv6Address": ""
+          },
+          "Links": null,
+          "Aliases": [
+            "network-verifier"
+          ],
+          "DriverOpts": null,
+          "GwPriority": 0,
+          "NetworkID": "a8667f7d5f9333bd70de8e999da758a233e559560b7f4bb15e6a5369c0a5dd7a",
+          "EndpointID": "3a7cea0579538588a336c40b8b96f9c4722a18615fc252505ace23ba7fadf97e",
+          "Gateway": "172.16.0.14",
+          "IPAddress": "172.16.0.10",
+          "MacAddress": "5e:85:a7:cc:cc:e3",
+          "IPPrefixLen": 22,
+          "IPv6Gateway": "",
+          "GlobalIPv6Address": "",
+          "GlobalIPv6PrefixLen": 0,
+          "DNSNames": [
+            "network-verifier--e57483c9d72f4b4f857712a2081ab002",
+            "network-verifier",
+            "0571a1238bec"
+          ]
+        }
+      }
+    },
+    "val-firedancer": {
+      "container": "val-firedancer--23af2889d71e43e495f0fc95266b83ed",
+      "imageId": "sha256:f45e99d34820325e882f9cefdddf1db6a71f0dcc0a443e4a18fc6db0ff2b3295",
+      "imageTag": "solana-diff/firedancer:full-58b02033",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 429257,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-28T11:15:04.844386483Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "ports": {},
+      "networks": {
+        "kt-solana-four-client": {
+          "IPAMConfig": {
+            "IPv4Address": "172.16.0.9",
+            "IPv6Address": ""
+          },
+          "Links": null,
+          "Aliases": [
+            "val-firedancer"
+          ],
+          "DriverOpts": null,
+          "GwPriority": 0,
+          "NetworkID": "a8667f7d5f9333bd70de8e999da758a233e559560b7f4bb15e6a5369c0a5dd7a",
+          "EndpointID": "7fe2abefb66162e188a93e85fce1c7e2c24dcbf2103a81ca85e221ce10c1ae3b",
+          "Gateway": "172.16.0.14",
+          "IPAddress": "172.16.0.9",
+          "MacAddress": "fa:00:c4:32:60:f6",
+          "IPPrefixLen": 22,
+          "IPv6Gateway": "",
+          "GlobalIPv6Address": "",
+          "GlobalIPv6PrefixLen": 0,
+          "DNSNames": [
+            "val-firedancer--23af2889d71e43e495f0fc95266b83ed",
+            "val-firedancer",
+            "421ed68f012c"
+          ]
+        }
+      },
+      "binaryVersion": "0.1.1 (58b02033050ec8d8d206b14e52113d4badb1e16a)",
+      "buildInfo": "source=https://github.com/Alleysira/firedancer\ncommit=58b02033050ec8d8d206b14e52113d4badb1e16a\ntarget=firedancer\nclient=full\n"
+    },
+    "val-joiner": {
+      "container": "val-joiner--40cfd52adb364f638458d89313c2b7a6",
+      "imageId": "sha256:9366fd7569ed523d803f784f44e0a2fc4bafc565d415b303bc7802aa4254587d",
+      "imageTag": "solana-diff/agave-validator:4.3.0-amd64",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 428268,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-28T11:15:00.609814735Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "ports": {
+        "8899/tcp": [
+          {
+            "HostIp": "0.0.0.0",
+            "HostPort": "32867"
+          },
+          {
+            "HostIp": "::",
+            "HostPort": "32867"
+          }
+        ],
+        "8900/tcp": [
+          {
+            "HostIp": "0.0.0.0",
+            "HostPort": "32868"
+          },
+          {
+            "HostIp": "::",
+            "HostPort": "32868"
+          }
+        ]
+      },
+      "networks": {
+        "kt-solana-four-client": {
+          "IPAMConfig": {
+            "IPv4Address": "172.16.0.8",
+            "IPv6Address": ""
+          },
+          "Links": null,
+          "Aliases": [
+            "val-joiner"
+          ],
+          "DriverOpts": null,
+          "GwPriority": 0,
+          "NetworkID": "a8667f7d5f9333bd70de8e999da758a233e559560b7f4bb15e6a5369c0a5dd7a",
+          "EndpointID": "64aaae186a9b1156de6b1559fdf4d5c6d80a424ae1beb70271009301c0f44840",
+          "Gateway": "172.16.0.14",
+          "IPAddress": "172.16.0.8",
+          "MacAddress": "f6:f6:04:f5:a3:86",
+          "IPPrefixLen": 22,
+          "IPv6Gateway": "",
+          "GlobalIPv6Address": "",
+          "GlobalIPv6PrefixLen": 0,
+          "DNSNames": [
+            "val-joiner--40cfd52adb364f638458d89313c2b7a6",
+            "val-joiner",
+            "c221b76673cf"
+          ]
+        }
+      },
+      "binaryVersion": "agave-validator 4.3.0 (src:825efd18; feat:c9ad34d2, client:Agave)"
+    },
+    "val-bootstrap": {
+      "container": "val-bootstrap--f47f96936f514095b6af28a74ee3cf89",
+      "imageId": "sha256:366042326b1586e60b8ace1c687a34f82f15c4704ba01bae68e97435268dbd6e",
+      "imageTag": "solana-diff/jito-solana:4.3.0-jito-amd64",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 427343,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-10-28T11:14:57.873973779Z",
+        "FinishedAt": "0001-01-01T00:00:00Z"
+      },
+      "ports": {
+        "8899/tcp": [
+          {
+            "HostIp": "0.0.0.0",
+            "HostPort": "32865"
+          },
+          {
+            "HostIp": "::",
+            "HostPort": "32865"
+          }
+        ],
+        "8900/tcp": [
+          {
+            "HostIp": "0.0.0.0",
+            "HostPort": "32866"
+          },
+          {
+            "HostIp": "::",
+            "HostPort": "32866"
+          }
+        ]
+      },
+      "networks": {
+        "kt-solana-four-client": {
+          "IPAMConfig": {
+            "IPv4Address": "172.16.0.7",
+            "IPv6Address": ""
+          },
+          "Links": null,
+          "Aliases": [
+            "val-bootstrap"
+          ],
+          "DriverOpts": null,
+          "GwPriority": 0,
+          "NetworkID": "a8667f7d5f9333bd70de8e999da758a233e559560b7f4bb15e6a5369c0a5dd7a",
+          "EndpointID": "a45a86a75b8158a4dfe826fc2eeb415d220523470d676d7dc0ba80d2e5b2772b",
+          "Gateway": "172.16.0.14",
+          "IPAddress": "172.16.0.7",
+          "MacAddress": "6e:23:1e:54:c9:74",
+          "IPPrefixLen": 22,
+          "IPv6Gateway": "",
+          "GlobalIPv6Address": "",
+          "GlobalIPv6PrefixLen": 0,
+          "DNSNames": [
+            "val-bootstrap--f47f96936f514095b6af28a74ee3cf89",
+            "val-bootstrap",
+            "41274ecfbc14"
+          ]
+        }
+      },
+      "binaryVersion": "agave-validator 4.3.0 (src:07270be4; feat:c9ad34d2, client:JitoLabs)"
+    }
+  },
+  "host": {
+    "kernel": "Linux ma-01 7.0.0-1014-gcp #14~24.04.1-Ubuntu SMP PREEMPT Thu Sep 17 19:52:35 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux\n",
+    "memory": "               total        used        free      shared  buff/cache   available\nMem:     270247272448 86728863744 147524440064  6171516928 44456103936 183518408704\nSwap:              0           0           0\n",
+    "disk": "Filesystem        1B-blocks        Used   Available Use% Mounted on\n/dev/root      102888095744 51144065024 51727253504  50% /\n",
+    "cpu": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           48 bits physical, 48 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  32\nOn-line CPU(s) list:                     0-31\nVendor ID:                               AuthenticAMD\nModel name:                              AMD EPYC 7B12\nCPU family:                              23\nModel:                                   49\nThread(s) per core:                      2\nCore(s) per socket:                      16\nSocket(s):                               1\nStepping:                                0\nBogoMIPS:                                4499.99\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext ssbd ibrs ibpb stibp vmmcall fsgsbase tsc_adjust bmi1 avx2 smep bmi2 rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 clzero xsaveerptr arat umip rdpid\nHypervisor vendor:                       KVM\nVirtualization type:                     full\nL1d cache:                               512 KiB (16 instances)\nL1i cache:                               512 KiB (16 instances)\nL2 cache:                                8 MiB (16 instances)\nL3 cache:                                64 MiB (4 instances)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-31\nVulnerability Gather data sampling:      Not affected\nVulnerability Ghostwrite:                Not affected\nVulnerability Indirect target selection: Not affected\nVulnerability Itlb multihit:             Not affected\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Not affected\nVulnerability Old microcode:             Not affected\nVulnerability Reg file data sampling:    Not affected\nVulnerability Retbleed:                  Mitigation; untrained return thunk; SMT enabled with STIBP protection\nVulnerability Spec rstack overflow:      Mitigation; Safe RET\nVulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Retpolines; IBPB conditional; STIBP always-on; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Not affected\nVulnerability Tsx async abort:           Not affected\nVulnerability Vmscape:                   Not affected\n",
+    "docker": "Client:\n Version:           29.1.3\n API version:       1.52\n Go version:        go1.24.4\n Git commit:        29.1.3-0ubuntu3~24.04.2\n Built:             Wed Apr 29 16:41:06 2026\n OS/Arch:           linux/amd64\n Context:           default\n\nServer:\n Engine:\n  Version:          29.1.3\n  API version:      1.52 (minimum version 1.44)\n  Go version:       go1.24.4\n  Git commit:       29.1.3-0ubuntu3~24.04.2\n  Built:            Wed Apr 29 16:41:06 2026\n  OS/Arch:          linux/amd64\n  Experimental:     false\n containerd:\n  Version:          2.2.1\n  GitCommit:        \n runc:\n  Version:          1.3.4-0ubuntu1~24.04.1\n  GitCommit:        \n docker-init:\n  Version:          0.19.0\n  GitCommit:        \n",
+    "kurtosis": "CLI Version:   1.22.2\n\nTo see the engine version (provided it is running): kurtosis engine status\n"
+  },
+  "sourceCommits": {
+    ".": "4f75c3ccac2df898ecd80c31ce6f6470807f4bdc",
+    "firedancer": "58b02033050ec8d8d206b14e52113d4badb1e16a",
+    "agave": "825efd18292aff6ffcf9daa0f7612f21b3531a72",
+    "jito-solana": "07270be44c712356d8fb94dff8e7a1edd425dbff",
+    "sig": "0c1e96c1ef335ecf9f62e337477faf5bdab0d83a",
+    "solana-package": "d94f298010e6ec093a8a4bc88b1825608f5ff6be"
+  }
+}

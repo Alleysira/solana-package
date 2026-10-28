@@ -1,0 +1,27 @@
+{
+  ".": {
+    "commit": "82e1261d4c12b18f56dc0f9f22755a9a9e859e5b",
+    "trackedChanges": " M PROGRESS.md\n M firedancer\n M solana-package\n"
+  },
+  "firedancer": {
+    "commit": "58b02033050ec8d8d206b14e52113d4badb1e16a",
+    "trackedChanges": ""
+  },
+  "agave": {
+    "commit": "825efd18292aff6ffcf9daa0f7612f21b3531a72",
+    "trackedChanges": ""
+  },
+  "jito-solana": {
+    "commit": "07270be44c712356d8fb94dff8e7a1edd425dbff",
+    "trackedChanges": ""
+  },
+  "sig": {
+    "commit": "0c1e96c1ef335ecf9f62e337477faf5bdab0d83a",
+    "trackedChanges": ""
+  },
+  "solana-package": {
+    "commit": "cf4bfef04e45385c63672e06577f91d0380160b0",
+    "trackedChanges": ""
+  },
+  "verificationScriptSha256": "3526ba2e03e3ccaf86d5f1aa0fe6b2a0dc20843c123a14358b2261c77c223e7c"
+}

@@ -1,0 +1,625 @@
+{
+  "schemaVersion": 2,
+  "result": "PASS",
+  "verifiedAt": "2026-10-28T11:26:50.999032+00:00",
+  "topology": "three-voting-validators-plus-SIG-observer",
+  "genesis": {
+    "jito": "5BXYpfkR158aSZYjMNtP9uKuUNLFJd4XnYacGPP1x9VH",
+    "agave": "5BXYpfkR158aSZYjMNtP9uKuUNLFJd4XnYacGPP1x9VH",
+    "firedancer": "5BXYpfkR158aSZYjMNtP9uKuUNLFJd4XnYacGPP1x9VH"
+  },
+  "versions": {
+    "jito": {
+      "feature-set": 3383571666,
+      "solana-core": "4.3.0"
+    },
+    "agave": {
+      "feature-set": 3383571666,
+      "solana-core": "4.3.0"
+    },
+    "firedancer": {
+      "solana-core": "0.1.1",
+      "feature-set": 1766517360
+    }
+  },
+  "identities": {
+    "jito": "CvNufDWzbzwNQpnTw6gNecfMi5iZ5s1JxhL2ijNvtREm",
+    "agave": "GoQ3AG7PE4kvVznp216GmiEgNaDLbGJKQAXdAXVQaR6W",
+    "firedancer": "48oyi4VA9fyZdXhthpo7kYPa1uxvgBs8uaRD8ACCkUrD"
+  },
+  "observationSeconds": 600,
+  "pollSeconds": 10,
+  "sampleCount": 61,
+  "firstSample": {
+    "at": 1793186199.19571,
+    "elapsed": 0.015407409000545158,
+    "votes": {
+      "jito": {
+        "lastVote": 182,
+        "rootSlot": 151,
+        "votePubkey": "ReC9nSZ82WZqH4kRahqd5XB5tNMmLvqW6SsyaanYMLD",
+        "activatedStake": 99997717120
+      },
+      "agave": {
+        "lastVote": 182,
+        "rootSlot": 151,
+        "votePubkey": "4G1yeb1JeFe7PfJAXsQEvndzddUUaps28nUoAreYtfgm",
+        "activatedStake": 99997717120
+      },
+      "firedancer": {
+        "lastVote": 182,
+        "rootSlot": 151,
+        "votePubkey": "A91avXE5N2t7HxRN8yuhFst95MW5u7JtdPQPMqYX6SNY",
+        "activatedStake": 39997717120
+      }
+    },
+    "finalized": {
+      "jito": 183,
+      "agave": 183,
+      "firedancer": 184
+    },
+    "sigIdentity": "EFT8ZD2EYMSTe79ve2nSPyVsKPwY8XnKRBP4bg62i8Kc",
+    "gossip": [
+      {
+        "clientId": "JitoLabs",
+        "featureSet": 3383571666,
+        "gossip": "172.16.0.7:8001",
+        "pubkey": "CvNufDWzbzwNQpnTw6gNecfMi5iZ5s1JxhL2ijNvtREm",
+        "pubsub": "172.16.0.7:8900",
+        "rpc": "172.16.0.7:8899",
+        "serveRepair": "172.16.0.7:8009",
+        "shredVersion": 40305,
+        "tpu": null,
+        "tpuForwards": null,
+        "tpuForwardsQuic": "172.16.0.7:8004",
+        "tpuQuic": "172.16.0.7:8003",
+        "tpuVote": "172.16.0.7:8005",
+        "tvu": "172.16.0.7:8002",
+        "version": "4.3.0"
+      },
+      {
+        "clientId": "Agave",
+        "featureSet": 3383571666,
+        "gossip": "172.16.0.8:8001",
+        "pubkey": "GoQ3AG7PE4kvVznp216GmiEgNaDLbGJKQAXdAXVQaR6W",
+        "pubsub": "172.16.0.8:8900",
+        "rpc": "172.16.0.8:8899",
+        "serveRepair": "172.16.0.8:8009",
+        "shredVersion": 40305,
+        "tpu": null,
+        "tpuForwards": null,
+        "tpuForwardsQuic": "172.16.0.8:8004",
+        "tpuQuic": "172.16.0.8:8003",
+        "tpuVote": "172.16.0.8:8005",
+        "tvu": "172.16.0.8:8002",
+        "version": "4.3.0"
+      },
+      {
+        "clientId": "Firedancer",
+        "featureSet": 1766517360,
+        "gossip": "172.16.0.9:8001",
+        "pubkey": "48oyi4VA9fyZdXhthpo7kYPa1uxvgBs8uaRD8ACCkUrD",
+        "pubsub": null,
+        "rpc": null,
+        "serveRepair": "172.16.0.9:8702",
+        "shredVersion": 40305,
+        "tpu": null,
+        "tpuForwards": null,
+        "tpuForwardsQuic": "172.16.0.9:9007",
+        "tpuQuic": "172.16.0.9:9007",
+        "tpuVote": "172.16.0.9:9001",
+        "tvu": "172.16.0.9:8003",
+        "version": "0.1.1"
+      },
+      {
+        "clientId": "SolanaLabs",
+        "featureSet": 0,
+        "gossip": "172.16.0.12:8001",
+        "pubkey": "EFT8ZD2EYMSTe79ve2nSPyVsKPwY8XnKRBP4bg62i8Kc",
+        "pubsub": null,
+        "rpc": null,
+        "serveRepair": null,
+        "shredVersion": 40305,
+        "tpu": null,
+        "tpuForwards": null,
+        "tpuForwardsQuic": null,
+        "tpuQuic": null,
+        "tpuVote": null,
+        "tvu": "172.16.0.12:8002",
+        "version": "0.0.0"
+      }
+    ],
+    "sigTelemetryAlive": true
+  },
+  "lastSample": {
+    "at": 1793186810.9701247,
+    "elapsed": 611.7898219119998,
+    "votes": {
+      "jito": {
+        "lastVote": 1577,
+        "rootSlot": 1546,
+        "votePubkey": "ReC9nSZ82WZqH4kRahqd5XB5tNMmLvqW6SsyaanYMLD",
+        "activatedStake": 99997717120
+      },
+      "agave": {
+        "lastVote": 1577,
+        "rootSlot": 1546,
+        "votePubkey": "4G1yeb1JeFe7PfJAXsQEvndzddUUaps28nUoAreYtfgm",
+        "activatedStake": 99997717120
+      },
+      "firedancer": {
+        "lastVote": 1577,
+        "rootSlot": 1546,
+        "votePubkey": "A91avXE5N2t7HxRN8yuhFst95MW5u7JtdPQPMqYX6SNY",
+        "activatedStake": 39997717120
+      }
+    },
+    "finalized": {
+      "jito": 1578,
+      "agave": 1578,
+      "firedancer": 1579
+    },
+    "sigIdentity": "EFT8ZD2EYMSTe79ve2nSPyVsKPwY8XnKRBP4bg62i8Kc",
+    "gossip": [
+      {
+        "clientId": "JitoLabs",
+        "featureSet": 3383571666,
+        "gossip": "172.16.0.7:8001",
+        "pubkey": "CvNufDWzbzwNQpnTw6gNecfMi5iZ5s1JxhL2ijNvtREm",
+        "pubsub": "172.16.0.7:8900",
+        "rpc": "172.16.0.7:8899",
+        "serveRepair": "172.16.0.7:8009",
+        "shredVersion": 40305,
+        "tpu": null,
+        "tpuForwards": null,
+        "tpuForwardsQuic": "172.16.0.7:8004",
+        "tpuQuic": "172.16.0.7:8003",
+        "tpuVote": "172.16.0.7:8005",
+        "tvu": "172.16.0.7:8002",
+        "version": "4.3.0"
+      },
+      {
+        "clientId": "Agave",
+        "featureSet": 3383571666,
+        "gossip": "172.16.0.8:8001",
+        "pubkey": "GoQ3AG7PE4kvVznp216GmiEgNaDLbGJKQAXdAXVQaR6W",
+        "pubsub": "172.16.0.8:8900",
+        "rpc": "172.16.0.8:8899",
+        "serveRepair": "172.16.0.8:8009",
+        "shredVersion": 40305,
+        "tpu": null,
+        "tpuForwards": null,
+        "tpuForwardsQuic": "172.16.0.8:8004",
+        "tpuQuic": "172.16.0.8:8003",
+        "tpuVote": "172.16.0.8:8005",
+        "tvu": "172.16.0.8:8002",
+        "version": "4.3.0"
+      },
+      {
+        "clientId": "Firedancer",
+        "featureSet": 1766517360,
+        "gossip": "172.16.0.9:8001",
+        "pubkey": "48oyi4VA9fyZdXhthpo7kYPa1uxvgBs8uaRD8ACCkUrD",
+        "pubsub": null,
+        "rpc": null,
+        "serveRepair": "172.16.0.9:8702",
+        "shredVersion": 40305,
+        "tpu": null,
+        "tpuForwards": null,
+        "tpuForwardsQuic": "172.16.0.9:9007",
+        "tpuQuic": "172.16.0.9:9007",
+        "tpuVote": "172.16.0.9:9001",
+        "tvu": "172.16.0.9:8003",
+        "version": "0.1.1"
+      },
+      {
+        "clientId": "SolanaLabs",
+        "featureSet": 0,
+        "gossip": "172.16.0.12:8001",
+        "pubkey": "EFT8ZD2EYMSTe79ve2nSPyVsKPwY8XnKRBP4bg62i8Kc",
+        "pubsub": null,
+        "rpc": null,
+        "serveRepair": null,
+        "shredVersion": 40305,
+        "tpu": null,
+        "tpuForwards": null,
+        "tpuForwardsQuic": null,
+        "tpuQuic": null,
+        "tpuVote": null,
+        "tvu": "172.16.0.12:8002",
+        "version": "0.0.0"
+      }
+    ],
+    "sigTelemetryAlive": true
+  },
+  "firedancerProduction": {
+    "acceptedLeaderSlots": [
+      232,
+      233,
+      234,
+      235,
+      248,
+      249,
+      250,
+      251,
+      276,
+      277,
+      278,
+      279,
+      420,
+      421,
+      422,
+      423,
+      441,
+      442,
+      443,
+      444,
+      445,
+      446,
+      447,
+      481,
+      482,
+      483,
+      584,
+      585,
+      586,
+      587,
+      592,
+      620,
+      621,
+      622,
+      623,
+      648,
+      649,
+      650,
+      651,
+      692,
+      693,
+      694,
+      695,
+      772,
+      773,
+      774,
+      775,
+      788,
+      789,
+      790,
+      791,
+      792,
+      812,
+      844,
+      845,
+      846,
+      847,
+      884,
+      885,
+      886,
+      887,
+      888,
+      889,
+      890,
+      891,
+      908,
+      909,
+      910,
+      911,
+      992,
+      993,
+      994,
+      995,
+      996,
+      997,
+      998,
+      999,
+      1012,
+      1013,
+      1014,
+      1015,
+      1016,
+      1017,
+      1018,
+      1019,
+      1056,
+      1057,
+      1058,
+      1059,
+      1060,
+      1061,
+      1062,
+      1063,
+      1112,
+      1113,
+      1114,
+      1115,
+      1140,
+      1244,
+      1245,
+      1246,
+      1247,
+      1248,
+      1249,
+      1250,
+      1251,
+      1288,
+      1289,
+      1290,
+      1291,
+      1304,
+      1305,
+      1306,
+      1307,
+      1364,
+      1365,
+      1366,
+      1367,
+      1380,
+      1381,
+      1382,
+      1383,
+      1400,
+      1401,
+      1402,
+      1403,
+      1404,
+      1405,
+      1406,
+      1407,
+      1446,
+      1447,
+      1452,
+      1453,
+      1454,
+      1455,
+      1472,
+      1473,
+      1474,
+      1475,
+      1504,
+      1505,
+      1506,
+      1507,
+      1516,
+      1517,
+      1518,
+      1519,
+      1532,
+      1533,
+      1534,
+      1535,
+      1548,
+      1549,
+      1550,
+      1551,
+      1556,
+      1557,
+      1558,
+      1559
+    ],
+    "verifiedBlocks": [
+      {
+        "slot": 232,
+        "observations": {
+          "jito": {
+            "blockHeight": 225,
+            "blockTime": 1793186205,
+            "blockhash": "6BsN8iumpLfz9susM7gTgLU5cg7hcHXcafCzkehUp5HZ",
+            "parentSlot": 231,
+            "previousBlockhash": "E4AoP56CWrnT6rtNqcRVWz7FcMxphYNSay6XmmBXqjJ9"
+          },
+          "agave": {
+            "blockHeight": 225,
+            "blockTime": 1793186205,
+            "blockhash": "6BsN8iumpLfz9susM7gTgLU5cg7hcHXcafCzkehUp5HZ",
+            "parentSlot": 231,
+            "previousBlockhash": "E4AoP56CWrnT6rtNqcRVWz7FcMxphYNSay6XmmBXqjJ9"
+          }
+        }
+      },
+      {
+        "slot": 233,
+        "observations": {
+          "jito": {
+            "blockHeight": 226,
+            "blockTime": 1793186205,
+            "blockhash": "7PtXhMDdoqjBpcpDcemcsjBTGLbY5LpYa5dSXjbH1VnM",
+            "parentSlot": 232,
+            "previousBlockhash": "6BsN8iumpLfz9susM7gTgLU5cg7hcHXcafCzkehUp5HZ"
+          },
+          "agave": {
+            "blockHeight": 226,
+            "blockTime": 1793186205,
+            "blockhash": "7PtXhMDdoqjBpcpDcemcsjBTGLbY5LpYa5dSXjbH1VnM",
+            "parentSlot": 232,
+            "previousBlockhash": "6BsN8iumpLfz9susM7gTgLU5cg7hcHXcafCzkehUp5HZ"
+          }
+        }
+      },
+      {
+        "slot": 234,
+        "observations": {
+          "jito": {
+            "blockHeight": 227,
+            "blockTime": 1793186206,
+            "blockhash": "6ctdsPLdzyWEhpXbQePU26hBvZwCmeTakCDXXpKLeabo",
+            "parentSlot": 233,
+            "previousBlockhash": "7PtXhMDdoqjBpcpDcemcsjBTGLbY5LpYa5dSXjbH1VnM"
+          },
+          "agave": {
+            "blockHeight": 227,
+            "blockTime": 1793186206,
+            "blockhash": "6ctdsPLdzyWEhpXbQePU26hBvZwCmeTakCDXXpKLeabo",
+            "parentSlot": 233,
+            "previousBlockhash": "7PtXhMDdoqjBpcpDcemcsjBTGLbY5LpYa5dSXjbH1VnM"
+          }
+        }
+      }
+    ]
+  },
+  "transferCount": 27,
+  "firedancerTransactions": [
+    {
+      "signature": "4bEahk9NZ2J8hmierm7Dk5XKYZ5LLjuVnnCAGdJhdvLPz7JTBJKuS4yikGXdyWKM8ecQmpkv7TRNX7VziSgSbuSF",
+      "recipient": "8RG8P8RtD8v1qiLvHpYZpptdnk3q36ErdgUNYJWVoKM6",
+      "lamports": 1000000000,
+      "slot": 233,
+      "leader": "48oyi4VA9fyZdXhthpo7kYPa1uxvgBs8uaRD8ACCkUrD",
+      "observations": {
+        "jito": {
+          "slot": 233,
+          "recipientDelta": 1000000000
+        },
+        "agave": {
+          "slot": 233,
+          "recipientDelta": 1000000000
+        }
+      }
+    },
+    {
+      "signature": "2CTQVE78TR1AX4mQPoikRLY7cxwm5gvEvdaXEEuyKqDwT2SffrdzADG4fiHz1uHkDvbDa7tP4GQ9zfhCzahDwotB",
+      "recipient": "8RG8P8RtD8v1qiLvHpYZpptdnk3q36ErdgUNYJWVoKM6",
+      "lamports": 1000000000,
+      "slot": 446,
+      "leader": "48oyi4VA9fyZdXhthpo7kYPa1uxvgBs8uaRD8ACCkUrD",
+      "observations": {
+        "jito": {
+          "slot": 446,
+          "recipientDelta": 1000000000
+        },
+        "agave": {
+          "slot": 446,
+          "recipientDelta": 1000000000
+        }
+      }
+    },
+    {
+      "signature": "4UksMkQeJ5ivJ7BHyyYd3opqN3FQBAhgveYRdLc9j6L4iBGQnfuEBi5tJrXt9RQhQYo8KGz9Epuj19FC1ecwDZPq",
+      "recipient": "8RG8P8RtD8v1qiLvHpYZpptdnk3q36ErdgUNYJWVoKM6",
+      "lamports": 1000000000,
+      "slot": 884,
+      "leader": "48oyi4VA9fyZdXhthpo7kYPa1uxvgBs8uaRD8ACCkUrD",
+      "observations": {
+        "jito": {
+          "slot": 884,
+          "recipientDelta": 1000000000
+        },
+        "agave": {
+          "slot": 884,
+          "recipientDelta": 1000000000
+        }
+      }
+    },
+    {
+      "signature": "5nP1E2ZNRajvrpDeaFxMm7YGmbdb7rL3RkYUhSGUCTXwauqFwkse75EqrdGLKqT4Yi8wovvsRb9kjZNYz8z4S2uc",
+      "recipient": "8RG8P8RtD8v1qiLvHpYZpptdnk3q36ErdgUNYJWVoKM6",
+      "lamports": 1000000000,
+      "slot": 1244,
+      "leader": "48oyi4VA9fyZdXhthpo7kYPa1uxvgBs8uaRD8ACCkUrD",
+      "observations": {
+        "jito": {
+          "slot": 1244,
+          "recipientDelta": 1000000000
+        },
+        "agave": {
+          "slot": 1244,
+          "recipientDelta": 1000000000
+        }
+      }
+    },
+    {
+      "signature": "4Yg2hUoph8sDTcbBMFHgBcKR5cFRfjHza4T2vQNcFzQZDBfdodmJQWwUsdMb4qWsjXQSKBoBVnumHHFsD7SgHpdq",
+      "recipient": "8RG8P8RtD8v1qiLvHpYZpptdnk3q36ErdgUNYJWVoKM6",
+      "lamports": 1000000000,
+      "slot": 1533,
+      "leader": "48oyi4VA9fyZdXhthpo7kYPa1uxvgBs8uaRD8ACCkUrD",
+      "observations": {
+        "jito": {
+          "slot": 1533,
+          "recipientDelta": 1000000000
+        },
+        "agave": {
+          "slot": 1533,
+          "recipientDelta": 1000000000
+        }
+      }
+    }
+  ],
+  "recipientAccounts": {
+    "jito": {
+      "context": {
+        "apiVersion": "4.3.0",
+        "slot": 1578
+      },
+      "value": {
+        "data": [
+          "",
+          "base64"
+        ],
+        "executable": false,
+        "lamports": 27000000000,
+        "owner": "11111111111111111111111111111111",
+        "rentEpoch": 18446744073709551615,
+        "space": 0
+      }
+    },
+    "agave": {
+      "context": {
+        "apiVersion": "4.3.0",
+        "slot": 1578
+      },
+      "value": {
+        "data": [
+          "",
+          "base64"
+        ],
+        "executable": false,
+        "lamports": 27000000000,
+        "owner": "11111111111111111111111111111111",
+        "rentEpoch": 18446744073709551615,
+        "space": 0
+      }
+    },
+    "firedancer": {
+      "context": {
+        "apiVersion": "4.3.0-rc.0",
+        "slot": 1579
+      },
+      "value": {
+        "executable": false,
+        "lamports": 27000000000,
+        "owner": "11111111111111111111111111111111",
+        "rentEpoch": 18446744073709551615,
+        "space": 0,
+        "data": [
+          "",
+          "base64"
+        ]
+      }
+    }
+  },
+  "transferErrors": [
+    "CLI failed: Error: Account CvNufDWzbzwNQpnTw6gNecfMi5iZ5s1JxhL2ijNvtREm has insufficient funds for spend (1 SOL) + fee (0.000005 SOL)\n",
+    "CLI failed: Error: Account CvNufDWzbzwNQpnTw6gNecfMi5iZ5s1JxhL2ijNvtREm has insufficient funds for spend (1 SOL) + fee (0.000005 SOL)\n",
+    "CLI failed: Error: Account CvNufDWzbzwNQpnTw6gNecfMi5iZ5s1JxhL2ijNvtREm has insufficient funds for spend (1 SOL) + fee (0.000005 SOL)\n",
+    "CLI failed: Error: Account CvNufDWzbzwNQpnTw6gNecfMi5iZ5s1JxhL2ijNvtREm has insufficient funds for spend (1 SOL) + fee (0.000005 SOL)\n",
+    "CLI failed: Error: Account CvNufDWzbzwNQpnTw6gNecfMi5iZ5s1JxhL2ijNvtREm has insufficient funds for spend (1 SOL) + fee (0.000005 SOL)\n",
+    "CLI failed: Error: Account CvNufDWzbzwNQpnTw6gNecfMi5iZ5s1JxhL2ijNvtREm has insufficient funds for spend (1 SOL) + fee (0.000005 SOL)\n",
+    "CLI failed: Error: Account CvNufDWzbzwNQpnTw6gNecfMi5iZ5s1JxhL2ijNvtREm has insufficient funds for spend (1 SOL) + fee (0.000005 SOL)\n",
+    "CLI failed: Error: Account CvNufDWzbzwNQpnTw6gNecfMi5iZ5s1JxhL2ijNvtREm has insufficient funds for spend (1 SOL) + fee (0.000005 SOL)\n",
+    "CLI failed: Error: Account CvNufDWzbzwNQpnTw6gNecfMi5iZ5s1JxhL2ijNvtREm has insufficient funds for spend (1 SOL) + fee (0.000005 SOL)\n"
+  ],
+  "sigObserver": {
+    "evidenceLevel": "joined",
+    "voting": false,
+    "identity": "EFT8ZD2EYMSTe79ve2nSPyVsKPwY8XnKRBP4bg62i8Kc",
+    "serviceIp": "172.16.0.12",
+    "continuousReplay": false,
+    "transactionExecution": false
+  },
+  "evidenceFiles": [
+    "rpc.jsonl",
+    "samples.jsonl",
+    "transfers.jsonl",
+    "cli.jsonl",
+    "sig-bootstrap.json"
+  ]
+}
