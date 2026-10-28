@@ -2,12 +2,12 @@
 FROM debian:bookworm-slim AS builder
 SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl git build-essential clang cmake pkg-config libclang-dev libssl-dev libudev-dev zlib1g-dev protobuf-compiler iproute2 python3 gcc-12 g++-12 make && rm -rf /var/lib/apt/lists/*
-ARG FIREDANCER_COMMIT=ff881b69a93a6519c1a6f09698aaf208753a0a8f
+ARG FIREDANCER_COMMIT=58b02033050ec8d8d206b14e52113d4badb1e16a
 RUN git clone https://github.com/Alleysira/firedancer.git /src/firedancer && git -C /src/firedancer checkout "$FIREDANCER_COMMIT"
 WORKDIR /src/firedancer
 RUN FD_AUTO_INSTALL_PACKAGES=1 ./deps.sh fetch check install
-RUN source "$HOME/.cargo/env" 2>/dev/null || true; source activate MACHINE=linux_gcc_x86_64 CC=gcc-12; make -j8 firedancer
-RUN source activate MACHINE=linux_gcc_x86_64 CC=gcc-12; OBJDIR="$(make env MACHINE=linux_gcc_x86_64 CC=gcc-12 | sed -n 's/^OBJDIR=//p' | tr -d "'")"; "$OBJDIR/bin/firedancer" version; install -Dm755 "$OBJDIR/bin/firedancer" /stage/firedancer; printf 'source=https://github.com/Alleysira/firedancer\ncommit=%s\ntarget=firedancer\nclient=full\n' "$FIREDANCER_COMMIT" >/stage/BUILD-INFO
+RUN source "$HOME/.cargo/env" 2>/dev/null || true; source activate MACHINE=linux_gcc_x86_64 CC=gcc-12; make -j8 firedancer test_poh_full
+RUN source activate MACHINE=linux_gcc_x86_64 CC=gcc-12; OBJDIR="$(make env MACHINE=linux_gcc_x86_64 CC=gcc-12 | sed -n 's/^OBJDIR=//p' | tr -d "'")"; "$OBJDIR/unit-test/test_poh_full"; "$OBJDIR/bin/firedancer" version; install -Dm755 "$OBJDIR/bin/firedancer" /stage/firedancer; printf 'source=https://github.com/Alleysira/firedancer\ncommit=%s\ntarget=firedancer\nclient=full\n' "$FIREDANCER_COMMIT" >/stage/BUILD-INFO
 FROM debian:bookworm-slim
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates libssl3 libudev1 libatomic1 zlib1g tini iproute2 procps curl && rm -rf /var/lib/apt/lists/* && useradd --create-home --uid 1000 firedancer
 COPY --from=builder /stage /opt/firedancer

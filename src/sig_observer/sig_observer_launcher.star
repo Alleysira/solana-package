@@ -428,6 +428,7 @@ echo "=== sig.log (first 120 lines) ==="
 head -n 120 /var/lib/sig/sig.log || true
 echo "=== sig.log (last 40 lines) ==="
 tail -n 40 /var/lib/sig/sig.log || true
+kill -0 "$(cat /var/lib/sig/sig.pid)"
 """.format(
         BOOT_WINDOW=min(run_timeout_seconds, 45),
     )
@@ -601,7 +602,7 @@ if [[ -f "$LOG" ]]; then
     JOINED=1
   fi
 fi
-if [[ "$JOINED" -eq 1 ]]; then
+if [[ "$JOINED" -eq 1 && "$EVIDENCE" == "started" ]]; then
   EVIDENCE="joined"
 fi
 # Persist ONLY the level to a tiny file. plan.exec's returned `output` is
@@ -648,7 +649,7 @@ def read_snapshot_slot(plan, service_name, retries=1):
     return slot_value
 
 
-def launch_sig_observer(plan, sig_config, genesis_artifact, schedule_artifact, global_node_selectors={}):
+def launch_sig_observer(plan, sig_config, genesis_artifact, schedule_artifact, global_node_selectors={}, initial_snapshot_artifact=None):
     """Launch the SIG non-voting observer against the shared genesis cluster.
 
     Args:
@@ -695,6 +696,9 @@ def launch_sig_observer(plan, sig_config, genesis_artifact, schedule_artifact, g
         constants.GENESIS_DATA_MOUNTPOINT: genesis_artifact,
         "/var/lib/sig/schedule": schedule_artifact,
     }
+
+    if initial_snapshot_artifact != None:
+        files_map["/var/lib/sig/initial-snapshot"] = initial_snapshot_artifact
 
     config_args = {
         "image": image,
@@ -749,6 +753,15 @@ def launch_sig_observer(plan, sig_config, genesis_artifact, schedule_artifact, g
         acceptable_codes=[0],
     )
 
+    if initial_snapshot_artifact != None:
+        plan.exec(
+            service_name=name,
+            recipe=ExecRecipe(command=["bash", "-c",
+                "set -euo pipefail; mkdir -p /var/lib/sig/validator; cp /var/lib/sig/initial-snapshot/snapshot-*.tar.* /var/lib/sig/validator/",
+            ]),
+            acceptable_codes=[0],
+        )
+
     # Stage 3: launch sig in the background and capture the early boot log.
     # The process keeps running after this exec returns (nohup + &).
     # The real leader schedule is already mounted at
@@ -758,7 +771,7 @@ def launch_sig_observer(plan, sig_config, genesis_artifact, schedule_artifact, g
     plan.exec(
         recipe=ExecRecipe(command=_run_sig_cmd(run_timeout_seconds=run_timeout)),
         service_name=name,
-        acceptable_codes=[0, 1, 124, 134, 139],
+        acceptable_codes=[0],
     )
 
     # NOTE: classification is DELIBERATELY NOT done here. At this point the

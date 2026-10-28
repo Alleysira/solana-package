@@ -49,6 +49,8 @@ partition_size_gib = 1
 shred_storage_limit_gib = 2
 [tiles.gui]
 enabled = false
+[tiles.rpc]
+rpc_listen_address = "0.0.0.0"
 [layout]
 net_tile_count = 1
 gossvf_tile_count = 1

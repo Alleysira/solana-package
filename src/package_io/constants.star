@@ -35,27 +35,19 @@ TPU_FW_PORT_NUM = 8004
 JITO_IMAGE = "solana-diff/jito-solana:4.3.0-jito-amd64"
 AGAVE_IMAGE = "solana-diff/agave-validator:4.3.0-amd64"
 SIG_IMAGE = "solana-diff/sig:v0.2.0-amd64"
-FIREDANCER_IMAGE = "solana-diff/firedancer:full-ff881b69"
+FIREDANCER_IMAGE = "solana-diff/firedancer:full-58b02033"
 
 # The genesis-generator image must have solana-genesis + solana-keygen +
 # solana-validator (for the bank-hash probe). The Agave image has all three.
 GENESIS_IMAGE = AGAVE_IMAGE
 
 # ── Genesis defaults ───────────────────────────────────────────────────────
-# Development cluster type + a small explicit hashes-per-tick value keeps the
-# testnet CPU-light while giving full Firedancer a nonzero PoH hash budget.
-# Agave's `sleep` setting encodes no hash count, which crashes this pinned
-# full Firedancer PoH tile after snapshot replay. SIG v2's leader_schedule.zig:10
-# HARDCODES `const slots_per_epoch = 432000;` and fromCommand() (line 69)
-# returns error.IncorrectNumberOfSlots unless the schedule file has exactly
-# 432000 contiguous <slot> <pubkey> lines. Since `solana leader-schedule`
-# emits one line per slot-in-epoch, the genesis epoch MUST be 432000 slots or
-# SIG cannot parse the real leader schedule (the official "functional
-# validator" path requires a real schedule). This is a SIG-driven constraint,
-# not a Solana default.
+# Sleep-mode PoH is a local development configuration. The full Firedancer
+# fork explicitly supports separate transaction hashes and timer ticks.
+# SIG's existing leader-schedule parser requires 432000 slots per epoch.
 CLUSTER_TYPE = "development"
-HASHES_PER_TICK = "62500"
-TICKS_PER_SLOT = 128
+HASHES_PER_TICK = "sleep"
+TICKS_PER_SLOT = 64
 SLOTS_PER_EPOCH = 432000
 
 FAUCET_LAMPORTS = 500000000000000          # 500M SOL faucet
@@ -79,3 +71,6 @@ GENESIS_DATA_MOUNTPOINT = "/data"
 ROLE_VOTING_BOOTSTRAP = "voting-bootstrap"
 ROLE_VOTING_JOINER = "voting-joiner"
 ROLE_SIG_OBSERVER = "sig-observer"
+
+# Tooling service, not a validator or additional client.
+VERIFIER_IMAGE = "solana-diff/network-verifier:agave-4.3.0-amd64-v1"

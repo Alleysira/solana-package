@@ -67,6 +67,19 @@ def input_parser(plan, args):
         "run_timeout_seconds": sig.get("run_timeout_seconds", 60),
     }
 
+    verification = args.get("verification", {})
+    observation_seconds = verification.get("observation_seconds", 600)
+    if type(observation_seconds) == "string":
+        observation_seconds = int(observation_seconds)
+    if type(observation_seconds) != "int" or observation_seconds < 60:
+        fail("verification.observation_seconds must be an integer >= 60")
+    if not sig_config["enabled"] or sig_config["skip_on_cold_start"]:
+        fail("The four-client acceptance requires SIG enabled with a real snapshot")
+    verification_config = {
+        "observation_seconds": observation_seconds,
+        "image": verification.get("image", constants.VERIFIER_IMAGE),
+    }
+
     # ── explorer (off by default — not needed for the 20-slot goal) ────────
     explorer = args.get("explorer", {})
     explorer_config = {
@@ -74,6 +87,7 @@ def input_parser(plan, args):
     }
 
     return struct(
+        verification_config = verification_config,
         slots_target = slots_target,
         bootstrap_image = bootstrap_image,
         joiner_image = joiner_image,
