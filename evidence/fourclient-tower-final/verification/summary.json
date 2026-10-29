@@ -1,0 +1,681 @@
+{
+  "schemaVersion": 2,
+  "result": "PASS",
+  "verifiedAt": "2026-10-29T05:15:29.038289+00:00",
+  "topology": "three-voting-validators-plus-SIG-observer",
+  "genesis": {
+    "jito": "8zFT6G43eNw7Z5NC59Ksm7ABagp99npnVPVvKRaKbbR5",
+    "agave": "8zFT6G43eNw7Z5NC59Ksm7ABagp99npnVPVvKRaKbbR5",
+    "firedancer": "8zFT6G43eNw7Z5NC59Ksm7ABagp99npnVPVvKRaKbbR5"
+  },
+  "versions": {
+    "jito": {
+      "feature-set": 3383571666,
+      "solana-core": "4.3.0"
+    },
+    "agave": {
+      "feature-set": 3383571666,
+      "solana-core": "4.3.0"
+    },
+    "firedancer": {
+      "solana-core": "0.1.1",
+      "feature-set": 1766517360
+    }
+  },
+  "identities": {
+    "jito": "3oCdejzuURmieXR2tUPZfiAEAMTsfQmHqUEWJ2ndgmvH",
+    "agave": "8X2WwVHqWWaUfyJuznBihXzEPcm1CBaEotRb7AX4PaAq",
+    "firedancer": "5KvajXMXUneAuU3g3Dne4h1dESf79Xw5CzVS8nKmZXzA"
+  },
+  "observationSeconds": 600,
+  "pollSeconds": 10,
+  "sampleCount": 61,
+  "firstSample": {
+    "at": 1793250326.5721934,
+    "elapsed": 0.008842800001730211,
+    "votes": {
+      "jito": {
+        "lastVote": 319,
+        "rootSlot": 288,
+        "votePubkey": "HKbRYyChrUbwM1j1G9tnjh5VMbe7bqaLAZbCdk8N7H7c",
+        "activatedStake": 99997717120
+      },
+      "agave": {
+        "lastVote": 319,
+        "rootSlot": 288,
+        "votePubkey": "81d9T39xz44CTUTLe6MgRG7jmzD2icTu5frRa282kyWd",
+        "activatedStake": 99997717120
+      },
+      "firedancer": {
+        "lastVote": 315,
+        "rootSlot": 284,
+        "votePubkey": "13dEKrjvx6LYwbn5eaHXeNyGAHHDdY7e7rdNsKfXDieC",
+        "activatedStake": 39997717120
+      }
+    },
+    "finalized": {
+      "jito": 320,
+      "agave": 320,
+      "firedancer": 320
+    },
+    "sigIdentity": "6k7MpM9gsrFg4CURE99k5V7EvjY9vumhECuGf4aKvm6W",
+    "gossip": [
+      {
+        "clientId": "JitoLabs",
+        "featureSet": 3383571666,
+        "gossip": "172.16.0.8:8001",
+        "pubkey": "3oCdejzuURmieXR2tUPZfiAEAMTsfQmHqUEWJ2ndgmvH",
+        "pubsub": "172.16.0.8:8900",
+        "rpc": "172.16.0.8:8899",
+        "serveRepair": "172.16.0.8:8009",
+        "shredVersion": 20378,
+        "tpu": null,
+        "tpuForwards": null,
+        "tpuForwardsQuic": "172.16.0.8:8004",
+        "tpuQuic": "172.16.0.8:8003",
+        "tpuVote": "172.16.0.8:8005",
+        "tvu": "172.16.0.8:8002",
+        "version": "4.3.0"
+      },
+      {
+        "clientId": "Agave",
+        "featureSet": 3383571666,
+        "gossip": "172.16.0.9:8001",
+        "pubkey": "8X2WwVHqWWaUfyJuznBihXzEPcm1CBaEotRb7AX4PaAq",
+        "pubsub": "172.16.0.9:8900",
+        "rpc": "172.16.0.9:8899",
+        "serveRepair": "172.16.0.9:8009",
+        "shredVersion": 20378,
+        "tpu": null,
+        "tpuForwards": null,
+        "tpuForwardsQuic": "172.16.0.9:8004",
+        "tpuQuic": "172.16.0.9:8003",
+        "tpuVote": "172.16.0.9:8005",
+        "tvu": "172.16.0.9:8002",
+        "version": "4.3.0"
+      },
+      {
+        "clientId": "SolanaLabs",
+        "featureSet": 0,
+        "gossip": "172.16.0.13:8001",
+        "pubkey": "6k7MpM9gsrFg4CURE99k5V7EvjY9vumhECuGf4aKvm6W",
+        "pubsub": null,
+        "rpc": null,
+        "serveRepair": null,
+        "shredVersion": 20378,
+        "tpu": null,
+        "tpuForwards": null,
+        "tpuForwardsQuic": null,
+        "tpuQuic": null,
+        "tpuVote": null,
+        "tvu": "172.16.0.13:8002",
+        "version": "0.0.0"
+      },
+      {
+        "clientId": "Firedancer",
+        "featureSet": 1766517360,
+        "gossip": "172.16.0.10:8001",
+        "pubkey": "5KvajXMXUneAuU3g3Dne4h1dESf79Xw5CzVS8nKmZXzA",
+        "pubsub": null,
+        "rpc": null,
+        "serveRepair": "172.16.0.10:8702",
+        "shredVersion": 20378,
+        "tpu": null,
+        "tpuForwards": null,
+        "tpuForwardsQuic": "172.16.0.10:9007",
+        "tpuQuic": "172.16.0.10:9007",
+        "tpuVote": "172.16.0.10:9001",
+        "tvu": "172.16.0.10:8003",
+        "version": "0.1.1"
+      }
+    ],
+    "sigTelemetryAlive": true
+  },
+  "lastSample": {
+    "at": 1793250929.0078504,
+    "elapsed": 602.4444997490064,
+    "votes": {
+      "jito": {
+        "lastVote": 1664,
+        "rootSlot": 1633,
+        "votePubkey": "HKbRYyChrUbwM1j1G9tnjh5VMbe7bqaLAZbCdk8N7H7c",
+        "activatedStake": 99997717120
+      },
+      "agave": {
+        "lastVote": 1664,
+        "rootSlot": 1633,
+        "votePubkey": "81d9T39xz44CTUTLe6MgRG7jmzD2icTu5frRa282kyWd",
+        "activatedStake": 99997717120
+      },
+      "firedancer": {
+        "lastVote": 1664,
+        "rootSlot": 1616,
+        "votePubkey": "13dEKrjvx6LYwbn5eaHXeNyGAHHDdY7e7rdNsKfXDieC",
+        "activatedStake": 39997717120
+      }
+    },
+    "finalized": {
+      "jito": 1668,
+      "agave": 1668,
+      "firedancer": 1669
+    },
+    "sigIdentity": "6k7MpM9gsrFg4CURE99k5V7EvjY9vumhECuGf4aKvm6W",
+    "gossip": [
+      {
+        "clientId": "JitoLabs",
+        "featureSet": 3383571666,
+        "gossip": "172.16.0.8:8001",
+        "pubkey": "3oCdejzuURmieXR2tUPZfiAEAMTsfQmHqUEWJ2ndgmvH",
+        "pubsub": "172.16.0.8:8900",
+        "rpc": "172.16.0.8:8899",
+        "serveRepair": "172.16.0.8:8009",
+        "shredVersion": 20378,
+        "tpu": null,
+        "tpuForwards": null,
+        "tpuForwardsQuic": "172.16.0.8:8004",
+        "tpuQuic": "172.16.0.8:8003",
+        "tpuVote": "172.16.0.8:8005",
+        "tvu": "172.16.0.8:8002",
+        "version": "4.3.0"
+      },
+      {
+        "clientId": "Agave",
+        "featureSet": 3383571666,
+        "gossip": "172.16.0.9:8001",
+        "pubkey": "8X2WwVHqWWaUfyJuznBihXzEPcm1CBaEotRb7AX4PaAq",
+        "pubsub": "172.16.0.9:8900",
+        "rpc": "172.16.0.9:8899",
+        "serveRepair": "172.16.0.9:8009",
+        "shredVersion": 20378,
+        "tpu": null,
+        "tpuForwards": null,
+        "tpuForwardsQuic": "172.16.0.9:8004",
+        "tpuQuic": "172.16.0.9:8003",
+        "tpuVote": "172.16.0.9:8005",
+        "tvu": "172.16.0.9:8002",
+        "version": "4.3.0"
+      },
+      {
+        "clientId": "SolanaLabs",
+        "featureSet": 0,
+        "gossip": "172.16.0.13:8001",
+        "pubkey": "6k7MpM9gsrFg4CURE99k5V7EvjY9vumhECuGf4aKvm6W",
+        "pubsub": null,
+        "rpc": null,
+        "serveRepair": null,
+        "shredVersion": 20378,
+        "tpu": null,
+        "tpuForwards": null,
+        "tpuForwardsQuic": null,
+        "tpuQuic": null,
+        "tpuVote": null,
+        "tvu": "172.16.0.13:8002",
+        "version": "0.0.0"
+      },
+      {
+        "clientId": "Firedancer",
+        "featureSet": 1766517360,
+        "gossip": "172.16.0.10:8001",
+        "pubkey": "5KvajXMXUneAuU3g3Dne4h1dESf79Xw5CzVS8nKmZXzA",
+        "pubsub": null,
+        "rpc": null,
+        "serveRepair": "172.16.0.10:8702",
+        "shredVersion": 20378,
+        "tpu": null,
+        "tpuForwards": null,
+        "tpuForwardsQuic": "172.16.0.10:9007",
+        "tpuQuic": "172.16.0.10:9007",
+        "tpuVote": "172.16.0.10:9001",
+        "tvu": "172.16.0.10:8003",
+        "version": "0.1.1"
+      }
+    ],
+    "sigTelemetryAlive": true
+  },
+  "firedancerProduction": {
+    "acceptedLeaderSlots": [
+      352,
+      353,
+      354,
+      355,
+      420,
+      421,
+      422,
+      423,
+      440,
+      441,
+      442,
+      443,
+      444,
+      445,
+      446,
+      468,
+      469,
+      470,
+      480,
+      481,
+      482,
+      483,
+      536,
+      537,
+      538,
+      539,
+      548,
+      549,
+      550,
+      551,
+      572,
+      573,
+      574,
+      575,
+      584,
+      585,
+      586,
+      587,
+      592,
+      593,
+      594,
+      595,
+      620,
+      621,
+      622,
+      632,
+      640,
+      641,
+      642,
+      643,
+      648,
+      649,
+      650,
+      651,
+      692,
+      693,
+      694,
+      695,
+      788,
+      789,
+      790,
+      791,
+      792,
+      793,
+      794,
+      795,
+      844,
+      845,
+      846,
+      847,
+      884,
+      885,
+      908,
+      909,
+      910,
+      911,
+      993,
+      994,
+      995,
+      996,
+      997,
+      998,
+      999,
+      1056,
+      1057,
+      1058,
+      1059,
+      1060,
+      1061,
+      1062,
+      1063,
+      1112,
+      1113,
+      1114,
+      1115,
+      1140,
+      1141,
+      1142,
+      1143,
+      1244,
+      1245,
+      1246,
+      1247,
+      1248,
+      1249,
+      1250,
+      1251,
+      1288,
+      1289,
+      1290,
+      1291,
+      1304,
+      1305,
+      1306,
+      1307,
+      1364,
+      1365,
+      1366,
+      1367,
+      1380,
+      1381,
+      1382,
+      1383,
+      1401,
+      1444,
+      1445,
+      1446,
+      1447,
+      1452,
+      1453,
+      1454,
+      1455,
+      1504,
+      1505,
+      1506,
+      1507,
+      1516,
+      1517,
+      1518,
+      1519,
+      1532,
+      1533,
+      1534,
+      1535,
+      1548,
+      1549,
+      1550,
+      1551,
+      1556,
+      1557,
+      1558,
+      1559,
+      1580,
+      1581,
+      1582,
+      1583,
+      1604,
+      1605,
+      1606,
+      1607,
+      1652,
+      1653,
+      1654,
+      1655,
+      1660,
+      1661,
+      1662,
+      1663
+    ],
+    "verifiedBlocks": [
+      {
+        "slot": 352,
+        "observations": {
+          "jito": {
+            "blockHeight": 312,
+            "blockTime": 1793250324,
+            "blockhash": "6qXc6U6gohipirUGcNnDmzSkoo4P5BfU2C68KEDi3dLo",
+            "parentSlot": 351,
+            "previousBlockhash": "8FnQFeu9rGKbcAN55eGBDFpVKVccZAS2hNSPZ518F6YC"
+          },
+          "agave": {
+            "blockHeight": 312,
+            "blockTime": 1793250324,
+            "blockhash": "6qXc6U6gohipirUGcNnDmzSkoo4P5BfU2C68KEDi3dLo",
+            "parentSlot": 351,
+            "previousBlockhash": "8FnQFeu9rGKbcAN55eGBDFpVKVccZAS2hNSPZ518F6YC"
+          }
+        }
+      },
+      {
+        "slot": 353,
+        "observations": {
+          "jito": {
+            "blockHeight": 313,
+            "blockTime": 1793250324,
+            "blockhash": "7NkRBJreXkG5YvNABky4vhYhgo8RvZYY52fWQ2sExkik",
+            "parentSlot": 352,
+            "previousBlockhash": "6qXc6U6gohipirUGcNnDmzSkoo4P5BfU2C68KEDi3dLo"
+          },
+          "agave": {
+            "blockHeight": 313,
+            "blockTime": 1793250324,
+            "blockhash": "7NkRBJreXkG5YvNABky4vhYhgo8RvZYY52fWQ2sExkik",
+            "parentSlot": 352,
+            "previousBlockhash": "6qXc6U6gohipirUGcNnDmzSkoo4P5BfU2C68KEDi3dLo"
+          }
+        }
+      },
+      {
+        "slot": 354,
+        "observations": {
+          "jito": {
+            "blockHeight": 314,
+            "blockTime": 1793250326,
+            "blockhash": "4uxrUfkY45E5rxYabej2TLYESzBGJNn2VrAZVHgcGrYh",
+            "parentSlot": 353,
+            "previousBlockhash": "7NkRBJreXkG5YvNABky4vhYhgo8RvZYY52fWQ2sExkik"
+          },
+          "agave": {
+            "blockHeight": 314,
+            "blockTime": 1793250326,
+            "blockhash": "4uxrUfkY45E5rxYabej2TLYESzBGJNn2VrAZVHgcGrYh",
+            "parentSlot": 353,
+            "previousBlockhash": "7NkRBJreXkG5YvNABky4vhYhgo8RvZYY52fWQ2sExkik"
+          }
+        }
+      }
+    ]
+  },
+  "transferCount": 27,
+  "firedancerTransactions": [
+    {
+      "signature": "5rSHRF5QATJj8oS9YPcHjD8gm5zzBrDuUHswsa7VDADqyZVUQ7NX2ZosnMe8U2UWPYiZHBH6aghjeRDyYwXxxDCJ",
+      "recipient": "GAAZWzHiqMfvXedYtgxWQPvVmchwWHT9hAd5ot7VcQpQ",
+      "lamports": 1000000000,
+      "slot": 353,
+      "leader": "5KvajXMXUneAuU3g3Dne4h1dESf79Xw5CzVS8nKmZXzA",
+      "observations": {
+        "jito": {
+          "slot": 353,
+          "recipientDelta": 1000000000
+        },
+        "agave": {
+          "slot": 353,
+          "recipientDelta": 1000000000
+        }
+      }
+    },
+    {
+      "signature": "4XLZfCLcUfMJxXdzJmD4EVcYU6Lae2u9NxQrhCYU5uhfWrm5FHRAfHyZGGiTwvGTpnUkgj2XDZVfsi8cpukq2VxX",
+      "recipient": "GAAZWzHiqMfvXedYtgxWQPvVmchwWHT9hAd5ot7VcQpQ",
+      "lamports": 1000000000,
+      "slot": 445,
+      "leader": "5KvajXMXUneAuU3g3Dne4h1dESf79Xw5CzVS8nKmZXzA",
+      "observations": {
+        "jito": {
+          "slot": 445,
+          "recipientDelta": 1000000000
+        },
+        "agave": {
+          "slot": 445,
+          "recipientDelta": 1000000000
+        }
+      }
+    },
+    {
+      "signature": "4GWGuCS7Ks5KRSPQk6qkjrftqkGA8NS4oEyxn5KnwNEZc77S6584vr24t3kMjEDccg2hDS3sAoPPxBrwh9DWDQRd",
+      "recipient": "GAAZWzHiqMfvXedYtgxWQPvVmchwWHT9hAd5ot7VcQpQ",
+      "lamports": 1000000000,
+      "slot": 592,
+      "leader": "5KvajXMXUneAuU3g3Dne4h1dESf79Xw5CzVS8nKmZXzA",
+      "observations": {
+        "jito": {
+          "slot": 592,
+          "recipientDelta": 1000000000
+        },
+        "agave": {
+          "slot": 592,
+          "recipientDelta": 1000000000
+        }
+      }
+    },
+    {
+      "signature": "2C4ziAAt1s3n8XsLEuoortEXYPQBSoXBdeBMQWTpoxfnHZmttPzGQwPErNYo7bJRDi8HRUi2gnLYCAdDJf9A8uA2",
+      "recipient": "GAAZWzHiqMfvXedYtgxWQPvVmchwWHT9hAd5ot7VcQpQ",
+      "lamports": 1000000000,
+      "slot": 643,
+      "leader": "5KvajXMXUneAuU3g3Dne4h1dESf79Xw5CzVS8nKmZXzA",
+      "observations": {
+        "jito": {
+          "slot": 643,
+          "recipientDelta": 1000000000
+        },
+        "agave": {
+          "slot": 643,
+          "recipientDelta": 1000000000
+        }
+      }
+    },
+    {
+      "signature": "2fYid1cDG7XvC7F86GumfTTsqVUE1vet7acY8FUZvtkswqDFouqtK2QMoeqgYN3uUefMCRL82ij45JmsT1d9Fnsm",
+      "recipient": "GAAZWzHiqMfvXedYtgxWQPvVmchwWHT9hAd5ot7VcQpQ",
+      "lamports": 1000000000,
+      "slot": 1058,
+      "leader": "5KvajXMXUneAuU3g3Dne4h1dESf79Xw5CzVS8nKmZXzA",
+      "observations": {
+        "jito": {
+          "slot": 1058,
+          "recipientDelta": 1000000000
+        },
+        "agave": {
+          "slot": 1058,
+          "recipientDelta": 1000000000
+        }
+      }
+    },
+    {
+      "signature": "4o6UFAhPf7SdYLNqMfyzXcG7ES9Js6fx9fhUmZiDrszN5T2MYotHvoSAk29ShysHheRougmt7yyeYcpxQadXo1pM",
+      "recipient": "GAAZWzHiqMfvXedYtgxWQPvVmchwWHT9hAd5ot7VcQpQ",
+      "lamports": 1000000000,
+      "slot": 1401,
+      "leader": "5KvajXMXUneAuU3g3Dne4h1dESf79Xw5CzVS8nKmZXzA",
+      "observations": {
+        "jito": {
+          "slot": 1401,
+          "recipientDelta": 1000000000
+        },
+        "agave": {
+          "slot": 1401,
+          "recipientDelta": 1000000000
+        }
+      }
+    },
+    {
+      "signature": "3HPEF5iB55bTEsnNUEGh46Q1b8wiQvqCGiRv9EdXmtxogV2D7JEUoh6mcyFTRHujtboAy2EEkJhm6ZB5YDrmxLNg",
+      "recipient": "GAAZWzHiqMfvXedYtgxWQPvVmchwWHT9hAd5ot7VcQpQ",
+      "lamports": 1000000000,
+      "slot": 1455,
+      "leader": "5KvajXMXUneAuU3g3Dne4h1dESf79Xw5CzVS8nKmZXzA",
+      "observations": {
+        "jito": {
+          "slot": 1455,
+          "recipientDelta": 1000000000
+        },
+        "agave": {
+          "slot": 1455,
+          "recipientDelta": 1000000000
+        }
+      }
+    },
+    {
+      "signature": "4yYHsA2fgA2PLw9ZQTJhRUe81z5tt9WjpRB2P2KAVLv2PhNZpiEgVsTWe4hNAKAroaXka4U5bRyPTrQoe1YyZacM",
+      "recipient": "GAAZWzHiqMfvXedYtgxWQPvVmchwWHT9hAd5ot7VcQpQ",
+      "lamports": 1000000000,
+      "slot": 1663,
+      "leader": "5KvajXMXUneAuU3g3Dne4h1dESf79Xw5CzVS8nKmZXzA",
+      "observations": {
+        "jito": {
+          "slot": 1663,
+          "recipientDelta": 1000000000
+        },
+        "agave": {
+          "slot": 1663,
+          "recipientDelta": 1000000000
+        }
+      }
+    }
+  ],
+  "recipientAccounts": {
+    "jito": {
+      "context": {
+        "apiVersion": "4.3.0",
+        "slot": 1668
+      },
+      "value": {
+        "data": [
+          "",
+          "base64"
+        ],
+        "executable": false,
+        "lamports": 27000000000,
+        "owner": "11111111111111111111111111111111",
+        "rentEpoch": 18446744073709551615,
+        "space": 0
+      }
+    },
+    "agave": {
+      "context": {
+        "apiVersion": "4.3.0",
+        "slot": 1668
+      },
+      "value": {
+        "data": [
+          "",
+          "base64"
+        ],
+        "executable": false,
+        "lamports": 27000000000,
+        "owner": "11111111111111111111111111111111",
+        "rentEpoch": 18446744073709551615,
+        "space": 0
+      }
+    },
+    "firedancer": {
+      "context": {
+        "apiVersion": "4.3.0-rc.0",
+        "slot": 1669
+      },
+      "value": {
+        "executable": false,
+        "lamports": 27000000000,
+        "owner": "11111111111111111111111111111111",
+        "rentEpoch": 18446744073709551615,
+        "space": 0,
+        "data": [
+          "",
+          "base64"
+        ]
+      }
+    }
+  },
+  "transferErrors": [
+    "CLI failed: Error: Account 3oCdejzuURmieXR2tUPZfiAEAMTsfQmHqUEWJ2ndgmvH has insufficient funds for spend (1 SOL) + fee (0.000005 SOL)\n",
+    "CLI failed: Error: Account 3oCdejzuURmieXR2tUPZfiAEAMTsfQmHqUEWJ2ndgmvH has insufficient funds for spend (1 SOL) + fee (0.000005 SOL)\n",
+    "CLI failed: Error: Account 3oCdejzuURmieXR2tUPZfiAEAMTsfQmHqUEWJ2ndgmvH has insufficient funds for spend (1 SOL) + fee (0.000005 SOL)\n",
+    "CLI failed: Error: Account 3oCdejzuURmieXR2tUPZfiAEAMTsfQmHqUEWJ2ndgmvH has insufficient funds for spend (1 SOL) + fee (0.000005 SOL)\n",
+    "CLI failed: Error: Account 3oCdejzuURmieXR2tUPZfiAEAMTsfQmHqUEWJ2ndgmvH has insufficient funds for spend (1 SOL) + fee (0.000005 SOL)\n",
+    "CLI failed: Error: Account 3oCdejzuURmieXR2tUPZfiAEAMTsfQmHqUEWJ2ndgmvH has insufficient funds for spend (1 SOL) + fee (0.000005 SOL)\n"
+  ],
+  "sigObserver": {
+    "evidenceLevel": "joined",
+    "voting": false,
+    "identity": "6k7MpM9gsrFg4CURE99k5V7EvjY9vumhECuGf4aKvm6W",
+    "serviceIp": "172.16.0.13",
+    "continuousReplay": false,
+    "transactionExecution": false
+  },
+  "evidenceFiles": [
+    "rpc.jsonl",
+    "samples.jsonl",
+    "transfers.jsonl",
+    "cli.jsonl",
+    "sig-bootstrap.json"
+  ]
+}

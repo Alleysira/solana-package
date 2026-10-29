@@ -18,13 +18,13 @@ if (( $(free_kib) < (floor_gib + 4) * 1024 * 1024 )); then
   echo "Need at least $((floor_gib + 4)) GiB free to attempt this cached source build." >&2
   exit 1
 fi
-test "$(git -C "$source_dir" rev-parse HEAD)" = 07270be44c712356d8fb94dff8e7a1edd425dbff
+test "$(git -C "$source_dir" rev-parse HEAD)" = 9a9756848e20745ab5e720741fef6c81dacbf455
 if [[ -n "$(git -C "$source_dir" status --porcelain --untracked-files=no)" ]]; then
   echo "Jito source has tracked modifications; refusing an unrecorded source build." >&2
   exit 1
 fi
 
-build_args=(--platform linux/arm64 --load --progress plain)
+build_args=(--platform linux/amd64 --load --progress plain)
 if [[ -n "${BUILD_CA_PEM:-}" ]]; then
   build_args+=(--secret id=build_ca,env=BUILD_CA_PEM)
 fi
@@ -50,4 +50,4 @@ done
 wait "$build_pid"
 trap - EXIT
 
-docker run --rm --platform linux/arm64 "$image" agave-validator --version
+docker run --rm --platform linux/amd64 "$image" agave-validator --version

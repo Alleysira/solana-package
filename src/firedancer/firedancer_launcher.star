@@ -3,12 +3,13 @@
 constants = import_module("../package_io/constants.star")
 
 
-def launch_firedancer(plan, genesis_artifact, image):
+def launch_firedancer(plan, genesis_artifact, image, alpenglow=False):
     script = """
 set -euo pipefail
 source /data/meta.env
 BOOTSTRAP_IP="$(getent hosts val-bootstrap | awk '{print $1}' | head -n1)"
 MY_IP="$(hostname -I | awk '{print $1}')"
+ALPENGLOW="{ALPENGLOW_VALUE}"
 test -n "$BOOTSTRAP_IP" && test -n "$MY_IP"
 mkdir -p /tmp/firedancer/snapshots
 chown -R firedancer:firedancer /tmp/firedancer
@@ -29,6 +30,10 @@ port = 8001
 expected_genesis_hash = "$GENESIS_HASH"
 expected_shred_version = $SHRED_VERSION
 wait_for_vote_to_start_leader = false
+# Alpenglow replaces the Tower path: repair->rotor, poh->motor, plus votor.
+# Must match the genesis (solana-genesis --alpenglow) or the node cannot
+# participate in consensus.
+alpenglow = ${ALPENGLOW}
 [snapshots]
 genesis_download = false
 incremental_snapshots = false
@@ -72,6 +77,7 @@ firedancer configure init hugetlbfs --config /tmp/firedancer.toml
 firedancer configure check sysctl --config /tmp/firedancer.toml
 exec firedancer run --config /tmp/firedancer.toml
 """
+    script = script.replace("{ALPENGLOW_VALUE}", "true" if alpenglow else "false")
     service = plan.add_service(
         name="val-firedancer",
         config=ServiceConfig(

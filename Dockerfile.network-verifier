@@ -1,5 +1,5 @@
 # Verification tooling only: this service is not a validator.
-FROM solana-diff/agave-validator:4.3.0-amd64
+FROM solana-diff/agave-validator:4.4.0-amd64
 USER root
 RUN apt-get update && apt-get install -y --no-install-recommends python3 && rm -rf /var/lib/apt/lists/*
 ENV PATH=/opt/agave/bin:$PATH

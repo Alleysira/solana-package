@@ -9,21 +9,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 ENV RUSTUP_HOME=/opt/rustup CARGO_HOME=/opt/cargo PATH=/opt/cargo/bin:$PATH
 RUN curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs | \
-    sh -s -- -y --profile minimal --default-toolchain 1.97.1 --no-modify-path
+    sh -s -- -y --profile minimal --default-toolchain 1.98.1 --no-modify-path
 
 COPY --from=agave_source / /src/agave/
 WORKDIR /src/agave
-ARG AGAVE_COMMIT=825efd18292aff6ffcf9daa0f7612f21b3531a72
-ARG AGAVE_CARGO_LOCK_SHA256=8a3a8fb8d59642e53b633be3f3b9b5f6bbf347c5337fea82d00f37ba595bb8fb
+ARG AGAVE_COMMIT=9ef63128134af559561f6a91a641ec01e665c70d
+ARG AGAVE_CARGO_LOCK_SHA256=1e6fe8ad3523e2cb00a87406b4d59c13142b3f505b43ca169727a9ec626222c5
 ARG BUILD_JOBS=2
 ENV CI_COMMIT=${AGAVE_COMMIT} \
     CARGO_BUILD_JOBS=${BUILD_JOBS} CARGO_INCREMENTAL=0 \
     CARGO_PROFILE_RELEASE_DEBUG=0 CARGO_PROFILE_RELEASE_STRIP=symbols \
     CARGO_PROFILE_RELEASE_LTO=false RUSTFLAGS="-C link-arg=-fuse-ld=lld" \
     CXXFLAGS=-g0 CARGO_NET_GIT_FETCH_WITH_CLI=true
-RUN --mount=type=cache,id=solana-agave430-validator-registry,target=/opt/cargo/registry \
-    --mount=type=cache,id=solana-agave430-validator-git,target=/opt/cargo/git \
-    --mount=type=cache,id=solana-agave430-validator-target,target=/src/agave/target \
+RUN --mount=type=cache,id=solana-agave440-validator-registry,target=/opt/cargo/registry \
+    --mount=type=cache,id=solana-agave440-validator-git,target=/opt/cargo/git \
+    --mount=type=cache,id=solana-agave440-validator-target,target=/src/agave/target \
     --mount=type=secret,id=build_ca \
     if [ -f /run/secrets/build_ca ]; then \
       cat /etc/ssl/certs/ca-certificates.crt /run/secrets/build_ca > /tmp/build-ca.pem; \
@@ -36,7 +36,7 @@ RUN --mount=type=cache,id=solana-agave430-validator-registry,target=/opt/cargo/r
       --no-build-platform-tools --no-spl-token /opt/agave; \
     sha256sum -c /tmp/cargo-lock.sha256; \
     /opt/agave/bin/agave-validator --version; \
-    printf 'commit=%s\nrust=1.97.1\nprofile=release,lto=false,debug=0,strip=symbols\n' \
+    printf 'commit=%s\nrust=1.98.1\nprofile=release,lto=false,debug=0,strip=symbols\n' \
       "$AGAVE_COMMIT" > /opt/agave/BUILD-INFO; \
     rm -f /tmp/build-ca.pem
 
@@ -50,8 +50,8 @@ ENV PATH=/opt/agave/bin:$PATH
 USER validator:validator
 WORKDIR /home/validator
 LABEL org.opencontainers.image.source="https://github.com/anza-xyz/agave" \
-      org.opencontainers.image.version="v4.3.0" \
-      org.opencontainers.image.revision="825efd18292aff6ffcf9daa0f7612f21b3531a72" \
+      org.opencontainers.image.version="v4.4.0" \
+      org.opencontainers.image.revision="9ef63128134af559561f6a91a641ec01e665c70d" \
       org.opencontainers.image.build="native-linux-amd64-source-validator"
 ENTRYPOINT ["/usr/bin/tini", "-g", "--"]
 CMD ["agave-validator", "--version"]

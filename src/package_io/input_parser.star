@@ -39,6 +39,7 @@ def input_parser(plan, args):
     # ── genesis knobs (all optional, default to constants) ─────────────────
     genesis = args.get("genesis", {})
     genesis_config = {
+        "alpenglow": genesis.get("alpenglow", False),
         "cluster_type": genesis.get("cluster_type", constants.CLUSTER_TYPE),
         "hashes_per_tick": genesis.get("hashes_per_tick", constants.HASHES_PER_TICK),
         "ticks_per_slot": genesis.get("ticks_per_slot", constants.TICKS_PER_SLOT),

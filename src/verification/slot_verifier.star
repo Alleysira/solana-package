@@ -24,18 +24,22 @@ def prepare_sig_snapshot(plan, verifier):
 
 def wait_for_slots(plan, topology, slots_target, global_node_selectors={}, observation_seconds=600):
     # Capture actual binaries, independently of RPC version advertisements.
-    for name, command in [
+    checks = [
         (topology.bootstrap.name, ["bash", "-c", "export PATH=/opt/jito/bin:$PATH; agave-validator --version"]),
         (topology.joiner.name, ["bash", "-c", "export PATH=/opt/agave/bin:$PATH; agave-validator --version"]),
         (topology.firedancer.name, ["firedancer", "version"]),
-        (topology.sig.name, ["bash", "-c", "kill -0 \"$(cat /var/lib/sig/sig.pid)\" && cat /opt/sig/BUILD-INFO"]),
-    ]:
+    ]
+    # SIG is not launched under Alpenglow (no votor/BLS support), so only
+    # check it when the topology actually contains one.
+    if topology.sig != None:
+        checks.append((topology.sig.name, ["bash", "-c", "kill -0 \"$(cat /var/lib/sig/sig.pid)\" && cat /opt/sig/BUILD-INFO"]))
+    for name, command in checks:
         plan.exec(service_name=name, recipe=ExecRecipe(command=command), acceptable_codes=[0])
     command = "python3 /opt/verification/verify_network.py observe --observation-seconds {0} --slots-target {1}".format(observation_seconds, slots_target)
     plan.exec(
         service_name=topology.verifier.name,
         recipe=ExecRecipe(command=["bash", "-c",
-            "rm -f /data/verification/observer-exit-code; nohup bash -c '" + command
+            "mkdir -p /data/verification; rm -f /data/verification/observer-exit-code; nohup bash -c '" + command
             + "; code=$?; echo $code > /data/verification/observer-exit-code' > /data/verification/observer.log 2>&1 </dev/null &",
         ]),
         acceptable_codes=[0],
@@ -59,11 +63,12 @@ def wait_for_slots(plan, topology, slots_target, global_node_selectors={}, obser
         acceptable_codes=[0],
     )
     # A live container with an exited SIG child is not observer liveness.
-    plan.exec(
-        service_name=topology.sig.name,
-        recipe=ExecRecipe(command=["bash", "-c", "kill -0 \"$(cat /var/lib/sig/sig.pid)\""]),
-        acceptable_codes=[0],
-    )
+    if topology.sig != None:
+        plan.exec(
+            service_name=topology.sig.name,
+            recipe=ExecRecipe(command=["bash", "-c", "kill -0 \"$(cat /var/lib/sig/sig.pid)\""]),
+            acceptable_codes=[0],
+        )
     result = plan.exec(
         service_name=topology.verifier.name,
         recipe=ExecRecipe(command=["python3", "-c",

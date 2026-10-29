@@ -1,0 +1,27 @@
+{
+  ".": {
+    "commit": "db0827faade88366d665fc5059eff96d523d1434",
+    "trackedChanges": " M AGENTS.md\n"
+  },
+  "firedancer": {
+    "commit": "58b02033050ec8d8d206b14e52113d4badb1e16a",
+    "trackedChanges": ""
+  },
+  "agave": {
+    "commit": "825efd18292aff6ffcf9daa0f7612f21b3531a72",
+    "trackedChanges": ""
+  },
+  "jito-solana": {
+    "commit": "07270be44c712356d8fb94dff8e7a1edd425dbff",
+    "trackedChanges": ""
+  },
+  "sig": {
+    "commit": "0c1e96c1ef335ecf9f62e337477faf5bdab0d83a",
+    "trackedChanges": ""
+  },
+  "solana-package": {
+    "commit": "02d69711fb1e3dacf427703041874a2845ad83a8",
+    "trackedChanges": ""
+  },
+  "verificationScriptSha256": "3526ba2e03e3ccaf86d5f1aa0fe6b2a0dc20843c123a14358b2261c77c223e7c"
+}

@@ -220,9 +220,10 @@ class Network:
             require(identity in known, f"{role} missing from peer gossip")
             require(known[identity]["shredVersion"] == int(self.env["SHRED_VERSION"]),
                     f"{role} shred version differs")
-        sig_identity = validate_sig_peer(nodes, sig_ip, sig_identity)
-        with urllib.request.urlopen("http://sig-observer:9110/metrics", timeout=5) as response:
-            require(response.status == 200 and bool(response.read()), "SIG telemetry not alive")
+        if sig_ip is not None:
+            sig_identity = validate_sig_peer(nodes, sig_ip, sig_identity)
+            with urllib.request.urlopen("http://sig-observer:9110/metrics", timeout=5) as response:
+                require(response.status == 200 and bool(response.read()), "SIG telemetry not alive")
         votes = validate_votes(self.rpc("jito", "getVoteAccounts"), self.identities)
         for role, key in [("jito", "BOOTSTRAP_VOTE"), ("agave", "JOINER_VOTE"),
                           ("firedancer", "FIREDANCER_VOTE")]:
@@ -230,7 +231,7 @@ class Network:
         finalized = {r: self.rpc(r, "getSlot", [{"commitment": "finalized"}]) for r in RPCS}
         result = {"at": time.time(), "elapsed": time.monotonic() - started, "votes": votes,
                   "finalized": finalized, "sigIdentity": sig_identity, "gossip": nodes,
-                  "sigTelemetryAlive": True}
+                  "sigTelemetryAlive": sig_ip is not None}
         self.record("samples.jsonl", result)
         return result
 
@@ -256,8 +257,13 @@ class Network:
 
     def observe(self, duration, slots_target):
         require(duration >= 60, "observation_seconds must be at least 60")
-        sig_ip = socket.gethostbyname("sig-observer")
-        self.wait(lambda: self.sample(time.monotonic(), sig_ip), 900, "three voters and SIG")
+        try:
+            sig_ip = socket.gethostbyname("sig-observer")
+        except socket.gaierror:
+            # SIG is not part of an Alpenglow cluster (no votor/BLS support).
+            sig_ip = None
+        self.wait(lambda: self.sample(time.monotonic(), sig_ip), 900,
+                  "three voters and SIG" if sig_ip else "three voting validators")
         genesis = {r: self.rpc(r, "getGenesisHash") for r in RPCS}
         require(set(genesis.values()) == {self.env["GENESIS_HASH"]}, "genesis mismatch")
         versions = {r: self.rpc(r, "getVersion") for r in RPCS}
@@ -320,7 +326,7 @@ class Network:
         blocks = self.verify_fd_blocks(samples[0]["finalized"]["jito"], final["finalized"]["jito"])
         return {"schemaVersion": 2, "result": "PASS",
                 "verifiedAt": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-                "topology": "three-voting-validators-plus-SIG-observer", "genesis": genesis,
+                "topology": ("three-voting-validators-plus-SIG-observer" if sig_ip else "three-voting-validators"), "genesis": genesis,
                 "versions": versions, "identities": self.identities, "observationSeconds": duration,
                 "pollSeconds": 10, "sampleCount": len(samples), "firstSample": samples[0],
                 "lastSample": final, "firedancerProduction": blocks,

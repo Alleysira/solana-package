@@ -27,10 +27,10 @@ TPU_FW_PORT_NUM = 8004
 
 # ── Client images (all built + verified; see clients.lock.json) ──────────────
 # Native Linux x86_64 images; source pins and run image IDs are recorded.
-JITO_IMAGE = "solana-diff/jito-solana:4.3.0-jito-amd64"
-AGAVE_IMAGE = "solana-diff/agave-validator:4.3.0-amd64"
+JITO_IMAGE = "solana-diff/jito-solana:4.4.0-jito-amd64"
+AGAVE_IMAGE = "solana-diff/agave-validator:4.4.0-amd64"
 SIG_IMAGE = "solana-diff/sig:v0.2.0-amd64"
-FIREDANCER_IMAGE = "solana-diff/firedancer:full-58b02033"
+FIREDANCER_IMAGE = "solana-diff/firedancer:full-6286f99e"
 
 # The genesis-generator image must have solana-genesis + solana-keygen +
 # solana-validator (for the bank-hash probe). The Agave image has all three.
@@ -67,4 +67,4 @@ ROLE_VOTING_JOINER = "voting-joiner"
 ROLE_SIG_OBSERVER = "sig-observer"
 
 # Tooling service, not a validator or additional client.
-VERIFIER_IMAGE = "solana-diff/network-verifier:agave-4.3.0-amd64-v1"
+VERIFIER_IMAGE = "solana-diff/network-verifier:agave-4.4.0-amd64-v1"

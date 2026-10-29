@@ -9,21 +9,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 ENV RUSTUP_HOME=/opt/rustup CARGO_HOME=/opt/cargo PATH=/opt/cargo/bin:$PATH
 RUN curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs | \
-    sh -s -- -y --profile minimal --default-toolchain 1.97.1 --no-modify-path
+    sh -s -- -y --profile minimal --default-toolchain 1.98.1 --no-modify-path
 
 COPY --from=jito_source / /src/agave/
 WORKDIR /src/agave
-ARG JITO_COMMIT=07270be44c712356d8fb94dff8e7a1edd425dbff
-ARG JITO_CARGO_LOCK_SHA256=42c907d3a14b86873b6be1545490a346b25d594c7bd8095ecef06cf1c6efab11
+ARG JITO_COMMIT=9a9756848e20745ab5e720741fef6c81dacbf455
+ARG JITO_CARGO_LOCK_SHA256=6168887ccd6e4db035a55e5311263bb1fe012718f0f61cb362bc470b70cabb5a
 ARG BUILD_JOBS=2
 ENV CI_COMMIT=${JITO_COMMIT} \
     CARGO_BUILD_JOBS=${BUILD_JOBS} CARGO_INCREMENTAL=0 \
     CARGO_PROFILE_RELEASE_DEBUG=0 CARGO_PROFILE_RELEASE_STRIP=symbols \
     CARGO_PROFILE_RELEASE_LTO=false RUSTFLAGS="-C link-arg=-fuse-ld=lld" \
     CXXFLAGS=-g0 CARGO_NET_GIT_FETCH_WITH_CLI=true
-RUN --mount=type=cache,id=solana-jito430-registry,target=/opt/cargo/registry \
-    --mount=type=cache,id=solana-jito430-git,target=/opt/cargo/git \
-    --mount=type=cache,id=solana-jito430-target,target=/src/agave/target \
+RUN --mount=type=cache,id=solana-jito440-registry,target=/opt/cargo/registry \
+    --mount=type=cache,id=solana-jito440-git,target=/opt/cargo/git \
+    --mount=type=cache,id=solana-jito440-target,target=/src/agave/target \
     --mount=type=secret,id=build_ca \
     if [ -f /run/secrets/build_ca ]; then \
       cat /etc/ssl/certs/ca-certificates.crt /run/secrets/build_ca > /tmp/build-ca.pem; \
@@ -36,7 +36,7 @@ RUN --mount=type=cache,id=solana-jito430-registry,target=/opt/cargo/registry \
       --no-build-platform-tools --no-spl-token /opt/jito; \
     sha256sum -c /tmp/cargo-lock.sha256; \
     /opt/jito/bin/agave-validator --version; \
-    printf 'commit=%s\nrust=1.97.1\nprofile=release,lto=false,debug=0,strip=symbols\n' \
+    printf 'commit=%s\nrust=1.98.1\nprofile=release,lto=false,debug=0,strip=symbols\n' \
       "$JITO_COMMIT" > /opt/jito/BUILD-INFO; \
     rm -f /tmp/build-ca.pem
 
@@ -50,8 +50,8 @@ ENV PATH=/opt/jito/bin:$PATH
 USER validator:validator
 WORKDIR /home/validator
 LABEL org.opencontainers.image.source="https://github.com/jito-foundation/jito-solana" \
-      org.opencontainers.image.version="v4.3.0-jito" \
-      org.opencontainers.image.revision="07270be44c712356d8fb94dff8e7a1edd425dbff" \
+      org.opencontainers.image.version="v4.4.0-jito" \
+      org.opencontainers.image.revision="9a9756848e20745ab5e720741fef6c81dacbf455" \
       org.opencontainers.image.build="native-linux-amd64-source"
 ENTRYPOINT ["/usr/bin/tini", "-g", "--"]
 CMD ["agave-validator", "--version"]

@@ -18,13 +18,13 @@ if (( $(free_kib) < (floor_gib + 2) * 1024 * 1024 )); then
   echo "Need at least $((floor_gib + 2)) GiB free to attempt this cached build." >&2
   exit 1
 fi
-test "$(git -C "$source_dir" rev-parse HEAD)" = 825efd18292aff6ffcf9daa0f7612f21b3531a72
+test "$(git -C "$source_dir" rev-parse HEAD)" = 9ef63128134af559561f6a91a641ec01e665c70d
 if [[ -n "$(git -C "$source_dir" status --porcelain --untracked-files=no)" ]]; then
   echo "Agave source has tracked modifications; refusing an unrecorded source build." >&2
   exit 1
 fi
 
-build_args=(--platform linux/arm64 --load --progress plain)
+build_args=(--platform linux/amd64 --load --progress plain)
 if [[ -n "${BUILD_CA_PEM:-}" ]]; then
   build_args+=(--secret id=build_ca,env=BUILD_CA_PEM)
 fi
@@ -50,4 +50,4 @@ done
 wait "$build_pid"
 trap - EXIT
 
-docker run --rm --platform linux/arm64 "$image" agave-validator --version
+docker run --rm --platform linux/amd64 "$image" agave-validator --version

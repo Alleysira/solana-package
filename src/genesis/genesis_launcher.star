@@ -77,6 +77,9 @@ def generate_genesis(plan, genesis_config):
         "cd \"$WORK\"",
         "",
         'GEN_CLUSTER_TYPE="{0}"'.format(genesis_config["cluster_type"]),
+        # Alpenglow changes PoH to low-power mode and injects the genesis
+        # certificate account, so it must be decided at genesis time.
+        'GEN_ALPENGLLOW_ARGS="{0}"'.format("--alpenglow" if genesis_config.get("alpenglow", False) else ""),
         'GEN_HASHES_PER_TICK="{0}"'.format(genesis_config["hashes_per_tick"]),
         'GEN_TICKS_PER_SLOT="{0}"'.format(genesis_config["ticks_per_slot"]),
         'GEN_SLOTS_PER_EPOCH="{0}"'.format(genesis_config["slots_per_epoch"]),
@@ -110,7 +113,7 @@ def generate_genesis(plan, genesis_config):
         'echo "[genesis] running solana-genesis (two bootstrap validators plus staked Firedancer account)"',
         '{ echo "validator_accounts:"; echo "  - balance_lamports: $GEN_BS_LAMPORTS"; echo "    stake_lamports: $GEN_FD_STAKE_LAMPORTS"; echo "    identity_account: $firedancer_identity"; echo "    vote_account: $firedancer_vote"; echo "    stake_account: $firedancer_stake"; echo "    bls_pubkey: $firedancer_bls"; } > "$WORK/firedancer-validator.yaml"',
         # Single-line solana-genesis invocation (was multi-line with \ continuations).
-        'genesis_output="$(solana-genesis --ledger "$WORK/genesis-ledger" --bootstrap-validator "$bootstrap_identity" "$bootstrap_vote" "$bootstrap_stake" --bootstrap-validator "$joiner_identity" "$joiner_vote" "$joiner_stake" --bootstrap-validator-bls-pubkey "$bootstrap_bls" --bootstrap-validator-bls-pubkey "$joiner_bls" --validator-accounts-file "$WORK/firedancer-validator.yaml" --faucet-pubkey "$WORK/faucet.json" --faucet-lamports "$GEN_FAUCET_LAMPORTS" --bootstrap-validator-lamports "$GEN_BS_LAMPORTS" --bootstrap-validator-stake-lamports "$GEN_BS_STAKE_LAMPORTS" --cluster-type "$GEN_CLUSTER_TYPE" --hashes-per-tick "$GEN_HASHES_PER_TICK" --ticks-per-slot "$GEN_TICKS_PER_SLOT" --slots-per-epoch "$GEN_SLOTS_PER_EPOCH")"',
+        'genesis_output="$(solana-genesis --ledger "$WORK/genesis-ledger" --bootstrap-validator "$bootstrap_identity" "$bootstrap_vote" "$bootstrap_stake" --bootstrap-validator "$joiner_identity" "$joiner_vote" "$joiner_stake" --bootstrap-validator-bls-pubkey "$bootstrap_bls" --bootstrap-validator-bls-pubkey "$joiner_bls" --validator-accounts-file "$WORK/firedancer-validator.yaml" --faucet-pubkey "$WORK/faucet.json" --faucet-lamports "$GEN_FAUCET_LAMPORTS" --bootstrap-validator-lamports "$GEN_BS_LAMPORTS" --bootstrap-validator-stake-lamports "$GEN_BS_STAKE_LAMPORTS" --cluster-type "$GEN_CLUSTER_TYPE" --hashes-per-tick "$GEN_HASHES_PER_TICK" --ticks-per-slot "$GEN_TICKS_PER_SLOT" --slots-per-epoch "$GEN_SLOTS_PER_EPOCH" $GEN_ALPENGLLOW_ARGS)"',
         # grep+awk extraction (no .format on joined string → literal braces OK).
         # \\$2 in Starlark → \$2 → bash double-quote → $2 → awk field 2.
         'genesis_hash="$(echo "$genesis_output" | grep "Genesis hash:" | awk -F": " "{print \\$2}" | tr -d "[:space:]")"',

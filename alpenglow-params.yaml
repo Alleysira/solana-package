@@ -1,0 +1,7 @@
+# Four-client network with Alpenglow consensus enabled at genesis.
+#
+# SIG is intentionally absent: SIG v2 implements only Tower BFT and has no
+# votor/BLS path, so it cannot follow an Alpenglow cluster. The Kurtosis
+# package skips it automatically when genesis.alpenglow is true.
+genesis:
+  alpenglow: true
