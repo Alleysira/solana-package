@@ -1,0 +1,49 @@
+# syntax=docker/dockerfile:1
+# Checked Agave validator for the P2P bug-hunting profile.
+#
+# Only agave-validator is rebuilt, with overflow checks, debug assertions and
+# line tables (symbolized panics); every other tool comes unchanged from the
+# release image, so genesis/keygen behaviour is identical to the release
+# profile. A panic here that the release build does not hit is a LEAD, not a
+# finding: release impact has to be shown separately.
+ARG DEBIAN_IMAGE=debian:bookworm-slim@sha256:3783cc01769c7b2b1b83a5c5ad96c815348e28ed7da68e2e3687004faa906251
+ARG BASE_IMAGE=solana-diff/agave-validator:4.4.0-amd64
+
+FROM ${DEBIAN_IMAGE} AS builder
+SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates curl git build-essential clang libclang-dev lld cmake \
+    pkg-config libssl-dev libudev-dev zlib1g-dev protobuf-compiler jq \
+    && rm -rf /var/lib/apt/lists/*
+ENV RUSTUP_HOME=/opt/rustup CARGO_HOME=/opt/cargo PATH=/opt/cargo/bin:$PATH
+RUN curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs | \
+    sh -s -- -y --profile minimal --default-toolchain 1.98.1 --no-modify-path
+
+COPY --from=agave_source / /src/agave/
+WORKDIR /src/agave
+ARG AGAVE_COMMIT=9ef63128134af559561f6a91a641ec01e665c70d
+ARG AGAVE_CARGO_LOCK_SHA256=1e6fe8ad3523e2cb00a87406b4d59c13142b3f505b43ca169727a9ec626222c5
+ARG BUILD_JOBS=16
+ENV CI_COMMIT=${AGAVE_COMMIT} \
+    CARGO_BUILD_JOBS=${BUILD_JOBS} CARGO_INCREMENTAL=0 \
+    CARGO_PROFILE_RELEASE_DEBUG=line-tables-only CARGO_PROFILE_RELEASE_STRIP=none \
+    CARGO_PROFILE_RELEASE_LTO=false \
+    CARGO_PROFILE_RELEASE_OVERFLOW_CHECKS=true \
+    CARGO_PROFILE_RELEASE_DEBUG_ASSERTIONS=true \
+    RUSTFLAGS="-C link-arg=-fuse-ld=lld" \
+    CXXFLAGS=-g0 CARGO_NET_GIT_FETCH_WITH_CLI=true
+RUN --mount=type=cache,id=solana-agave440-validator-registry,target=/opt/cargo/registry \
+    --mount=type=cache,id=solana-agave440-validator-git,target=/opt/cargo/git \
+    --mount=type=cache,id=solana-agave440-checked-target,target=/src/agave/target \
+    printf '%s  Cargo.lock\n' "$AGAVE_CARGO_LOCK_SHA256" | sha256sum --check --strict; \
+    cargo build --release --locked -p agave-validator --bin agave-validator; \
+    install -Dm755 target/release/agave-validator /opt/out/agave-validator; \
+    /opt/out/agave-validator --version
+
+FROM ${BASE_IMAGE}
+USER root
+COPY --from=builder /opt/out/agave-validator /opt/agave/bin/agave-validator
+RUN printf 'checked=overflow-checks,debug-assertions,line-tables-only\n' >> /opt/agave/BUILD-INFO
+USER validator:validator
+ENV RUST_BACKTRACE=1
+LABEL org.opencontainers.image.build="native-linux-amd64-source-validator-checked"

@@ -54,7 +54,13 @@ def input_parser(plan, args):
         "firedancer_stake_lamports": genesis.get(
             "firedancer_stake_lamports", constants.FIREDANCER_STAKE_LAMPORTS
         ),
+        "puppet_count": genesis.get("puppet_count", constants.PUPPET_COUNT),
+        "puppet_stake_lamports": genesis.get(
+            "puppet_stake_lamports", constants.PUPPET_STAKE_LAMPORTS
+        ),
     }
+    if type(genesis_config["puppet_count"]) != "int" or genesis_config["puppet_count"] < 0 or genesis_config["puppet_count"] > 8:
+        fail("genesis.puppet_count must be an integer in 0..8")
 
     # ── SIG observer config ───────────────────────────────────────────────
     sig = args.get("sig", {})

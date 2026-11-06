@@ -49,6 +49,13 @@ FAUCET_LAMPORTS = 500000000000000          # 500M SOL faucet
 BOOTSTRAP_VALIDATOR_LAMPORTS = 500000000000  # 500 SOL
 BOOTSTRAP_STAKE_LAMPORTS = 100000000000      # 100 SOL stake
 FIREDANCER_STAKE_LAMPORTS = 40000000000       # 40 SOL; Jito+Agave retain >80% stake
+# Puppet validators: staked identities in genesis with NO client process. The
+# P2P harness holds their keys and plays them (votes, leader slots, repair
+# server). Off by default. 2 x 2.5 SOL keeps Jito+Agave at 200/245 = 81.6%,
+# above Agave's 80% --wait-for-supermajority gate, and the adversarial stake
+# at 2%, inside Alpenglow's 20% byzantine bound.
+PUPPET_COUNT = 0
+PUPPET_STAKE_LAMPORTS = 2500000000            # 2.5 SOL each
 
 # ── Shared data mount point ─────────────────────────────────────────────────
 # The genesis artifact is mounted at /data on every client. meta.env (a

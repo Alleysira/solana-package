@@ -1,0 +1,18 @@
+# P2P bug-hunting ("checked") profile: the Alpenglow three-voter network with
+# sanitizer/assert builds and two harness-driven puppet validators.
+#
+#   joiner      Agave 4.4.0 agave-validator with overflow-checks + debug-assertions
+#   firedancer  v26.10.5 built EXTRAS="debug handholding ubsan asan"
+#   bootstrap   unchanged release Jito (stable producer / reference)
+#   puppets     2 x 2.5 SOL staked identities with no client process; their keys
+#               are in the genesis artifact (/data/puppet-N-*.json) and the P2P
+#               harness plays them (votes, leader slots, repair server).
+#
+# Build the images with solana-package/Dockerfile.*-checked first.
+genesis:
+  alpenglow: true
+  puppet_count: 2
+  puppet_stake_lamports: 2500000000
+participants:
+  joiner_image: solana-diff/agave-validator:4.4.0-checked-amd64
+  firedancer_image: solana-diff/firedancer:full-6286f99e-checked

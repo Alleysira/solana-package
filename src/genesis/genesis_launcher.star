@@ -87,6 +87,8 @@ def generate_genesis(plan, genesis_config):
         'GEN_BS_LAMPORTS="{0}"'.format(genesis_config["bootstrap_validator_lamports"]),
         'GEN_BS_STAKE_LAMPORTS="{0}"'.format(genesis_config["bootstrap_validator_stake_lamports"]),
         'GEN_FD_STAKE_LAMPORTS="{0}"'.format(genesis_config["firedancer_stake_lamports"]),
+        'GEN_PUPPET_COUNT="{0}"'.format(genesis_config.get("puppet_count", 0)),
+        'GEN_PUPPET_STAKE_LAMPORTS="{0}"'.format(genesis_config.get("puppet_stake_lamports", 2500000000)),
         "",
         'echo "[genesis] keygen identities/votes/stakes/faucet/tip/merkle/recipient"',
         # Single-line for-loop (no backslash continuation — would be eaten).
@@ -112,6 +114,13 @@ def generate_genesis(plan, genesis_config):
         "",
         'echo "[genesis] running solana-genesis (two bootstrap validators plus staked Firedancer account)"',
         '{ echo "validator_accounts:"; echo "  - balance_lamports: $GEN_BS_LAMPORTS"; echo "    stake_lamports: $GEN_FD_STAKE_LAMPORTS"; echo "    identity_account: $firedancer_identity"; echo "    vote_account: $firedancer_vote"; echo "    stake_account: $firedancer_stake"; echo "    bls_pubkey: $firedancer_bls"; } > "$WORK/firedancer-validator.yaml"',
+        # Puppet validators (P2P harness identities, no client process): appended
+        # to the same validator_accounts list, so solana-genesis stakes them
+        # exactly like the Firedancer entry. Keys stay in the genesis artifact
+        # (/data on every validator) for the harness to read.
+        ': > "$WORK/puppets.env"',
+        'i=1; while [ "$i" -le "$GEN_PUPPET_COUNT" ]; do for k in identity vote stake; do solana-keygen new --no-bip39-passphrase --silent --force --outfile "$WORK/puppet-$i-$k.json" >/dev/null; done; p_id="$(pubkey puppet-$i-identity)"; p_vote="$(pubkey puppet-$i-vote)"; p_stake="$(pubkey puppet-$i-stake)"; p_bls="$(solana-keygen bls_pubkey "$WORK/puppet-$i-identity.json")"; { echo "  - balance_lamports: $GEN_BS_LAMPORTS"; echo "    stake_lamports: $GEN_PUPPET_STAKE_LAMPORTS"; echo "    identity_account: $p_id"; echo "    vote_account: $p_vote"; echo "    stake_account: $p_stake"; echo "    bls_pubkey: $p_bls"; } >> "$WORK/firedancer-validator.yaml"; { echo "PUPPET_${i}_IDENTITY=$p_id"; echo "PUPPET_${i}_VOTE=$p_vote"; echo "PUPPET_${i}_STAKE=$p_stake"; echo "PUPPET_${i}_BLS=$p_bls"; } >> "$WORK/puppets.env"; i=$((i+1)); done',
+        'echo "[genesis] validator_accounts file:"; cat "$WORK/firedancer-validator.yaml"',
         # Single-line solana-genesis invocation (was multi-line with \ continuations).
         'genesis_output="$(solana-genesis --ledger "$WORK/genesis-ledger" --bootstrap-validator "$bootstrap_identity" "$bootstrap_vote" "$bootstrap_stake" --bootstrap-validator "$joiner_identity" "$joiner_vote" "$joiner_stake" --bootstrap-validator-bls-pubkey "$bootstrap_bls" --bootstrap-validator-bls-pubkey "$joiner_bls" --validator-accounts-file "$WORK/firedancer-validator.yaml" --faucet-pubkey "$WORK/faucet.json" --faucet-lamports "$GEN_FAUCET_LAMPORTS" --bootstrap-validator-lamports "$GEN_BS_LAMPORTS" --bootstrap-validator-stake-lamports "$GEN_BS_STAKE_LAMPORTS" --cluster-type "$GEN_CLUSTER_TYPE" --hashes-per-tick "$GEN_HASHES_PER_TICK" --ticks-per-slot "$GEN_TICKS_PER_SLOT" --slots-per-epoch "$GEN_SLOTS_PER_EPOCH" $GEN_ALPENGLLOW_ARGS)"',
         # grep+awk extraction (no .format on joined string → literal braces OK).
@@ -137,7 +146,7 @@ def generate_genesis(plan, genesis_config):
         "",
         "# Write the shell-sourceable meta.env consumed by every validator.",
         "# (No heredoc — run_sh mangles real newlines; use a { echo; } group.)",
-        '{ echo "GENESIS_HASH=$genesis_hash"; echo "SHRED_VERSION=$shred_version"; echo "BOOTSTRAP_IDENTITY=$bootstrap_identity"; echo "BOOTSTRAP_VOTE=$bootstrap_vote"; echo "BOOTSTRAP_STAKE=$bootstrap_stake"; echo "JOINER_IDENTITY=$joiner_identity"; echo "JOINER_VOTE=$joiner_vote"; echo "JOINER_STAKE=$joiner_stake"; echo "FIREDANCER_IDENTITY=$firedancer_identity"; echo "FIREDANCER_VOTE=$firedancer_vote"; echo "FIREDANCER_STAKE=$firedancer_stake"; echo "RECIPIENT=$recipient"; echo "TIP_PAYMENT=$tip_payment"; echo "TIP_DISTRIBUTION=$tip_distribution"; echo "MERKLE_AUTHORITY=$merkle_authority"; echo "BOOTSTRAP_BLS=$bootstrap_bls"; echo "JOINER_BLS=$joiner_bls"; echo "FIREDANCER_BLS=$firedancer_bls"; } > "$WORK/meta.env"',
+        '{ echo "GENESIS_HASH=$genesis_hash"; echo "SHRED_VERSION=$shred_version"; echo "BOOTSTRAP_IDENTITY=$bootstrap_identity"; echo "BOOTSTRAP_VOTE=$bootstrap_vote"; echo "BOOTSTRAP_STAKE=$bootstrap_stake"; echo "JOINER_IDENTITY=$joiner_identity"; echo "JOINER_VOTE=$joiner_vote"; echo "JOINER_STAKE=$joiner_stake"; echo "FIREDANCER_IDENTITY=$firedancer_identity"; echo "FIREDANCER_VOTE=$firedancer_vote"; echo "FIREDANCER_STAKE=$firedancer_stake"; echo "RECIPIENT=$recipient"; echo "TIP_PAYMENT=$tip_payment"; echo "TIP_DISTRIBUTION=$tip_distribution"; echo "MERKLE_AUTHORITY=$merkle_authority"; echo "BOOTSTRAP_BLS=$bootstrap_bls"; echo "JOINER_BLS=$joiner_bls"; echo "FIREDANCER_BLS=$firedancer_bls"; echo "PUPPET_COUNT=$GEN_PUPPET_COUNT"; cat "$WORK/puppets.env"; } > "$WORK/meta.env"',
         "",
         'echo "[genesis] meta.env written. Contents:"',
         "cat \"$WORK/meta.env\"",

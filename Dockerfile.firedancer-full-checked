@@ -1,0 +1,38 @@
+# Full Firedancer development validator, distinct from the fdctl hybrid.
+FROM debian:bookworm-slim AS builder
+SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl git build-essential clang cmake pkg-config libclang-dev libssl-dev libudev-dev zlib1g-dev protobuf-compiler iproute2 python3 gcc-12 g++-12 make && rm -rf /var/lib/apt/lists/*
+ARG FIREDANCER_COMMIT=6286f99e400c1d5ac6f95b8cf36491555faa3726
+RUN git clone https://github.com/firedancer-io/firedancer.git /src/firedancer && git -C /src/firedancer checkout "$FIREDANCER_COMMIT"
+WORKDIR /src/firedancer
+RUN FD_AUTO_INSTALL_PACKAGES=1 ./deps.sh fetch check install
+# ---- checked variant (P2P bug-hunting profile) ------------------------------
+# Same source pin and builder layers as Dockerfile.firedancer-full (so the
+# clone/deps layers are shared), but compiled with Firedancer's own sanitizer
+# and invariant-check extras (config/extra/with-*.mk at 6286f99e):
+#   debug        -g2, frame pointers, -rdynamic (symbolized reports)
+#   handholding  FD_HAS_HANDHOLDING, DCHECKs, reasm/template heavy checks
+#   ubsan        UndefinedBehaviorSanitizer (see with-ubsan.mk for the list)
+#   asan         AddressSanitizer + LeakSanitizer
+# Fallback ladder if the node cannot follow the chain: drop asan first.
+ARG FD_EXTRAS="debug handholding ubsan asan"
+ARG FD_JOBS=16
+# Sanitizer instrumentation defeats gcc-12 value-range folding, so -Werror
+# (with-brutality.mk) trips on warnings the release build never sees, e.g.
+# -Wsign-conversion in choreo/votor/ag_bls_serde.c:110. Demote only those,
+# via Firedancer's own EXTRA_CPPFLAGS hook (config/everything.mk:61), without
+# touching any Firedancer source.
+ARG FD_NOWERROR="-Wno-error=sign-conversion -Wno-error=conversion -Wno-error=stringop-overflow -Wno-error=stringop-overread -Wno-error=array-bounds -Wno-error=maybe-uninitialized"
+RUN source "$HOME/.cargo/env" 2>/dev/null || true; source activate MACHINE=linux_gcc_x86_64 CC=gcc-12; make -j"$FD_JOBS" firedancer EXTRAS="$FD_EXTRAS" EXTRA_CPPFLAGS="$FD_NOWERROR"
+RUN source activate MACHINE=linux_gcc_x86_64 CC=gcc-12; OBJDIR="$(make env MACHINE=linux_gcc_x86_64 CC=gcc-12 EXTRAS="$FD_EXTRAS" | sed -n 's/^OBJDIR=//p' | tr -d "'")"; "$OBJDIR/bin/firedancer" version; install -Dm755 "$OBJDIR/bin/firedancer" /stage/firedancer; printf 'source=https://github.com/firedancer-io/firedancer\ncommit=%s\ntarget=firedancer\nclient=full\nextras=%s\n' "$FIREDANCER_COMMIT" "$FD_EXTRAS" >/stage/BUILD-INFO
+FROM debian:bookworm-slim
+# libasan8/libubsan1 are the gcc-12 sanitizer runtimes; gdb is for stall evidence.
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates libssl3 libudev1 libatomic1 zlib1g tini iproute2 procps curl libasan8 libubsan1 libstdc++6 gdb && rm -rf /var/lib/apt/lists/* && useradd --create-home --uid 1000 firedancer
+COPY --from=builder /stage /opt/firedancer
+ENV PATH=/opt/firedancer:$PATH
+# Report every sanitizer error to stderr (docker logs) and stop on the first.
+# Leak checking at exit is off: a validator never exits cleanly.
+ENV ASAN_OPTIONS=detect_leaks=0:abort_on_error=1:halt_on_error=1:print_summary=1:allow_user_segv_handler=1 \
+    UBSAN_OPTIONS=print_stacktrace=1:halt_on_error=0:print_summary=1
+ENTRYPOINT ["/usr/bin/tini", "-g", "--", "/opt/firedancer/firedancer"]
+CMD ["version"]
